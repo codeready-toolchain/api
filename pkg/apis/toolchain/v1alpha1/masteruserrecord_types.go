@@ -28,37 +28,7 @@ type UserAccountEmbedded struct {
 	ResourceVersion string `json:"resourceVersion"`
 
 	// The spec of the corresponding UserAccount
-	Spec UserAccountEmbeddedSpec `json:"spec"`
-}
-
-type UserAccountEmbeddedSpec struct {
-
-	// The namespace limit name
-	NSLimit string `json:"nsLimit"`
-
-	// Embedded namespace template set
-	NSTemplateSet NSTemplateSetEmbedded `json:"nsTemplateSet"`
-}
-
-type NSTemplateSetEmbedded struct {
-
-	// The name of the tier represented by this template set
-	TierName string `json:"tierName"`
-
-	// The namespace templates
-	Namespaces []Namespace `json:"namespaces"`
-}
-
-type Namespace struct {
-
-	// The type of the namespace. For example: ide|cicd|stage|default
-	Type string `json:"type"`
-
-	// The revision of the corresponding template
-	Revision string `json:"revision"`
-
-	// Optional field. Used to specify a custom template
-	Template string `json:"template,omitempty"`
+	Spec UserAccountSpec `json:"spec"`
 }
 
 // MasterUserRecordStatus defines the observed state of MasterUserRecord
@@ -82,26 +52,8 @@ type UserAccountStatusEmbedded struct {
 	// The resource version of the corresponding UserAccount
 	ResourceVersion string `json:"resourceVersion"`
 
-	// Observed status. For example: provisioning|provisioned
-	Status string `json:"status,omitempty"`
-
-	// The namespace statuses
-	Namespaces []NamespaceStatus `json:"namespaces,omitempty"`
-}
-
-type NamespaceStatus struct {
-
-	// The name of the namespace
-	Name string `json:"name"`
-
-	// The type of the namespace. For example: ide|cicd|stage|default
-	Type string `json:"type"`
-
-	// Observed status. For example: provisioning|provisioned|failed
-	Status string `json:"status,omitempty"`
-
-	// The error message in case of failed status
-	Error string `json:"error,omitempty"`
+	// Inherits the status from the corresponding UserAccount status
+	UserAccountStatus `json:",inline"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
