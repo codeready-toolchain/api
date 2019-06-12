@@ -118,24 +118,17 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 							Format:      "",
 						},
 					},
-					"userAccounts": {
+					"error": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The status of user accounts in the member clusters which belong to this MasterUserRecord",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"),
-									},
-								},
-							},
+							Description: "The error message in case of failed status",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 				},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"},
+		Dependencies: []string{},
 	}
 }
 
@@ -413,28 +406,21 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref common.ReferenceCa
 				Properties: map[string]spec.Schema{
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Description: "String representation of the overall observed status. For example: provisioning|provisioned|updating",
+							Description: "Observed status. For example: provisioning|provisioned",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
-					"namespaces": {
+					"error": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The detailed namespace statuses",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NamespaceStatus"),
-									},
-								},
-							},
+							Description: "The error message in case of failed status",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 				},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NamespaceStatus"},
+		Dependencies: []string{},
 	}
 }

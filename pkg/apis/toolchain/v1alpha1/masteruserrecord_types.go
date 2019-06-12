@@ -40,20 +40,8 @@ type MasterUserRecordStatus struct {
 	// Observed status. For example: provisioning|provisioned
 	Status string `json:"status,omitempty"`
 
-	// The status of user accounts in the member clusters which belong to this MasterUserRecord
-	UserAccounts []UserAccountStatusEmbedded `json:"userAccounts,omitempty"`
-}
-
-type UserAccountStatusEmbedded struct {
-
-	// The cluster in which the user exists
-	TargetCluster string `json:"targetCluster"`
-
-	// The resource version of the corresponding UserAccount
-	ResourceVersion string `json:"resourceVersion"`
-
-	// Inherits the status from the corresponding UserAccount status
-	UserAccountStatus `json:",inline"`
+	// The error message in case of failed status
+	Error string `json:"error,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

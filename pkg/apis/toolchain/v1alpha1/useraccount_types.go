@@ -25,8 +25,11 @@ type UserAccountStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Inherits the status from the corresponding NSTemplateSet
-	NSTemplateSetStatus `json:",inline"`
+	// Observed status. For example: provisioning|provisioned
+	Status string `json:"status,omitempty"`
+
+	// The error message in case of failed status
+	Error string `json:"error,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
