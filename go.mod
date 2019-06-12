@@ -24,9 +24,12 @@ require (
 	github.com/json-iterator/go v1.1.6 // indirect
 	github.com/kisielk/errcheck v1.2.0 // indirect
 	github.com/mailru/easyjson v0.0.0-20190403194419-1ea4449da983 // indirect
+	github.com/markbates/inflect v1.0.4 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20190414153302-2ae31c8b6b30 // indirect
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0 // indirect
+	github.com/pkg/errors v0.8.1 // indirect
+	github.com/spf13/afero v1.2.2 // indirect
 	github.com/spf13/pflag v1.0.3 // indirect
 	github.com/stretchr/objx v0.2.0 // indirect
 	golang.org/x/crypto v0.0.0-20190530122614-20be4c3c3ed5 // indirect
@@ -37,9 +40,11 @@ require (
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.2.2 // indirect
-	k8s.io/apimachinery v0.0.0-20190602183612-63a6072eb563
-	k8s.io/code-generator v0.0.0-20190531131525-17d711082421 // indirect
-	k8s.io/gengo v0.0.0-20190327210449-e17681d19d3a // indirect
+	k8s.io/apiextensions-apiserver v0.0.0-20190610170453-8677a5df3599 // indirect
+	k8s.io/apimachinery v0.0.0-20190607205628-5fbcd19f360b
+	k8s.io/code-generator v0.0.0-20190531131525-17d711082421
+	k8s.io/gengo v0.0.0-20190327210449-e17681d19d3a
 	k8s.io/kube-openapi v0.0.0-20190603182131-db7b694dc208
 	sigs.k8s.io/controller-runtime v0.1.10
+	sigs.k8s.io/controller-tools v0.1.10
 )
