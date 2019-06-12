@@ -6,34 +6,22 @@ import (
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// MasterUserRecordSpec defines the desired state of MasterUserRecord
+// UserAccountSpec defines the desired state of UserAccount
 // +k8s:openapi-gen=true
-type MasterUserRecordSpec struct {
+type UserAccountSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Desired state of the user record: approved|banned|deactivated
-	State string `json:"state,omitempty"`
+	// The namespace limit name
+	NSLimit string `json:"nsLimit"`
 
-	// The list of user accounts in the member clusters which belong to this MasterUserRecord
-	UserAccounts []UserAccountEmbedded `json:"userAccounts,omitempty"`
+	// Namespace template set
+	NSTemplateSet NSTemplateSetSpec `json:"nsTemplateSet"`
 }
 
-type UserAccountEmbedded struct {
-
-	// The cluster in which the user exists
-	TargetCluster string `json:"targetCluster"`
-
-	// The resource version of the corresponding UserAccount
-	ResourceVersion string `json:"resourceVersion"`
-
-	// The spec of the corresponding UserAccount
-	Spec UserAccountSpec `json:"spec"`
-}
-
-// MasterUserRecordStatus defines the observed state of MasterUserRecord
+// UserAccountStatus defines the observed state of UserAccount
 // +k8s:openapi-gen=true
-type MasterUserRecordStatus struct {
+type UserAccountStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
@@ -46,26 +34,26 @@ type MasterUserRecordStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// MasterUserRecord is the Schema for the masteruserrecords API
+// UserAccount is the Schema for the useraccounts API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
-type MasterUserRecord struct {
+type UserAccount struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   MasterUserRecordSpec   `json:"spec,omitempty"`
-	Status MasterUserRecordStatus `json:"status,omitempty"`
+	Spec   UserAccountSpec   `json:"spec,omitempty"`
+	Status UserAccountStatus `json:"status,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// MasterUserRecordList contains a list of MasterUserRecord
-type MasterUserRecordList struct {
+// UserAccountList contains a list of UserAccount
+type UserAccountList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []MasterUserRecord `json:"items"`
+	Items           []UserAccount `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&MasterUserRecord{}, &MasterUserRecordList{})
+	SchemeBuilder.Register(&UserAccount{}, &UserAccountList{})
 }
