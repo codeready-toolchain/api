@@ -19,16 +19,19 @@ build: vendor $(shell find . -path ./vendor -prune -o -name '*.go' -print)
 .PHONY: generate
 ## Generate deepcopy after modifying API
 generate:
+	@echo "re-generating the deepcopy files..."
 	$(Q)go run $(shell pwd)/vendor/k8s.io/code-generator/cmd/deepcopy-gen/main.go \
 	--input-dirs ./pkg/apis/toolchain/v1alpha1/ -O zz_generated.deepcopy \
 	--bounding-dirs github.com/codeready-toolchain/api/pkg/apis "toolchain:v1alpha1" \
-	--go-header-file=make/boilerplate.go.txt
-
+	--go-header-file=make/go-header.txt
+	
+	
 .PHONY: clean
 ## Clean
 clean:
 	$(Q)-rm -rf ${V_FLAG} ./vendor
 	$(Q)go clean ${X_FLAG} ./...
 
+.PHONY: vendor
 vendor: 
 	$(Q)go mod vendor
