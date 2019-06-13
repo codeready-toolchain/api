@@ -118,17 +118,24 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 							Format:      "",
 						},
 					},
-					"error": {
+					"userAccounts": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The error message in case of failed status",
-							Type:        []string{"string"},
-							Format:      "",
+							Description: "The status of user accounts in the member clusters which belong to this MasterUserRecord",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"),
+									},
+								},
+							},
 						},
 					},
 				},
 			},
 		},
-		Dependencies: []string{},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"},
 	}
 }
 
