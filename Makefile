@@ -18,7 +18,7 @@ build: vendor $(shell find . -path ./vendor -prune -o -name '*.go' -print)
 
 .PHONY: generate
 ## Generate deepcopy after modifying API
-generate:
+generate: vendor
 	@echo "re-generating the deepcopy files..."
 	$(Q)go run $(shell pwd)/vendor/k8s.io/code-generator/cmd/deepcopy-gen/main.go \
 	--input-dirs ./pkg/apis/toolchain/v1alpha1/ -O zz_generated.deepcopy \
