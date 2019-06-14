@@ -2,7 +2,9 @@ ifndef GO_MK
 GO_MK:=# Prevent repeated "-include".
 
 # enable Go modules
-GO111MODULE=on
+GO111MODULE?=on
+export GO111MODULE
+
 # By default the project should be build under GOPATH/src/github.com/<orgname>/<reponame>
 GO_PACKAGE_ORG_NAME ?= $(shell basename $$(dirname $$PWD))
 GO_PACKAGE_REPO_NAME ?= $(shell basename $$PWD)
