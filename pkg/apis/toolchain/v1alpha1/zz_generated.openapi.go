@@ -55,19 +55,19 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref common.ReferenceCal
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec", "github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -91,7 +91,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountEmbedded"),
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountEmbedded"),
 									},
 								},
 							},
@@ -101,7 +101,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountEmbedded"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountEmbedded"},
 	}
 }
 
