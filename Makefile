@@ -26,7 +26,13 @@ generate: vendor
 	--bounding-dirs github.com/codeready-toolchain/api/pkg/apis "toolchain:v1alpha1" \
 	--go-header-file=make/go-header.txt
 	
-	
+.PHONY: test
+## runs the tests
+test:
+	@echo "running the tests..."
+	$(Q)GO111MODULE=on \
+	go test ./...
+
 .PHONY: clean
 ## Clean
 clean:
