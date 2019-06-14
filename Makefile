@@ -12,15 +12,16 @@ include ./make/lint.mk
 
 .PHONY: build
 ## Build
-build: vendor $(shell find . -path ./vendor -prune -o -name '*.go' -print)
-	$(Q)CGO_ENABLED=0 GOARCH=amd64 GOOS=linux \
+build: $(shell find . -path ./vendor -prune -o -name '*.go' -print)
+	$(Q)CGO_ENABLED=0 GOARCH=amd64 GOOS=linux GO111MODULE=on \
 	    go build github.com/codeready-toolchain/api/pkg/apis/
 
 .PHONY: generate
 ## Generate deepcopy after modifying API
 generate: vendor
 	@echo "re-generating the deepcopy files..."
-	$(Q)go run $(shell pwd)/vendor/k8s.io/code-generator/cmd/deepcopy-gen/main.go \
+	$(Q)GO111MODULE=on \
+	go run $(shell pwd)/vendor/k8s.io/code-generator/cmd/deepcopy-gen/main.go \
 	--input-dirs ./pkg/apis/toolchain/v1alpha1/ -O zz_generated.deepcopy \
 	--bounding-dirs github.com/codeready-toolchain/api/pkg/apis "toolchain:v1alpha1" \
 	--go-header-file=make/go-header.txt
@@ -34,4 +35,4 @@ clean:
 
 .PHONY: vendor
 vendor: 
-	$(Q)go mod vendor
+	$(Q)GO111MODULE=on go mod vendor
