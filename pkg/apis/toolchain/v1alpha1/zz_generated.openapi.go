@@ -13,18 +13,18 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.MasterUserRecord":       schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":   schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus": schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSet":          schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":      schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":    schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateTier":         schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":     schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":   schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccount":            schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountSpec":        schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
-		"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountStatus":      schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":       schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":   schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus": schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":          schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":      schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":    schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":         schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":     schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":   schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":            schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":        schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":      schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
 	}
 }
 
@@ -118,17 +118,24 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 							Format:      "",
 						},
 					},
-					"error": {
+					"userAccounts": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The error message in case of failed status",
-							Type:        []string{"string"},
-							Format:      "",
+							Description: "The status of user accounts in the member clusters which belong to this MasterUserRecord",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"),
+									},
+								},
+							},
 						},
 					},
 				},
 			},
 		},
-		Dependencies: []string{},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"},
 	}
 }
 
@@ -159,19 +166,19 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref common.ReferenceCallba
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec", "github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -195,7 +202,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.Namespace"),
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Namespace"),
 									},
 								},
 							},
@@ -206,7 +213,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.Namespace"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Namespace"},
 	}
 }
 
@@ -230,7 +237,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref common.Reference
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NamespaceStatus"),
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NamespaceStatus"),
 									},
 								},
 							},
@@ -240,7 +247,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NamespaceStatus"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NamespaceStatus"},
 	}
 }
 
@@ -271,19 +278,19 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref common.ReferenceCallb
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec", "github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -300,7 +307,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceC
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.Namespace"),
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Namespace"),
 									},
 								},
 							},
@@ -311,7 +318,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceC
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.Namespace"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Namespace"},
 	}
 }
 
@@ -354,19 +361,19 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref common.ReferenceCallback
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountSpec", "github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.UserAccountStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -386,7 +393,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Ref:         ref("github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 				},
@@ -394,7 +401,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/host-operator/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
 	}
 }
 
