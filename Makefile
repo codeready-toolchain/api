@@ -10,6 +10,15 @@ include ./make/git.mk
 include ./make/format.mk
 include ./make/lint.mk
 
+# current groupname and version of the operators'API
+API_GROUPNAME=toolchain
+API_VERSION:=v1alpha1
+
+# how to dispatch the CRD files per repository (space-separated lists)
+HOST_CLUSTER_CRD_FILES:=$(API_GROUPNAME)_$(API_VERSION)_masteruserrecord.yaml $(API_GROUPNAME)_$(API_VERSION)_nstemplatetier.yaml $(API_GROUPNAME)_$(API_VERSION)_useraccount.yaml
+MEMBER_CLUSTER_CRD_FILES:=$(API_GROUPNAME)_$(API_VERSION)_nstemplateset.yaml
+
+
 .PHONY: build
 ## Build
 build: $(shell find . -path ./vendor -prune -o -name '*.go' -print)
@@ -25,16 +34,16 @@ generate: generate-crds
 generate-deepcopy:
 	@echo "re-generating the deepcopy go file..."
 	$(Q)go run $(shell pwd)/vendor/k8s.io/code-generator/cmd/deepcopy-gen/main.go \
-	--input-dirs ./pkg/apis/toolchain/v1alpha1/ -O zz_generated.deepcopy \
-	--bounding-dirs github.com/codeready-toolchain/api/pkg/apis "toolchain:v1alpha1" \
+	--input-dirs ./pkg/apis/$(API_GROUPNAME)/$(API_VERSION)/ -O zz_generated.deepcopy \
+	--bounding-dirs github.com/codeready-toolchain/api/pkg/apis "$(API_GROUPNAME):$(API_VERSION)" \
 	--go-header-file=make/go-header.txt
 	
 .PHONY: generate-openapi
 generate-openapi:
 	@echo "re-generating the openapi go file..."
 	$(Q)go run $(shell pwd)/vendor/k8s.io/kube-openapi/cmd/openapi-gen/openapi-gen.go \
-	--input-dirs ./pkg/apis/toolchain/v1alpha1/ \
-	--output-package github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1 \
+	--input-dirs ./pkg/apis/$(API_GROUPNAME)/$(API_VERSION)/ \
+	--output-package github.com/codeready-toolchain/api/pkg/apis/$(API_GROUPNAME)/$(API_VERSION) \
 	--output-file-base zz_generated.openapi \
 	--go-header-file=make/go-header.txt
 
@@ -82,10 +91,12 @@ generate-crds: host-operator member-operator
 	--domain dev.openshift.com \
 	--output-dir deploy/crds
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
-	@mv deploy/crds/toolchain_v1alpha1_masteruserrecord.yaml ../host-operator/deploy/crds
-	@mv deploy/crds/toolchain_v1alpha1_nstemplatetier.yaml ../host-operator/deploy/crds
-	@mv deploy/crds/toolchain_v1alpha1_useraccount.yaml ../host-operator/deploy/crds
-	@mv deploy/crds/toolchain_v1alpha1_nstemplateset.yaml ../member-operator/deploy/crds
+	for file in $(HOST_CLUSTER_CRD_FILES) ; do \
+		mv deploy/crds/$$file ../host-operator/deploy/crds ; \
+	done
+	for file in $(MEMBER_CLUSTER_CRD_FILES) ; do \
+		mv deploy/crds/$$file ../member-operator/deploy/crds ; \
+	done
 ifneq ($(wildcard deploy/crds/*.yaml),)
 	@echo "ERROR: some CRD files were not dispatched: $(wildcard deploy/crds/*.yaml)"
 	@echo "Please update this Makefile accordingly."
