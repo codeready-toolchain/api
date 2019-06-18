@@ -1,5 +1,3 @@
-ifndef GIT_MK
-GIT_MK:=# Prevent repeated "-include".
 
 GIT_COMMIT_ID := $(shell git rev-parse HEAD)
 ifneq ($(shell git status --porcelain --untracked-files=no),)
@@ -12,5 +10,3 @@ ifneq ($(shell git status --porcelain --untracked-files=no),)
 endif
 
 BUILD_TIME = `date -u '+%Y-%m-%dT%H:%M:%SZ'`
-
-endif
