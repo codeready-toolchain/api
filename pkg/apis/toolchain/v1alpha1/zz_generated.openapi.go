@@ -100,6 +100,13 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 							Format:      "",
 						},
 					},
+					"userID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"userAccounts": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The list of user accounts in the member clusters which belong to this MasterUserRecord",
@@ -114,6 +121,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 						},
 					},
 				},
+				Required: []string{"userID"},
 			},
 		},
 		Dependencies: []string{
@@ -399,6 +407,13 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 			SchemaProps: spec.SchemaProps{
 				Description: "UserAccountSpec defines the desired state of UserAccount",
 				Properties: map[string]spec.Schema{
+					"userID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim) Is to be used to create Identity and UserIdentityMapping resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The namespace limit name",
@@ -413,7 +428,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 						},
 					},
 				},
-				Required: []string{"nsLimit", "nsTemplateSet"},
+				Required: []string{"userID", "nsLimit", "nsTemplateSet"},
 			},
 		},
 		Dependencies: []string{

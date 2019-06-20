@@ -15,6 +15,9 @@ type MasterUserRecordSpec struct {
 	// Desired state of the user record: approved|banned|deactivated
 	State string `json:"state,omitempty"`
 
+	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
+	UserID string `json:"userID"`
+
 	// The list of user accounts in the member clusters which belong to this MasterUserRecord
 	UserAccounts []UserAccountEmbedded `json:"userAccounts,omitempty"`
 }
