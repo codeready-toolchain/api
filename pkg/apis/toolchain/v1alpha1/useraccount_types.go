@@ -6,6 +6,11 @@ import (
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
+const (
+	StatusProvisioning string = "provisioning"
+	StatusProvisioned  string = "provisioned"
+)
+
 // UserAccountSpec defines the desired state of UserAccount
 // +k8s:openapi-gen=true
 type UserAccountSpec struct {
