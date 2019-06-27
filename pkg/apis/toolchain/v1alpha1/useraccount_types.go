@@ -7,6 +7,7 @@ import (
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 type StatusUserAccount string
+
 const (
 	StatusProvisioning StatusUserAccount = "provisioning"
 	StatusProvisioned  StatusUserAccount = "provisioned"
