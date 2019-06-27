@@ -6,9 +6,11 @@ import (
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
+type StatusUserAccount string
+
 const (
-	StatusProvisioning string = "provisioning"
-	StatusProvisioned  string = "provisioned"
+	StatusProvisioning StatusUserAccount = "provisioning"
+	StatusProvisioned  StatusUserAccount = "provisioned"
 )
 
 // UserAccountSpec defines the desired state of UserAccount
@@ -35,7 +37,7 @@ type UserAccountStatus struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Observed status. For example: provisioning|provisioned
-	Status string `json:"status,omitempty"`
+	Status StatusUserAccount `json:"status,omitempty"`
 
 	// The error message in case of failed status
 	Error string `json:"error,omitempty"`
