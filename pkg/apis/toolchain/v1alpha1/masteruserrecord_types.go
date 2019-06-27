@@ -27,8 +27,9 @@ type UserAccountEmbedded struct {
 	// The cluster in which the user exists
 	TargetCluster string `json:"targetCluster"`
 
-	// The resource version of the corresponding UserAccount
-	ResourceVersion string `json:"resourceVersion"`
+	// SyncIndex is to be updated by UserAccount Controller
+	// when the member needs to trigger MasterUserRecord <-> UserAccount(s) synchronization
+	SyncIndex string `json:"syncIndex"`
 
 	// The spec of the corresponding UserAccount
 	Spec UserAccountSpec `json:"spec"`
