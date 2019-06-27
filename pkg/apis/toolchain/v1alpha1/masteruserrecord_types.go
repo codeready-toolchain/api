@@ -28,7 +28,7 @@ type UserAccountEmbedded struct {
 	TargetCluster string `json:"targetCluster"`
 
 	// SyncIndex is to be updated by UserAccount Controller
-	// when the member needs to trigger MasterUserRecord <-> UserAccount(s) synchronization
+	// when the member needs to trigger MasterUserRecord <-> UserAccount synchronization
 	SyncIndex string `json:"syncIndex"`
 
 	// The spec of the corresponding UserAccount
@@ -53,8 +53,9 @@ type UserAccountStatusEmbedded struct {
 	// The cluster in which the user exists
 	TargetCluster string `json:"targetCluster"`
 
-	// The resource version of the corresponding UserAccount
-	ResourceVersion string `json:"resourceVersion"`
+	// SyncIndex is used for checking if there is needed some MasterUserRecord <-> UserAccount
+	// synchronization for this specific UserAccount in the specific member cluster
+	SyncIndex string `json:"syncIndex"`
 
 	// Inherits the status from the corresponding UserAccount status
 	UserAccountStatus `json:",inline"`
