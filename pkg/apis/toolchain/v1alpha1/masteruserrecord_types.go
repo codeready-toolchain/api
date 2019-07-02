@@ -4,6 +4,18 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+type MasterUserRecordConditionType string
+
+// These are valid conditions of a MasterUserRecord
+const (
+	// MasterUserRecordProvisioning means the Master User Record is being provisioned
+	MasterUserRecordProvisioning MasterUserRecordConditionType = "Provisioning"
+	// MasterUserRecordUserAccountNotReady means the User Account failed to be provisioned
+	MasterUserRecordUserAccountNotReady MasterUserRecordConditionType = "UserAccountNotReady"
+	// MasterUserRecordReady means the Master User Record failed to be provisioned
+	MasterUserRecordReady MasterUserRecordConditionType = "Ready"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // MasterUserRecordSpec defines the desired state of MasterUserRecord
@@ -41,8 +53,8 @@ type MasterUserRecordStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Observed status. For example: provisioning|provisioned
-	Status string `json:"status,omitempty"`
+	// Conditions is an array of current User Account conditions
+	Conditions []UserAccountCondition `json:"conditions"`
 
 	// The status of user accounts in the member clusters which belong to this MasterUserRecord
 	UserAccounts []UserAccountStatusEmbedded `json:"userAccounts,omitempty"`
@@ -81,6 +93,13 @@ type MasterUserRecordList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []MasterUserRecord `json:"items"`
+}
+
+// MasterUserRecordCondition describes current state of a MasterUserRecord
+type MasterUserRecordCondition struct {
+	Condition `json:",inline"`
+	// Type of MasterUserRecord condition, Provisioning, UserAccountNotReady or Ready
+	Type MasterUserRecordConditionType `json:"type"`
 }
 
 func init() {
