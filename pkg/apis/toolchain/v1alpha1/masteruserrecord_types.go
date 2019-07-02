@@ -24,11 +24,18 @@ type MasterUserRecordSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Desired state of the user record: approved|banned|deactivated
-	State string `json:"state,omitempty"`
-
 	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
 	UserID string `json:"userID"`
+
+	// If set to true then the corresponding user should not be able to login (but the underlying UserAccounts still exists)
+	// "false" is assumed by default
+	// +optional
+	Disabled bool `json:"disabled,omitempty"`
+
+	// If set to true then the corresponding UserAccount should be deleted
+	// "false" is assumed by default
+	// +optional
+	Deprovisioned bool `json:"deprovisioned,omitempty"`
 
 	// The list of user accounts in the member clusters which belong to this MasterUserRecord
 	UserAccounts []UserAccountEmbedded `json:"userAccounts,omitempty"`

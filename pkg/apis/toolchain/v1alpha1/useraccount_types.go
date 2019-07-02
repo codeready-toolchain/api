@@ -34,6 +34,11 @@ type UserAccountSpec struct {
 	// Is to be used to create Identity and UserIdentityMapping resources
 	UserID string `json:"userID"`
 
+	// If set to true then the corresponding user should not be able to login
+	// "false" is assumed by default
+	// +optional
+	Disabled bool `json:"disabled,omitempty"`
+
 	// The namespace limit name
 	NSLimit string `json:"nsLimit"`
 
