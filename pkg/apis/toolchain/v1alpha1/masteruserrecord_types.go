@@ -60,8 +60,11 @@ type MasterUserRecordStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Conditions is an array of current User Account conditions
-	Conditions []UserAccountCondition `json:"conditions"`
+	// Conditions is an array of current Master User Record conditions
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	Conditions []MasterUserRecordCondition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
 	// The status of user accounts in the member clusters which belong to this MasterUserRecord
 	UserAccounts []UserAccountStatusEmbedded `json:"userAccounts,omitempty"`

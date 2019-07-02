@@ -53,7 +53,10 @@ type UserAccountStatus struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current User Account conditions
-	Conditions []UserAccountCondition `json:"conditions"`
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	Conditions []UserAccountCondition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
