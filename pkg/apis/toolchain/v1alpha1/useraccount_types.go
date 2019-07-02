@@ -1,16 +1,28 @@
 package v1alpha1
 
 import (
+	apiv1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-type StatusUserAccount string
+type UserAccountConditionType string
 
+// These are valid conditions of a UserAccount
 const (
-	StatusProvisioning StatusUserAccount = "provisioning"
-	StatusProvisioned  StatusUserAccount = "provisioned"
+	// UserAccountProvisioning means the User Account is being provisioned
+	UserAccountProvisioning UserAccountConditionType = "Provisioning"
+	// UserAccountUserNotReady means the User failed to be created
+	UserAccountUserNotReady UserAccountConditionType = "UserNotReady"
+	// UserAccountIdentityNotReady means the Identity failed to be created
+	UserAccountIdentityNotReady UserAccountConditionType = "IdentityNotReady"
+	// UserAccountUserIdentityMappingNotReady means the User Identity Mapping failed to be created
+	UserAccountUserIdentityMappingNotReady UserAccountConditionType = "UserIdentityMappingNotReady"
+	// UserAccountNSTemplateSetNotReady means the NSTemplateSet failed to be provisioned
+	UserAccountNSTemplateSetNotReady UserAccountConditionType = "NSTemplateSetNotReady"
+	// UserAccountReady means the User Account failed to be provisioned
+	UserAccountReady UserAccountConditionType = "Ready"
 )
 
 // UserAccountSpec defines the desired state of UserAccount
@@ -36,11 +48,8 @@ type UserAccountStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Observed status. For example: provisioning|provisioned
-	Status StatusUserAccount `json:"status,omitempty"`
-
-	// The error message in case of failed status
-	Error string `json:"error,omitempty"`
+	// Conditions is an array of current User Account conditions
+	Conditions []UserAccountCondition `json:"conditions"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -63,6 +72,24 @@ type UserAccountList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []UserAccount `json:"items"`
+}
+
+// UserAccountCondition describes current state of a UserAccount
+type UserAccountCondition struct {
+	// Type of UserAccount condition, Provisioning, UserNotReady, IdentityNotReady,
+	// UserIdentityMappingNotReady, NSTemplateSetNotReady or Ready
+	Type UserAccountConditionType `json:"type"`
+	// Status of the condition, one of True, False, Unknown.
+	Status apiv1.ConditionStatus `json:"status"`
+	// Last time the condition transit from one status to another.
+	// +optional
+	LastTransitionTime metav1.Time `json:"lastTransitionTime,omitempty"`
+	// (brief) reason for the condition's last transition.
+	// +optional
+	Reason string `json:"reason,omitempty"`
+	// Human readable message indicating details about last transition.
+	// +optional
+	Message string `json:"message,omitempty"`
 }
 
 func init() {
