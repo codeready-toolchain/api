@@ -6,22 +6,20 @@ import (
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-type UserAccountConditionType string
-
 // These are valid conditions of a UserAccount
 const (
 	// UserAccountProvisioning means the User Account is being provisioned
-	UserAccountProvisioning UserAccountConditionType = "Provisioning"
+	UserAccountProvisioning ConditionType = "Provisioning"
 	// UserAccountUserNotReady means the User failed to be created
-	UserAccountUserNotReady UserAccountConditionType = "UserNotReady"
+	UserAccountUserNotReady ConditionType = "UserNotReady"
 	// UserAccountIdentityNotReady means the Identity failed to be created
-	UserAccountIdentityNotReady UserAccountConditionType = "IdentityNotReady"
+	UserAccountIdentityNotReady ConditionType = "IdentityNotReady"
 	// UserAccountUserIdentityMappingNotReady means the User Identity Mapping failed to be created
-	UserAccountUserIdentityMappingNotReady UserAccountConditionType = "UserIdentityMappingNotReady"
+	UserAccountUserIdentityMappingNotReady ConditionType = "UserIdentityMappingNotReady"
 	// UserAccountNSTemplateSetNotReady means the NSTemplateSet failed to be provisioned
-	UserAccountNSTemplateSetNotReady UserAccountConditionType = "NSTemplateSetNotReady"
+	UserAccountNSTemplateSetNotReady ConditionType = "NSTemplateSetNotReady"
 	// UserAccountReady means the User Account failed to be provisioned
-	UserAccountReady UserAccountConditionType = "Ready"
+	UserAccountReady ConditionType = "Ready"
 )
 
 // UserAccountSpec defines the desired state of UserAccount
@@ -53,10 +51,12 @@ type UserAccountStatus struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current User Account conditions
+	// Supported condition types:
+	// Provisioning, UserNotReady, IdentityNotReady, UserIdentityMappingNotReady, NSTemplateSetNotReady and Ready
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
-	Conditions []UserAccountCondition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -79,14 +79,6 @@ type UserAccountList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []UserAccount `json:"items"`
-}
-
-// UserAccountCondition describes current state of a UserAccount
-type UserAccountCondition struct {
-	Condition `json:",inline"`
-	// Type of UserAccount condition, Provisioning, UserNotReady, IdentityNotReady,
-	// UserIdentityMappingNotReady, NSTemplateSetNotReady or Ready
-	Type UserAccountConditionType `json:"type"`
 }
 
 func init() {
