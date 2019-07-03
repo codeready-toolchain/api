@@ -29,18 +29,21 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":       schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":   schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus": schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":          schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":      schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":    schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":         schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":     schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":   schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":            schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":        schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":      schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":           schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":       schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus":     schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":              schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":          schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":        schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":             schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":         schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":       schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":                schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":            schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":          schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserProvisionRequest":       schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequest(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserProvisionRequestSpec":   schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserProvisionRequestStatus": schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestStatus(ref),
 	}
 }
 
@@ -477,6 +480,117 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref common.ReferenceCa
 						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Conditions is an array of current User Account conditions Supported condition types: Provisioning, UserNotReady, IdentityNotReady, UserIdentityMappingNotReady, NSTemplateSetNotReady and Ready",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserProvisionRequest is the Schema for the userprovisionrequests API",
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserProvisionRequestSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserProvisionRequestStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserProvisionRequestSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserProvisionRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserProvisionRequestSpec defines the desired state of UserProvisionRequest",
+				Properties: map[string]spec.Schema{
+					"userID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"targetCluster": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The cluster in which the user is provisioned in If not set then the target cluster will be picked automatically",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"approved": {
+						SchemaProps: spec.SchemaProps{
+							Description: "If Approved set to 'true' then the user has been manually approved\n\tIf not set then the user is subject of auto-approval (if enabled)",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"userID"},
+			},
+		},
+		Dependencies: []string{},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserProvisionRequestStatus defines the observed state of UserProvisionRequest",
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current UserProvisionRequest conditions Supported condition types: PendingApproval, Provisioning, Complete",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
