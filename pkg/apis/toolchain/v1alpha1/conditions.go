@@ -10,6 +10,8 @@ import (
 type ConditionType string
 
 type Condition struct {
+	// Type of condition
+	Type ConditionType `json:"type"`
 	// Status of the condition, one of True, False, Unknown.
 	Status apiv1.ConditionStatus `json:"status"`
 	// Last time the condition transit from one status to another.
