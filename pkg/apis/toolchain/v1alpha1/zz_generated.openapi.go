@@ -563,7 +563,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestSpec(ref common.Refe
 					},
 					"approved": {
 						SchemaProps: spec.SchemaProps{
-							Description: "If Approved set to 'true' then the user has been manually approved\n\tIf not set then the user is subject of auto-approval (if enabled)",
+							Description: "If Approved set to 'true' then the user has been manually approved If not set then the user is subject of auto-approval (if enabled)",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
