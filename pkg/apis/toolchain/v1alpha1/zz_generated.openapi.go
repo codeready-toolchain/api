@@ -93,17 +93,24 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 			SchemaProps: spec.SchemaProps{
 				Description: "MasterUserRecordSpec defines the desired state of MasterUserRecord",
 				Properties: map[string]spec.Schema{
-					"state": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Desired state of the user record: approved|banned|deactivated",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
 							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"disabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "If set to true then the corresponding user should not be able to login (but the underlying UserAccounts still exists) \"false\" is assumed by default",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"deprovisioned": {
+						SchemaProps: spec.SchemaProps{
+							Description: "If set to true then the corresponding UserAccount should be deleted \"false\" is assumed by default",
+							Type:        []string{"boolean"},
 							Format:      "",
 						},
 					},
@@ -135,11 +142,23 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 			SchemaProps: spec.SchemaProps{
 				Description: "MasterUserRecordStatus defines the observed state of MasterUserRecord",
 				Properties: map[string]spec.Schema{
-					"status": {
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Observed status. For example: provisioning|provisioned",
-							Type:        []string{"string"},
-							Format:      "",
+							Description: "Conditions is an array of current Master User Record conditions Supported condition types: Provisioning, UserAccountNotReady and Ready",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
 						},
 					},
 					"userAccounts": {
@@ -159,7 +178,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"},
 	}
 }
 
@@ -414,6 +433,13 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 							Format:      "",
 						},
 					},
+					"disabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "If set to true then the corresponding user should not be able to login \"false\" is assumed by default",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The namespace limit name",
@@ -442,23 +468,29 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref common.ReferenceCa
 			SchemaProps: spec.SchemaProps{
 				Description: "UserAccountStatus defines the observed state of UserAccount",
 				Properties: map[string]spec.Schema{
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Observed status. For example: provisioning|provisioned",
-							Type:        []string{"string"},
-							Format:      "",
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
 						},
-					},
-					"error": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The error message in case of failed status",
-							Type:        []string{"string"},
-							Format:      "",
+							Description: "Conditions is an array of current User Account conditions Supported condition types: Provisioning, UserNotReady, IdentityNotReady, UserIdentityMappingNotReady, NSTemplateSetNotReady and Ready",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
 						},
 					},
 				},
 			},
 		},
-		Dependencies: []string{},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
 	}
 }

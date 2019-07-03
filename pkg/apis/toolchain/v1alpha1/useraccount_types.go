@@ -6,11 +6,20 @@ import (
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-type StatusUserAccount string
-
+// These are valid conditions of a UserAccount
 const (
-	StatusProvisioning StatusUserAccount = "provisioning"
-	StatusProvisioned  StatusUserAccount = "provisioned"
+	// UserAccountProvisioning means the User Account is being provisioned
+	UserAccountProvisioning ConditionType = "Provisioning"
+	// UserAccountUserNotReady means the User failed to be created
+	UserAccountUserNotReady ConditionType = "UserNotReady"
+	// UserAccountIdentityNotReady means the Identity failed to be created
+	UserAccountIdentityNotReady ConditionType = "IdentityNotReady"
+	// UserAccountUserIdentityMappingNotReady means the User Identity Mapping failed to be created
+	UserAccountUserIdentityMappingNotReady ConditionType = "UserIdentityMappingNotReady"
+	// UserAccountNSTemplateSetNotReady means the NSTemplateSet failed to be provisioned
+	UserAccountNSTemplateSetNotReady ConditionType = "NSTemplateSetNotReady"
+	// UserAccountReady means the User Account failed to be provisioned
+	UserAccountReady ConditionType = "Ready"
 )
 
 // UserAccountSpec defines the desired state of UserAccount
@@ -22,6 +31,11 @@ type UserAccountSpec struct {
 	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
 	// Is to be used to create Identity and UserIdentityMapping resources
 	UserID string `json:"userID"`
+
+	// If set to true then the corresponding user should not be able to login
+	// "false" is assumed by default
+	// +optional
+	Disabled bool `json:"disabled,omitempty"`
 
 	// The namespace limit name
 	NSLimit string `json:"nsLimit"`
@@ -36,11 +50,13 @@ type UserAccountStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Observed status. For example: provisioning|provisioned
-	Status StatusUserAccount `json:"status,omitempty"`
-
-	// The error message in case of failed status
-	Error string `json:"error,omitempty"`
+	// Conditions is an array of current User Account conditions
+	// Supported condition types:
+	// Provisioning, UserNotReady, IdentityNotReady, UserIdentityMappingNotReady, NSTemplateSetNotReady and Ready
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

@@ -4,6 +4,16 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// These are valid conditions of a MasterUserRecord
+const (
+	// MasterUserRecordProvisioning means the Master User Record is being provisioned
+	MasterUserRecordProvisioning ConditionType = "Provisioning"
+	// MasterUserRecordUserAccountNotReady means the User Account failed to be provisioned
+	MasterUserRecordUserAccountNotReady ConditionType = "UserAccountNotReady"
+	// MasterUserRecordReady means the Master User Record failed to be provisioned
+	MasterUserRecordReady ConditionType = "Ready"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // MasterUserRecordSpec defines the desired state of MasterUserRecord
@@ -12,11 +22,18 @@ type MasterUserRecordSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Desired state of the user record: approved|banned|deactivated
-	State string `json:"state,omitempty"`
-
 	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
 	UserID string `json:"userID"`
+
+	// If set to true then the corresponding user should not be able to login (but the underlying UserAccounts still exists)
+	// "false" is assumed by default
+	// +optional
+	Disabled bool `json:"disabled,omitempty"`
+
+	// If set to true then the corresponding UserAccount should be deleted
+	// "false" is assumed by default
+	// +optional
+	Deprovisioned bool `json:"deprovisioned,omitempty"`
 
 	// The list of user accounts in the member clusters which belong to this MasterUserRecord
 	UserAccounts []UserAccountEmbedded `json:"userAccounts,omitempty"`
@@ -41,8 +58,13 @@ type MasterUserRecordStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Observed status. For example: provisioning|provisioned
-	Status string `json:"status,omitempty"`
+	// Conditions is an array of current Master User Record conditions
+	// Supported condition types:
+	// Provisioning, UserAccountNotReady and Ready
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
 	// The status of user accounts in the member clusters which belong to this MasterUserRecord
 	UserAccounts []UserAccountStatusEmbedded `json:"userAccounts,omitempty"`

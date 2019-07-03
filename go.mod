@@ -41,7 +41,7 @@ require (
 	golang.org/x/text v0.3.2 // indirect
 	golang.org/x/tools v0.0.0-20190603231351-8aaa1484dc10 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
-	k8s.io/api v0.0.0-00010101000000-000000000000 // indirect
+	k8s.io/api v0.0.0-00010101000000-000000000000
 	k8s.io/apiextensions-apiserver v0.0.0-20190610170453-8677a5df3599 // indirect
 	k8s.io/apimachinery v0.0.0-20190607205628-5fbcd19f360b
 	k8s.io/code-generator v0.0.0-20190531131525-17d711082421
