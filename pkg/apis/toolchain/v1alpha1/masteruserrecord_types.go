@@ -10,7 +10,7 @@ const (
 	MasterUserRecordProvisioning ConditionType = "Provisioning"
 	// MasterUserRecordUserAccountNotReady means the User Account failed to be provisioned
 	MasterUserRecordUserAccountNotReady ConditionType = "UserAccountNotReady"
-	// MasterUserRecordReady means the Master User Record failed to be provisioned
+	// MasterUserRecordReady means the Master User Record provisioning succeeded
 	MasterUserRecordReady ConditionType = "Ready"
 )
 
