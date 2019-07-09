@@ -3,7 +3,7 @@ API_GROUPNAME=toolchain
 API_VERSION:=v1alpha1
 
 # how to dispatch the CRD files per repository (space-separated lists)
-HOST_CLUSTER_CRD_FILES:=$(API_GROUPNAME)_$(API_VERSION)_masteruserrecord.yaml $(API_GROUPNAME)_$(API_VERSION)_nstemplatetier.yaml $(API_GROUPNAME)_$(API_VERSION)_userprovisionrequest.yaml
+HOST_CLUSTER_CRD_FILES:=$(API_GROUPNAME)_$(API_VERSION)_masteruserrecord.yaml $(API_GROUPNAME)_$(API_VERSION)_nstemplatetier.yaml $(API_GROUPNAME)_$(API_VERSION)_usersignup.yaml
 MEMBER_CLUSTER_CRD_FILES:=$(API_GROUPNAME)_$(API_VERSION)_useraccount.yaml $(API_GROUPNAME)_$(API_VERSION)_nstemplateset.yaml
 
 .PHONY: generate
