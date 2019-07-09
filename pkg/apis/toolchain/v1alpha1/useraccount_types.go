@@ -18,7 +18,7 @@ const (
 	UserAccountUserIdentityMappingNotReady ConditionType = "UserIdentityMappingNotReady"
 	// UserAccountNSTemplateSetNotReady means the NSTemplateSet failed to be provisioned
 	UserAccountNSTemplateSetNotReady ConditionType = "NSTemplateSetNotReady"
-	// UserAccountReady means the User Account failed to be provisioned
+	// UserAccountReady means the User Account provisioning succeeded
 	UserAccountReady ConditionType = "Ready"
 )
 
