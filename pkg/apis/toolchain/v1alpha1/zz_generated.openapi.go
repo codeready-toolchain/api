@@ -41,9 +41,9 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":                schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":            schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":          schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":       schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequest(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec":   schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus": schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":       schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec":   schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus": schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref),
 	}
 }
 
@@ -498,11 +498,11 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref common.ReferenceCa
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "UserSignup is the Schema for the userprovisionrequests API",
+				Description: "UserSignup is the Schema for the usersignups API",
 				Properties: map[string]spec.Schema{
 					"kind": {
 						SchemaProps: spec.SchemaProps{
@@ -541,7 +541,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequest(ref common.Referenc
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -576,7 +576,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestSpec(ref common.Refe
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserProvisionRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{

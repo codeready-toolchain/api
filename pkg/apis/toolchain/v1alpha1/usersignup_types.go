@@ -53,7 +53,7 @@ type UserSignupStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// UserSignup is the Schema for the userprovisionrequests API
+// UserSignup is the Schema for the usersignup API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 type UserSignup struct {
