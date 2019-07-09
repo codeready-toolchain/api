@@ -6,19 +6,19 @@ import (
 
 // These are valid conditions of a MasterUserRecord
 const (
-	// UserProvisionRequestPendingApproval means the request is pending approval
-	UserProvisionRequestPendingApproval ConditionType = "PendingApproval"
-	// UserProvisionRequestProvisioning means the user is being provisioned
-	UserProvisionRequestProvisioning ConditionType = "Provisioning"
-	// UserProvisionRequestComplete means provisioning is complete
-	UserProvisionRequestComplete ConditionType = "Complete"
+	// UserSignupPendingApproval means the request is pending approval
+	UserSignupPendingApproval ConditionType = "PendingApproval"
+	// UserSignupProvisioning means the user is being provisioned
+	UserSignupProvisioning ConditionType = "Provisioning"
+	// UserSignupComplete means provisioning is complete
+	UserSignupComplete ConditionType = "Complete"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// UserProvisionRequestSpec defines the desired state of UserProvisionRequest
+// UserSignupSpec defines the desired state of UserSignup
 // +k8s:openapi-gen=true
-type UserProvisionRequestSpec struct {
+type UserSignupSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
@@ -36,13 +36,13 @@ type UserProvisionRequestSpec struct {
 	Approved bool `json:"approved,omitempty"`
 }
 
-// UserProvisionRequestStatus defines the observed state of UserProvisionRequest
+// UserSignupStatus defines the observed state of UserSignup
 // +k8s:openapi-gen=true
-type UserProvisionRequestStatus struct {
+type UserSignupStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Conditions is an array of current UserProvisionRequest conditions
+	// Conditions is an array of current UserSignup conditions
 	// Supported condition types:
 	// PendingApproval, Provisioning, Complete
 	// +optional
@@ -53,26 +53,26 @@ type UserProvisionRequestStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// UserProvisionRequest is the Schema for the userprovisionrequests API
+// UserSignup is the Schema for the userprovisionrequests API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
-type UserProvisionRequest struct {
+type UserSignup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   UserProvisionRequestSpec   `json:"spec,omitempty"`
-	Status UserProvisionRequestStatus `json:"status,omitempty"`
+	Spec   UserSignupSpec   `json:"spec,omitempty"`
+	Status UserSignupStatus `json:"status,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// UserProvisionRequestList contains a list of UserProvisionRequest
-type UserProvisionRequestList struct {
+// UserSignupRequestList contains a list of UserSignup
+type UserSignupRequestList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []UserProvisionRequest `json:"items"`
+	Items           []UserSignup `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&UserProvisionRequest{}, &UserProvisionRequestList{})
+	SchemeBuilder.Register(&UserSignup{}, &UserSignupRequestList{})
 }
