@@ -6,22 +6,6 @@ import (
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// These are valid conditions of a UserAccount
-const (
-	// UserAccountProvisioning means the User Account is being provisioned
-	UserAccountProvisioning ConditionType = "Provisioning"
-	// UserAccountUserNotReady means the User failed to be created
-	UserAccountUserNotReady ConditionType = "UserNotReady"
-	// UserAccountIdentityNotReady means the Identity failed to be created
-	UserAccountIdentityNotReady ConditionType = "IdentityNotReady"
-	// UserAccountUserIdentityMappingNotReady means the User Identity Mapping failed to be created
-	UserAccountUserIdentityMappingNotReady ConditionType = "UserIdentityMappingNotReady"
-	// UserAccountNSTemplateSetNotReady means the NSTemplateSet failed to be provisioned
-	UserAccountNSTemplateSetNotReady ConditionType = "NSTemplateSetNotReady"
-	// UserAccountReady means the User Account provisioning succeeded
-	UserAccountReady ConditionType = "Ready"
-)
-
 // UserAccountSpec defines the desired state of UserAccount
 // +k8s:openapi-gen=true
 type UserAccountSpec struct {
@@ -51,8 +35,7 @@ type UserAccountStatus struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current User Account conditions
-	// Supported condition types:
-	// Provisioning, UserNotReady, IdentityNotReady, UserIdentityMappingNotReady, NSTemplateSetNotReady and Ready
+	// Supported condition types: ConditionReady
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge

@@ -9,6 +9,11 @@ import (
 
 type ConditionType string
 
+const (
+	// ConditionReady specifies that the resource is ready
+	ConditionReady ConditionType = "Ready"
+)
+
 type Condition struct {
 	// Type of condition
 	Type ConditionType `json:"type"`
