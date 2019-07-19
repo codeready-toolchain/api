@@ -1,6 +1,7 @@
 package v1alpha1
 
 import (
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -24,8 +25,9 @@ type UserAccountSpec struct {
 	// The namespace limit name
 	NSLimit string `json:"nsLimit"`
 
-	// Namespace template set
-	NSTemplateSet NSTemplateSetSpec `json:"nsTemplateSet"`
+	// Reference to NSTemplateSet for this user
+	// +optional
+	NSTemplateSetName corev1.LocalObjectReference `json:"nsTemplateSetName"`
 }
 
 // UserAccountStatus defines the observed state of UserAccount
