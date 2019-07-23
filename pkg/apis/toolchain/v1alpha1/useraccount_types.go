@@ -25,6 +25,9 @@ type UserAccountSpec struct {
 	// The namespace limit name
 	NSLimit string `json:"nsLimit"`
 
+	// The name of the tier represented by this template set
+	TierName string `json:"tierName"`
+
 	// Reference to NSTemplateSet for this user
 	// +optional
 	NSTemplateSetName corev1.LocalObjectReference `json:"nsTemplateSetName"`

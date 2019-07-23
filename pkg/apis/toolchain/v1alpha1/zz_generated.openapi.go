@@ -450,6 +450,13 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 							Format:      "",
 						},
 					},
+					"tierName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The name of the tier represented by this template set",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"nsTemplateSetName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Reference to NSTemplateSet for this user",
@@ -457,7 +464,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 						},
 					},
 				},
-				Required: []string{"userID", "nsLimit"},
+				Required: []string{"userID", "nsLimit", "tierName"},
 			},
 		},
 		Dependencies: []string{
