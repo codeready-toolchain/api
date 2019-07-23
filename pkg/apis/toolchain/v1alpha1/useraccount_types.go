@@ -30,7 +30,7 @@ type UserAccountSpec struct {
 
 	// Reference to NSTemplateSet for this user
 	// +optional
-	NSTemplateSetName corev1.LocalObjectReference `json:"nsTemplateSetName"`
+	NSTemplateSetName corev1.LocalObjectReference `json:"nsTemplateSetName,omitempty"`
 }
 
 // UserAccountStatus defines the observed state of UserAccount
