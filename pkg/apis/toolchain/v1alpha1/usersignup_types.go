@@ -66,13 +66,13 @@ type UserSignup struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// UserSignupRequestList contains a list of UserSignup
-type UserSignupRequestList struct {
+// UserSignupList contains a list of UserSignup
+type UserSignupList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []UserSignup `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&UserSignup{}, &UserSignupRequestList{})
+	SchemeBuilder.Register(&UserSignup{}, &UserSignupList{})
 }
