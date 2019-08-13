@@ -4,12 +4,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// These are valid conditions of a MasterUserRecord
+// These are valid conditions of a UserSignup
 const (
-	// UserSignupPendingApproval means the request is pending approval
-	UserSignupPendingApproval ConditionType = "PendingApproval"
-	// UserSignupProvisioning means the user is being provisioned
-	UserSignupProvisioning ConditionType = "Provisioning"
+	// UserSignupApproved reflects whether the signup request has been approved or not
+	UserSignupApproved ConditionType = "Approved"
 	// UserSignupComplete means provisioning is complete
 	UserSignupComplete ConditionType = "Complete"
 )
