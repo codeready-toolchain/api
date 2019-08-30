@@ -269,21 +269,20 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref common.Reference
 			SchemaProps: spec.SchemaProps{
 				Description: "NSTemplateSetStatus defines the observed state of NSTemplateSet",
 				Properties: map[string]spec.Schema{
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Description: "String representation of the overall observed status. For example: provisioning|provisioned|updating",
-							Type:        []string{"string"},
-							Format:      "",
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
 						},
-					},
-					"namespaces": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The detailed namespace statuses",
+							Description: "Conditions is an array of current NSTemplateSet conditions Supported condition types: ConditionReady",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NamespaceStatus"),
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -293,7 +292,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NamespaceStatus"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
 	}
 }
 

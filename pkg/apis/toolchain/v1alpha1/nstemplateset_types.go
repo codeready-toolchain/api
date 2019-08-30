@@ -34,29 +34,12 @@ type Namespace struct {
 // NSTemplateSetStatus defines the observed state of NSTemplateSet
 // +k8s:openapi-gen=true
 type NSTemplateSetStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
-	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
-
-	// String representation of the overall observed status. For example: provisioning|provisioned|updating
-	Status string `json:"status,omitempty"`
-
-	// The detailed namespace statuses
-	Namespaces []NamespaceStatus `json:"namespaces,omitempty"`
-}
-
-type NamespaceStatus struct {
-
-	// The name of the namespace
-	Name string `json:"name"`
-
-	// The type of the namespace. For example: ide|cicd|stage|default
-	Type string `json:"type"`
-
-	// Observed status. For example: provisioning|provisioned|failed
-	Status string `json:"status,omitempty"`
-
-	// The error message in case of failed status
-	Error string `json:"error,omitempty"`
+	// Conditions is an array of current NSTemplateSet conditions
+	// Supported condition types: ConditionReady
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -64,6 +47,9 @@ type NamespaceStatus struct {
 // NSTemplateSet is the Schema for the nstemplatesets API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
+// +kubebuilder:printcolumn:name="Tier Name",type="string",JSONPath=".spec.tierName"
+// +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=".status.conditions[?(@.type==\"Ready\")].status"
+// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=".status.conditions[?(@.type==\"Ready\")].reason"
 type NSTemplateSet struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
