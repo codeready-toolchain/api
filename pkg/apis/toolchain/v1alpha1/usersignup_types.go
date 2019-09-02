@@ -32,6 +32,12 @@ type UserSignupSpec struct {
 	// If not set then the user is subject of auto-approval (if enabled)
 	// +optional
 	Approved bool `json:"approved,omitempty"`
+
+	// The username.  This may differ from the UserSignup's metadata.name, which is restricted by the
+	// limited character set available for naming (see RFC1123).  If the username contains characters which are
+	// disqualified from the resource name, the username is transformed into an acceptable resource name instead.
+	// For example, johnsmith@redhat.com -> johnsmith-at-redhat-com
+	Username string `json:"username"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup
