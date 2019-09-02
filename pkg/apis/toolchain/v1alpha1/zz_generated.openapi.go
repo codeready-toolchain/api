@@ -568,8 +568,15 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 							Format:      "",
 						},
 					},
+					"username": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The username.  This may differ from the UserSignup's metadata.name, which is restricted by the limited character set available for naming (see RFC1123).  If the username contains characters which are disqualified from the resource name, the username is transformed into an acceptable resource name instead. For example, johnsmith@redhat.com -> johnsmith-at-redhat-com",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
-				Required: []string{"userID"},
+				Required: []string{"userID", "username"},
 			},
 		},
 		Dependencies: []string{},
