@@ -61,6 +61,7 @@ type UserSignupStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=".spec.userID",priority=1
+// +kubebuilder:printcolumn:name="Username",type="string",JSONPath=".spec.username",priority=1
 // +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=".spec.targetCluster",priority=1
 // +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=".status.conditions[?(@.type=="Complete")].status"
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=".status.conditions[?(@.type=="Complete")].reason"
