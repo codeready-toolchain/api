@@ -50,8 +50,8 @@ type UserAccountStatus struct {
 // +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=".spec.userID",priority=1
 // +kubebuilder:printcolumn:name="NS Limit",type="string",JSONPath=".spec.nsLimit"
 // +kubebuilder:printcolumn:name="Tier Name",type="string",JSONPath=".spec.nsTemplateSet.tierName"
-// +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=".status.conditions[?(@.type==\"Ready\")].status"
-// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=".status.conditions[?(@.type==\"Ready\")].reason"
+// +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=".status.conditions[?(@.type=="Ready")].status"
+// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=".status.conditions[?(@.type=="Ready")].reason"
 // +kubebuilder:printcolumn:name="Disabled",type="boolean",JSONPath=".spec.disabled",priority=1
 type UserAccount struct {
 	metav1.TypeMeta   `json:",inline"`
