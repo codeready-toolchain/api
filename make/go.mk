@@ -13,12 +13,6 @@ build: $(shell find . -path ./vendor -prune -o -name '*.go' -print)
 	$(Q)CGO_ENABLED=0 GOARCH=amd64 GOOS=linux \
 	    go build github.com/codeready-toolchain/api/pkg/apis/
 
-.PHONY: test
-## runs the tests
-test:
-	@echo "running the tests..."
-	$(Q)go test ./...
-
 .PHONY: vendor
 vendor: 
 	$(Q)go mod vendor
