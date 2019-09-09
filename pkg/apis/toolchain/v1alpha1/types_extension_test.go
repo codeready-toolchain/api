@@ -6,6 +6,44 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const (
+	tmpl1dev = `
+	---
+	apiVersion: v1
+	kind: Template
+	metadata:
+	  labels:
+		project: codeready-toolchain
+	  name: codeready-toolchain-dev`
+
+	tmpl2dev = `
+	---
+	apiVersion: v1
+	kind: Template
+	metadata:
+	  labels:
+		project: codeready-toolchain
+	  name: codeready-toolchain-dev`
+
+	tmpl1code = `
+	---
+	apiVersion: v1
+	kind: Template
+	metadata:
+		labels:
+		project: codeready-toolchain
+		name: codeready-toolchain-code`
+
+	tmpl2code = `
+	---
+	apiVersion: v1
+	kind: Template
+	metadata:
+		labels:
+		project: codeready-toolchain
+		name: codeready-toolchain-code`
+)
+
 func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 	tables := []struct {
 		name   string
@@ -18,15 +56,15 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			first: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
-					{Type: "cicd", Revision: "rev1", Template: ""},
-					{Type: "ide", Revision: "rev1", Template: ""},
+					{Type: "dev", Revision: "rev1", Template: tmpl1dev},
+					{Type: "code", Revision: "rev1", Template: tmpl1code},
 				},
 			},
 			second: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
-					{Type: "ide", Revision: "rev1", Template: ""},
-					{Type: "cicd", Revision: "rev1", Template: ""},
+					{Type: "code", Revision: "rev1", Template: tmpl2code},
+					{Type: "dev", Revision: "rev1", Template: tmpl2dev},
 				},
 			},
 			want: true,
@@ -48,14 +86,14 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			first: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
-					{Type: "cicd", Revision: "rev1", Template: ""},
-					{Type: "ide", Revision: "rev1", Template: ""},
+					{Type: "dev", Revision: "rev1", Template: ""},
+					{Type: "code", Revision: "rev1", Template: ""},
 				},
 			},
 			second: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
-					{Type: "cicd", Revision: "rev1", Template: ""},
+					{Type: "dev", Revision: "rev1", Template: ""},
 				},
 			},
 			want: false,
@@ -66,15 +104,15 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			first: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
-					{Type: "cicd", Revision: "rev1", Template: ""},
-					{Type: "ide", Revision: "rev1", Template: ""},
+					{Type: "dev", Revision: "rev1", Template: ""},
+					{Type: "code", Revision: "rev1", Template: ""},
 				},
 			},
 			second: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
-					{Type: "cicd", Revision: "rev1", Template: ""},
-					{Type: "ide", Revision: "rev2", Template: ""},
+					{Type: "dev", Revision: "rev1", Template: ""},
+					{Type: "code", Revision: "rev2", Template: ""},
 				},
 			},
 			want: false,
@@ -85,14 +123,14 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			first: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
-					{Type: "cicd", Revision: "rev1", Template: ""},
-					{Type: "ide", Revision: "rev1", Template: ""},
+					{Type: "dev", Revision: "rev1", Template: ""},
+					{Type: "code", Revision: "rev1", Template: ""},
 				},
 			},
 			second: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
-					{Type: "cicd", Revision: "rev1", Template: ""},
+					{Type: "dev", Revision: "rev1", Template: ""},
 					{Type: "stage", Revision: "rev1", Template: ""},
 				},
 			},
