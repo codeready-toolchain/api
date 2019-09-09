@@ -136,6 +136,25 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			},
 			want: false,
 		},
+
+		{
+			name: "template_not_same",
+			first: &NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []Namespace{
+					{Type: "dev", Revision: "rev1", Template: tmpl1dev},
+					{Type: "code", Revision: "rev1", Template: tmpl1code},
+				},
+			},
+			second: &NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []Namespace{
+					{Type: "code", Revision: "rev1", Template: tmpl2code},
+					{Type: "dev", Revision: "rev1", Template: ""},
+				},
+			},
+			want: false,
+		},
 	}
 
 	for _, table := range tables {
