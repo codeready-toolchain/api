@@ -48,7 +48,7 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 	tables := []struct {
 		name   string
 		first  *NSTemplateSetSpec
-		second *NSTemplateSetSpec
+		second NSTemplateSetSpec
 		want   bool
 	}{
 		{
@@ -60,7 +60,7 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 					{Type: "code", Revision: "rev1", Template: tmpl1code},
 				},
 			},
-			second: &NSTemplateSetSpec{
+			second: NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
 					{Type: "code", Revision: "rev1", Template: tmpl2code},
@@ -75,7 +75,7 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			first: &NSTemplateSetSpec{
 				TierName: "basic",
 			},
-			second: &NSTemplateSetSpec{
+			second: NSTemplateSetSpec{
 				TierName: "advance",
 			},
 			want: false,
@@ -90,7 +90,7 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 					{Type: "code", Revision: "rev1", Template: ""},
 				},
 			},
-			second: &NSTemplateSetSpec{
+			second: NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
 					{Type: "dev", Revision: "rev1", Template: ""},
@@ -108,7 +108,7 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 					{Type: "code", Revision: "rev1", Template: ""},
 				},
 			},
-			second: &NSTemplateSetSpec{
+			second: NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
 					{Type: "dev", Revision: "rev1", Template: ""},
@@ -127,7 +127,7 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 					{Type: "code", Revision: "rev1", Template: ""},
 				},
 			},
-			second: &NSTemplateSetSpec{
+			second: NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
 					{Type: "dev", Revision: "rev1", Template: ""},
@@ -146,7 +146,7 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 					{Type: "code", Revision: "rev1", Template: tmpl1code},
 				},
 			},
-			second: &NSTemplateSetSpec{
+			second: NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []Namespace{
 					{Type: "code", Revision: "rev1", Template: tmpl2code},
