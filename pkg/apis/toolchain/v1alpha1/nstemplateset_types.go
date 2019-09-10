@@ -74,7 +74,7 @@ func init() {
 }
 
 // CompareTo compares given second spec with this spec
-func (first *NSTemplateSetSpec) CompareTo(second *NSTemplateSetSpec) bool {
+func (first *NSTemplateSetSpec) CompareTo(second NSTemplateSetSpec) bool {
 	if first.TierName != second.TierName {
 		return false
 	}
