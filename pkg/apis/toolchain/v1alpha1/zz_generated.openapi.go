@@ -52,6 +52,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref common.ReferenceCal
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "MasterUserRecord is the Schema for the masteruserrecords API",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
 						SchemaProps: spec.SchemaProps{
@@ -95,6 +96,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "MasterUserRecordSpec defines the desired state of MasterUserRecord",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"userID": {
 						SchemaProps: spec.SchemaProps{
@@ -144,6 +146,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "MasterUserRecordStatus defines the observed state of MasterUserRecord",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
@@ -190,6 +193,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref common.ReferenceCallba
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "NSTemplateSet is the Schema for the nstemplatesets API",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
 						SchemaProps: spec.SchemaProps{
@@ -233,6 +237,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "NSTemplateSetSpec defines the desired state of NSTemplateSet",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
@@ -268,6 +273,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref common.Reference
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "NSTemplateSetStatus defines the observed state of NSTemplateSet",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
@@ -301,6 +307,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref common.ReferenceCallb
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "NSTemplateTier is the Schema for the nstemplatetiers API",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
 						SchemaProps: spec.SchemaProps{
@@ -344,6 +351,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceC
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "NSTemplateTierSpec defines the desired state of NSTemplateTier",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"namespaces": {
 						SchemaProps: spec.SchemaProps{
@@ -372,10 +380,9 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.Referenc
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "NSTemplateTierStatus defines the observed state of NSTemplateTier",
-				Properties:  map[string]spec.Schema{},
+				Type:        []string{"object"},
 			},
 		},
-		Dependencies: []string{},
 	}
 }
 
@@ -384,6 +391,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref common.ReferenceCallback
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "UserAccount is the Schema for the useraccounts API",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
 						SchemaProps: spec.SchemaProps{
@@ -427,6 +435,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "UserAccountSpec defines the desired state of UserAccount",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"userID": {
 						SchemaProps: spec.SchemaProps{
@@ -469,6 +478,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref common.ReferenceCa
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "UserAccountStatus defines the observed state of UserAccount",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
@@ -502,6 +512,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref common.ReferenceCallback)
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "UserSignup is the Schema for the usersignup API",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
 						SchemaProps: spec.SchemaProps{
@@ -545,6 +556,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "UserSignupSpec defines the desired state of UserSignup",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"userID": {
 						SchemaProps: spec.SchemaProps{
@@ -578,7 +590,6 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 				Required: []string{"userID", "username"},
 			},
 		},
-		Dependencies: []string{},
 	}
 }
 
@@ -587,6 +598,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref common.ReferenceCal
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "UserSignupStatus defines the observed state of UserSignup",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
