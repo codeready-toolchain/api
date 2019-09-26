@@ -26,7 +26,7 @@ type NSTemplateTierNamespace struct {
 	// The revision of the corresponding template
 	Revision string `json:"revision"`
 
-	// Used to specify a custom template
+	// Template contains an OpenShift Template to be used for namespace provisioning
 	Template templatev1.Template `json:"template"`
 }
 
