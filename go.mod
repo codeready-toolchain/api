@@ -16,7 +16,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0 // indirect
-	github.com/openshift/api v3.9.0+incompatible
+	github.com/openshift/api v3.9.1-0.20190730142803-0922aa5a655b+incompatible
 	github.com/spf13/cobra v0.0.5 // indirect
 	github.com/stretchr/testify v1.3.0
 	golang.org/x/net v0.0.0-20190603091049-60506f45cf65 // indirect
