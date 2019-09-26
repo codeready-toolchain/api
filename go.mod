@@ -13,6 +13,10 @@ require (
 	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/google/gofuzz v1.0.0 // indirect
 	github.com/mailru/easyjson v0.0.0-20190403194419-1ea4449da983 // indirect
+	github.com/modern-go/reflect2 v1.0.1 // indirect
+	github.com/onsi/ginkgo v1.8.0 // indirect
+	github.com/onsi/gomega v1.5.0 // indirect
+	github.com/openshift/api v3.9.0+incompatible
 	github.com/spf13/cobra v0.0.5 // indirect
 	github.com/stretchr/testify v1.3.0
 	golang.org/x/net v0.0.0-20190603091049-60506f45cf65 // indirect
