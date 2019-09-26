@@ -14,6 +14,4 @@ import (
 	_ "sigs.k8s.io/controller-/cmd/controller-gen"
 	_ "sigs.k8s.io/controller-tools/cmd/controller-gen"
 
-	// import of APIs managed in a separate repo
-	_ "github.com/codeready-toolchain/api/pkg/apis"
 )

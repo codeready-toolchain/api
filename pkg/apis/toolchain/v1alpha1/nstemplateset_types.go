@@ -18,10 +18,11 @@ type NSTemplateSetSpec struct {
 	TierName string `json:"tierName"`
 
 	// The namespace templates
-	Namespaces []Namespace `json:"namespaces"`
+	Namespaces []NSTemplateSetNamespace `json:"namespaces"`
 }
 
-type Namespace struct {
+// NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
+type NSTemplateSetNamespace struct {
 
 	// The type of the namespace. For example: ide|cicd|stage|default
 	Type string `json:"type"`
@@ -81,7 +82,7 @@ func (first *NSTemplateSetSpec) CompareTo(second NSTemplateSetSpec) bool {
 	return compareNamespaces(first.Namespaces, second.Namespaces)
 }
 
-func compareNamespaces(namespaces1, namespaces2 []Namespace) bool {
+func compareNamespaces(namespaces1, namespaces2 []NSTemplateSetNamespace) bool {
 	if len(namespaces1) != len(namespaces2) {
 		return false
 	}
@@ -94,7 +95,7 @@ func compareNamespaces(namespaces1, namespaces2 []Namespace) bool {
 	return true
 }
 
-func findNamespace(thisNs Namespace, namespaces []Namespace) bool {
+func findNamespace(thisNs NSTemplateSetNamespace, namespaces []NSTemplateSetNamespace) bool {
 	for _, ns := range namespaces {
 		if reflect.DeepEqual(thisNs, ns) {
 			return true
