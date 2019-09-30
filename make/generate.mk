@@ -72,10 +72,10 @@ generate-crds: vendor prepare-host-operator prepare-member-operator
 	--output-dir deploy/crds
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
 	@for file in $(HOST_CLUSTER_CRD_FILES) ; do \
-		mv deploy/crds/$$file ../host-operator/deploy/crds ; \
+		mv deploy/crds/$$file ../host-operator/deploy/crds/$${file%.yaml}_crd.yaml ; \
 	done
 	@for file in $(MEMBER_CLUSTER_CRD_FILES) ; do \
-		mv deploy/crds/$$file ../member-operator/deploy/crds ; \
+		mv deploy/crds/$$file ../member-operator/deploy/crds/$${file%.yaml}_crd.yaml ; \
 	done
 ifneq ($(wildcard deploy/crds/*.yaml),)
 	@echo "ERROR: some CRD files were not dispatched: $(wildcard deploy/crds/*.yaml)"
