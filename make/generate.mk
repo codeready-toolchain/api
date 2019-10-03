@@ -8,7 +8,7 @@ MEMBER_CLUSTER_CRD_FILES:=$(API_GROUPNAME)_$(API_VERSION)_useraccount.yaml $(API
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
-generate: vendor generate-deepcopy generate-openapi generate-crds
+generate: vendor generate-deepcopy generate-openapi generate-crds generate-csv
 	
 .PHONY: generate-deepcopy
 generate-deepcopy:
@@ -38,6 +38,10 @@ generate-openapi:
 # same time...
 host_repo_status := $(shell cd ../host-operator && git status -s | grep -v deploy/crds)
 member_repo_status := $(shell cd ../member-operator && git status -s | grep -v deploy/crds)
+
+PHONY: generate-csv
+generate-csv:
+	./scripts/olm-catalog.sh -pr ../host-operator
 
 PHONY: prepare-host-operator
 prepare-host-operator: ../host-operator
