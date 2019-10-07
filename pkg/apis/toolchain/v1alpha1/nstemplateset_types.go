@@ -18,6 +18,7 @@ type NSTemplateSetSpec struct {
 	TierName string `json:"tierName"`
 
 	// The namespace templates
+	// +listType
 	Namespaces []NSTemplateSetNamespace `json:"namespaces"`
 }
 
@@ -42,6 +43,7 @@ type NSTemplateSetStatus struct {
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
+	// +listType
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 

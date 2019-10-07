@@ -67,7 +67,6 @@ else
 	@-mkdir -p ../member-operator/deploy/crds
 endif
 
-
 .PHONY: generate-crds
 generate-crds: vendor prepare-host-operator prepare-member-operator
 	@echo "Re-generating the CRD files..."
