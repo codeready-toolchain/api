@@ -44,8 +44,7 @@ done
 
 indentList() {
     local INDENT="      "
-    sed -e "s/^/${INDENT}/" \
-        -e "1s/^${INDENT}/${INDENT:0:-2}- /"
+    sed -e "s/^/${INDENT}/;1s/^${INDENT}/${INDENT:0:-2}- /"
   }
 
 indentElement() {
@@ -83,7 +82,10 @@ operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} --from-versio
 cd ${CURRENT_DIR}
 
 # If the CSV was generated from default "template" version 0.0.0, then remove the delete clause
-sed -i ":a;N;\$!ba;s/  replaces: ${PRJ_NAME}.v0.0.0\n//g" ${CSV_DIR}/*clusterserviceversion.yaml
+TMP_CSV="/tmp/${PRJ_NAME}_${NEXT_CSV_VERSION}_csv"
+sed ":a;N;\$!ba;s/  replaces: ${PRJ_NAME}.v0.0.0\n//g" ${CSV_DIR}/*clusterserviceversion.yaml > ${TMP_CSV}
+cat ${TMP_CSV} > ${CSV_DIR}/*clusterserviceversion.yaml
+rm -rf ${TMP_CSV}
 
 # Create hack directory if is missing
 if [[ ! -d ${PRJ_ROOT_DIR}/hack ]]; then
@@ -111,9 +113,9 @@ metadata:
   namespace: openshift-marketplace
 data:
   customResourceDefinitions: |-
-$(for crd in `ls ${CRDS_DIR}/*crd.yaml`; do cat ${crd} | indentList "apiVersion"; done)
+$(for crd in `ls ${CRDS_DIR}/*crd.yaml`; do cat ${crd} | indentList; done)
   clusterServiceVersions: |-
-$(cat ${CSV_DIR}/*clusterserviceversion.yaml | indentList apiVersion)
+$(cat ${CSV_DIR}/*clusterserviceversion.yaml | indentList)
   packages: |
 $(cat ${PKG_FILE} | indentList "packageName")" | sed 's/^  *$//' > ${PRJ_ROOT_DIR}/hack/deploy_csv.yaml
 
