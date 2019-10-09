@@ -47,11 +47,6 @@ indentList() {
     sed -e "s/^/${INDENT}/;1s/^${INDENT}/${INDENT:0:${#INDENT}-2}- /"
   }
 
-indentElement() {
-    local INDENT="  "
-    sed -e "s/^/${INDENT}/"
-  }
-
 if [[ -z PRJ_ROOT_DIR ]]; then
     echo "--project-root parameter is not specified" >> /dev/stderr
     user_help
