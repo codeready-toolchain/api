@@ -44,7 +44,7 @@ done
 
 indentList() {
     local INDENT="      "
-    sed -e "s/^/${INDENT}/;1s/^${INDENT}/${INDENT:0:-2}- /"
+    sed -e "s/^/${INDENT}/;1s/^${INDENT}/${INDENT:0:${#INDENT}-2}- /"
   }
 
 indentElement() {
