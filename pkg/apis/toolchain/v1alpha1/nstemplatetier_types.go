@@ -43,6 +43,7 @@ type NSTemplateTierStatus struct {
 // NSTemplateTier is the Schema for the nstemplatetiers API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
+// +kubebuilder:resource:shortName=tier
 type NSTemplateTier struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
