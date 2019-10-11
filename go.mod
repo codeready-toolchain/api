@@ -23,7 +23,7 @@ require (
 	golang.org/x/sys v0.0.0-20190602015325-4c4f7f33c9ed // indirect
 	golang.org/x/tools v0.0.0-20190603231351-8aaa1484dc10 // indirect
 	k8s.io/api v0.0.0-20190409021203-6e4e0e4f393b
-	k8s.io/apiextensions-apiserver v0.0.0-20190610170453-8677a5df3599 // indirect
+	k8s.io/apiextensions-apiserver v0.0.0-20190610170453-8677a5df3599
 	k8s.io/apimachinery v0.0.0-20190607205628-5fbcd19f360b
 	k8s.io/code-generator v0.0.0-20181117043124-c2090bec4d9b
 	k8s.io/gengo v0.0.0-20190327210449-e17681d19d3a
