@@ -66,9 +66,7 @@ CSV_DIR=${PKG_DIR}/${NEXT_CSV_VERSION}
 
 # Name and display name vars for CatalogSource
 NAME=codeready-toolchain-saas-${PRJ_NAME}
-LOWERCASE=($(echo ${NAME} | tr '-' ' '))
-DISPLAYNAME=${LOWERCASE[*]^}
-
+DISPLAYNAME=$(echo ${NAME} | tr '-' ' ' | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')
 
 # Generate CSV
 CURRENT_DIR=${PWD}
