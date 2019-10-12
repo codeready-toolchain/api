@@ -40,7 +40,7 @@ type UserSignupSpec struct {
 	// Username, as a limited character set is available for naming (see RFC1123).  If the username contains characters
 	// which are disqualified, the username is transformed into a compliant name instead.
 	// For example, johnsmith@redhat.com -> johnsmith-at-redhat-com
-	CompliantUsername string `json:compliantUsername`
+	CompliantUsername string `json:"compliantUsername"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup
