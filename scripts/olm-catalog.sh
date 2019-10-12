@@ -60,7 +60,7 @@ CURRENT_CSV_VERSION=${CURRENT_CSV_VERSION:-0.0.0}
 # Files and directories related vars
 PRJ_NAME=`basename ${PRJ_ROOT_DIR}`
 CRDS_DIR=${PRJ_ROOT_DIR}/deploy/crds
-PKG_DIR=${PRJ_ROOT_DIR}/deploy/olm-catalog/host-operator
+PKG_DIR=${PRJ_ROOT_DIR}/deploy/olm-catalog/${PRJ_NAME}
 PKG_FILE=${PKG_DIR}/${PRJ_NAME}.package.yaml
 CSV_DIR=${PKG_DIR}/${NEXT_CSV_VERSION}
 
@@ -132,7 +132,7 @@ metadata:
 spec:
   channel: alpha
   installPlanApproval: Automatic
-  name: host-operator
+  name: ${PRJ_NAME}
   source: ${NAME}
   sourceNamespace: openshift-marketplace
   startingCSV: ${PRJ_NAME}.v0.0.1" > ${PRJ_ROOT_DIR}/hack/install_operator.yaml
