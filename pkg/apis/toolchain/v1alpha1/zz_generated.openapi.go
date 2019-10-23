@@ -581,13 +581,6 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 				Description: "UserSignupSpec defines the desired state of UserSignup",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"userID": {
-						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The cluster in which the user is provisioned in If not set then the target cluster will be picked automatically",
@@ -617,7 +610,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 						},
 					},
 				},
-				Required: []string{"userID", "username", "compliantUsername"},
+				Required: []string{"username", "compliantUsername"},
 			},
 		},
 	}

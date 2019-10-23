@@ -20,9 +20,6 @@ type UserSignupSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
-	UserID string `json:"userID"`
-
 	// The cluster in which the user is provisioned in
 	// If not set then the target cluster will be picked automatically
 	// +optional
