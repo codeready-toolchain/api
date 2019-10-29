@@ -91,6 +91,7 @@ type UserAccountStatusEmbedded struct {
 // MasterUserRecord is the Schema for the masteruserrecords API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
+// +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:resource:shortName=mur
 type MasterUserRecord struct {
 	metav1.TypeMeta   `json:",inline"`

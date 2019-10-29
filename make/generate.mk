@@ -1,10 +1,11 @@
 # current groupname and version of the operators'API
 API_GROUPNAME=toolchain
+API_FULL_GROUPNAME=toolchain.dev.openshift.com
 API_VERSION:=v1alpha1
 
 # how to dispatch the CRD files per repository (space-separated lists)
-HOST_CLUSTER_CRD_FILES:=$(API_GROUPNAME)_$(API_VERSION)_masteruserrecord.yaml $(API_GROUPNAME)_$(API_VERSION)_nstemplatetier.yaml $(API_GROUPNAME)_$(API_VERSION)_usersignup.yaml
-MEMBER_CLUSTER_CRD_FILES:=$(API_GROUPNAME)_$(API_VERSION)_useraccount.yaml $(API_GROUPNAME)_$(API_VERSION)_nstemplateset.yaml
+HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup
+MEMBER_CLUSTER_CRDS:=useraccount nstemplateset
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
@@ -72,14 +73,16 @@ endif
 generate-crds: vendor prepare-host-operator prepare-member-operator
 	@echo "Re-generating the CRD files..."
 	$(Q)go run $(shell pwd)/vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go crd \
-	--domain dev.openshift.com \
-	--output-dir deploy/crds
+	paths=./pkg/apis/... output:crd:dir=deploy/crds output:stdout
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
-	@for file in $(HOST_CLUSTER_CRD_FILES) ; do \
-		mv deploy/crds/$$file ../host-operator/deploy/crds/$${file%.yaml}_crd.yaml ; \
+    # When dispatching CRD files we delete two first lines of CRDs ("\n----\n") to make a single manifest file out of the original multiple manifest file
+	@for crd in $(HOST_CLUSTER_CRDS) ; do \
+		sed '1,2d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml > ../host-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
+		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml; \
 	done
-	@for file in $(MEMBER_CLUSTER_CRD_FILES) ; do \
-		mv deploy/crds/$$file ../member-operator/deploy/crds/$${file%.yaml}_crd.yaml ; \
+	@for crd in $(MEMBER_CLUSTER_CRDS) ; do \
+		sed '1,2d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml > ../member-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
+		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml; \
 	done
 ifneq ($(wildcard deploy/crds/*.yaml),)
 	@echo "ERROR: some CRD files were not dispatched: $(wildcard deploy/crds/*.yaml)"
