@@ -59,24 +59,25 @@ CURRENT_CSV_VERSION=${CURRENT_CSV_VERSION:-0.0.0}
 
 # Files and directories related vars
 PRJ_NAME=`basename ${PRJ_ROOT_DIR}`
+OPERATOR_NAME=toolchain-${PRJ_NAME}
 CRDS_DIR=${PRJ_ROOT_DIR}/deploy/crds
-PKG_DIR=${PRJ_ROOT_DIR}/deploy/olm-catalog/${PRJ_NAME}
-PKG_FILE=${PKG_DIR}/${PRJ_NAME}.package.yaml
+PKG_DIR=${PRJ_ROOT_DIR}/deploy/olm-catalog/${OPERATOR_NAME}
+PKG_FILE=${PKG_DIR}/${OPERATOR_NAME}.package.yaml
 CSV_DIR=${PKG_DIR}/${NEXT_CSV_VERSION}
 
 # Name and display name vars for CatalogSource
-NAME=codeready-toolchain-saas-${PRJ_NAME}
+NAME=codeready-toolchain-saas-${OPERATOR_NAME}
 DISPLAYNAME=$(echo ${NAME} | tr '-' ' ' | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')
 
 # Generate CSV
 CURRENT_DIR=${PWD}
 cd ${PRJ_ROOT_DIR}
-operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} --from-version ${CURRENT_CSV_VERSION} --update-crds
+operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} --from-version ${CURRENT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME}
 cd ${CURRENT_DIR}
 
 # If the CSV was generated from default "template" version 0.0.0, then remove the delete clause
-TMP_CSV="/tmp/${PRJ_NAME}_${NEXT_CSV_VERSION}_csv"
-sed "/  replaces: ${PRJ_NAME}.v0.0.0$/d" ${CSV_DIR}/*clusterserviceversion.yaml > ${TMP_CSV}
+TMP_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_csv"
+sed "/  replaces: ${OPERATOR_NAME}.v0.0.0$/d" ${CSV_DIR}/*clusterserviceversion.yaml > ${TMP_CSV}
 sed '/^[ ]*$/d' ${TMP_CSV} > ${CSV_DIR}/*clusterserviceversion.yaml
 rm -rf ${TMP_CSV}
 
@@ -132,7 +133,7 @@ metadata:
 spec:
   channel: alpha
   installPlanApproval: Automatic
-  name: ${PRJ_NAME}
+  name: ${OPERATOR_NAME}
   source: ${NAME}
   sourceNamespace: openshift-marketplace
-  startingCSV: ${PRJ_NAME}.v0.0.1" > ${PRJ_ROOT_DIR}/hack/install_operator.yaml
+  startingCSV: ${OPERATOR_NAME}.v0.0.1" > ${PRJ_ROOT_DIR}/hack/install_operator.yaml
