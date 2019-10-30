@@ -4,7 +4,10 @@ image:https://goreportcard.com/badge/github.com/codeready-toolchain/api[Go Repor
 image:https://codecov.io/gh/codeready-toolchain/api/branch/master/graph/badge.svg[Codecov.io,link="https://codecov.io/gh/codeready-toolchain/api"]
 
 == Building
-Requires Go version 1.13 - download for your development environment https://golang.org/dl/[here].
+Requires:
+
+* Go version 1.13 - download for your development environment https://golang.org/dl/[here].
+* Operator-sdk version 0.11.0 - download and install https://github.com/operator-framework/operator-sdk/blob/master/doc/user/install-operator-sdk.md[here]
 
 CodeReady ToolChain API is built using https://github.com/golang/go/wiki/Modules[Go modules].  Set the following environment variable in your CLI before building:
 
