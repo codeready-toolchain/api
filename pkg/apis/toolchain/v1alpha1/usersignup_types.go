@@ -10,6 +10,8 @@ const (
 	UserSignupApproved ConditionType = "Approved"
 	// UserSignupComplete means provisioning is complete
 	UserSignupComplete ConditionType = "Complete"
+	// UserSignupCompliantUsernameLabel is the name of the label used to store the transformed, DNS-1123 compliant username
+	UserSignupCompliantUsernameLabel = "compliant-username"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
