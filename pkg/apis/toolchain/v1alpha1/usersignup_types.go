@@ -51,7 +51,7 @@ type UserSignupStatus struct {
 
 	// CompliantUsername is used to store the transformed, DNS-1123 compliant username
 	// +optional
-	CompliantUsername string `json:"compliantUSername,omitempty"`
+	CompliantUsername string `json:"compliantUsername,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
