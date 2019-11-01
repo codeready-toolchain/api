@@ -76,12 +76,13 @@ generate-crds: vendor prepare-host-operator prepare-member-operator
 	paths=./pkg/apis/... output:crd:dir=deploy/crds output:stdout
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
     # When dispatching CRD files we delete two first lines of CRDs ("\n----\n") to make a single manifest file out of the original multiple manifest file
+    # Also we remove the line with 'type: object' from validation.openAPIV3Schema.properties path because it's incompatible with kube 1.11 which is used by minishift
 	@for crd in $(HOST_CLUSTER_CRDS) ; do \
-		sed '1,2d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml > ../host-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
+		sed -e '1,2d' -e '/^      type: object/d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml > ../host-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
 		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml; \
 	done
 	@for crd in $(MEMBER_CLUSTER_CRDS) ; do \
-		sed '1,2d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml > ../member-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
+		sed -e '1,2d' -e '/^      type: object/d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml > ../member-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
 		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml; \
 	done
 ifneq ($(wildcard deploy/crds/*.yaml),)
