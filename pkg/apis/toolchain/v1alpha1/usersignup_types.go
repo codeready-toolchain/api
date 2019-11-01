@@ -59,14 +59,15 @@ type UserSignupStatus struct {
 // UserSignup is the Schema for the usersignup API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
-// +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=".spec.userID",priority=1
-// +kubebuilder:printcolumn:name="Username",type="string",JSONPath=".spec.username",priority=1
-// +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=".spec.targetCluster",priority=1
-// +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=".status.conditions[?(@.type=="Complete")].status"
-// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=".status.conditions[?(@.type=="Complete")].reason"
-// +kubebuilder:printcolumn:name="Approved",type="string",JSONPath=".status.conditions[?(@.type=="Approved")].status",priority=1
-// +kubebuilder:printcolumn:name="ApprovedBy",type="string",JSONPath=".status.conditions[?(@.type=="Approved")].reason",priority=1
-// +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=".status.compliantUsername"
+// +kubebuilder:resource:scope=Namespaced
+// +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=`.spec.userID`,priority=1
+// +kubebuilder:printcolumn:name="Username",type="string",JSONPath=`.spec.username`,priority=1
+// +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=`.spec.targetCluster`,priority=1
+// +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].status`
+// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
+// +kubebuilder:printcolumn:name="Approved",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].status`,priority=1
+// +kubebuilder:printcolumn:name="ApprovedBy",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].reason`,priority=1
+// +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=`.status.compliantUsername`
 type UserSignup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

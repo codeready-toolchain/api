@@ -10,29 +10,21 @@ require (
 	github.com/go-openapi/spec v0.19.0
 	github.com/go-openapi/swag v0.19.0 // indirect
 	github.com/gobuffalo/flect v0.1.6 // indirect
-	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/google/gofuzz v1.0.0 // indirect
 	github.com/mailru/easyjson v0.0.0-20190403194419-1ea4449da983 // indirect
-	github.com/modern-go/reflect2 v1.0.1 // indirect
-	github.com/onsi/ginkgo v1.8.0 // indirect
-	github.com/onsi/gomega v1.5.0 // indirect
 	github.com/openshift/api v3.9.1-0.20190730142803-0922aa5a655b+incompatible
-	github.com/spf13/cobra v0.0.5 // indirect
 	github.com/stretchr/testify v1.3.0
 	golang.org/x/net v0.0.0-20190603091049-60506f45cf65 // indirect
 	golang.org/x/sys v0.0.0-20190602015325-4c4f7f33c9ed // indirect
-	golang.org/x/tools v0.0.0-20190603231351-8aaa1484dc10 // indirect
-	k8s.io/api v0.0.0-20190409021203-6e4e0e4f393b
-	k8s.io/apiextensions-apiserver v0.0.0-20190610170453-8677a5df3599
-	k8s.io/apimachinery v0.0.0-20190607205628-5fbcd19f360b
+	k8s.io/api v0.0.0-20190918155943-95b840bb6a1f
+	k8s.io/apiextensions-apiserver v0.0.0-20190918161926-8f644eb6e783
+	k8s.io/apimachinery v0.0.0-20190913080033-27d36303b655
 	k8s.io/code-generator v0.0.0-20181117043124-c2090bec4d9b
 	k8s.io/gengo v0.0.0-20190327210449-e17681d19d3a
 	k8s.io/klog v0.3.3 // indirect
 	k8s.io/kube-openapi v0.0.0-20190603182131-db7b694dc208
 	sigs.k8s.io/controller-runtime v0.2.0
-	// TODO support to the newer controller-tools in pkg/types and makefile before upgrading it
-	//sigs.k8s.io/controller-tools v0.2.0
-	sigs.k8s.io/controller-tools v0.1.12
+	sigs.k8s.io/controller-tools v0.2.1
 	sigs.k8s.io/kubefed v0.1.0-rc2
 )
 
