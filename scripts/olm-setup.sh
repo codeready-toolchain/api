@@ -9,7 +9,6 @@ user_help () {
     echo "-pr, --project-root      path to the root of the project the CSV should be generated for/in"
     echo "-cv, --current-version   current CSV version"
     echo "-nv, --next-version      next CSV version"
-    echo "-rv, --replace-version   the CSV version to be replaced"
     exit 0
 }
 
