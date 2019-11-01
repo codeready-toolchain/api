@@ -636,7 +636,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref common.ReferenceCal
 							},
 						},
 					},
-					"compliantUSername": {
+					"compliantUsername": {
 						SchemaProps: spec.SchemaProps{
 							Description: "CompliantUsername is used to store the transformed, DNS-1123 compliant username",
 							Type:        []string{"string"},

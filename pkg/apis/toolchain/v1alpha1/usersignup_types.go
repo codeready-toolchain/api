@@ -51,7 +51,7 @@ type UserSignupStatus struct {
 
 	// CompliantUsername is used to store the transformed, DNS-1123 compliant username
 	// +optional
-	CompliantUsername string `json:"compliantUSername,omitempty"`
+	CompliantUsername string `json:"compliantUsername,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -66,6 +66,7 @@ type UserSignupStatus struct {
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=".status.conditions[?(@.type=="Complete")].reason"
 // +kubebuilder:printcolumn:name="Approved",type="string",JSONPath=".status.conditions[?(@.type=="Approved")].status",priority=1
 // +kubebuilder:printcolumn:name="ApprovedBy",type="string",JSONPath=".status.conditions[?(@.type=="Approved")].reason",priority=1
+// +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=".status.compliantUsername"
 type UserSignup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
