@@ -72,7 +72,7 @@ endif
 .PHONY: generate-crds
 generate-crds: vendor prepare-host-operator prepare-member-operator
 	@echo "Re-generating the CRD files..."
-	$(Q)go run $(shell pwd)/vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go crd \
+	$(Q)go run $(shell pwd)/vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go crd:trivialVersions=true \
 	paths=./pkg/apis/... output:crd:dir=deploy/crds output:stdout
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
     # When dispatching CRD files we delete two first lines of CRDs ("\n----\n") to make a single manifest file out of the original multiple manifest file
