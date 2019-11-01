@@ -41,8 +41,8 @@ member_repo_status := $(shell cd ../member-operator && git status -s | grep -v d
 
 PHONY: generate-csv
 generate-csv:
-	./scripts/olm-catalog.sh -pr ../host-operator
-	./scripts/olm-catalog.sh -pr ../member-operator
+	./scripts/olm-catalog-generate.sh -pr ../host-operator
+	./scripts/olm-catalog-generate.sh -pr ../member-operator
 
 PHONY: prepare-host-operator
 prepare-host-operator: ../host-operator
