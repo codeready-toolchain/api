@@ -25,7 +25,7 @@ require (
 	k8s.io/kube-openapi v0.0.0-20190603182131-db7b694dc208
 	sigs.k8s.io/controller-runtime v0.2.0
 	sigs.k8s.io/controller-tools v0.2.1
-	sigs.k8s.io/kubefed v0.1.0-rc2
+	sigs.k8s.io/kubefed v0.1.0-rc6.0.20191023070212-24d45e9f4f15
 )
 
 // Pinned to kubernetes-1.14.1
