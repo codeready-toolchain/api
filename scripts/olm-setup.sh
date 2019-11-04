@@ -69,6 +69,7 @@ setup_variables() {
     # Version vars
     NEXT_CSV_VERSION=${NEXT_CSV_VERSION:-0.0.1}
 
+    # Channel to be used
     CHANNEL=${CHANNEL:alpha}
 
     # Files and directories related vars
