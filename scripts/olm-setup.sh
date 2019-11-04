@@ -9,6 +9,8 @@ user_help () {
     echo "-pr, --project-root      path to the root of the project the CSV should be generated for/in"
     echo "-cv, --current-version   current CSV version"
     echo "-nv, --next-version      next CSV version"
+    echo "-rv, --replace-version   the CSV version to be replaced but is not generated from"
+    echo "-ch, --channel           channel the CSV should be registered under in the package manifest"
     exit 0
 }
 
@@ -38,6 +40,16 @@ read_arguments() {
                     NEXT_CSV_VERSION=$1
                     shift
                     ;;
+                -rv|--replace-version)
+                    shift
+                    REPLACE_VERSION=$1
+                    shift
+                    ;;
+                -ch|--channel)
+                    shift
+                    CHANNEL=$1
+                    shift
+                    ;;
                 *)
                    echo "$1 is not a recognized flag!" >> /dev/stderr
                    user_help
@@ -56,6 +68,9 @@ read_arguments() {
 setup_variables() {
     # Version vars
     NEXT_CSV_VERSION=${NEXT_CSV_VERSION:-0.0.1}
+
+    # Channel to be used
+    CHANNEL=${CHANNEL:alpha}
 
     # Files and directories related vars
     PRJ_NAME=`basename ${PRJ_ROOT_DIR}`
@@ -79,6 +94,20 @@ generate_bundle() {
     cd ${PRJ_ROOT_DIR}
     operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} ${FROM_VERSION_PARAM} --update-crds --operator-name ${OPERATOR_NAME}
     cd ${CURRENT_DIR}
+
+    TMP_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_csv"
+    if [[ -n "${REPLACE_VERSION}" ]]; then
+        SED_REPLACE="s/replaces: ${OPERATOR_NAME}.v${CURRENT_CSV_VERSION}/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
+    fi
+    if [[ -n "${IMAGE}" ]]; then
+        SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE}|g"
+    fi
+
+    if [[ -n "${SED_REPLACE}" ]]; then
+        sed -e "${SED_REPLACE}" ${CSV_DIR}/*clusterserviceversion.yaml > ${TMP_CSV}
+        sed '/^[ ]*$/d' ${TMP_CSV} > ${CSV_DIR}/*clusterserviceversion.yaml
+        rm -rf ${TMP_CSV}
+    fi
 
     echo "-> Bundle generated."
 }
