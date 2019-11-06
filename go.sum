@@ -207,8 +207,8 @@ sigs.k8s.io/controller-runtime v0.2.0 h1:5gL30PXOisGZl+Osi4CmLhvMUj77BO3wJeouKF2
 sigs.k8s.io/controller-runtime v0.2.0/go.mod h1:ZHqrRDZi3f6BzONcvlUxkqCKgwasGk5FZrnSv9TVZF4=
 sigs.k8s.io/controller-tools v0.2.1 h1:HoCik83vXOpPi7KSJWdPRmiGntyOzK0v0BTV4U+pl8o=
 sigs.k8s.io/controller-tools v0.2.1/go.mod h1:cenyhL7t2e7izk/Zy7ZxDqQ9YEj0niU5VDL1PWMgZ5s=
-sigs.k8s.io/kubefed v0.1.0-rc2 h1:7rX/BH5OFZq6nP42SEHs2i8uQKPfN09FWMkOyr3nf0g=
-sigs.k8s.io/kubefed v0.1.0-rc2/go.mod h1:V1YuAhi6d/zPg61MydwJWsV2z04K749Mvm3g2tx1M7E=
+sigs.k8s.io/kubefed v0.1.0-rc6.0.20191023070212-24d45e9f4f15 h1:TMKJm5RTvOyoj/JC+8j3quRqj5ONP7Y9rahsJN4vSV4=
+sigs.k8s.io/kubefed v0.1.0-rc6.0.20191023070212-24d45e9f4f15/go.mod h1:V1YuAhi6d/zPg61MydwJWsV2z04K749Mvm3g2tx1M7E=
 sigs.k8s.io/structured-merge-diff v0.0.0-20190426204423-ea680f03cc65/go.mod h1:wWxsB5ozmmv/SG7nM11ayaAW51xMvak/t1r0CSlcokI=
 sigs.k8s.io/testing_frameworks v0.1.1/go.mod h1:VVBKrHmJ6Ekkfz284YKhQePcdycOzNH9qL6ht1zEr/U=
 sigs.k8s.io/yaml v1.1.0 h1:4A07+ZFc2wgJwo8YNlQpr1rVlgUDlxXHhPJciaPY5gs=
