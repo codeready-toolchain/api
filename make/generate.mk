@@ -70,8 +70,8 @@ else
 endif
 
 .PHONY: generate-crds
-generate-crds: vendor prepare-host-operator prepare-member-operator
-	@echo "Re-generating the CRD files..."
+generate-crds: vendor prepare-host-operator prepare-member-operator generate-kubefed-crd
+	@echo "Re-generating the Toolchain CRD files..."
 	$(Q)go run $(shell pwd)/vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go crd:trivialVersions=true \
 	paths=./pkg/apis/... output:crd:dir=deploy/crds output:stdout
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
@@ -90,3 +90,16 @@ ifneq ($(wildcard deploy/crds/*.yaml),)
 	@echo "Please update this Makefile accordingly."
 	@exit 1
 endif
+
+.PHONY: generate-kubefed-crd
+generate-kubefed-crd: vendor
+	@echo "Re-generating the KubeFed CRD..."
+	$(Q)go run $(shell pwd)/vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go crd:trivialVersions=true \
+	paths=./vendor/sigs.k8s.io/kubefed/pkg/apis/core/v1beta1/... output:crd:dir=deploy/crds/kubefed/row output:stdout
+    # Delete two first lines of the CRD ("\n----\n") to make a single manifest file out of the original multiple manifest file
+    # Also remove the line with 'type: object' from validation.openAPIV3Schema.properties path because it's incompatible with kube 1.11 which is used by minishift
+	@sed -e '1,2d' -e '/^      type: object/d' deploy/crds/kubefed/row/core.kubefed.io_kubefedclusters.yaml > deploy/crds/kubefed/core.kubefed.io_kubefedclusters.yaml
+	@echo "Generating bindata and dispatching it in the 'toolchain-common' repository..."
+	@go install github.com/go-bindata/go-bindata/...
+	@$(GOPATH)/bin/go-bindata -pkg cluster -o ../toolchain-common/pkg/cluster/kubefedcluster_assets.go -nocompress -prefix deploy/crds/kubefed deploy/crds/kubefed
+	@rm -rf deploy/crds/kubefed
