@@ -13,7 +13,7 @@ const (
 	// MasterUserRecordReady means the Master User Record provisioning succeeded
 	MasterUserRecordReady ConditionType = "Ready"
 
-	MasterUserRecordUserIDLabelKey = "v1.toolchain/user-id"
+	MasterUserRecordUserIDLabelKey = "toolchain.dev.openshift.com/user-id"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
