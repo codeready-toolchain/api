@@ -9,7 +9,7 @@ user_help () {
     echo "-pr, --project-root      Path to the root of the project the CSV should be generated for/in"
     echo "-tv, --template-version  CSV version that should be used as a base for the creation of the new version"
     echo "-nv, --next-version      Semantic version of the new CSV to be created"
-    echo "-rv, --replace-version   The CSV version the new version should be a replacement for (this param has to be specified even if it's same as template-version)"
+    echo "-rv, --replace-version   The CSV version to be replaced by the new version (this param has to be specified even if it's same as template-version)"
     echo "-ch, --channel           Channel the CSV should be registered under in the package manifest"
     exit 0
 }
