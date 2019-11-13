@@ -2,13 +2,13 @@
 
 
 push_to_quay() {
-    TMP_FLATTEN_DIR="/tmp/${OPERATOR_NAME}_${GIT_COMMIT_ID}_flatten"
+    TMP_FLATTEN_DIR="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_flatten"
 
     echo "## Pushing the OperatorHub package '${OPERATOR_NAME}' to the Quay.io '${QUAY_NAMESPACE}' organization ..."
 
     echo " - Flatten package to temporary folder: ${TMP_FLATTEN_DIR}"
 
-    rm -Rf "${TMP_FLATTEN_DIRREPLACE_VERSION}" > /dev/null 2>&1
+    rm -Rf "${TMP_FLATTEN_DIR}" > /dev/null 2>&1
     mkdir -p "${TMP_FLATTEN_DIR}"
     operator-courier flatten "${PKG_DIR}" ${TMP_FLATTEN_DIR}
 
@@ -23,14 +23,8 @@ push_to_quay() {
     echo "-> Operator bundle pushed."
 }
 
-GIT_COMMIT_ID=`git rev-parse --short HEAD`
-PREVIOUS_GIT_COMMIT_ID=`git rev-parse --short HEAD^`
-
-NEXT_CSV_VERSION="0.0.$(git rev-list --count HEAD)-${GIT_COMMIT_ID}"
-CURRENT_CSV_VERSION="0.0.$(git rev-list --count HEAD^)-${PREVIOUS_GIT_COMMIT_ID}"
-
-OLM_SETUP_FILE=./scripts/olm-setup.sh
-
+# use the olm-setup as the source
+OLM_SETUP_FILE=scripts/olm-setup.sh
 if [[ -f ${OLM_SETUP_FILE} ]]; then
     source ${OLM_SETUP_FILE}
 else
@@ -40,13 +34,34 @@ else
         source /dev/stdin <<< "$(curl -sSL https://raw.githubusercontent.com/codeready-toolchain/api/master/scripts/olm-setup.sh)"
     fi
 fi
+# read argument to get project root dir
+read_arguments $@
 
-read_arguments $@ --channel nightly
+# setup version and commit variables
+GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD`
+PREVIOUS_GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD^`
+NEXT_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD)-${GIT_COMMIT_ID}"
+REPLACE_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD^)-${PREVIOUS_GIT_COMMIT_ID}"
+
+#read arguments one more time with the versions set
+read_arguments $@ --channel nightly --template-version 0.0.1 --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
 setup_variables
 
+# setup additional variables for pushing images
 QUAY_NAMESPACE=${QUAY_NAMESPACE:codeready-toolchain}
 IMAGE=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
 
+# create backup of the current operator package directory
+PKG_DIR_BACKUP=/tmp/deploy_olm-catalog_${PRJ_NAME}_backup
+if [[ -d ${PKG_DIR_BACKUP} ]]; then
+    rm -rf ${PKG_DIR_BACKUP}
+fi
+cp -r ${PKG_DIR} ${PKG_DIR_BACKUP}
+
+# generate the bundle and push it to quay
 generate_bundle
 push_to_quay
 
+# bring back the original operator package directory
+rm -rf ${PKG_DIR}
+cp -r ${PKG_DIR_BACKUP} ${PKG_DIR}

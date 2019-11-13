@@ -6,11 +6,11 @@ set -e
 user_help () {
     echo "Generate ClusterServiceVersion and additional deployment files for openshift-marketplace"
     echo "options:"
-    echo "-pr, --project-root      path to the root of the project the CSV should be generated for/in"
-    echo "-cv, --current-version   current CSV version"
-    echo "-nv, --next-version      next CSV version"
-    echo "-rv, --replace-version   the CSV version to be replaced but is not generated from"
-    echo "-ch, --channel           channel the CSV should be registered under in the package manifest"
+    echo "-pr, --project-root      Path to the root of the project the CSV should be generated for/in"
+    echo "-tv, --template-version  CSV version that should be used as a base for the creation of the new version"
+    echo "-nv, --next-version      Semantic version of the new CSV to be created"
+    echo "-rv, --replace-version   The CSV version to be replaced by the new version (this param has to be specified even if it's same as template-version)"
+    echo "-ch, --channel           Channel to be used for the CSV in the package manifest"
     exit 0
 }
 
@@ -30,9 +30,9 @@ read_arguments() {
                     PRJ_ROOT_DIR=$1
                     shift
                     ;;
-                -cv|--current-version)
+                -tv|--template-version)
                     shift
-                    CURRENT_CSV_VERSION=$1
+                    TEMPLATE_CSV_VERSION=$1
                     shift
                     ;;
                 -nv|--next-version)
@@ -85,31 +85,49 @@ setup_variables() {
 
 generate_bundle() {
     # Generate CSV
-    if [[ -n "${CURRENT_CSV_VERSION}" ]]; then
-        FROM_VERSION_PARAM=--from-version ${CURRENT_CSV_VERSION}
+    if [[ -n "${TEMPLATE_CSV_VERSION}" ]]; then
+        FROM_VERSION_PARAM="--from-version ${TEMPLATE_CSV_VERSION}"
+    fi
+    if [[ -n "${CHANNEL}" ]]; then
+        CHANNEL_PARAM="--csv-channel ${CHANNEL}"
     fi
 
     echo "## Generating operator bundle of project '${PRJ_NAME}' ..."
     CURRENT_DIR=${PWD}
     cd ${PRJ_ROOT_DIR}
-    operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} ${FROM_VERSION_PARAM} --update-crds --operator-name ${OPERATOR_NAME}
+    operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
     cd ${CURRENT_DIR}
 
-    TMP_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_csv"
+    CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml`
     if [[ -n "${REPLACE_VERSION}" ]]; then
-        SED_REPLACE="s/replaces: ${OPERATOR_NAME}.v${CURRENT_CSV_VERSION}/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
+        if [[ -n "${TEMPLATE_CSV_VERSION}" ]]; then
+            CSV_SED_REPLACE+=";s/replaces: ${OPERATOR_NAME}.v${TEMPLATE_CSV_VERSION}/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
+        else
+            if [[ -n "${CURRENT_REPLACE_CLAUSE}" ]]; then
+                CSV_SED_REPLACE+=";s/replaces: ${OPERATOR_NAME}.*$/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
+            else
+                CSV_SED_REPLACE+=";s/  version: ${NEXT_CSV_VERSION}/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}\n  version: ${NEXT_CSV_VERSION}/"
+            fi
+        fi
+    else
+        if [[ -n "${CURRENT_REPLACE_CLAUSE}" ]]; then
+            CSV_SED_REPLACE+="/${CURRENT_REPLACE_CLAUSE}$/d"
+        fi
     fi
     if [[ -n "${IMAGE}" ]]; then
-        SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE}|g"
+        CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE}|g"
     fi
 
-    if [[ -n "${SED_REPLACE}" ]]; then
-        sed -e "${SED_REPLACE}" ${CSV_DIR}/*clusterserviceversion.yaml > ${TMP_CSV}
-        sed '/^[ ]*$/d' ${TMP_CSV} > ${CSV_DIR}/*clusterserviceversion.yaml
-        rm -rf ${TMP_CSV}
-    fi
+    replace_with_sed "${CSV_SED_REPLACE}" "${CSV_DIR}/*clusterserviceversion.yaml"
 
     echo "-> Bundle generated."
+}
+
+replace_with_sed() {
+    TMP_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_replace-file"
+    sed -e "$1" $2 > ${TMP_CSV}
+    sed '/^[ ]*$/d' ${TMP_CSV} > $2
+    rm -rf ${TMP_CSV}
 }
 
 generate_hack() {
