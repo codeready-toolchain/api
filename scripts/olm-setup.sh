@@ -11,6 +11,9 @@ user_help () {
     echo "-nv, --next-version      Semantic version of the new CSV to be created"
     echo "-rv, --replace-version   The CSV version to be replaced by the new version (this param has to be specified even if it's same as template-version)"
     echo "-ch, --channel           Channel to be used for the CSV in the package manifest"
+    echo "-h,  --help              To show this help text"
+    echo ""
+    additional_help 2>/dev/null || true
     exit 0
 }
 
@@ -65,9 +68,12 @@ read_arguments() {
     fi
 }
 
+# Default version var - it has to be out of the function to make it available in help text
+DEFAULT_VERSION=0.0.1
+
 setup_variables() {
     # Version vars
-    NEXT_CSV_VERSION=${NEXT_CSV_VERSION:-0.0.1}
+    NEXT_CSV_VERSION=${NEXT_CSV_VERSION:-${DEFAULT_VERSION}}
 
     # Channel to be used
     CHANNEL=${CHANNEL:alpha}
@@ -98,7 +104,7 @@ generate_bundle() {
     operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
     cd ${CURRENT_DIR}
 
-    CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml`
+    CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml || true`
     if [[ -n "${REPLACE_VERSION}" ]]; then
         if [[ -n "${TEMPLATE_CSV_VERSION}" ]]; then
             CSV_SED_REPLACE+=";s/replaces: ${OPERATOR_NAME}.v${TEMPLATE_CSV_VERSION}/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
