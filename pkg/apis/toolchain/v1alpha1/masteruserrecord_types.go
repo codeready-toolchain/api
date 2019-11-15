@@ -83,7 +83,8 @@ type UserAccountStatusEmbedded struct {
 	TargetCluster string `json:"targetCluster,omitempty"`
 
 	// Cluster is the cluster in which the user exists
-	Cluster Cluster `json:"cluster"`
+	// +optional
+	Cluster Cluster `json:"cluster,omitempty"`
 
 	// SyncIndex is used for checking if there is needed some MasterUserRecord <-> UserAccount
 	// synchronization for this specific UserAccount in the specific member cluster
