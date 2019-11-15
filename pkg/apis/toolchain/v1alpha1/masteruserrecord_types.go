@@ -77,8 +77,14 @@ type MasterUserRecordStatus struct {
 
 type UserAccountStatusEmbedded struct {
 
+	// Deprecated! Use Cluster instead
 	// The cluster in which the user exists
-	TargetCluster string `json:"targetCluster"`
+	// +optional
+	TargetCluster string `json:"targetCluster,omitempty"`
+
+	// Cluster is the cluster in which the user exists
+	// +optional
+	Cluster Cluster `json:"cluster,omitempty"`
 
 	// SyncIndex is used for checking if there is needed some MasterUserRecord <-> UserAccount
 	// synchronization for this specific UserAccount in the specific member cluster
@@ -86,6 +92,17 @@ type UserAccountStatusEmbedded struct {
 
 	// Inherits the status from the corresponding UserAccount status
 	UserAccountStatus `json:",inline"`
+}
+
+type Cluster struct {
+	// Name is the name of the corresponding KubeFedCluster resource
+	Name string `json:"name"`
+
+	// APIEndpoint is the API Endpoint of the cluster
+	APIEndpoint string `json:"apiEndpoint"`
+
+	// ConsoleURL is the web console URL of the cluster
+	ConsoleURL string `json:"consoleURL"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -97,6 +114,7 @@ type UserAccountStatusEmbedded struct {
 // +kubebuilder:resource:shortName=mur
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
+// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.userAccounts[].targetCluster`
 type MasterUserRecord struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
