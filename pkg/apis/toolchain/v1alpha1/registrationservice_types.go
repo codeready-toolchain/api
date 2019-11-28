@@ -18,6 +18,7 @@ type RegistrationServiceSpec struct {
 	Image string `json:"image"`
 
 	// The number of replicas of the deployed registration service
+	// +optional
 	Replicas int `json:"replicas,omitempty"`
 
 	// The environment identifies which mode the registration service should be running in - prod, stage, e2e-tests, dev, etc.
