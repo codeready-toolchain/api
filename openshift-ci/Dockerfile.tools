@@ -16,8 +16,7 @@ ARG GO_PACKAGE_PATH=github.com/codeready-toolchain/api
 RUN yum install epel-release -y \
     && yum install --enablerepo=centosplus install -y --quiet \
     findutils \
-    git \
-    golang \
+    git2u-all \
     make \
     procps-ng \
     tar \
@@ -28,6 +27,16 @@ RUN yum install epel-release -y \
     yamllint \
     python36-virtualenv \
     && yum clean all
+
+# download, verify and install golang
+ENV PATH=$PATH:/usr/local/go/bin
+RUN curl -Lo go1.13.4.linux-amd64.tar.gz https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz \
+    && echo "692d17071736f74be04a72a06dab9cac1cd759377bd85316e52b2227604c004c go1.13.4.linux-amd64.tar.gz" > go1.13.4.linux-amd64.sha256 \
+    && sha256sum -c go1.13.4.linux-amd64.sha256 \
+    && tar xzf go1.13.4.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.13.4.linux-amd64.tar.gz \
+    && rm -f go1.13.4.linux-amd64.tar.gz \
+    && go version
 
 # download, verify and install openshift client tools (oc and kubectl)
 WORKDIR /tmp
