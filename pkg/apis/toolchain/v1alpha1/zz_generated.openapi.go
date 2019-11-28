@@ -462,7 +462,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref common.Refer
 				Description: "RegistrationServiceSpec defines the desired state of RegistrationService",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"version": {
+					"image": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The image identifies which image of the registration service should be used for a deployment",
 							Type:        []string{"string"},
@@ -490,7 +490,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref common.Refer
 						},
 					},
 				},
-				Required: []string{"version"},
+				Required: []string{"image"},
 			},
 		},
 		Dependencies: []string{
@@ -514,7 +514,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref common.Ref
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current Registration Service deployment conditions Supported condition types: Deploying, and Deployed",
+							Description: "Conditions is an array of current Registration Service deployment conditions Supported condition reasons: Deploying, and Deployed",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{

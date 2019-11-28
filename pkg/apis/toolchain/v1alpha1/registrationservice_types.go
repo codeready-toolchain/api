@@ -4,7 +4,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // RegistrationServiceSpec defines the desired state of RegistrationService
@@ -32,12 +31,15 @@ type RegistrationServiceSpec struct {
 
 type AuthClient struct {
 	// The LibraryUrl identifies the auth library location
+	// +optional
 	LibraryUrl string `json:"libraryUrl,omitempty"`
 
 	// The Config contains the auth config
+	// +optional
 	Config string `json:"config,omitempty"`
 
 	// The PublicKeysUrl identifies the public keys location
+	// +optional
 	PublicKeysUrl string `json:"publicKeysUrl,omitempty"`
 }
 
@@ -49,7 +51,7 @@ type RegistrationServiceStatus struct {
 	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current Registration Service deployment conditions
-	// Supported condition types:
+	// Supported condition reasons:
 	// Deploying, and Deployed
 	// +optional
 	// +patchMergeKey=type
@@ -64,6 +66,9 @@ type RegistrationServiceStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=registrationservices,scope=Namespaced
+// +kubebuilder:resource:shortName=rs
+// +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
+// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 type RegistrationService struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
