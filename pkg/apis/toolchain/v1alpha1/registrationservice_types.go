@@ -15,7 +15,7 @@ type RegistrationServiceSpec struct {
 	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The image identifies which image of the registration service should be used for a deployment
-	Image string `json:"version"`
+	Image string `json:"image"`
 
 	// The number of replicas of the deployed registration service
 	Replicas int `json:"replicas,omitempty"`
