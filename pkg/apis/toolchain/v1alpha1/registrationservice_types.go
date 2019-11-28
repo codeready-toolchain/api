@@ -26,6 +26,7 @@ type RegistrationServiceSpec struct {
 	Environment string `json:"environment,omitempty"`
 
 	// The AuthClient contains all necessary information about the auth client
+	// +optional
 	AuthClient AuthClient `json:"authClient,omitempty"`
 }
 
