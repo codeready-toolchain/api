@@ -22,6 +22,7 @@ type RegistrationServiceSpec struct {
 	Replicas int `json:"replicas,omitempty"`
 
 	// The environment identifies which mode the registration service should be running in - prod, stage, e2e-tests, dev, etc.
+	// +optional
 	Environment string `json:"environment,omitempty"`
 
 	// The AuthClient contains all necessary information about the auth client
