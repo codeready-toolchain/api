@@ -31,16 +31,13 @@ type RegistrationServiceSpec struct {
 
 type AuthClient struct {
 	// The LibraryUrl identifies the auth library location
-	// +optional
-	LibraryUrl string `json:"libraryUrl,omitempty"`
+	LibraryUrl string `json:"libraryUrl"`
 
 	// The Config contains the auth config
-	// +optional
-	Config string `json:"config,omitempty"`
+	Config string `json:"config"`
 
 	// The PublicKeysUrl identifies the public keys location
-	// +optional
-	PublicKeysUrl string `json:"publicKeysUrl,omitempty"`
+	PublicKeysUrl string `json:"publicKeysUrl"`
 }
 
 // RegistrationServiceStatus defines the observed state of RegistrationService
