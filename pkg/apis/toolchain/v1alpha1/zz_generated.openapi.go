@@ -29,21 +29,24 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":       schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":   schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus": schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":          schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":      schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":    schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":         schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":     schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":   schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":            schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":        schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":      schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":             schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec":         schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus":       schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":          schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":      schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus":    schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":             schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":         schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":       schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":            schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":        schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":      schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationService":       schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec":   schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus": schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":               schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":           schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":         schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":                schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec":            schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus":          schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref),
 	}
 }
 
@@ -405,6 +408,128 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.Referenc
 				Type:        []string{"object"},
 			},
 		},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationService is the Schema for the registrationservices API",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceSpec defines the desired state of RegistrationService",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"image": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The image identifies which image of the registration service should be used for a deployment",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"replicas": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The number of replicas of the deployed registration service",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"environment": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The environment identifies which mode the registration service should be running in - prod, stage, e2e-tests, dev, etc.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"authClient": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The AuthClient contains all necessary information about the auth client",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AuthClient"),
+						},
+					},
+				},
+				Required: []string{"image"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AuthClient"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceStatus defines the observed state of RegistrationService",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type":       "",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current Registration Service deployment conditions Supported condition reasons: Deploying, and Deployed",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
 	}
 }
 
