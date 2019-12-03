@@ -9,7 +9,7 @@ MEMBER_CLUSTER_CRDS:=useraccount nstemplateset
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
-generate: vendor generate-deepcopy generate-openapi generate-crds generate-csv
+generate: vendor generate-deepcopy generate-openapi generate-crds generate-csv copy-reg-service-template
 	
 .PHONY: generate-deepcopy
 generate-deepcopy:
@@ -103,3 +103,7 @@ generate-kubefed-crd: vendor
 	@go install github.com/go-bindata/go-bindata/...
 	@$(GOPATH)/bin/go-bindata -pkg cluster -o ../toolchain-common/pkg/cluster/kubefedcluster_assets.go -nocompress -prefix deploy/crds/kubefed deploy/crds/kubefed
 	@rm -rf deploy/crds/kubefed
+
+.PHONY: copy-reg-service-template
+copy-reg-service-template:
+	cp ../registration-service/deploy/registration-service.yaml ../host-operator/deploy/registration-service/registration-service.yaml
