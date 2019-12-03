@@ -77,14 +77,8 @@ type MasterUserRecordStatus struct {
 
 type UserAccountStatusEmbedded struct {
 
-	// Deprecated! Use Cluster instead
-	// The cluster in which the user exists
-	// +optional
-	TargetCluster string `json:"targetCluster,omitempty"`
-
 	// Cluster is the cluster in which the user exists
-	// +optional
-	Cluster Cluster `json:"cluster,omitempty"`
+	Cluster Cluster `json:"cluster"`
 
 	// SyncIndex is used for checking if there is needed some MasterUserRecord <-> UserAccount
 	// synchronization for this specific UserAccount in the specific member cluster
