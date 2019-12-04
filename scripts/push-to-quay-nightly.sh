@@ -60,8 +60,8 @@ read_arguments $@
 # setup version and commit variables
 GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD`
 PREVIOUS_GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD^`
-NEXT_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD)-${GIT_COMMIT_ID}"
-REPLACE_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD^)-${PREVIOUS_GIT_COMMIT_ID}"
+NEXT_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD)-nightly-${GIT_COMMIT_ID}"
+REPLACE_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD^)-nightly-${PREVIOUS_GIT_COMMIT_ID}"
 
 #read arguments one more time with the versions set
 read_arguments $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
