@@ -11,6 +11,7 @@ user_help () {
     echo "-nv, --next-version      Semantic version of the new CSV to be created"
     echo "-rv, --replace-version   The CSV version to be replaced by the new version (this param has to be specified even if it's same as template-version)"
     echo "-ch, --channel           Channel to be used for the CSV in the package manifest"
+    echo "-on, --operator-name     Name of the operator - by default it uses toolchain-{repository_name}"
     echo "-h,  --help              To show this help text"
     echo ""
     additional_help 2>/dev/null || true
@@ -53,6 +54,11 @@ read_arguments() {
                     CHANNEL=$1
                     shift
                     ;;
+                -on|--operator-name)
+                    shift
+                    SET_OPERATOR_NAME=$1
+                    shift
+                    ;;
                 *)
                    echo "$1 is not a recognized flag!" >> /dev/stderr
                    user_help
@@ -80,7 +86,7 @@ setup_variables() {
 
     # Files and directories related vars
     PRJ_NAME=`basename ${PRJ_ROOT_DIR}`
-    OPERATOR_NAME=toolchain-${PRJ_NAME}
+    OPERATOR_NAME=${SET_OPERATOR_NAME:-toolchain-${PRJ_NAME}}
     CRDS_DIR=${PRJ_ROOT_DIR}/deploy/crds
     PKG_DIR=${PRJ_ROOT_DIR}/deploy/olm-catalog/${OPERATOR_NAME}
     PKG_FILE=${PKG_DIR}/${OPERATOR_NAME}.package.yaml
@@ -121,7 +127,7 @@ generate_bundle() {
         fi
     fi
     if [[ -n "${IMAGE}" ]]; then
-        CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE}|g"
+        CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE}|g;s|REPLACE_CREATED_AT|$(date -u +%FT%TZ)|g;"
     fi
 
     replace_with_sed "${CSV_SED_REPLACE}" "${CSV_DIR}/*clusterserviceversion.yaml"
@@ -140,8 +146,8 @@ generate_hack() {
     # Name and display name vars for CatalogSource
     HACK_DIR=${PRJ_ROOT_DIR}/hack
     echo "## Generating files for easy deployment and installation of project '${PRJ_NAME}' into ${HACK_DIR} ..."
-    NAME=codeready-toolchain-saas-${OPERATOR_NAME}
-    DISPLAYNAME=$(echo ${NAME} | tr '-' ' ' | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')
+
+    DISPLAYNAME=$(echo ${OPERATOR_NAME} | tr '-' ' ' | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')
 
     # Create hack directory if is missing
     if [[ ! -d ${HACK_DIR} ]]; then
@@ -154,10 +160,10 @@ generate_hack() {
 apiVersion: operators.coreos.com/v1alpha1
 kind: CatalogSource
 metadata:
-  name: ${NAME}
+  name: source-${OPERATOR_NAME}
   namespace: openshift-marketplace
 spec:
-  configMap: ${NAME}
+  configMap: cm-${OPERATOR_NAME}
   displayName: $DISPLAYNAME
   publisher: Red Hat
   sourceType: internal
@@ -165,7 +171,7 @@ spec:
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: ${NAME}
+  name: cm-${OPERATOR_NAME}
   namespace: openshift-marketplace
 data:
   customResourceDefinitions: |-
@@ -181,7 +187,7 @@ $(cat ${PKG_FILE} | indent_list "packageName")" > ${HACK_DIR}/deploy_csv.yaml
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: ${NAME}
+  name: og-${OPERATOR_NAME}
   namespace: REPLACE_NAMESPACE
 spec:
   targetNamespaces:
@@ -190,13 +196,13 @@ spec:
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: ${NAME}
+  name: subscription-${OPERATOR_NAME}
   namespace: REPLACE_NAMESPACE
 spec:
   channel: alpha
   installPlanApproval: Automatic
   name: ${OPERATOR_NAME}
-  source: ${NAME}
+  source: source-${OPERATOR_NAME}
   sourceNamespace: openshift-marketplace
   startingCSV: ${OPERATOR_NAME}.v0.0.1" > ${HACK_DIR}/install_operator.yaml
 
