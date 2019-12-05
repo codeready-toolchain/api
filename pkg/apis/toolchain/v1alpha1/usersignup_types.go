@@ -10,6 +10,9 @@ const (
 	UserSignupApproved ConditionType = "Approved"
 	// UserSignupComplete means provisioning is complete
 	UserSignupComplete ConditionType = "Complete"
+
+	// UserSignupUserEmailLabelKey is used for the usersignup email annotations key
+	UserSignupUserEmailLabelKey = "toolchain.dev.openshift.com/user-email"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
