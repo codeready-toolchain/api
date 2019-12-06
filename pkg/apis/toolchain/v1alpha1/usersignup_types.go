@@ -10,6 +10,9 @@ const (
 	UserSignupApproved ConditionType = "Approved"
 	// UserSignupComplete means provisioning is complete
 	UserSignupComplete ConditionType = "Complete"
+
+	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
+	UserSignupUserEmailAnnotationKey = "toolchain.dev.openshift.com/user-email"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -61,13 +64,14 @@ type UserSignupStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=`.spec.userID`,priority=1
-// +kubebuilder:printcolumn:name="Username",type="string",JSONPath=`.spec.username`,priority=1
+// +kubebuilder:printcolumn:name="Username",type="string",JSONPath=`.spec.username`
 // +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=`.spec.targetCluster`,priority=1
 // +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
 // +kubebuilder:printcolumn:name="Approved",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].status`,priority=1
 // +kubebuilder:printcolumn:name="ApprovedBy",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].reason`,priority=1
 // +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=`.status.compliantUsername`
+// +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.metadata.annotations.toolchain\.dev\.openshift\.com/user-email`
 type UserSignup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
