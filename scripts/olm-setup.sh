@@ -126,8 +126,8 @@ generate_bundle() {
             CSV_SED_REPLACE+="/${CURRENT_REPLACE_CLAUSE}$/d"
         fi
     fi
-    if [[ -n "${IMAGE}" ]]; then
-        CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE}|g;s|REPLACE_CREATED_AT|$(date -u +%FT%TZ)|g;"
+    if [[ -n "${IMAGE_IN_CSV}" ]]; then
+        CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE_IN_CSV}|g;s|REPLACE_CREATED_AT|$(date -u +%FT%TZ)|g;"
     fi
 
     replace_with_sed "${CSV_SED_REPLACE}" "${CSV_DIR}/*clusterserviceversion.yaml"

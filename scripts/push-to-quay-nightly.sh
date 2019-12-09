@@ -69,7 +69,7 @@ setup_variables
 
 # setup additional variables for pushing images
 QUAY_NAMESPACE=${QUAY_NAMESPACE:codeready-toolchain}
-IMAGE=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
+IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
 
 # create backup of the current operator package directory
 PKG_DIR_BACKUP=/tmp/deploy_olm-catalog_${PRJ_NAME}_backup
