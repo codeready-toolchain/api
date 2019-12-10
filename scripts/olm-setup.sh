@@ -175,7 +175,7 @@ metadata:
   namespace: openshift-marketplace
 data:
   customResourceDefinitions: |-
-$(for crd in `ls ${CRDS_DIR}/*crd.yaml`; do cat ${crd} | indent_list; done)
+$(for crd in `ls ${CRDS_DIR}/*.yaml`; do cat ${crd} | indent_list; done)
   clusterServiceVersions: |-
 $(cat ${CSV_DIR}/*clusterserviceversion.yaml | indent_list)
   packages: |
