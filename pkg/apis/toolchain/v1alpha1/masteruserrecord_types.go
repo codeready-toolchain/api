@@ -113,6 +113,7 @@ type Cluster struct {
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.userAccounts[].targetCluster`
+// +kubebuilder:printcolumn:name="Banned",type="string",JSONPath=`.spec.disabled`,priority=1
 // +kubebuilder:printcolumn:name="Disabled",type="string",JSONPath=`.spec.disabled`,priority=1
 type MasterUserRecord struct {
 	metav1.TypeMeta   `json:",inline"`
