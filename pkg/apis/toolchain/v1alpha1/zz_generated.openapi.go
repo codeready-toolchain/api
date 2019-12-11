@@ -113,6 +113,13 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 							Format:      "",
 						},
 					},
+					"banned": {
+						SchemaProps: spec.SchemaProps{
+							Description: "If set to true then the corresponding user has been banned from logging in and accessing their resources",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 					"deprovisioned": {
 						SchemaProps: spec.SchemaProps{
 							Description: "If set to true then the corresponding UserAccount should be deleted \"false\" is assumed by default",
