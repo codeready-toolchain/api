@@ -33,6 +33,10 @@ type UserSignupSpec struct {
 	// +optional
 	Approved bool `json:"approved,omitempty"`
 
+	// Deactivated is used to deactivate the user.  If not set, then by default the user is active
+	// +optional
+	Deactivated bool `json:"deactivated,omitempty"`
+
 	// The user's username, obtained from the identity provider.
 	Username string `json:"username"`
 }
@@ -70,6 +74,7 @@ type UserSignupStatus struct {
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
 // +kubebuilder:printcolumn:name="Approved",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].status`,priority=1
 // +kubebuilder:printcolumn:name="ApprovedBy",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].reason`,priority=1
+// +kubebuilder:printcolumn:name="Deactivated",type="string",JSONPath=`.spec.deactivated`,priority=1
 // +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=`.status.compliantUsername`
 // +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.metadata.annotations.toolchain\.dev\.openshift\.com/user-email`
 type UserSignup struct {
