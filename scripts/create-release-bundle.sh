@@ -32,14 +32,21 @@ read_arguments $@
 
 # take the latest version to be replaced
 if [[ -d ${MANIFESTS_DIR} ]]; then
-    LAST_VERSION=`basename $(ls -d manifests/*/ | sort | tail -1)`
-    REPLACE_LAST_VERSION_PARAM="--replace-version ${LAST_VERSION}"
+    LAST_VERSION=`basename $(ls -d ${MANIFESTS_DIR}/*/ | sort | tail -1)`
+
+    if [[ "${LAST_VERSION}" != "${NEXT_CSV_VERSION}" ]]; then
+        REPLACE_LAST_VERSION_PARAM="--replace-version ${LAST_VERSION}"
+
+    elif [[ `ls -d ${MANIFESTS_DIR}/*/ | wc -l` -ge 2 ]]; then
+        LAST_VERSION=`basename $(ls -d ${MANIFESTS_DIR}/*/ | sort | tail -2 | head -n 1)`
+        REPLACE_LAST_VERSION_PARAM="--replace-version ${LAST_VERSION}"
+    fi
 fi
 
 QUAY_NAMESPACE=codeready-toolchain
 
 # generate manifests
-generate_manifests --channel alpha --template-version ${DEFAULT_VERSION}
+generate_manifests --channel alpha --template-version ${DEFAULT_VERSION} ${REPLACE_LAST_VERSION_PARAM}
 
 # delete the default version that is used as a template
 rm -rf ${PKG_DIR}/${DEFAULT_VERSION}
