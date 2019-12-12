@@ -230,7 +230,7 @@ indent_list() {
 
 generate_manifests() {
     #read arguments and setup variables
-    read_arguments $@ ${REPLACE_LAST_VERSION_PARAM}
+    read_arguments $@
     setup_variables
 
     # setup additional variables for pushing images
