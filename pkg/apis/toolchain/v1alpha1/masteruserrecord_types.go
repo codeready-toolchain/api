@@ -101,6 +101,10 @@ type Cluster struct {
 
 	// ConsoleURL is the web console URL of the cluster
 	ConsoleURL string `json:"consoleURL"`
+
+	// CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed
+	// +optional
+	CheDashboardURL string `json:"cheDashboardURL,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
