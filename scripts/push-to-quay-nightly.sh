@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 additional_help() {
-    echo "Important info: push-to-quay-nightly.sh scripts overrides all the parameters but \"--project-root\", so use only that one to specify the root of the project."
+    echo "Important info: push-to-quay-nightly.sh scripts overrides all the parameters but \"--project-root\" and \"--operator-name\", so use only these two to specify necessary values."
     echo "                The parameters are overridden with these values:"
     echo "                      --channel nightly"
     echo "                      --template-version ${DEFAULT_VERSION}"
@@ -22,15 +22,14 @@ additional_help() {
 }
 
 push_to_quay() {
-    TMP_FLATTEN_DIR="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_flatten"
+    RELEASE_BACKUP_DIR="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_${CHANNEL}"
 
     echo "## Pushing the OperatorHub package '${OPERATOR_NAME}' to the Quay.io '${QUAY_NAMESPACE}' organization ..."
 
-    echo " - Flatten package to temporary folder: ${TMP_FLATTEN_DIR}"
+    echo " - Copy package to backup folder: ${RELEASE_BACKUP_DIR}"
 
-    rm -Rf "${TMP_FLATTEN_DIR}" > /dev/null 2>&1
-    mkdir -p "${TMP_FLATTEN_DIR}"
-    operator-courier flatten "${PKG_DIR}" ${TMP_FLATTEN_DIR}
+    rm -rf "${RELEASE_BACKUP_DIR}" > /dev/null 2>&1
+    cp -r "${PKG_DIR}" ${RELEASE_BACKUP_DIR}
 
     echo " - Push flattened files to Quay.io namespace '${QUAY_NAMESPACE}' as version ${NEXT_CSV_VERSION}"
 
@@ -38,7 +37,7 @@ push_to_quay() {
         QUAY_AUTH_TOKEN=`cat ~/.docker/config.json | jq -r '.auths["quay.io"].auth'`
     fi
 
-    operator-courier push ${TMP_FLATTEN_DIR} "${QUAY_NAMESPACE}" "${OPERATOR_NAME}" "${NEXT_CSV_VERSION}" "basic ${QUAY_AUTH_TOKEN}"
+    operator-courier --verbose push ${RELEASE_BACKUP_DIR} "${QUAY_NAMESPACE}" "${OPERATOR_NAME}" "${NEXT_CSV_VERSION}" "basic ${QUAY_AUTH_TOKEN}"
 
     echo "-> Operator bundle pushed."
 }
@@ -63,23 +62,12 @@ PREVIOUS_GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROO
 NEXT_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD)-commit-${GIT_COMMIT_ID}"
 REPLACE_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD^)-commit-${PREVIOUS_GIT_COMMIT_ID}"
 
-#read arguments one more time with the versions set
-read_arguments $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
-setup_variables
-
-# setup additional variables for pushing images
 QUAY_NAMESPACE=${QUAY_NAMESPACE:codeready-toolchain}
-IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
 
-# create backup of the current operator package directory
-PKG_DIR_BACKUP=/tmp/deploy_olm-catalog_${PRJ_NAME}_backup
-if [[ -d ${PKG_DIR_BACKUP} ]]; then
-    rm -rf ${PKG_DIR_BACKUP}
-fi
-cp -r ${PKG_DIR} ${PKG_DIR_BACKUP}
+# generate manifests
+generate_manifests $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
 
-# generate the bundle and push it to quay
-generate_bundle
+# push manifests to quay
 push_to_quay
 
 # bring back the original operator package directory
