@@ -78,6 +78,8 @@ read_arguments() {
         user_help
         exit 1;
     fi
+
+    MANIFESTS_DIR=${PRJ_ROOT_DIR}/manifests
 }
 
 # Default version var - it has to be out of the function to make it available in help text
@@ -224,4 +226,29 @@ spec:
 indent_list() {
     local INDENT="      "
     sed -e "s/^/${INDENT}/;1s/^${INDENT}/${INDENT:0:${#INDENT}-2}- /"
+}
+
+generate_manifests() {
+    #read arguments and setup variables
+    read_arguments $@ ${REPLACE_LAST_VERSION_PARAM}
+    setup_variables
+
+    # setup additional variables for pushing images
+    GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD`
+    IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
+
+    # create backup of the current operator package directory
+    PKG_DIR_BACKUP=/tmp/deploy_olm-catalog_${PRJ_NAME}_backup
+    if [[ -d ${PKG_DIR_BACKUP} ]]; then
+        rm -rf ${PKG_DIR_BACKUP}
+    fi
+    cp -r ${PKG_DIR} ${PKG_DIR_BACKUP}
+
+    # copy everything from manifests dir to package dir
+    if [[ -d ${MANIFESTS_DIR} ]]; then
+        cp -r ${MANIFESTS_DIR}/* ${PKG_DIR}/
+    fi
+
+    # generate the bundle
+    generate_bundle
 }
