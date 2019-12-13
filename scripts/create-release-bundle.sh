@@ -44,7 +44,7 @@ if [[ -d ${MANIFESTS_DIR} ]]; then
 fi
 
 QUAY_NAMESPACE=codeready-toolchain
-
+GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short origin/master`
 # generate manifests
 generate_manifests --channel alpha --template-version ${DEFAULT_VERSION} ${REPLACE_LAST_VERSION_PARAM}
 
