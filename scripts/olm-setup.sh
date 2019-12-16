@@ -234,7 +234,6 @@ generate_manifests() {
     setup_variables
 
     # setup additional variables for pushing images
-    GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD`
     IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
 
     # create backup of the current operator package directory
@@ -251,4 +250,25 @@ generate_manifests() {
 
     # generate the bundle
     generate_bundle
+}
+
+push_to_quay() {
+    RELEASE_BACKUP_DIR="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_${CHANNEL}"
+
+    echo "## Pushing the OperatorHub package '${OPERATOR_NAME}' to the Quay.io '${QUAY_NAMESPACE}' organization ..."
+
+    echo " - Copy package to backup folder: ${RELEASE_BACKUP_DIR}"
+
+    rm -rf "${RELEASE_BACKUP_DIR}" > /dev/null 2>&1
+    cp -r "${DIR_TO_PUSH}" ${RELEASE_BACKUP_DIR}
+
+    echo " - Push flattened files to Quay.io namespace '${QUAY_NAMESPACE}' as version ${NEXT_CSV_VERSION}"
+
+    if [[ -z ${QUAY_AUTH_TOKEN} ]]; then
+        QUAY_AUTH_TOKEN=`cat ~/.docker/config.json | jq -r '.auths["quay.io"].auth'`
+    fi
+
+    operator-courier --verbose push ${RELEASE_BACKUP_DIR} "${QUAY_NAMESPACE}" "${OPERATOR_NAME}" "${NEXT_CSV_VERSION}" "basic ${QUAY_AUTH_TOKEN}"
+
+    echo "-> Operator bundle pushed."
 }

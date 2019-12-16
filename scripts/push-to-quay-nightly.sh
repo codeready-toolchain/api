@@ -21,27 +21,6 @@ additional_help() {
 
 }
 
-push_to_quay() {
-    RELEASE_BACKUP_DIR="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_${CHANNEL}"
-
-    echo "## Pushing the OperatorHub package '${OPERATOR_NAME}' to the Quay.io '${QUAY_NAMESPACE}' organization ..."
-
-    echo " - Copy package to backup folder: ${RELEASE_BACKUP_DIR}"
-
-    rm -rf "${RELEASE_BACKUP_DIR}" > /dev/null 2>&1
-    cp -r "${PKG_DIR}" ${RELEASE_BACKUP_DIR}
-
-    echo " - Push flattened files to Quay.io namespace '${QUAY_NAMESPACE}' as version ${NEXT_CSV_VERSION}"
-
-    if [[ -z ${QUAY_AUTH_TOKEN} ]]; then
-        QUAY_AUTH_TOKEN=`cat ~/.docker/config.json | jq -r '.auths["quay.io"].auth'`
-    fi
-
-    operator-courier --verbose push ${RELEASE_BACKUP_DIR} "${QUAY_NAMESPACE}" "${OPERATOR_NAME}" "${NEXT_CSV_VERSION}" "basic ${QUAY_AUTH_TOKEN}"
-
-    echo "-> Operator bundle pushed."
-}
-
 # use the olm-setup as the source
 OLM_SETUP_FILE=scripts/olm-setup.sh
 if [[ -f ${OLM_SETUP_FILE} ]]; then
@@ -68,6 +47,7 @@ QUAY_NAMESPACE=${QUAY_NAMESPACE:codeready-toolchain}
 generate_manifests $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
 
 # push manifests to quay
+DIR_TO_PUSH=${PKG_DIR}
 push_to_quay
 
 # bring back the original operator package directory
