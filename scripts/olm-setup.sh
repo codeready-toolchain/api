@@ -146,7 +146,7 @@ generate_bundle() {
 replace_with_sed() {
     TMP_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_replace-file"
     sed -e "$1" $2 > ${TMP_CSV}
-    sed '/^[ ]*$/d' ${TMP_CSV} > $2
+    cat ${TMP_CSV} > $2
     rm -rf ${TMP_CSV}
 }
 
