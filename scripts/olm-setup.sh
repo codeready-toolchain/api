@@ -185,7 +185,7 @@ data:
   customResourceDefinitions: |-
 $(for crd in `ls ${CRDS_DIR}/*.yaml`; do cat ${crd} | indent_list; done)
   clusterServiceVersions: |-
-$(cat ${CSV_DIR}/*clusterserviceversion.yaml | indent_list)
+$(cat ${CSV_DIR}/*clusterserviceversion.yaml | indent_list | sed -e 's|^ *$||g')
   packages: |
 $(cat ${PKG_FILE} | indent_list "packageName")" > ${HACK_DIR}/deploy_csv.yaml
 
