@@ -4,14 +4,16 @@
 set -e
 
 user_help () {
-    echo "Generate CSVs and CRDs deployment hack file"
+    echo "Generate deploy_csv.yaml file containing CatalogSource and ConfigMap. The file can be used for an easy deployment of the operator manifest for testing purposes."
+    echo "The CatalogSource adds the operator into the OperatorHub and as a source it uses the ConfigMap. The ConfigMap contains all detected CSVs, CRDs and package file."
+    echo ""
     echo "options:"
     echo "-crds, --crds-dir        Path to the directory where CRDs are listed"
     echo "-hd,   --hack-dir        Path to the hack directory where the deploy_csv.yaml file should be generated"
     echo "-csvs, --csvs-dir        Path to the directory where CSVs should be recursively found"
     echo "-pf,   --package-file    Path to the package file"
     echo "-on,   --operator-name   Name of the operator - by default it uses toolchain-{repository_name}"
-    echo "-h,  --help            To show this help text"
+    echo "-h,    --help            To show this help text"
     echo ""
     echo "Examples:"
     echo "   ./scripts/generate-deploy-hack.sh -on codeready-toolchain-operator -csvs manifests/ -crds manifests/0.1.1/ -pf manifests/codeready-toolchain-operator.package.yaml -hd /tmp/crto-0.1.1"
