@@ -63,3 +63,6 @@ cp -r ${PKG_DIR_BACKUP} ${PKG_DIR}
 
 # verify the manifests
 operator-courier --verbose verify ${MANIFESTS_DIR}
+
+# Vars for deploy hack
+generate_deploy_hack -crds ${MANIFESTS_DIR}/${NEXT_CSV_VERSION} -csvs ${MANIFESTS_DIR}/ -pf ${MANIFESTS_DIR}/${OPERATOR_NAME}.package.yaml -hd /tmp/hack_deploy_${OPERATOR_NAME}_${NEXT_CSV_VERSION} -on ${OPERATOR_NAME}
