@@ -13,7 +13,7 @@ require (
 	github.com/gobuffalo/flect v0.1.6 // indirect
 	github.com/google/gofuzz v1.0.0 // indirect
 	github.com/mailru/easyjson v0.0.0-20190403194419-1ea4449da983 // indirect
-	github.com/openshift/api v3.9.1-0.20190730142803-0922aa5a655b+incompatible
+	github.com/openshift/api v0.0.0-20190927182313-d4a64ec2cbd8
 	github.com/stretchr/testify v1.3.0
 	golang.org/x/net v0.0.0-20190603091049-60506f45cf65 // indirect
 	golang.org/x/sys v0.0.0-20190602015325-4c4f7f33c9ed // indirect
