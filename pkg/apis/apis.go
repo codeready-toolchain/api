@@ -2,7 +2,6 @@ package apis
 
 import (
 	"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1"
-	extensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/kubefed/pkg/apis/core/v1beta1"
 )
@@ -15,8 +14,6 @@ func init() {
 	AddToSchemes = append(AddToSchemes, v1alpha1.SchemeBuilder.AddToScheme)
 	// Register the KubeFed types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes, v1beta1.SchemeBuilder.AddToScheme)
-	// Register the CustomResourceDefinition types with the Scheme so the components can map objects to GroupVersionKinds and back
-	AddToSchemes = append(AddToSchemes, extensionsv1.AddToScheme)
 }
 
 // AddToScheme adds all Resources to the Scheme
