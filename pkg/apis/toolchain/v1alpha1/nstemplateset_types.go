@@ -6,6 +6,12 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+const (
+	OwnerLabelKey    = labelKeyPrefix + "owner"
+	RevisionLabelKey = labelKeyPrefix + "revision"
+	TypeLabelKey     = labelKeyPrefix + "type"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // NSTemplateSetSpec defines the desired state of NSTemplateSet
