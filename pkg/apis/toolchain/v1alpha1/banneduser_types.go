@@ -4,6 +4,11 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+const (
+	// BannedUserEmailHashAnnotationKey is used for the banneduser email hash annotations key
+	BannedUserEmailHashAnnotationKey = "toolchain.dev.openshift.com/email-hash"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // BannedUserSpec defines the desired state of BannedUser
