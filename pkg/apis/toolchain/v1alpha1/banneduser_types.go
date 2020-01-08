@@ -31,7 +31,7 @@ type BannedUser struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// BannedUserList contains a list of UserSignup
+// BannedUserList contains a list of BannedUser
 type BannedUserList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
