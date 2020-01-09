@@ -4,15 +4,16 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// These are valid conditions of a UserSignup
 const (
+	// These are valid conditions of a UserSignup
+
 	// UserSignupApproved reflects whether the signup request has been approved or not
 	UserSignupApproved ConditionType = "Approved"
 	// UserSignupComplete means provisioning is complete
 	UserSignupComplete ConditionType = "Complete"
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
-	UserSignupUserEmailAnnotationKey = "toolchain.dev.openshift.com/user-email"
+	UserSignupUserEmailAnnotationKey = labelKeyPrefix + "user-email"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
