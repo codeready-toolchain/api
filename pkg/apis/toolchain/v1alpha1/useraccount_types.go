@@ -4,6 +4,18 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// These are valid status condition reasons of a UserAccount
+const (
+	// Status condition reasons
+	UnableToCreateUserReason          = "UnableToCreateUser"
+	UnableToCreateIdentityReason      = "UnableToCreateIdentity"
+	UnableToCreateMappingReason       = "UnableToCreateMapping"
+	UnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
+	ProvisioningReason                = "Provisioning"
+	ProvisionedReason                 = "Provisioned"
+	DisabledReason                    = "Disabled"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // UserAccountSpec defines the desired state of UserAccount
