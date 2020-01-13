@@ -7,13 +7,13 @@ import (
 // These are valid status condition reasons of a UserAccount
 const (
 	// Status condition reasons
-	UnableToCreateUserReason          = "UnableToCreateUser"
-	UnableToCreateIdentityReason      = "UnableToCreateIdentity"
-	UnableToCreateMappingReason       = "UnableToCreateMapping"
-	UnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
-	ProvisioningReason                = "Provisioning"
-	ProvisionedReason                 = "Provisioned"
-	DisabledReason                    = "Disabled"
+	UserAccountUnableToCreateUserReason          = "UnableToCreateUser"
+	UserAccountUnableToCreateIdentityReason      = "UnableToCreateIdentity"
+	UserAccountUnableToCreateMappingReason       = "UnableToCreateMapping"
+	UserAccountUnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
+	UserAccountProvisioningReason                = "Provisioning"
+	UserAccountProvisionedReason                 = "Provisioned"
+	UserAccountDisabledReason                    = "Disabled"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
