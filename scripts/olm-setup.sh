@@ -138,9 +138,34 @@ generate_bundle() {
         CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE_IN_CSV}|g;s|REPLACE_CREATED_AT|$(date -u +%FT%TZ)|g;"
     fi
 
-    replace_with_sed "${CSV_SED_REPLACE}" "${CSV_DIR}/*clusterserviceversion.yaml"
+    CSV_LOCATION=${CSV_DIR}/*clusterserviceversion.yaml
+    replace_with_sed "${CSV_SED_REPLACE}" "${CSV_LOCATION}"
+
+    if [[ -n "${IMAGE_IN_CSV}" ]]; then
+        CONFIG_ENV_FILE=${PRJ_ROOT_DIR}/deploy/env/prod.yaml
+        CAPITALIZED_REPO_NAME=`echo "${PRJ_NAME}" | awk '{ print toupper($0) }' | tr '-' '_'`
+
+        echo "enriching ${CSV_LOCATION} by params defined in ${CONFIG_ENV_FILE}"
+        enrich-by-envs-from-yaml ${CSV_LOCATION} ${CONFIG_ENV_FILE} ${CAPITALIZED_REPO_NAME}_DYNAMIC_KEYS
+    fi
 
     echo "-> Bundle generated."
+}
+
+enrich-by-envs-from-yaml() {
+    ENRICHED_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}-enriched-file"
+
+    ENRICH_BY_ENVS_FROM_YAML=scripts/enrich-by-envs-from-yaml.sh
+    if [[ -f ${ENRICH_BY_ENVS_FROM_YAML} ]]; then
+        ${ENRICH_BY_ENVS_FROM_YAML} $@ > ${ENRICHED_CSV}
+    else
+        if [[ -f ${GOPATH}/src/github.com/codeready-toolchain/api/${ENRICH_BY_ENVS_FROM_YAML} ]]; then
+            ${GOPATH}/src/github.com/codeready-toolchain/api/${ENRICH_BY_ENVS_FROM_YAML} $@ > ${ENRICHED_CSV}
+        else
+            curl -sSL  https://raw.githubusercontent.com/codeready-toolchain/api/master/scripts/generate-deploy-hack.sh | bash -s -- $@ > ${ENRICHED_CSV}
+        fi
+    fi
+    cat ${ENRICHED_CSV} > $1
 }
 
 replace_with_sed() {
@@ -193,7 +218,7 @@ spec:
 generate_deploy_hack() {
     GENERATE_DEPLOY_HACK_FILE=scripts/generate-deploy-hack.sh
     if [[ -f ${GENERATE_DEPLOY_HACK_FILE} ]]; then
-        source ${GENERATE_DEPLOY_HACK_FILE}
+        ${GENERATE_DEPLOY_HACK_FILE} $@
     else
         if [[ -f ${GOPATH}/src/github.com/codeready-toolchain/api/${GENERATE_DEPLOY_HACK_FILE} ]]; then
             ${GOPATH}/src/github.com/codeready-toolchain/api/${GENERATE_DEPLOY_HACK_FILE} $@
@@ -243,7 +268,7 @@ push_to_quay() {
         QUAY_AUTH_TOKEN=`cat ~/.docker/config.json | jq -r '.auths["quay.io"].auth'`
     fi
 
-    operator-courier --verbose push ${RELEASE_BACKUP_DIR} "${QUAY_NAMESPACE}" "${OPERATOR_NAME}" "${NEXT_CSV_VERSION}" "basic ${QUAY_AUTH_TOKEN}"
+    operator-courier --verbose verify ${RELEASE_BACKUP_DIR} #"${QUAY_NAMESPACE}" "${OPERATOR_NAME}" "${NEXT_CSV_VERSION}" "basic ${QUAY_AUTH_TOKEN}"
 
     echo "-> Operator bundle pushed."
 }

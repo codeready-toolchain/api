@@ -7,10 +7,10 @@ user_help () {
     echo ""
     echo "Usage: enrich-by-envs-from-yaml.sh [path/to/target/yaml/file/to/be/enriched] [path/to/source/yaml/file/containing/configuration/data] [name-of-key-for-dynamic-keys]"
     echo ""
-    echo "enrich-by-envs-from-yaml.sh adds fields that will setting up environment variables for a deployment. The variables are taken from conf yaml file specified as the source. All keys that are added are then listed in 'name-of-key-for-dynamic-keys' environment"
+    echo "enrich-by-envs-from-yaml.sh adds fields that will set up environment variables for a deployment. The variables are taken from conf yaml file specified as the source. All keys that are added are then listed in 'name-of-key-for-dynamic-keys' environment"
     echo ""
     echo "Examples:"
-    echo "   ./scripts/enrich-by-envs-from-yaml.sh ./path/to/csv.yaml ./path/to/e2e-test.yaml HOST_DYNAMIC_KEYS"
+    echo "   ./scripts/enrich-by-envs-from-yaml.sh ./path/to/csv.yaml ./path/to/e2e-test.yaml HOST_OPERATOR_DYNAMIC_KEYS"
     echo "          - Where e2e-test.yaml contain:"
     echo ""
     echo "--- e2e-test.yaml ------------------------------------------------------------"
@@ -27,7 +27,7 @@ user_help () {
    value: https://sso.redhat.com/auth/js/keycloak.js
  - name: REGISTRATION_SERVICE_ENVIRONMENT
    value: prod
- - name: HOST_DYNAMIC_KEYS
+ - name: HOST_OPERATOR_DYNAMIC_KEYS
    value: 'REGISTRATION_SERVICE_AUTH_CLIENT_LIBRARY_URL,REGISTRATION_SERVICE_ENVIRONMENT,'"
    echo "------------------------------------------------------------------------------------"
     echo ""
@@ -95,7 +95,6 @@ DYNAMIC_KEYS_KEY=$3
 if [[ ! -f ${SOURCE_YAML_FILE_PATH} ]]; then
     echo "there is no file found at the path that should point to the yaml file containing configuration data ${SOURCE_YAML_FILE_PATH}" >> /dev/stderr
     cat ${TARGET_YAML_FILE_PATH}
-    echo "done"
 else
     INDENTATION=`grep -m 1 "env:" ${TARGET_YAML_FILE_PATH} | sed 's/env://'`
 
