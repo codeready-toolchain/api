@@ -13,4 +13,6 @@ import (
 	_ "k8s.io/gengo/args"
 	_ "k8s.io/kube-openapi/cmd/openapi-gen"
 	_ "sigs.k8s.io/controller-tools/cmd/controller-gen"
+	// For parsing/reading yaml files.
+	_ "https://github.com/kislyuk/yq "
 )
