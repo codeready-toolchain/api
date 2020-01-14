@@ -143,10 +143,9 @@ generate_bundle() {
 
     if [[ -n "${IMAGE_IN_CSV}" ]]; then
         CONFIG_ENV_FILE=${PRJ_ROOT_DIR}/deploy/env/prod.yaml
-        CAPITALIZED_REPO_NAME=`echo "${PRJ_NAME}" | awk '{ print toupper($0) }' | tr '-' '_'`
 
         echo "enriching ${CSV_LOCATION} by params defined in ${CONFIG_ENV_FILE}"
-        enrich-by-envs-from-yaml ${CSV_LOCATION} ${CONFIG_ENV_FILE} ${CAPITALIZED_REPO_NAME}_DYNAMIC_KEYS
+        enrich-by-envs-from-yaml ${CSV_LOCATION} ${CONFIG_ENV_FILE}
     fi
 
     echo "-> Bundle generated."

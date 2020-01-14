@@ -5,12 +5,12 @@ set -e
 
 user_help () {
     echo ""
-    echo "Usage: enrich-by-envs-from-yaml.sh [path/to/target/yaml/file/to/be/enriched] [path/to/source/yaml/file/containing/configuration/data] [name-of-key-for-dynamic-keys]"
+    echo "Usage: enrich-by-envs-from-yaml.sh [path/to/target/yaml/file/to/be/enriched] [path/to/source/yaml/file/containing/configuration/data]"
     echo ""
-    echo "enrich-by-envs-from-yaml.sh adds fields that will set up environment variables for a deployment. The variables are taken from conf yaml file specified as the source. All keys that are added are then listed in 'name-of-key-for-dynamic-keys' environment"
+    echo "enrich-by-envs-from-yaml.sh adds fields that will set up environment variables for a deployment. The variables are taken from conf yaml file specified as the source."
     echo ""
     echo "Examples:"
-    echo "   ./scripts/enrich-by-envs-from-yaml.sh ./path/to/csv.yaml ./path/to/e2e-test.yaml HOST_OPERATOR_DYNAMIC_KEYS"
+    echo "   ./scripts/enrich-by-envs-from-yaml.sh ./path/to/csv.yaml ./path/to/e2e-test.yaml"
     echo "          - Where e2e-test.yaml contain:"
     echo ""
     echo "--- e2e-test.yaml ------------------------------------------------------------"
@@ -26,9 +26,7 @@ user_help () {
     echo " - name: REGISTRATION_SERVICE_AUTH_CLIENT_LIBRARY_URL
    value: https://sso.redhat.com/auth/js/keycloak.js
  - name: REGISTRATION_SERVICE_ENVIRONMENT
-   value: prod
- - name: HOST_OPERATOR_DYNAMIC_KEYS
-   value: 'REGISTRATION_SERVICE_AUTH_CLIENT_LIBRARY_URL,REGISTRATION_SERVICE_ENVIRONMENT,'"
+   value: prod"
    echo "------------------------------------------------------------------------------------"
     echo ""
     exit 0
@@ -67,7 +65,6 @@ add_key_value_pair() {
     RESULT+="${INDENTATION}- name: ${VAR_KEY_NAME}\n"
     VALUE=`cat ${SOURCE_YAML_FILE_PATH} | yq "${LOCATION_PATH}" | sed -e 's/^"//;s/"$//'`
     RESULT+="${INDENTATION}  value: '${VALUE}'"
-    DYNAMIC_KEYS+="${VAR_KEY_NAME},"
 }
 
 if [[ -z $1 ]]; then
@@ -82,12 +79,6 @@ if [[ -z $2 ]]; then
     exit 1;
 fi
 
-if [[ -z $3 ]]; then
-    echo "The key for the list of dynamically added keys is not specified" >> /dev/stderr
-    user_help
-    exit 1;
-fi
-
 if [[ -z $(command -v yq) ]]; then
     echo "The binary yq is not available. To get the installation instructions please visit https://github.com/kislyuk/yq#installation" >> /dev/stderr
     exit 1;
@@ -95,7 +86,6 @@ fi
 
 TARGET_YAML_FILE_PATH=$1
 SOURCE_YAML_FILE_PATH=$2
-DYNAMIC_KEYS_KEY=$3
 
 if [[ ! -f ${SOURCE_YAML_FILE_PATH} ]]; then
     echo "there is no file found at the path that should point to the yaml file containing configuration data ${SOURCE_YAML_FILE_PATH}" >> /dev/stderr
@@ -104,12 +94,6 @@ else
     INDENTATION=`grep -m 1 "env:" ${TARGET_YAML_FILE_PATH} | sed 's/env://'`
 
     keys_values_in_path . ""
-
-    if [[ -n ${DYNAMIC_KEYS} ]]; then
-        RESULT+="\n"
-        RESULT+="${INDENTATION}- name: ${DYNAMIC_KEYS_KEY}\n"
-        RESULT+="${INDENTATION}  value: '${DYNAMIC_KEYS}'"
-    fi
 
     SED_REPLACEMENT="s|env:|env:${RESULT}|"
     sed "${SED_REPLACEMENT}" ${TARGET_YAML_FILE_PATH}
