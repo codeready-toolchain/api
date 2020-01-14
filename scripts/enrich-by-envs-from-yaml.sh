@@ -71,20 +71,25 @@ add_key_value_pair() {
 }
 
 if [[ -z $1 ]]; then
-    echo "the path to the target yaml file is not specified" >> /dev/stderr
+    echo "The path to the target yaml file is not specified" >> /dev/stderr
     user_help
     exit 1;
 fi
 
 if [[ -z $2 ]]; then
-    echo "the path to the config yaml file is not specified" >> /dev/stderr
+    echo "The path to the config yaml file is not specified" >> /dev/stderr
     user_help
     exit 1;
 fi
 
 if [[ -z $3 ]]; then
-    echo "the key for the list of dynamically added keys is not specified" >> /dev/stderr
+    echo "The key for the list of dynamically added keys is not specified" >> /dev/stderr
     user_help
+    exit 1;
+fi
+
+if [[ -z $(command -v yq) ]]; then
+    echo "The binary yq is not available. To get the installation instructions please visit https://github.com/kislyuk/yq#installation" >> /dev/stderr
     exit 1;
 fi
 
