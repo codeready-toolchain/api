@@ -7,7 +7,7 @@ user_help () {
     echo ""
     echo "Usage: enrich-by-envs-from-yaml.sh [path/to/target/yaml/file/to/be/enriched] [path/to/source/yaml/file/containing/configuration/data]"
     echo ""
-    echo "enrich-by-envs-from-yaml.sh adds fields that will set up environment variables for a deployment. The variables are taken from conf yaml file specified as the source."
+    echo "enrich-by-envs-from-yaml.sh adds fields that will set up environment variables for a deployment. The variables are taken from the conf yaml file specified as the source."
     echo ""
     echo "Examples:"
     echo "   ./scripts/enrich-by-envs-from-yaml.sh ./path/to/csv.yaml ./path/to/e2e-test.yaml"
