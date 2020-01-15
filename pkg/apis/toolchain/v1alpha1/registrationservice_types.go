@@ -42,8 +42,8 @@ type RegistrationServiceStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=registrationservices,scope=Namespaced
 // +kubebuilder:resource:shortName=rs
-// +kubebuilder:printcolumn:name="Image",type="string",JSONPath=`.spec.image`
-// +kubebuilder:printcolumn:name="Environment",type="string",JSONPath=`.spec.environment`
+// +kubebuilder:printcolumn:name="Image",type="string",JSONPath=`.spec.envVars.IMAGE`
+// +kubebuilder:printcolumn:name="Environment",type="string",JSONPath=`.spec.envVars.ENVIRONMENT`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 type RegistrationService struct {
