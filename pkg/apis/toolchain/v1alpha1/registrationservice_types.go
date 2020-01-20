@@ -13,31 +13,9 @@ type RegistrationServiceSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// The image identifies which image of the registration service should be used for a deployment
-	Image string `json:"image"`
-
-	// The number of replicas of the deployed registration service
+	// The environment variables are supposed to be set to registration service deployment template
 	// +optional
-	Replicas int `json:"replicas,omitempty"`
-
-	// The environment identifies which mode the registration service should be running in - prod, stage, e2e-tests, dev, etc.
-	// +optional
-	Environment string `json:"environment,omitempty"`
-
-	// The AuthClient contains all necessary information about the auth client
-	// +optional
-	AuthClient AuthClient `json:"authClient,omitempty"`
-}
-
-type AuthClient struct {
-	// The LibraryUrl identifies the auth library location
-	LibraryUrl string `json:"libraryUrl"`
-
-	// The Config contains the auth config
-	Config string `json:"config"`
-
-	// The PublicKeysUrl identifies the public keys location
-	PublicKeysUrl string `json:"publicKeysUrl"`
+	EnvironmentVariables map[string]string `json:"envVars,omitempty"`
 }
 
 // RegistrationServiceStatus defines the observed state of RegistrationService
@@ -64,8 +42,8 @@ type RegistrationServiceStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=registrationservices,scope=Namespaced
 // +kubebuilder:resource:shortName=rs
-// +kubebuilder:printcolumn:name="Image",type="string",JSONPath=`.spec.image`
-// +kubebuilder:printcolumn:name="Environment",type="string",JSONPath=`.spec.environment`
+// +kubebuilder:printcolumn:name="Image",type="string",JSONPath=`.spec.envVars.IMAGE`
+// +kubebuilder:printcolumn:name="Environment",type="string",JSONPath=`.spec.envVars.ENVIRONMENT`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 type RegistrationService struct {
