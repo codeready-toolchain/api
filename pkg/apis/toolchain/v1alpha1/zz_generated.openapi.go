@@ -529,39 +529,24 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref common.Refer
 				Description: "RegistrationServiceSpec defines the desired state of RegistrationService",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"image": {
+					"envVars": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The image identifies which image of the registration service should be used for a deployment",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"replicas": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The number of replicas of the deployed registration service",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
-					"environment": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The environment identifies which mode the registration service should be running in - prod, stage, e2e-tests, dev, etc.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"authClient": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The AuthClient contains all necessary information about the auth client",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AuthClient"),
+							Description: "The environment variables are supposed to be set to registration service deployment template",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Type:   []string{"string"},
+										Format: "",
+									},
+								},
+							},
 						},
 					},
 				},
-				Required: []string{"image"},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AuthClient"},
 	}
 }
 
