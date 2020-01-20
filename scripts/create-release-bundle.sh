@@ -46,7 +46,7 @@ fi
 QUAY_NAMESPACE=codeready-toolchain
 GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short origin/master`
 # generate manifests
-generate_manifests --channel alpha --template-version ${DEFAULT_VERSION} ${REPLACE_LAST_VERSION_PARAM}
+count_images_and_generate_manifests --channel alpha --template-version ${DEFAULT_VERSION} ${REPLACE_LAST_VERSION_PARAM}
 
 # delete the default version that is used as a template
 rm -rf ${PKG_DIR}/${DEFAULT_VERSION}

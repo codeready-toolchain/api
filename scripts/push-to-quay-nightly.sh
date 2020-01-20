@@ -18,7 +18,42 @@ additional_help() {
     echo "   ./scripts/push-to-quay-nightly.sh -pr ../host-operator"
     echo "          - This command will generate CSV, CRDs and package info with the values defined above for the host-operator project"
     echo "            and pushes it to quay namespace defined by \"\${QUAY_NAMESPACE}\" variable."
+}
 
+setup_version_variables() {
+    # setup version and commit variables for the current repo
+    GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD`
+    PREVIOUS_GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD^`
+    NUMBER_OF_COMMITS=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD`
+
+    # check if there is main repo or inner repo specified
+    if [[ -n "${MAIN_REPO_URL}${EMBEDDED_REPO_URL}" ]]; then
+        # if there is, then clone the latest version of the repo to /tmp dir
+        if [[ -d ${OTHER_REPO_ROOT_DIR} ]]; then
+            rm -rf ${OTHER_REPO_ROOT_DIR}
+        fi
+        mkdir -p ${OTHER_REPO_ROOT_DIR}
+        git -C ${OTHER_REPO_ROOT_DIR} clone ${MAIN_REPO_URL}${EMBEDDED_REPO_URL}
+        OTHER_REPO_PATH=${OTHER_REPO_ROOT_DIR}/`basename -s .git $(echo ${MAIN_REPO_URL}${EMBEDDED_REPO_URL})`
+
+        # and set version and comit variables also for this repo
+        OTHER_REPO_GIT_COMMIT_ID=`git --git-dir=${OTHER_REPO_PATH}/.git --work-tree=${OTHER_REPO_PATH} rev-parse --short HEAD`
+        OTHER_REPO_NUMBER_OF_COMMITS=`git --git-dir=${OTHER_REPO_PATH}/.git --work-tree=${OTHER_REPO_PATH} rev-list --count HEAD`
+
+        if [[ -n "${MAIN_REPO_URL}"  ]]; then
+            # the other repo is main, so the number of commits and commit ID should be specified as the first one
+            NEXT_CSV_VERSION="0.0.${OTHER_REPO_NUMBER_OF_COMMITS}-${NUMBER_OF_COMMITS}-commit-${OTHER_REPO_GIT_COMMIT_ID}-${GIT_COMMIT_ID}"
+            REPLACE_CSV_VERSION="0.0.${OTHER_REPO_NUMBER_OF_COMMITS}-$((${NUMBER_OF_COMMITS}-1))-commit-${OTHER_REPO_GIT_COMMIT_ID}-${PREVIOUS_GIT_COMMIT_ID}"
+        else
+            # the other repo is inner, so the number of commits and commit ID should be specified as the second one
+            NEXT_CSV_VERSION="0.0.${NUMBER_OF_COMMITS}-${OTHER_REPO_NUMBER_OF_COMMITS}-commit-${GIT_COMMIT_ID}-${OTHER_REPO_GIT_COMMIT_ID}"
+            REPLACE_CSV_VERSION="0.0.$((${NUMBER_OF_COMMITS}-1))-${OTHER_REPO_NUMBER_OF_COMMITS}-commit-${PREVIOUS_GIT_COMMIT_ID}-${OTHER_REPO_GIT_COMMIT_ID}"
+        fi
+    else
+        # there is no other repo specified - use the basic version format
+        NEXT_CSV_VERSION="0.0.${NUMBER_OF_COMMITS}-commit-${GIT_COMMIT_ID}"
+        REPLACE_CSV_VERSION="0.0.$((${NUMBER_OF_COMMITS}-1))-commit-${PREVIOUS_GIT_COMMIT_ID}"
+    fi
 }
 
 # use the olm-setup as the source
@@ -36,15 +71,12 @@ fi
 read_arguments $@
 
 # setup version and commit variables
-GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD`
-PREVIOUS_GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD^`
-NEXT_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD)-commit-${GIT_COMMIT_ID}"
-REPLACE_CSV_VERSION="0.0.$(git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD^)-commit-${PREVIOUS_GIT_COMMIT_ID}"
+setup_version_variables
 
 QUAY_NAMESPACE=${QUAY_NAMESPACE:codeready-toolchain}
 
 # generate manifests
-generate_manifests $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
+count_images_and_generate_manifests $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
 
 # push manifests to quay
 DIR_TO_PUSH=${PKG_DIR}

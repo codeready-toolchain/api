@@ -12,6 +12,8 @@ user_help () {
     echo "-rv, --replace-version   The CSV version to be replaced by the new version (this param has to be specified even if it's same as template-version)"
     echo "-ch, --channel           Channel to be used for the CSV in the package manifest"
     echo "-on, --operator-name     Name of the operator - by default it uses toolchain-{repository_name}"
+    echo "-mr, --main-repo         URL of the GH repo that should be used as the main repo (for CD). The current repo should be embedded in the main one. The operator bundle should be taken from the main repository (example of the main repo: https://github.com/codeready-toolchain/host-operator)"
+    echo "-er, --embedded-repo        URL of the GH repo that should be used as the embedded repo (for CD). The repository should be embedded in the current repo. The operator bundle should be taken from the current repository (example of the embedded repo: https://github.com/codeready-toolchain/registration-service)"
     echo "-an, --allnamespaces     If set to true, then defines that the hack files should be created for AllNamespaces mode"
     echo "-h,  --help              To show this help text"
     echo ""
@@ -60,6 +62,16 @@ read_arguments() {
                     SET_OPERATOR_NAME=$1
                     shift
                     ;;
+                -mr|--main-repo)
+                    shift
+                    MAIN_REPO_URL=$1
+                    shift
+                    ;;
+                -er|--embedded-repo)
+                    shift
+                    EMBEDDED_REPO_URL=$1
+                    shift
+                    ;;
                 -an|--allnamespaces)
                     shift
                     ALLNAMESPACES_MODE=$1
@@ -73,10 +85,16 @@ read_arguments() {
           esac
     done
 
-    if [[ -z PRJ_ROOT_DIR ]]; then
+    if [[ -z ${PRJ_ROOT_DIR} ]]; then
         echo "--project-root parameter is not specified" >> /dev/stderr
         user_help
         exit 1;
+    fi
+
+    if [[ -n "${EMBEDDED_REPO_URL}" ]] && [[ -n "${MAIN_REPO_URL}" ]]; then
+        echo "you cannot specify both parameters '--main-repo' and '--embedded-repo' at the same time - use only one" >> /dev/stderr
+        user_help
+        exit 1
     fi
 
     MANIFESTS_DIR=${PRJ_ROOT_DIR}/manifests
@@ -84,6 +102,7 @@ read_arguments() {
 
 # Default version var - it has to be out of the function to make it available in help text
 DEFAULT_VERSION=0.0.1
+OTHER_REPO_ROOT_DIR=/tmp/cd/other-repo
 
 setup_variables() {
     # Version vars
@@ -137,7 +156,9 @@ generate_bundle() {
     if [[ -n "${IMAGE_IN_CSV}" ]]; then
         CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE_IN_CSV}|g;s|REPLACE_CREATED_AT|$(date -u +%FT%TZ)|g;"
     fi
-
+    if [[ -n "${EMBEDDED_REPO_IMAGE}" ]]; then
+        CSV_SED_REPLACE+=";s|${EMBEDDED_REPO_REPLACEMENT}|${EMBEDDED_REPO_IMAGE}|g;"
+    fi
     CSV_LOCATION=${CSV_DIR}/*clusterserviceversion.yaml
     replace_with_sed "${CSV_SED_REPLACE}" "${CSV_LOCATION}"
 
@@ -227,13 +248,37 @@ generate_deploy_hack() {
     fi
 }
 
-generate_manifests() {
+count_images_and_generate_manifests() {
     #read arguments and setup variables
     read_arguments $@
     setup_variables
 
-    # setup additional variables for pushing images
     IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
+    # check if there is main repo or inner repo specified
+    if [[ -n ${MAIN_REPO_URL}${EMBEDDED_REPO_URL}  ]] && [[ -n ${OTHER_REPO_GIT_COMMIT_ID} ]]; then
+
+        OTHER_REPO_NAME=`basename -s .git $(echo ${MAIN_REPO_URL}${EMBEDDED_REPO_URL})`
+
+        if [[ -n "${MAIN_REPO_URL}"  ]]; then
+            IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE}/${OTHER_REPO_NAME}:${OTHER_REPO_GIT_COMMIT_ID}
+
+            EMBEDDED_REPO_REPLACEMENT=REPLACE_$(echo ${PRJ_NAME} | awk '{ print toupper($0) }' | tr '-' '_')_IMAGE
+            EMBEDDED_REPO_IMAGE=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
+            generate_manifests $@ -pr ${OTHER_REPO_PATH}
+        else
+            EMBEDDED_REPO_REPLACEMENT=REPLACE_$(echo ${OTHER_REPO_NAME} | awk '{ print toupper($0) }' | tr '-' '_')_IMAGE
+            EMBEDDED_REPO_IMAGE=quay.io/${QUAY_NAMESPACE}/${OTHER_REPO_NAME}:${OTHER_REPO_GIT_COMMIT_ID}
+            generate_manifests $@
+        fi
+    else
+        generate_manifests $@
+    fi
+}
+
+generate_manifests() {
+    #read arguments and setup variables
+    read_arguments $@
+    setup_variables
 
     # create backup of the current operator package directory
     PKG_DIR_BACKUP=/tmp/deploy_olm-catalog_${PRJ_NAME}_backup
