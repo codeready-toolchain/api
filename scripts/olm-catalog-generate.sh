@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-OLM_SETUP_FILE=./scripts/olm-setup.sh
+OLM_SETUP_FILE=scripts/olm-setup.sh
 
 additional_help() {
     echo "Examples:"
@@ -21,7 +21,7 @@ else
     if [[ -f ${GOPATH}/src/github.com/codeready-toolchain/api/${OLM_SETUP_FILE} ]]; then
         source ${GOPATH}/src/github.com/codeready-toolchain/api/${OLM_SETUP_FILE}
     else
-        source /dev/stdin <<< "$(curl -sSL https://raw.githubusercontent.com/codeready-toolchain/api/master/scripts/olm-setup.sh)"
+        source /dev/stdin <<< "$(curl -sSL https://raw.githubusercontent.com/codeready-toolchain/api/master/${OLM_SETUP_FILE})"
     fi
 fi
 
