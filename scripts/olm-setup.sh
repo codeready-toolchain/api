@@ -182,7 +182,7 @@ enrich-by-envs-from-yaml() {
         if [[ -f ${GOPATH}/src/github.com/codeready-toolchain/api/${ENRICH_BY_ENVS_FROM_YAML} ]]; then
             ${GOPATH}/src/github.com/codeready-toolchain/api/${ENRICH_BY_ENVS_FROM_YAML} $@ > ${ENRICHED_CSV}
         else
-            curl -sSL  https://raw.githubusercontent.com/codeready-toolchain/api/master/scripts/generate-deploy-hack.sh | bash -s -- $@ > ${ENRICHED_CSV}
+            curl -sSL  https://raw.githubusercontent.com/codeready-toolchain/api/master/${ENRICH_BY_ENVS_FROM_YAML} | bash -s -- $@ > ${ENRICHED_CSV}
         fi
     fi
     cat ${ENRICHED_CSV} > $1
@@ -243,7 +243,7 @@ generate_deploy_hack() {
         if [[ -f ${GOPATH}/src/github.com/codeready-toolchain/api/${GENERATE_DEPLOY_HACK_FILE} ]]; then
             ${GOPATH}/src/github.com/codeready-toolchain/api/${GENERATE_DEPLOY_HACK_FILE} $@
         else
-            curl -sSL  https://raw.githubusercontent.com/codeready-toolchain/api/master/scripts/generate-deploy-hack.sh | bash -s -- $@
+            curl -sSL  https://raw.githubusercontent.com/codeready-toolchain/api/master/${GENERATE_DEPLOY_HACK_FILE} | bash -s -- $@
         fi
     fi
 }
