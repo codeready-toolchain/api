@@ -159,6 +159,9 @@ generate_bundle() {
     if [[ -n "${EMBEDDED_REPO_IMAGE}" ]]; then
         CSV_SED_REPLACE+=";s|${EMBEDDED_REPO_REPLACEMENT}|${EMBEDDED_REPO_IMAGE}|g;"
     fi
+    if [[ "${CHANNEL}" == "nightly" ]]; then
+        CSV_SED_REPLACE+=";s|  annotations:|  annotations:\n    olm.skipRange: '<${NEXT_CSV_VERSION}'|g;"
+    fi
     CSV_LOCATION=${CSV_DIR}/*clusterserviceversion.yaml
     replace_with_sed "${CSV_SED_REPLACE}" "${CSV_LOCATION}"
 
