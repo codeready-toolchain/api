@@ -154,10 +154,14 @@ generate_bundle() {
         fi
     fi
     if [[ -n "${IMAGE_IN_CSV}" ]]; then
-        CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE_IN_CSV}|g;s|REPLACE_CREATED_AT|$(date -u +%FT%TZ)|g;"
+        docker pull ${IMAGE_IN_CSV}
+        IMAGE_IN_CSV_DIGEST_FORMAT=`docker inspect --format='{{index .RepoDigests 0}}' ${IMAGE_IN_CSV}`
+        CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE_IN_CSV_DIGEST_FORMAT}|g;s|REPLACE_CREATED_AT|$(date -u +%FT%TZ)|g;"
     fi
     if [[ -n "${EMBEDDED_REPO_IMAGE}" ]]; then
-        CSV_SED_REPLACE+=";s|${EMBEDDED_REPO_REPLACEMENT}|${EMBEDDED_REPO_IMAGE}|g;"
+        docker pull ${EMBEDDED_REPO_IMAGE}
+        EMBEDDED_REPO_IMAGE_DIGEST_FORMAT=`docker inspect --format='{{index .RepoDigests 0}}' ${EMBEDDED_REPO_IMAGE}`
+        CSV_SED_REPLACE+=";s|${EMBEDDED_REPO_REPLACEMENT}|${EMBEDDED_REPO_IMAGE_DIGEST_FORMAT}|g;"
     fi
     if [[ "${CHANNEL}" == "nightly" ]]; then
         CSV_SED_REPLACE+=";s|  annotations:|  annotations:\n    olm.skipRange: '<${NEXT_CSV_VERSION}'|g;"
