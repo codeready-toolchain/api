@@ -163,6 +163,9 @@ generate_bundle() {
         EMBEDDED_REPO_IMAGE_DIGEST_FORMAT=`docker inspect --format='{{index .RepoDigests 0}}' ${EMBEDDED_REPO_IMAGE}`
         CSV_SED_REPLACE+=";s|${EMBEDDED_REPO_REPLACEMENT}|${EMBEDDED_REPO_IMAGE_DIGEST_FORMAT}|g;"
     fi
+    if [[ "${CHANNEL}" == "nightly" ]]; then
+        CSV_SED_REPLACE+=";s|  annotations:|  annotations:\n    olm.skipRange: '<${NEXT_CSV_VERSION}'|g;"
+    fi
     CSV_LOCATION=${CSV_DIR}/*clusterserviceversion.yaml
     replace_with_sed "${CSV_SED_REPLACE}" "${CSV_LOCATION}"
 
