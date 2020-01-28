@@ -30,8 +30,6 @@ read_arguments $@
 # setup version
 NEXT_CSV_VERSION=`basename $(ls -d ${MANIFESTS_DIR}/*/ | sort | tail -1)`
 
-QUAY_NAMESPACE=${QUAY_NAMESPACE:codeready-toolchain}
-
 # read final arguments and setup vars
 read_arguments $@ --channel alpha --next-version ${NEXT_CSV_VERSION}
 setup_variables

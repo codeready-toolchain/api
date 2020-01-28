@@ -15,6 +15,7 @@ user_help () {
     echo "-mr, --main-repo         URL of the GH repo that should be used as the main repo (for CD). The current repo should be embedded in the main one. The operator bundle should be taken from the main repository (example of the main repo: https://github.com/codeready-toolchain/host-operator)"
     echo "-er, --embedded-repo        URL of the GH repo that should be used as the embedded repo (for CD). The repository should be embedded in the current repo. The operator bundle should be taken from the current repository (example of the embedded repo: https://github.com/codeready-toolchain/registration-service)"
     echo "-an, --allnamespaces     If set to true, then defines that the hack files should be created for AllNamespaces mode"
+    echo "-qn, --quay-namespace    Specify the quay namespace the CSV should be pushed to - if not used then it uses the one stored in \"\${QUAY_NAMESPACE}\" variable"
     echo "-h,  --help              To show this help text"
     echo ""
     additional_help 2>/dev/null || true
@@ -77,6 +78,11 @@ read_arguments() {
                     ALLNAMESPACES_MODE=$1
                     shift
                     ;;
+                -qn|--quay-namespace)
+                    shift
+                    QUAY_NAMESPACE_TO_PUSH=$1
+                    shift
+                    ;;
                 *)
                    echo "$1 is not a recognized flag!" >> /dev/stderr
                    user_help
@@ -95,6 +101,10 @@ read_arguments() {
         echo "you cannot specify both parameters '--main-repo' and '--embedded-repo' at the same time - use only one" >> /dev/stderr
         user_help
         exit 1
+    fi
+
+    if [[ -z ${QUAY_NAMESPACE_TO_PUSH} ]]; then
+        QUAY_NAMESPACE_TO_PUSH=${QUAY_NAMESPACE:codeready-toolchain}
     fi
 
     MANIFESTS_DIR=${PRJ_ROOT_DIR}/manifests
@@ -271,21 +281,21 @@ count_images_and_generate_manifests() {
     read_arguments $@
     setup_variables
 
-    IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
+    IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${PRJ_NAME}:${GIT_COMMIT_ID}
     # check if there is main repo or inner repo specified
     if [[ -n ${MAIN_REPO_URL}${EMBEDDED_REPO_URL}  ]] && [[ -n ${OTHER_REPO_GIT_COMMIT_ID} ]]; then
 
         OTHER_REPO_NAME=`basename -s .git $(echo ${MAIN_REPO_URL}${EMBEDDED_REPO_URL})`
 
         if [[ -n "${MAIN_REPO_URL}"  ]]; then
-            IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE}/${OTHER_REPO_NAME}:${OTHER_REPO_GIT_COMMIT_ID}
+            IMAGE_IN_CSV=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${OTHER_REPO_NAME}:${OTHER_REPO_GIT_COMMIT_ID}
 
             EMBEDDED_REPO_REPLACEMENT=REPLACE_$(echo ${PRJ_NAME} | awk '{ print toupper($0) }' | tr '-' '_')_IMAGE
-            EMBEDDED_REPO_IMAGE=quay.io/${QUAY_NAMESPACE}/${PRJ_NAME}:${GIT_COMMIT_ID}
+            EMBEDDED_REPO_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${PRJ_NAME}:${GIT_COMMIT_ID}
             generate_manifests $@ -pr ${OTHER_REPO_PATH}
         else
             EMBEDDED_REPO_REPLACEMENT=REPLACE_$(echo ${OTHER_REPO_NAME} | awk '{ print toupper($0) }' | tr '-' '_')_IMAGE
-            EMBEDDED_REPO_IMAGE=quay.io/${QUAY_NAMESPACE}/${OTHER_REPO_NAME}:${OTHER_REPO_GIT_COMMIT_ID}
+            EMBEDDED_REPO_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${OTHER_REPO_NAME}:${OTHER_REPO_GIT_COMMIT_ID}
             generate_manifests $@
         fi
     else
@@ -317,20 +327,20 @@ generate_manifests() {
 push_to_quay() {
     RELEASE_BACKUP_DIR="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_${CHANNEL}"
 
-    echo "## Pushing the OperatorHub package '${OPERATOR_NAME}' to the Quay.io '${QUAY_NAMESPACE}' organization ..."
+    echo "## Pushing the OperatorHub package '${OPERATOR_NAME}' to the Quay.io '${QUAY_NAMESPACE_TO_PUSH}' organization ..."
 
     echo " - Copy package to backup folder: ${RELEASE_BACKUP_DIR}"
 
     rm -rf "${RELEASE_BACKUP_DIR}" > /dev/null 2>&1
     cp -r "${DIR_TO_PUSH}" ${RELEASE_BACKUP_DIR}
 
-    echo " - Push flattened files to Quay.io namespace '${QUAY_NAMESPACE}' as version ${NEXT_CSV_VERSION}"
+    echo " - Push flattened files to Quay.io namespace '${QUAY_NAMESPACE_TO_PUSH}' as version ${NEXT_CSV_VERSION}"
 
     if [[ -z ${QUAY_AUTH_TOKEN} ]]; then
         QUAY_AUTH_TOKEN=`cat ~/.docker/config.json | jq -r '.auths["quay.io"].auth'`
     fi
 
-    operator-courier --verbose push ${RELEASE_BACKUP_DIR} "${QUAY_NAMESPACE}" "${OPERATOR_NAME}" "${NEXT_CSV_VERSION}" "basic ${QUAY_AUTH_TOKEN}"
+    operator-courier --verbose push ${RELEASE_BACKUP_DIR} "${QUAY_NAMESPACE_TO_PUSH}" "${OPERATOR_NAME}" "${NEXT_CSV_VERSION}" "basic ${QUAY_AUTH_TOKEN}"
 
     echo "-> Operator bundle pushed."
 }
