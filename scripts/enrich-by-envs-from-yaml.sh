@@ -61,7 +61,8 @@ add_key_value_pair() {
     local LOCATION_PATH="$1"
     local VAR_KEY_NAME="$2"
 
-    RESULT+="\\n${INDENTATION}- name: ${VAR_KEY_NAME}\\n"
+    RESULT+="\n"
+    RESULT+="${INDENTATION}- name: ${VAR_KEY_NAME}\n"
     VALUE=`cat ${SOURCE_YAML_FILE_PATH} | yq "${LOCATION_PATH}" | sed -e 's/^"//;s/"$//'`
     RESULT+="${INDENTATION}  value: '${VALUE}'"
 }
@@ -95,5 +96,5 @@ else
     keys_values_in_path . ""
 
     SED_REPLACEMENT="s|env:|env:${RESULT}|"
-    sed -e "${SED_REPLACEMENT}" ${TARGET_YAML_FILE_PATH}
+    sed "${SED_REPLACEMENT}" ${TARGET_YAML_FILE_PATH}
 fi
