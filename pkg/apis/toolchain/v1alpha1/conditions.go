@@ -12,8 +12,6 @@ type ConditionType string
 const (
 	// ConditionReady specifies that the resource is ready
 	ConditionReady ConditionType = "Ready"
-	// ConditionTerminating specifies that the resource is being terminated/deleted (and probably deleting some related resources)
-	ConditionTerminating ConditionType = "Terminating"
 )
 
 type Condition struct {
