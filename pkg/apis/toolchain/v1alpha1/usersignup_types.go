@@ -13,7 +13,7 @@ const (
 	UserSignupComplete ConditionType = "Complete"
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
-	UserSignupUserEmailAnnotationKey = labelKeyPrefix + "user-email"
+	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.

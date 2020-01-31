@@ -7,9 +7,18 @@ import (
 )
 
 const (
-	OwnerLabelKey    = labelKeyPrefix + "owner"
-	RevisionLabelKey = labelKeyPrefix + "revision"
-	TypeLabelKey     = labelKeyPrefix + "type"
+	OwnerLabelKey    = LabelKeyPrefix + "owner"
+	RevisionLabelKey = LabelKeyPrefix + "revision"
+	TypeLabelKey     = LabelKeyPrefix + "type"
+)
+
+// These are valid status condition reasons of a NSTemplateSet
+const (
+	NSTemplateSetProvisionedReason                = "Provisioned"
+	NSTemplateSetProvisioningReason               = "Provisioning"
+	NSTemplateSetUnableToProvisionReason          = "UnableToProvision"
+	NSTemplateSetUnableToProvisionNamespaceReason = "UnableToProvisionNamespace"
+	NSTemplateSetTerminatingReason                = "Terminating"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
