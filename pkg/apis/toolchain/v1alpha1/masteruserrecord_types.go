@@ -56,7 +56,7 @@ type UserAccountEmbedded struct {
 	SyncIndex string `json:"syncIndex"`
 
 	// The spec of the corresponding UserAccount
-	Spec UserAccountSpec `json:"spec"`
+	Spec UserAccountSpecEmbedded `json:"spec"`
 }
 
 // MasterUserRecordStatus defines the observed state of MasterUserRecord
@@ -77,6 +77,31 @@ type MasterUserRecordStatus struct {
 	// The status of user accounts in the member clusters which belong to this MasterUserRecord
 	// +listType
 	UserAccounts []UserAccountStatusEmbedded `json:"userAccounts,omitempty"`
+}
+
+// UserAccountSpecEmbedded defines the desired state of UserAccount
+// +k8s:openapi-gen=true
+type UserAccountSpecEmbedded struct {
+	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
+
+	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
+	// Is to be used to create Identity and UserIdentityMapping resources. This field
+	// is duplicated and will be removed in the future.
+	// +optional
+	UserID string `json:"userID"`
+
+	// If set to true then the corresponding user should not be able to login
+	// "false" is assumed by default. This field is duplicated and will be
+	// removed in the future.
+	// +optional
+	Disabled bool `json:"disabled,omitempty"`
+
+	// The namespace limit name
+	NSLimit string `json:"nsLimit"`
+
+	// Namespace template set
+	NSTemplateSet NSTemplateSetSpec `json:"nsTemplateSet"`
 }
 
 type UserAccountStatusEmbedded struct {
