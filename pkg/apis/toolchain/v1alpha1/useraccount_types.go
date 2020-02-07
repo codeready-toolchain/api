@@ -39,7 +39,7 @@ type UserAccountSpec struct {
 	UserAccountSpecBase `json:",inline"`
 }
 
-// UserAccountSpec defines the common fields between UserAccountSpec
+// UserAccountSpecBase defines the common fields between UserAccountSpec
 // and UserAccountSpecEmbedded
 // +k8s:openapi-gen=true
 type UserAccountSpecBase struct {
