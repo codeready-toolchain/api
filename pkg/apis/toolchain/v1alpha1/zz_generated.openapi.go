@@ -43,6 +43,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus": schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":               schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":           schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase":       schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecEmbedded":   schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":         schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":                schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref),
@@ -651,6 +652,28 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 							Format:      "",
 						},
 					},
+					"userAccountSpecBase": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserAccountBase contains all base fields",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase"),
+						},
+					},
+				},
+				Required: []string{"userID", "userAccountSpecBase"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserAccountSpec defines the common fields between UserAccountSpec and UserAccountSpecEmbedded",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
 					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The namespace limit name",
@@ -665,7 +688,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 						},
 					},
 				},
-				Required: []string{"userID", "nsLimit", "nsTemplateSet"},
+				Required: []string{"nsLimit", "nsTemplateSet"},
 			},
 		},
 		Dependencies: []string{
@@ -694,25 +717,18 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref common.Refer
 							Format:      "",
 						},
 					},
-					"nsLimit": {
+					"userAccountSpecBase": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The namespace limit name",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"nsTemplateSet": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Namespace template set",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+							Description: "UserAccountBase contains all base fields",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase"),
 						},
 					},
 				},
-				Required: []string{"nsLimit", "nsTemplateSet"},
+				Required: []string{"userAccountSpecBase"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase"},
 	}
 }
 

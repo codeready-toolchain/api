@@ -35,6 +35,14 @@ type UserAccountSpec struct {
 	// +optional
 	Disabled bool `json:"disabled,omitempty"`
 
+	// UserAccountBase contains all base fields
+	UserAccountBase UserAccountSpecBase `json:"userAccountSpecBase"`
+}
+
+// UserAccountSpec defines the common fields between UserAccountSpec
+// and UserAccountSpecEmbedded
+// +k8s:openapi-gen=true
+type UserAccountSpecBase struct {
 	// The namespace limit name
 	NSLimit string `json:"nsLimit"`
 

@@ -97,11 +97,8 @@ type UserAccountSpecEmbedded struct {
 	// +optional
 	Disabled bool `json:"disabled,omitempty"`
 
-	// The namespace limit name
-	NSLimit string `json:"nsLimit"`
-
-	// Namespace template set
-	NSTemplateSet NSTemplateSetSpec `json:"nsTemplateSet"`
+	// UserAccountBase contains all base fields
+	UserAccountBase UserAccountSpecBase `json:"userAccountSpecBase"`
 }
 
 type UserAccountStatusEmbedded struct {
