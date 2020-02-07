@@ -15,8 +15,8 @@ const (
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
 
-	// UserSignupUserEmailHashAnnotationKey is used for the usersignup email hash annotations key
-	UserSignupUserEmailHashAnnotationKey = LabelKeyPrefix + "email-hash"
+	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
+	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
