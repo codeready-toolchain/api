@@ -678,7 +678,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref common.Reference
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "UserAccountSpec defines the common fields between UserAccountSpec and UserAccountSpecEmbedded",
+				Description: "UserAccountSpecBase defines the common fields between UserAccountSpec and UserAccountSpecEmbedded",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"nsLimit": {
