@@ -35,7 +35,7 @@ type UserAccountSpec struct {
 	// +optional
 	Disabled bool `json:"disabled,omitempty"`
 
-	// UserAccountBase contains all base fields
+	// UserAccountBase contains all base spec fields
 	UserAccountSpecBase `json:",inline"`
 }
 

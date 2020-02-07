@@ -97,7 +97,7 @@ type UserAccountSpecEmbedded struct {
 	// +optional
 	Disabled bool `json:"disabled,omitempty"`
 
-	// UserAccountBase contains all base fields
+	// Inherits the base spec fields from the corresponding UserAccount
 	UserAccountSpecBase `json:",inline"`
 }
 
