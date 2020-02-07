@@ -98,7 +98,7 @@ type UserAccountSpecEmbedded struct {
 	Disabled bool `json:"disabled,omitempty"`
 
 	// UserAccountBase contains all base fields
-	UserAccountBase UserAccountSpecBase `json:"userAccountSpecBase"`
+	UserAccountSpecBase `json:",inline"`
 }
 
 type UserAccountStatusEmbedded struct {

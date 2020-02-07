@@ -652,18 +652,25 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 							Format:      "",
 						},
 					},
-					"userAccountSpecBase": {
+					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
-							Description: "UserAccountBase contains all base fields",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase"),
+							Description: "The namespace limit name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"nsTemplateSet": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Namespace template set",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 				},
-				Required: []string{"userID", "userAccountSpecBase"},
+				Required: []string{"userID", "nsLimit", "nsTemplateSet"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
 	}
 }
 
@@ -717,18 +724,25 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref common.Refer
 							Format:      "",
 						},
 					},
-					"userAccountSpecBase": {
+					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
-							Description: "UserAccountBase contains all base fields",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase"),
+							Description: "The namespace limit name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"nsTemplateSet": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Namespace template set",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 				},
-				Required: []string{"userAccountSpecBase"},
+				Required: []string{"nsLimit", "nsTemplateSet"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
 	}
 }
 
