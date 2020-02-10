@@ -43,6 +43,8 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus": schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":               schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":           schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase":       schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecEmbedded":   schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":         schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":                schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec":            schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref),
@@ -665,6 +667,78 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 					},
 				},
 				Required: []string{"userID", "nsLimit", "nsTemplateSet"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserAccountSpecBase defines the common fields between UserAccountSpec and UserAccountSpecEmbedded",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"nsLimit": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The namespace limit name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"nsTemplateSet": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Namespace template set",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+						},
+					},
+				},
+				Required: []string{"nsLimit", "nsTemplateSet"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserAccountSpecEmbedded defines the desired state of UserAccount",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"userID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim) Is to be used to create Identity and UserIdentityMapping resources. This field is duplicated and will be removed in the future.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"disabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "If set to true then the corresponding user should not be able to login \"false\" is assumed by default. This field is duplicated and will be removed in the future.",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"nsLimit": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The namespace limit name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"nsTemplateSet": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Namespace template set",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+						},
+					},
+				},
+				Required: []string{"nsLimit", "nsTemplateSet"},
 			},
 		},
 		Dependencies: []string{
