@@ -79,11 +79,6 @@ if [[ -z $2 ]]; then
     exit 1;
 fi
 
-if [[ -z $(command -v yq) ]]; then
-    echo "The binary yq is not available. To get the installation instructions please visit https://github.com/kislyuk/yq#installation" >> /dev/stderr
-    exit 1;
-fi
-
 TARGET_YAML_FILE_PATH=$1
 SOURCE_YAML_FILE_PATH=$2
 
@@ -91,6 +86,11 @@ if [[ ! -f ${SOURCE_YAML_FILE_PATH} ]]; then
     echo "there is no file found at the path that should point to the yaml file containing configuration data ${SOURCE_YAML_FILE_PATH}" >> /dev/stderr
     cat ${TARGET_YAML_FILE_PATH}
 else
+    if [[ -z $(command -v yq) ]]; then
+        echo "The binary yq is not available. To get the installation instructions please visit https://github.com/kislyuk/yq#installation" >> /dev/stderr
+        exit 1;
+    fi
+
     INDENTATION=`grep -m 1 "env:" ${TARGET_YAML_FILE_PATH} | sed 's/env://'`
 
     keys_values_in_path . ""
