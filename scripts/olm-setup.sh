@@ -154,13 +154,11 @@ generate_bundle() {
         fi
     fi
     if [[ -n "${IMAGE_IN_CSV}" ]]; then
-        docker pull ${IMAGE_IN_CSV}
-        IMAGE_IN_CSV_DIGEST_FORMAT=`docker inspect --format='{{index .RepoDigests 0}}' ${IMAGE_IN_CSV}`
+        IMAGE_IN_CSV_DIGEST_FORMAT=`get_digest_format ${IMAGE_IN_CSV}`
         CSV_SED_REPLACE+=";s|REPLACE_IMAGE|${IMAGE_IN_CSV_DIGEST_FORMAT}|g;s|REPLACE_CREATED_AT|$(date -u +%FT%TZ)|g;"
     fi
     if [[ -n "${EMBEDDED_REPO_IMAGE}" ]]; then
-        docker pull ${EMBEDDED_REPO_IMAGE}
-        EMBEDDED_REPO_IMAGE_DIGEST_FORMAT=`docker inspect --format='{{index .RepoDigests 0}}' ${EMBEDDED_REPO_IMAGE}`
+        EMBEDDED_REPO_IMAGE_DIGEST_FORMAT=`get_digest_format ${EMBEDDED_REPO_IMAGE}`
         CSV_SED_REPLACE+=";s|${EMBEDDED_REPO_REPLACEMENT}|${EMBEDDED_REPO_IMAGE_DIGEST_FORMAT}|g;"
     fi
     if [[ "${CHANNEL}" == "nightly" ]]; then
@@ -178,6 +176,19 @@ generate_bundle() {
 
     echo "-> Bundle generated."
 }
+
+get_digest_format() {
+    IMG=$1
+    IMG_LOC=`echo ${IMG} | cut -d: -f1`
+
+    IMG_ORG=`echo ${IMG_LOC} | awk -F/ '{print $2}'`
+    IMG_NAME=`echo ${IMG_LOC} | awk -F/ '{print $3}'`
+    IMG_TAG=`echo ${IMG} | cut -d: -f2`
+
+    IMG_DIGEST=`curl https://quay.io/api/v1/repository/${IMG_ORG}/${IMG_NAME} 2>/dev/null | jq -r ".tags.\"${IMG_TAG}\".manifest_digest"`
+    echo ${IMG_LOC}@${IMG_DIGEST}
+}
+
 
 enrich-by-envs-from-yaml() {
     ENRICHED_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}-enriched-file"
