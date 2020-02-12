@@ -8,8 +8,8 @@ additional_help() {
     echo "                      --next-version 0.0.<number-of-commits>-<short-sha-of-latest-commit>"
     echo "                      --replace-version 0.0.<number-of-commits-1>-<short-sha-of-last-but-one-commit>"
     echo ""
-    echo "                Required variables:"
-    echo "                      QUAY_NAMESPACE  - Quay namespace the operator bundle should be pushed to."
+    echo "                Variables overrides:"
+    echo "                      QUAY_NAMESPACE  - If this variables is set then you don't have to use the --quay-namespace parameter."
     echo ""
     echo "                Optional variables:"
     echo "                      QUAY_AUTH_TOKEN - Quay authentication token to be used for pushing to the quay namespace. If not set, then it's taken from ~/.docker/config.json file."
@@ -17,7 +17,7 @@ additional_help() {
     echo "Example:"
     echo "   ./scripts/push-to-quay-nightly.sh -pr ../host-operator"
     echo "          - This command will generate CSV, CRDs and package info with the values defined above for the host-operator project"
-    echo "            and pushes it to quay namespace defined by \"\${QUAY_NAMESPACE}\" variable."
+    echo "            and pushes it to quay namespace defined by either \"\${QUAY_NAMESPACE}\" variable or --quay-namespace parameter."
 }
 
 setup_version_variables() {
@@ -72,8 +72,6 @@ read_arguments $@
 
 # setup version and commit variables
 setup_version_variables
-
-QUAY_NAMESPACE=${QUAY_NAMESPACE:codeready-toolchain}
 
 # generate manifests
 count_images_and_generate_manifests $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
