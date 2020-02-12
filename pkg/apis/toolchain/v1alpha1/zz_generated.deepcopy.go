@@ -53,7 +53,7 @@ func (in *BannedUser) DeepCopyObject() runtime.Object {
 func (in *BannedUserList) DeepCopyInto(out *BannedUserList) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	out.ListMeta = in.ListMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
 		*out = make([]BannedUser, len(*in))
@@ -163,7 +163,7 @@ func (in *MasterUserRecord) DeepCopyObject() runtime.Object {
 func (in *MasterUserRecordList) DeepCopyInto(out *MasterUserRecordList) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	out.ListMeta = in.ListMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
 		*out = make([]MasterUserRecord, len(*in))
@@ -277,7 +277,7 @@ func (in *NSTemplateSet) DeepCopyObject() runtime.Object {
 func (in *NSTemplateSetList) DeepCopyInto(out *NSTemplateSetList) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	out.ListMeta = in.ListMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
 		*out = make([]NSTemplateSet, len(*in))
@@ -398,7 +398,7 @@ func (in *NSTemplateTier) DeepCopyObject() runtime.Object {
 func (in *NSTemplateTierList) DeepCopyInto(out *NSTemplateTierList) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	out.ListMeta = in.ListMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
 		*out = make([]NSTemplateTier, len(*in))
@@ -515,7 +515,7 @@ func (in *RegistrationService) DeepCopyObject() runtime.Object {
 func (in *RegistrationServiceList) DeepCopyInto(out *RegistrationServiceList) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	out.ListMeta = in.ListMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
 		*out = make([]RegistrationService, len(*in))
@@ -639,7 +639,7 @@ func (in *UserAccountEmbedded) DeepCopy() *UserAccountEmbedded {
 func (in *UserAccountList) DeepCopyInto(out *UserAccountList) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	out.ListMeta = in.ListMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
 		*out = make([]UserAccount, len(*in))
@@ -792,7 +792,7 @@ func (in *UserSignup) DeepCopyObject() runtime.Object {
 func (in *UserSignupList) DeepCopyInto(out *UserSignupList) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	out.ListMeta = in.ListMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
 		*out = make([]UserSignup, len(*in))

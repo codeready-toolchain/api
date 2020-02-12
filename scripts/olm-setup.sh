@@ -144,7 +144,7 @@ generate_bundle() {
     echo "## Generating operator bundle of project '${PRJ_NAME}' ..."
     CURRENT_DIR=${PWD}
     cd ${PRJ_ROOT_DIR}
-    operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+    operator-sdk generate csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
     cd ${CURRENT_DIR}
 
     CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml || true`
