@@ -1,0 +1,95 @@
+= Scripts
+This directory contains a set of bash scripts that helps us with maintaining and managing OLM catalog files. The following part will try to describe the purpose and functionality of all the script files.
+
+
+== olm-setup.sh
+The `olm-setup.sh` script only gathers all common functions and doesn't call any of them, so calling this function doesn't really make sense as it wouldn't do anything.
+Most of the following scripts use this one as the source.
+
+
+== generate-deploy-hack.sh
+The `generate-deploy-hack.sh` script generates `deploy_csv.yaml` file containing two objects:
+
+* `ConfigMap` containing all detected CSVs, CRDs and package file.
+* `CatalogSource` that adds the operator into the OperatorHub and uses the `ConfigMap` as a source of operator bundle.
+
+The file can be used for easy deployment of the operator manifest as well as for testing purposes.
+This script requires multiple parameters - see help for more information.
+
+
+== olm-catalog-generate.sh
+The `olm-catalog-generate.sh` script is used for (re)generating OLM catalog files in respective operator directories.
+It generates:
+
+ * Operator bundle that is used as the base template for all next releases. To do that it uses `operator-sdk olm-catalog gen-csv` command with specific parameters.
+ * Hack files that consist of:
+ ** `deploy_csv.yaml` that helps with deploying the current version of the operator bundle to the cluster. The file contains two objects
+ ** `install_operator.yaml` that installs the deployed operator using `OperatorGroup` and `Subscription`.
+
+The `olm-catalog-generate.sh` requires only one parameter `--project-root` and accepts also `--allnamespaces` param. Uses `olm-setup.sh` as its source.
+
+
+== enrich-by-envs-from-yaml.sh
+The `enrich-by-envs-from-yaml.sh` script takes two parameters:
+
+1. path to CSV the deployment variables should be added to
+2. path to an environment configuration file
+
+If the provided environment configuration file exists then it transforms it into a list of key-value pairs.
+The keys are constructed by joining all YAML keys that are on the path to the value.
+Consider that the environment config file contains
+```yaml
+registration-service:
+  environment: 'dev'
+  replicas: 2
+  auth-client:
+    library-url: 'https://sso..../keycloak.js'
+    public-keys-url: 'https://sso..../certs'
+```
+then the resulting list of key-value pairs would be:
+``` yaml
+REGISTRATION_SERVICE_ENV : 'dev'
+REGISTRATION_SERVICE_REPLICAS : 2
+REGISTRATION_SERVICE_AUTH_CLIENT_LIBRARY_URL : 'https://sso..../keycloak.js'
+REGISTRATION_SERVICE_AUTH_CLIENT_PUBLIC_KEYS_URL : 'https://sso..../certs'
+```
+When the transformation is done, then it adds the key-value pairs into the provided CSV as additional environment parameters of the operator deployment.
+The modified CSV is printed on the standard output.
+
+
+== push-to-quay-nightly.sh
+The `push-to-quay-nightly.sh` is used for generating new operator bundles for every commit to master and pushing it to quay as part of the "nightly" channel.
+The simplified flow of the script looks like:
+
+ 1. It counts the version of the new CSV and the version of the previous one.
+ 2. Using the `operator-sdk` it generates a new version of the operator bundle (for channel "nightly") from the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
+ 3. Replaces variables and parameters in the newly generated CSV.
+ 4. Uses `enrich-by-envs-from-yaml.sh` script to parse `<operator-repo>/deploy/env/prod.yaml` file (if exists) and to add additional deployment variables into the CSV.
+ 5. Gets the quay auth token - if the `QUAY_AUTH_TOKEN` variable is not provided, then it uses token taken from `~/.docker/config.json` file.
+ 6. Using the `operator-courier` binary pushes the new operator bundle into quay package(application).
+
+The `push-to-quay-nightly.sh` requires only one parameter `--project-root` and accepts also `--operator-name`, `--embedded-repo` as well as `--quay-namespace`. Uses `olm-setup.sh` as its source.
+
+
+== create-release-bundle.sh
+The `create-release-bundle.sh` script creates an operator bundle of a given version in `<project-root>/manifests/` directory.
+The simplified flow of the script looks like:
+
+ 1. Goes through all existing manifests in `<project-root>/manifests/` directory, detects the latest one (according to semVer) and takes its version.
+ 2. Using the `operator-sdk` it generates a new version of the operator bundle (for channel "alpha") from the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
+ 3. Replaces variables and parameters in the newly generated CSV.
+ 4. Uses `enrich-by-envs-from-yaml.sh` script to parse `<operator-repo>/deploy/env/prod.yaml` file (if exists) and to add additional deployment variables into the CSV.
+ 5. Stores the operator-bundle inside of the `<project-root>/manifests/` directory and modifies the package file.
+ 6. Using the `operator-courier` binary verifies the generated operator bundle.
+ 7. Generates the deploy hack file to make testing of the bundle easier.
+
+The script doesn't push anything to quay yet - to do that use `push-to-quay-manifests.sh` script.
+The `create-release-bundle.sh` script requires two parameters `--project-root` and `--next-version`. Accepts also parameters `--operator-name`, `--embedded-repo` and `--quay-namespace`. Uses `olm-setup.sh` as its source.
+
+
+== push-to-quay-manifest.sh
+The `push-to-quay-manifest.sh` script takes the latest (according to semVer) release manifest from `<project-root>/manifests/` directory and pushes is to quay.
+For pushing the bundle the script uses auth token taken either from `QUAY_AUTH_TOKEN` variable or from `~/.docker/config.json` file.
+
+It requires only one parameter `--project-root` and accepts also `--operator-name`. Uses `olm-setup.sh` as its source.
+
