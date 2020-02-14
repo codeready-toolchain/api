@@ -65,7 +65,7 @@ The simplified flow of the script is the following:
 2. Using the `operator-sdk` it generates a new version of the operator bundle (for the "nightly" channel) using the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
 3. It replaces the variables and parameters in the newly generated CSV.
 4. It executes the `enrich-by-envs-from-yaml.sh` script to parse the `<operator-repo>/deploy/env/prod.yaml` file (if exists) and to add additional deployment variables into the CSV.
- 5. Gets the quay auth token - if the `QUAY_AUTH_TOKEN` variable is not provided, then it uses token taken from `~/.docker/config.json` file.
+5. It retrieves the Quay auth token. If the `QUAY_AUTH_TOKEN` variable is not provided then it uses the token found in the `~/.docker/config.json` file.
  6. Using the `operator-courier` binary pushes the new operator bundle into quay package(application).
 
 The `push-to-quay-nightly.sh` requires only one parameter `--project-root` and accepts also `--operator-name`, `--embedded-repo` as well as `--quay-namespace`. Uses `olm-setup.sh` as its source.
