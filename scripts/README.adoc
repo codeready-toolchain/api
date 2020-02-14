@@ -59,7 +59,7 @@ The modified CSV is printed on the standard output.
 
 == push-to-quay-nightly.sh
 The `push-to-quay-nightly.sh` generates new operator bundles for every commit to master and pushes them to the "nightly" channel on https://quay.io[].
-The simplified flow of the script looks like:
+The simplified flow of the script is the following:
 
  1. It counts the version of the new CSV and the version of the previous one.
  2. Using the `operator-sdk` it generates a new version of the operator bundle (for channel "nightly") from the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
