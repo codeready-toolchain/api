@@ -84,7 +84,7 @@ The simplified flow of the script looks like:
  7. Generates the deploy hack file to make testing of the bundle easier.
 
 The `create-release-bundle.sh` script doesn't push anything to quay yet - to do that please use the `push-to-quay-manifests.sh` script described below. 
-The `create-release-bundle.sh` script requires two parameters `--project-root` and `--next-version`. Accepts also parameters `--operator-name`, `--embedded-repo` and `--quay-namespace`. Uses `olm-setup.sh` as its source.
+NOTE: The `create-release-bundle.sh` script requires two parameters `--project-root` and `--next-version` and optionally `--operator-name`, `--embedded-repo` and `--quay-namespace`. It relies on `olm-setup.sh`.
 
 
 == push-to-quay-manifest.sh
