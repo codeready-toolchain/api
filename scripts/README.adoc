@@ -79,7 +79,7 @@ The simplified flow of the script is the following:
 2. It runs the `operator-sdk` command to generate a new version of the operator bundle (for the "alpha" channel) using  the base template in `<operator-repo>/deploy/olm-catalog/`.
 3. It replaces all the variables and parameters in the newly generated CSV.
 4. It runs the `enrich-by-envs-from-yaml.sh` script to parse the `<operator-repo>/deploy/env/prod.yaml` file (if it exists) and adds the additional deployment variables into the CSV.
- 5. Stores the operator-bundle inside of the `<project-root>/manifests/` directory and modifies the package file.
+5. It copies the operator bundle in the `<project-root>/manifests/` directory and updates the `*-package.yaml` file at the root of this directory.
  6. Using the `operator-courier` binary verifies the generated operator bundle.
  7. Generates the deploy hack file to make testing of the bundle easier.
 
