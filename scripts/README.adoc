@@ -18,7 +18,7 @@ This script requires multiple parameters - see help for more information.
 
 
 == olm-catalog-generate.sh
-The `olm-catalog-generate.sh` script is used for (re)generating OLM catalog files in respective operator directories.
+The `olm-catalog-generate.sh` script (re)generates OLM catalog files in their respective operator repositories/directories.
 It generates:
 
  * Operator bundle that is used as the base template for all next releases. To do that it uses `operator-sdk` binary with specific parameters.
