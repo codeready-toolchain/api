@@ -1,5 +1,5 @@
 = Scripts
-This directory contains a set of bash scripts that helps us with maintaining and managing OLM catalog files. The following part will try to describe the purpose and functionality of all the script files.
+This directory contains a set of bash scripts that helps us with maintaining and managing OLM catalog files. The following part describes the purpose and functionality of all the script files.
 
 
 == olm-setup.sh
@@ -92,4 +92,3 @@ The `push-to-quay-manifest.sh` script takes the latest (according to semVer) rel
 For pushing the bundle the script uses auth token taken either from `QUAY_AUTH_TOKEN` variable or from `~/.docker/config.json` file.
 
 It requires only one parameter `--project-root` and accepts also `--operator-name`. Uses `olm-setup.sh` as its source.
-
