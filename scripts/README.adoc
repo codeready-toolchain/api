@@ -26,7 +26,7 @@ It generates:
  ** `deploy_csv.yaml` that helps with deploying the current version of the operator bundle to the cluster. It's the same file as is generated using <<generate-deploy-hack,generate-deploy-hack.sh>> script.
 ** `install_operator.yaml` that installs the operator using `OperatorGroup` and `Subscription` resources.
 
-The `olm-catalog-generate.sh` requires only one parameter `--project-root` and accepts also `--allnamespaces` param. Uses `olm-setup.sh` as its source.
+NOTE: The `olm-catalog-generate.sh` requires a single parameter, `--project-root`, and optionally the `--allnamespaces` param. It relies on `olm-setup.sh`.
 
 
 == enrich-by-envs-from-yaml.sh
