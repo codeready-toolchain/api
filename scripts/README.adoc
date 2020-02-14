@@ -14,19 +14,20 @@ The `generate-deploy-hack.sh` script generates the `deploy_csv.yaml` file contai
 * `CatalogSource` that adds the operator into the OperatorHub and uses the `ConfigMap` as a source of operator bundle.
 
 This `deploy_csv.yaml` file can be used for easy deployment of the operator in dev cluster as well as for testing purposes.
-This script requires multiple parameters - see help for more information.
+
+NOTE: This script requires multiple parameters - see help for more information.
 
 
 == olm-catalog-generate.sh
 The `olm-catalog-generate.sh` script (re)generates OLM catalog files in their respective operator repositories/directories.
 It generates:
 
-* The operator bundle that is used as the base template for all next releases. Under the hood it runs the `operator-sdk` command with specific parameters.
+* The operator bundle that is used as the base template for all next releases. Under the hood, it runs the `operator-sdk` command with specific parameters.
 * Some "hack" files, including:
- ** `deploy_csv.yaml` that helps with deploying the current version of the operator bundle to the cluster. It's the same file as is generated using <<generate-deploy-hack,generate-deploy-hack.sh>> script.
+** `deploy_csv.yaml` that helps in deploying the current version of the operator bundle to the cluster. It's the same file as is generated using <<generate-deploy-hack,generate-deploy-hack.sh>> script.
 ** `install_operator.yaml` that installs the operator using `OperatorGroup` and `Subscription` resources.
 
-NOTE: The `olm-catalog-generate.sh` requires a single parameter, `--project-root`, and optionally the `--allnamespaces` param. It relies on `olm-setup.sh`.
+NOTE: The `olm-catalog-generate.sh` requires a single parameter `--project-root`, and optionally the `--allnamespaces` param. It relies on `olm-setup.sh`.
 
 
 == enrich-by-envs-from-yaml.sh
@@ -46,7 +47,7 @@ registration-service:
     library-url: 'https://sso..../keycloak.js'
     public-keys-url: 'https://sso..../certs'
 ```
-then the resulting list of key-value pairs would be:
+the resulting list of key-value pairs would be:
 ``` yaml
 REGISTRATION_SERVICE_ENV : 'dev'
 REGISTRATION_SERVICE_REPLICAS : 2
@@ -58,24 +59,24 @@ The modified CSV is printed on the standard output.
 
 
 == push-to-quay-nightly.sh
-The `push-to-quay-nightly.sh` generates new operator bundles for every commit to master and pushes them to the "nightly" channel on https://quay.io[].
+The `push-to-quay-nightly.sh` generates new operator bundles for every commit to master and pushes them to the "nightly" channel to https://quay.io[].
 The simplified flow of the script is the following:
 
 1. It calculates the version of the new CSV and of the previous one as well.
-2. Using the `operator-sdk` it generates a new version of the operator bundle (for the "nightly" channel) using the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
+2. It runs the `operator-sdk` command to generate a new version of the operator bundle (for the "nightly" channel) using the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
 3. It replaces the variables and parameters in the newly generated CSV.
-4. It executes the `enrich-by-envs-from-yaml.sh` script to parse the `<operator-repo>/deploy/env/prod.yaml` file (if exists) and to add additional deployment variables into the CSV.
+4. It executes the `enrich-by-envs-from-yaml.sh` script to parse the `<operator-repo>/deploy/env/prod.yaml` file (if it exists) and to add additional deployment variables into the CSV.
 5. It retrieves the Quay auth token. If the `QUAY_AUTH_TOKEN` variable is not provided then it uses the token found in the `~/.docker/config.json` file.
-6. Using the `operator-courier` binary it pushes the new operator bundle as a package (application) on https://quay.io[].
+6. Using the `operator-courier` binary it pushes the new operator bundle as a package (application) to https://quay.io[].
 
-The `push-to-quay-nightly.sh` requires a single parameter, `--project-root`, and optionally `--operator-name`, `--embedded-repo` as well as `--quay-namespace`. It relies on `olm-setup.sh`.
+NOTE: The `push-to-quay-nightly.sh` requires a single parameter `--project-root`, and optionally `--operator-name`, `--embedded-repo` as well as `--quay-namespace`. It relies on `olm-setup.sh`.
 
 
 == create-release-bundle.sh
 The `create-release-bundle.sh` script creates an operator bundle of a given version in `<project-root>/manifests/` directory.
 The simplified flow of the script is the following:
 
- 1. Goes through all existing manifests in `<project-root>/manifests/` directory, detects the latest one (according to semVer) and takes its version.
+1. Lists and sorts all existing directories in `<project-root>/manifests/`, detects the latest one (according to semver) and takes the directory name (which is the latest CSV version).
 2. It runs the `operator-sdk` command to generate a new version of the operator bundle (for the "alpha" channel) using  the base template in `<operator-repo>/deploy/olm-catalog/`.
 3. It replaces all the variables and parameters in the newly generated CSV.
 4. It runs the `enrich-by-envs-from-yaml.sh` script to parse the `<operator-repo>/deploy/env/prod.yaml` file (if it exists) and adds the additional deployment variables into the CSV.
@@ -83,12 +84,14 @@ The simplified flow of the script is the following:
 6. It verifies the generated operator bundle with the help of the `operator-courier` binary.
 7. It generates the deploy hack file to make testing of the bundle easier.
 
-The `create-release-bundle.sh` script doesn't push anything to quay yet - to do that please use the `push-to-quay-manifests.sh` script described below. 
+The `create-release-bundle.sh` script doesn't push anything to quay yet - to do that please use the `push-to-quay-manifests.sh` script described below.
+
 NOTE: The `create-release-bundle.sh` script requires two parameters `--project-root` and `--next-version` and optionally `--operator-name`, `--embedded-repo` and `--quay-namespace`. It relies on `olm-setup.sh`.
 
 
 == push-to-quay-manifest.sh
-The `push-to-quay-manifest.sh` script takes the latest release manifest (according to semver) from the `<project-root>/manifests/` directory and pushes is to https://quay.io[].
+The `push-to-quay-manifest.sh` script takes the latest release manifest (according to semver) from the `<project-root>/manifests/` directory and pushes it to https://quay.io[].
+
 NOTE: The script uses auth token taken either from `QUAY_AUTH_TOKEN` variable or from `~/.docker/config.json` file to upload the bundles.
 
-NOTE: The script a single parameter `--project-root` and optionally `--operator-name`. It relies on `olm-setup.sh`.
+NOTE: The script requires a single parameter `--project-root` and optionally `--operator-name`. It relies on `olm-setup.sh`.
