@@ -53,7 +53,7 @@ REGISTRATION_SERVICE_REPLICAS : 2
 REGISTRATION_SERVICE_AUTH_CLIENT_LIBRARY_URL : 'https://sso..../keycloak.js'
 REGISTRATION_SERVICE_AUTH_CLIENT_PUBLIC_KEYS_URL : 'https://sso..../certs'
 ```
-When the transformation is done, then it adds the key-value pairs into the provided CSV as additional environment parameters of the operator deployment.
+Once the key-value pairs have been generated, they are included in the CSV as additional environment parameters of the operator deployment.
 The modified CSV is printed on the standard output.
 
 
