@@ -73,7 +73,7 @@ The `push-to-quay-nightly.sh` requires a single parameter, `--project-root`, and
 
 == create-release-bundle.sh
 The `create-release-bundle.sh` script creates an operator bundle of a given version in `<project-root>/manifests/` directory.
-The simplified flow of the script looks like:
+The simplified flow of the script is the following:
 
  1. Goes through all existing manifests in `<project-root>/manifests/` directory, detects the latest one (according to semVer) and takes its version.
  2. Using the `operator-sdk` it generates a new version of the operator bundle (for channel "alpha") from the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
