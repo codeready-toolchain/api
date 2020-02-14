@@ -13,7 +13,7 @@ The `generate-deploy-hack.sh` script generates the `deploy_csv.yaml` file contai
 * `ConfigMap` containing all detected CSVs, CRDs and package file.
 * `CatalogSource` that adds the operator into the OperatorHub and uses the `ConfigMap` as a source of operator bundle.
 
-The file can be used for easy deployment of the operator manifest to a cluster used in development environment as well as for testing purposes.
+This `deploy_csv.yaml` file can be used for easy deployment of the operator in dev cluster as well as for testing purposes.
 This script requires multiple parameters - see help for more information.
 
 
