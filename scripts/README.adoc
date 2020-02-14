@@ -76,7 +76,7 @@ The `create-release-bundle.sh` script creates an operator bundle of a given vers
 The simplified flow of the script is the following:
 
  1. Goes through all existing manifests in `<project-root>/manifests/` directory, detects the latest one (according to semVer) and takes its version.
- 2. Using the `operator-sdk` it generates a new version of the operator bundle (for channel "alpha") from the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
+2. It runs the `operator-sdk` command to generate a new version of the operator bundle (for the "alpha" channel) using  the base template in `<operator-repo>/deploy/olm-catalog/`.
  3. Replaces variables and parameters in the newly generated CSV.
  4. Uses `enrich-by-envs-from-yaml.sh` script to parse `<operator-repo>/deploy/env/prod.yaml` file (if exists) and to add additional deployment variables into the CSV.
  5. Stores the operator-bundle inside of the `<project-root>/manifests/` directory and modifies the package file.
