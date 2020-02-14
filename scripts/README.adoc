@@ -88,7 +88,7 @@ NOTE: The `create-release-bundle.sh` script requires two parameters `--project-r
 
 
 == push-to-quay-manifest.sh
-The `push-to-quay-manifest.sh` script takes the latest (according to semVer) release manifest from `<project-root>/manifests/` directory and pushes is to quay.
+The `push-to-quay-manifest.sh` script takes the latest release manifest (according to semver) from the `<project-root>/manifests/` directory and pushes is to https://quay.io[].
 For pushing the bundle the script uses auth token taken either from `QUAY_AUTH_TOKEN` variable or from `~/.docker/config.json` file.
 
 It requires only one parameter `--project-root` and accepts also `--operator-name`. Uses `olm-setup.sh` as its source.
