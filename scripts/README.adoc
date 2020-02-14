@@ -6,6 +6,7 @@ This directory contains a set of bash scripts that helps us with maintaining and
 The `olm-setup.sh` script is a collection of common functions used by other scripts. Executing this script on its own wouldn't do anything.
 
 
+[#generate-deploy-hack]
 == generate-deploy-hack.sh
 The `generate-deploy-hack.sh` script generates `deploy_csv.yaml` file containing two objects:
 
@@ -22,7 +23,7 @@ It generates:
 
  * Operator bundle that is used as the base template for all next releases. To do that it uses `operator-sdk` binary with specific parameters.
  * Hack files that consist of:
- ** `deploy_csv.yaml` that helps with deploying the current version of the operator bundle to the cluster. The file contains two objects
+ ** `deploy_csv.yaml` that helps with deploying the current version of the operator bundle to the cluster. It's the same file as is generated using <<generate-deploy-hack,generate-deploy-hack.sh>> script.
  ** `install_operator.yaml` that installs the deployed operator using `OperatorGroup` and `Subscription`.
 
 The `olm-catalog-generate.sh` requires only one parameter `--project-root` and accepts also `--allnamespaces` param. Uses `olm-setup.sh` as its source.
