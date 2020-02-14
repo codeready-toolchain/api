@@ -20,7 +20,7 @@ This script requires multiple parameters - see help for more information.
 The `olm-catalog-generate.sh` script is used for (re)generating OLM catalog files in respective operator directories.
 It generates:
 
- * Operator bundle that is used as the base template for all next releases. To do that it uses `operator-sdk olm-catalog gen-csv` command with specific parameters.
+ * Operator bundle that is used as the base template for all next releases. To do that it uses `operator-sdk` binary with specific parameters.
  * Hack files that consist of:
  ** `deploy_csv.yaml` that helps with deploying the current version of the operator bundle to the cluster. The file contains two objects
  ** `install_operator.yaml` that installs the deployed operator using `OperatorGroup` and `Subscription`.
