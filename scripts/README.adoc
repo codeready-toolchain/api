@@ -8,7 +8,7 @@ The `olm-setup.sh` script is a collection of common functions used by other scri
 
 [#generate-deploy-hack]
 == generate-deploy-hack.sh
-The `generate-deploy-hack.sh` script generates `deploy_csv.yaml` file containing two objects:
+The `generate-deploy-hack.sh` script generates the `deploy_csv.yaml` file containing two objects:
 
 * `ConfigMap` containing all detected CSVs, CRDs and package file.
 * `CatalogSource` that adds the operator into the OperatorHub and uses the `ConfigMap` as a source of operator bundle.
