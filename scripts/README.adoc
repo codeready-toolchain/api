@@ -3,7 +3,7 @@ This directory contains a set of bash scripts that helps us with maintaining and
 
 
 == olm-setup.sh
-The `olm-setup.sh` script only gathers all common functions and doesn't call any of them, so calling this function doesn't really make sense as it wouldn't do anything.
+The `olm-setup.sh` script is a collection of common functions used by other scripts. Executing this script on its own wouldn't do anything.
 Most of the following scripts use this one as the source.
 
 
