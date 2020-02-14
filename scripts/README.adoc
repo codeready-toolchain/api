@@ -83,7 +83,7 @@ The simplified flow of the script looks like:
  6. Using the `operator-courier` binary verifies the generated operator bundle.
  7. Generates the deploy hack file to make testing of the bundle easier.
 
-The script doesn't push anything to quay yet - to do that use `push-to-quay-manifests.sh` script.
+The `create-release-bundle.sh` script doesn't push anything to quay yet - to do that please use the `push-to-quay-manifests.sh` script described below. 
 The `create-release-bundle.sh` script requires two parameters `--project-root` and `--next-version`. Accepts also parameters `--operator-name`, `--embedded-repo` and `--quay-namespace`. Uses `olm-setup.sh` as its source.
 
 
