@@ -58,7 +58,7 @@ The modified CSV is printed on the standard output.
 
 
 == push-to-quay-nightly.sh
-The `push-to-quay-nightly.sh` is used for generating new operator bundles for every commit to master and pushing it to quay as part of the "nightly" channel.
+The `push-to-quay-nightly.sh` generates new operator bundles for every commit to master and pushes them to the "nightly" channel on https://quay.io[].
 The simplified flow of the script looks like:
 
  1. It counts the version of the new CSV and the version of the previous one.
