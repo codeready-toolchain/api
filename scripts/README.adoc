@@ -63,7 +63,7 @@ The simplified flow of the script is the following:
 
 1. It calculates the version of the new CSV and of the previous one as well.
 2. Using the `operator-sdk` it generates a new version of the operator bundle (for the "nightly" channel) using the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
- 3. Replaces variables and parameters in the newly generated CSV.
+3. It replaces the variables and parameters in the newly generated CSV.
  4. Uses `enrich-by-envs-from-yaml.sh` script to parse `<operator-repo>/deploy/env/prod.yaml` file (if exists) and to add additional deployment variables into the CSV.
  5. Gets the quay auth token - if the `QUAY_AUTH_TOKEN` variable is not provided, then it uses token taken from `~/.docker/config.json` file.
  6. Using the `operator-courier` binary pushes the new operator bundle into quay package(application).
