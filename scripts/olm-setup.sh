@@ -13,7 +13,7 @@ user_help () {
     echo "-ch, --channel           Channel to be used for the CSV in the package manifest"
     echo "-on, --operator-name     Name of the operator - by default it uses toolchain-{repository_name}"
     echo "-mr, --main-repo         URL of the GH repo that should be used as the main repo (for CD). The current repo should be embedded in the main one. The operator bundle should be taken from the main repository (example of the main repo: https://github.com/codeready-toolchain/host-operator)"
-    echo "-er, --embedded-repo        URL of the GH repo that should be used as the embedded repo (for CD). The repository should be embedded in the current repo. The operator bundle should be taken from the current repository (example of the embedded repo: https://github.com/codeready-toolchain/registration-service)"
+    echo "-er, --embedded-repo     URL of the GH repo that should be used as the embedded repo (for CD). The repository should be embedded in the current repo. The operator bundle should be taken from the current repository (example of the embedded repo: https://github.com/codeready-toolchain/registration-service)"
     echo "-an, --allnamespaces     If set to true, then defines that the hack files should be created for AllNamespaces mode"
     echo "-qn, --quay-namespace    Specify the quay namespace the CSV should be pushed to - if not used then it uses the one stored in \"\${QUAY_NAMESPACE}\" variable"
     echo "-h,  --help              To show this help text"

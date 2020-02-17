@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 additional_help() {
-    echo "push-to-quay-manifests.sh pushes the latest version of operator bundle from <project-root>/manifest directory to quay.io"
+    echo "push-to-quay-manifest.sh pushes the latest version of operator bundle from <project-root>/manifest directory to quay.io"
     echo "Required parameters:"
     echo "              \"--project-root\"   to specify the root of the project"
     echo "Optional parameters:"
     echo "              \"--operator-name\"  to specify the name of the operator"
     echo ""
     echo "Example:"
-    echo "   ./scripts/push-to-quay-manifests.sh -pr ../toolchain-operator -on codeready-toolchain-operator"
+    echo "   ./scripts/push-to-quay-manifest.sh -pr ../toolchain-operator -on codeready-toolchain-operator"
     echo "          - This command will push the latest version of the operator bundle of codeready-toolchain-operator from ../toolchain-operator/manifests directory to quay.io"
 
 }

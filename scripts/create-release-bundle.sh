@@ -7,6 +7,8 @@ additional_help() {
     echo "              \"--next-version\"   to specify the version the operator bundle should be generated for"
     echo "Optional parameters:"
     echo "              \"--operator-name\"  to specify the name of the operator"
+    echo "              \"--quay-namespace\" to specify quay namespace the operator bundle should be pushed to"
+    echo "              \"--embedded-repo\"  to specify embedded repo that should be deployed through the main one"
     echo ""
     echo "Example:"
     echo "   ./scripts/create-release-bundle.sh -pr ../toolchain-operator/ -on codeready-toolchain-operator --next-version 0.1.0"
