@@ -71,6 +71,7 @@ type NSTemplateSetStatus struct {
 // +kubebuilder:printcolumn:name="Tier Name",type="string",JSONPath=`.spec.tierName`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Namespace Template Set"
 type NSTemplateSet struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

@@ -27,6 +27,7 @@ type BannedUserSpec struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.spec.email`
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Banned User"
 type BannedUser struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

@@ -45,6 +45,7 @@ type NSTemplateTierStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:resource:shortName=tier
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Namespace Template Tier"
 type NSTemplateTier struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
