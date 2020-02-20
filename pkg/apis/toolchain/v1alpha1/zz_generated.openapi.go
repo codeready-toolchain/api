@@ -710,20 +710,6 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref common.Refer
 				Description: "UserAccountSpecEmbedded defines the desired state of UserAccount",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"userID": {
-						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim) Is to be used to create Identity and UserIdentityMapping resources. This field is duplicated and will be removed in the future.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"disabled": {
-						SchemaProps: spec.SchemaProps{
-							Description: "If set to true then the corresponding user should not be able to login \"false\" is assumed by default. This field is duplicated and will be removed in the future.",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
 					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The namespace limit name",
