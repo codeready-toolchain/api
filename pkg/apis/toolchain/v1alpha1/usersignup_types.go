@@ -67,7 +67,7 @@ type UserSignupStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// UserSignup is the Schema for the usersignup API
+// UserSignup registers a user in the CodeReady Toolchain
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced

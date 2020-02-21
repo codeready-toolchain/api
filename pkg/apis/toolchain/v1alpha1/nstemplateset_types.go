@@ -64,7 +64,7 @@ type NSTemplateSetStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// NSTemplateSet is the Schema for the nstemplatesets API
+// NSTemplateSet defines user environment via templates that are used for namespace provisioning
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced

@@ -23,7 +23,7 @@ type BannedUserSpec struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// BannedUser is the Schema for the banneduser API
+// BannedUser is used to maintain a list of banned e-mail addresses
 // +k8s:openapi-gen=true
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.spec.email`

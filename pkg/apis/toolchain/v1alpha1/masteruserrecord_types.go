@@ -119,7 +119,7 @@ type Cluster struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// MasterUserRecord is the Schema for the masteruserrecords API
+// MasterUserRecord keeps all information about user, user accounts and namespaces provisioned in CodeReady Toolchain
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced

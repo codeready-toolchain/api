@@ -37,7 +37,7 @@ type RegistrationServiceStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// RegistrationService is the Schema for the registrationservices API
+// RegistrationService configures the registration service deployment
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=registrationservices,scope=Namespaced

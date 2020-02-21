@@ -56,7 +56,7 @@ func schema_pkg_apis_toolchain_v1alpha1_BannedUser(ref common.ReferenceCallback)
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "BannedUser is the Schema for the banneduser API",
+				Description: "BannedUser is used to maintain a list of banned e-mail addresses",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -116,7 +116,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref common.ReferenceCal
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "MasterUserRecord is the Schema for the masteruserrecords API",
+				Description: "MasterUserRecord keeps all information about user, user accounts and namespaces provisioned in CodeReady Toolchain",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -275,7 +275,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref common.ReferenceCallba
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "NSTemplateSet is the Schema for the nstemplatesets API",
+				Description: "NSTemplateSet defines user environment via templates that are used for namespace provisioning",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -395,7 +395,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref common.ReferenceCallb
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "NSTemplateTier is the Schema for the nstemplatetiers API",
+				Description: "NSTemplateTier configures user environment via templates used for namespaces the user has access to",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -484,7 +484,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref common.Reference
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "RegistrationService is the Schema for the registrationservices API",
+				Description: "RegistrationService configures the registration service deployment",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -591,7 +591,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref common.ReferenceCallback
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "UserAccount is the Schema for the useraccounts API",
+				Description: "UserAccount keeps all information about user provisioned in the cluster",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -771,7 +771,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref common.ReferenceCallback)
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "UserSignup is the Schema for the usersignup API",
+				Description: "UserSignup registers a user in the CodeReady Toolchain",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {

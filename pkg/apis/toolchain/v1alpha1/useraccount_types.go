@@ -67,7 +67,7 @@ type UserAccountStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// UserAccount is the Schema for the useraccounts API
+// UserAccount keeps all information about user provisioned in the cluster
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced

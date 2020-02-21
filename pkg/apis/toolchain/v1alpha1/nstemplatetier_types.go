@@ -40,7 +40,7 @@ type NSTemplateTierStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// NSTemplateTier is the Schema for the nstemplatetiers API
+// NSTemplateTier configures user environment via templates used for namespaces the user has access to
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
