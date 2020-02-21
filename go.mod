@@ -7,8 +7,8 @@ require (
 	github.com/go-bindata/go-bindata v3.1.2+incompatible
 	github.com/go-openapi/spec v0.19.2
 	github.com/gobuffalo/flect v0.1.6 // indirect
-	// using 'github.com/openshift/api@release-4.2'
-	github.com/openshift/api v0.0.0-20190927182313-d4a64ec2cbd8
+	// using 'github.com/openshift/api@release-4.3'
+	github.com/openshift/api v0.0.0-20200205145930-e9d93e317dd1
 	github.com/stretchr/testify v1.3.0
 	k8s.io/api v0.0.0-20191016110408-35e52d86657a
 	k8s.io/apimachinery v0.0.0-20191004115801-a2eda9f80ab8
