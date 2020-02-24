@@ -10,12 +10,12 @@ require (
 	// using 'github.com/openshift/api@release-4.3'
 	github.com/openshift/api v0.0.0-20200205145930-e9d93e317dd1
 	github.com/stretchr/testify v1.3.0
-	k8s.io/api v0.0.0-20191016110408-35e52d86657a
-	k8s.io/apimachinery v0.0.0-20191004115801-a2eda9f80ab8
+	k8s.io/api v0.17.2
+	k8s.io/apimachinery v0.17.2
 	k8s.io/code-generator v0.0.0-20191004115455-8e001e5d1894
 	k8s.io/gengo v0.0.0-20190822140433-26a664648505
 	k8s.io/kube-openapi v0.0.0-20190816220812-743ec37842bf
-	sigs.k8s.io/controller-runtime v0.4.0
+	sigs.k8s.io/controller-runtime v0.5.0
 	sigs.k8s.io/controller-tools v0.2.4
 	sigs.k8s.io/kubefed v0.1.0-rc6.0.20191023070212-24d45e9f4f15
 )
