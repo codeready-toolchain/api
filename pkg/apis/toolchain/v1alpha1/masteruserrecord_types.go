@@ -13,6 +13,9 @@ const (
 	// MasterUserRecordReady means the Master User Record provisioning succeeded
 	MasterUserRecordReady ConditionType = "Ready"
 
+	// Status condition reasons
+	MasterUserRecordDisabledReason                    = "Disabled"
+
 	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
 )
 
