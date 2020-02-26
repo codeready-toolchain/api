@@ -142,9 +142,24 @@ generate_bundle() {
     fi
 
     echo "## Generating operator bundle of project '${PRJ_NAME}' ..."
+    # We have to run operator-sdk generate from the codeready-toolchain/api repo so it can reach the api source code to scan annotations
+    # So, we generate a temporal csv-config.yaml which points to the specific operator manifests and feed it to the generator
     CURRENT_DIR=${PWD}
-    cd ${PRJ_ROOT_DIR}
-    operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+    cd ${SCRIPT_DIR}/..
+    TMP_CSV_CONFIG="/tmp/${PRJ_NAME}_csv-config.yaml"
+    sed -e "s|REPLACE_ROOT_PATH|${PRJ_ROOT_DIR}|g" ${PRJ_ROOT_DIR}/deploy/olm-catalog/csv-config.yaml > ${TMP_CSV_CONFIG}
+
+    operator-sdk generate csv --csv-config ${TMP_CSV_CONFIG} --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+
+    rm -rf ${TMP_CSV_CONFIG}
+
+    # Copy generated CSV and package file to the operator folder
+    API_PKG_DIR=deploy/olm-catalog/${OPERATOR_NAME}
+    API_PKG_FILE=${API_PKG_DIR}/${OPERATOR_NAME}.package.yaml
+    API_CSV_FILE=${API_PKG_DIR}/${NEXT_CSV_VERSION}/toolchain-${PRJ_NAME}.v${NEXT_CSV_VERSION}.clusterserviceversion.yaml
+    cp -f ${API_PKG_FILE} ${PKG_FILE}
+    cp -f ${API_CSV_FILE} ${CSV_DIR}
     cd ${CURRENT_DIR}
 
     CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml || true`
