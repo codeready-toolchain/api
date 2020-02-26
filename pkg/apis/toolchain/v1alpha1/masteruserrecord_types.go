@@ -14,7 +14,7 @@ const (
 	MasterUserRecordReady ConditionType = "Ready"
 
 	// Status condition reasons
-	MasterUserRecordDisabledReason                    = "Disabled"
+	MasterUserRecordDisabledReason = "Disabled"
 
 	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
 )
