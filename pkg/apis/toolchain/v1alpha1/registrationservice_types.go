@@ -37,7 +37,7 @@ type RegistrationServiceStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// RegistrationService is the Schema for the registrationservices API
+// RegistrationService configures the registration service deployment
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=registrationservices,scope=Namespaced
@@ -46,6 +46,8 @@ type RegistrationServiceStatus struct {
 // +kubebuilder:printcolumn:name="Environment",type="string",JSONPath=`.spec.envVars.ENVIRONMENT`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
+// +kubebuilder:validation:XPreserveUnknownFields
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Registration Service"
 type RegistrationService struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
