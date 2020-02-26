@@ -67,7 +67,7 @@ type UserAccountStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// UserAccount is the Schema for the useraccounts API
+// UserAccount keeps all information about user provisioned in the cluster
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
@@ -77,6 +77,8 @@ type UserAccountStatus struct {
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:printcolumn:name="Disabled",type="boolean",JSONPath=`.spec.disabled`,priority=1
+// +kubebuilder:validation:XPreserveUnknownFields
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="User Account"
 type UserAccount struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
