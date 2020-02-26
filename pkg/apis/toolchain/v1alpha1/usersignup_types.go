@@ -81,6 +81,7 @@ type UserSignupStatus struct {
 // +kubebuilder:printcolumn:name="Deactivated",type="string",JSONPath=`.spec.deactivated`,priority=1
 // +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=`.status.compliantUsername`
 // +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.metadata.annotations.toolchain\.dev\.openshift\.com/user-email`
+// +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="User Signup"
 type UserSignup struct {
 	metav1.TypeMeta   `json:",inline"`

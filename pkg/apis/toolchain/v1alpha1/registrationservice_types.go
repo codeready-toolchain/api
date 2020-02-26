@@ -46,6 +46,7 @@ type RegistrationServiceStatus struct {
 // +kubebuilder:printcolumn:name="Environment",type="string",JSONPath=`.spec.envVars.ENVIRONMENT`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
+// +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Registration Service"
 type RegistrationService struct {
 	metav1.TypeMeta   `json:",inline"`
