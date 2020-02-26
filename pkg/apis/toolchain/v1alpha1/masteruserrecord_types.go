@@ -14,7 +14,17 @@ const (
 	MasterUserRecordReady ConditionType = "Ready"
 
 	// Status condition reasons
-	MasterUserRecordDisabledReason = "Disabled"
+	unableToGetUserAccountReason             = "UnableToGetUserAccount"
+	unableToCreateUserAccountReason          = "UnableToCreateUserAccount"
+	unableToSynchronizeUserAccountSpecReason = "UnableToSynchronizeUserAccountSpecAccount"
+	targetClusterNotReadyReason              = "TargetClusterNotReady"
+	provisioningReason                       = "Provisioning"
+	updatingReason                           = "Updating"
+	provisionedReason                        = "Provisioned"
+	unableToAddFinalizerReason               = "UnableToAddFinalizer"
+	unableToDeleteUserAccountsReason         = "UnableToDeleteUserAccounts"
+	unableToRemoveFinalizerReason            = "UnableToRemoveFinalizer"
+	MasterUserRecordDisabledReason           = "Disabled"
 
 	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
 )
