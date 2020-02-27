@@ -195,7 +195,20 @@ get_digest_format() {
     IMG_NAME=`echo ${IMG_LOC} | awk -F/ '{print $3}'`
     IMG_TAG=`echo ${IMG} | cut -d: -f2`
 
-    IMG_DIGEST=`curl https://quay.io/api/v1/repository/${IMG_ORG}/${IMG_NAME} 2>/dev/null | jq -r ".tags.\"${IMG_TAG}\".manifest_digest"`
+    echo "Getting digest of the image ${IMG}" >> /dev/stderr
+
+    while [[ -z ${IMG_DIGEST} || "${IMG_DIGEST}" == "null" ]]; do
+		if [[ ${NEXT_WAIT_TIME} -eq 10 ]]; then
+		   echo " the digest of the image ${IMG} wasn't found" >> /dev/stderr
+		   exit 1
+		fi
+		echo -n "." >> /dev/stderr
+		(( NEXT_WAIT_TIME++ ))
+		sleep 1
+		IMG_DIGEST=`curl https://quay.io/api/v1/repository/${IMG_ORG}/${IMG_NAME} 2>/dev/null | jq -r ".tags.\"${IMG_TAG}\".manifest_digest"`
+	done
+    echo " found: ${IMG_DIGEST}" >> /dev/stderr
+
     echo ${IMG_LOC}@${IMG_DIGEST}
 }
 
