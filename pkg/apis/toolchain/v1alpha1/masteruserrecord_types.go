@@ -13,6 +13,19 @@ const (
 	// MasterUserRecordReady means the Master User Record provisioning succeeded
 	MasterUserRecordReady ConditionType = "Ready"
 
+	// Status condition reasons
+	MasterUserRecordUnableToGetUserAccountReason             = "UnableToGetUserAccount"
+	MasterUserRecordUnableToCreateUserAccountReason          = "UnableToCreateUserAccount"
+	MasterUserRecordUnableToSynchronizeUserAccountSpecReason = "UnableToSynchronizeUserAccountSpecAccount"
+	MasterUserRecordTargetClusterNotReadyReason              = "TargetClusterNotReady"
+	MasterUserRecordProvisioningReason                       = "Provisioning"
+	MasterUserRecordUpdatingReason                           = "Updating"
+	MasterUserRecordProvisionedReason                        = "Provisioned"
+	MasterUserRecordUnableToAddFinalizerReason               = "UnableToAddFinalizer"
+	MasterUserRecordUnableToDeleteUserAccountsReason         = "UnableToDeleteUserAccounts"
+	MasterUserRecordUnableToRemoveFinalizerReason            = "UnableToRemoveFinalizer"
+	MasterUserRecordDisabledReason                           = "Disabled"
+
 	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
 )
 
