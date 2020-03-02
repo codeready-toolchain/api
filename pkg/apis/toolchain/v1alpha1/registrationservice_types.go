@@ -4,6 +4,13 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// These are valid conditions of a MasterUserRecord
+const (
+	RegistrationServiceDeployingReason       = "Deploying"
+	RegistrationServiceDeployingFailedReason = "DeployingFailed"
+	RegistrationServiceDeployedReason        = "Deployed"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // RegistrationServiceSpec defines the desired state of RegistrationService
