@@ -16,6 +16,9 @@ type NSTemplateTierSpec struct {
 	// The namespace templates
 	// +listType
 	Namespaces []NSTemplateTierNamespace `json:"namespaces"`
+
+	// the cluster resource quota template
+	ClusterResourceQuota NSTemplateTierClusterResourceQuota `json:"clusterResourceQuota"`
 }
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource
@@ -28,6 +31,16 @@ type NSTemplateTierNamespace struct {
 	Revision string `json:"revision"`
 
 	// Template contains an OpenShift Template to be used for namespace provisioning
+	Template templatev1.Template `json:"template"`
+}
+
+// NSTemplateTierClusterResourceQuota defines the cluster resource quota applied on all namespaces belonging to a given user
+type NSTemplateTierClusterResourceQuota struct {
+
+	// The revision of the corresponding template
+	Revision string `json:"revision"`
+
+	// Template contains an OpenShift Template to be used for the cluster resource quota provisioning
 	Template templatev1.Template `json:"template"`
 }
 
