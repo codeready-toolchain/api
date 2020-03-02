@@ -64,13 +64,15 @@ type NSTemplateSetStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// NSTemplateSet is the Schema for the nstemplatesets API
+// NSTemplateSet defines user environment via templates that are used for namespace provisioning
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="Tier Name",type="string",JSONPath=`.spec.tierName`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
+// +kubebuilder:validation:XPreserveUnknownFields
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Namespace Template Set"
 type NSTemplateSet struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
