@@ -17,6 +17,19 @@ const (
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
+
+	// Status condition reasons
+	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
+	UserSignupNoTemplateTierAvailableReason        = "NoTemplateTierAvailable"
+	UserSignupFailedToReadUserApprovalPolicyReason = "FailedToReadUserApprovalPolicy"
+	UserSignupUnableToCreateMURReason              = "UnableToCreateMUR"
+	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
+	UserSignupUserDeactivatingReason               = "Deactivating"
+	UserSignupUserDeactivatedReason                = "Deactivated"
+	UserSignupUnvalidMURState                      = "InvalidMURState"
+	UserSignupApprovedAutomaticallyReason          = "ApprovedAutomatically"
+	UserSignupApprovedByAdminReason                = "ApprovedByAdmin"
+	UserSignupPendingApprovalReason                = "PendingApproval"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
