@@ -26,7 +26,7 @@ const (
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
 	UserSignupUserDeactivatingReason               = "Deactivating"
 	UserSignupUserDeactivatedReason                = "Deactivated"
-	UserSignupInvalidMURState                      = "InvalidMURState"
+	UserSignupInvalidMURStateReason                = "InvalidMURState"
 	UserSignupApprovedAutomaticallyReason          = "ApprovedAutomatically"
 	UserSignupApprovedByAdminReason                = "ApprovedByAdmin"
 	UserSignupPendingApprovalReason                = "PendingApproval"
