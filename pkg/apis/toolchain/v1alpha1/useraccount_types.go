@@ -11,11 +11,11 @@ const (
 	UserAccountUnableToCreateIdentityReason      = "UnableToCreateIdentity"
 	UserAccountUnableToCreateMappingReason       = "UnableToCreateMapping"
 	UserAccountUnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
-	UserAccountProvisioningReason                = "Provisioning"
-	UserAccountProvisionedReason                 = "Provisioned"
-	UserAccountDisabledReason                    = "Disabled"
+	UserAccountProvisioningReason                = provisioningReason
+	UserAccountProvisionedReason                 = provisionedReason
+	UserAccountDisabledReason                    = disabledReason
 	UserAccountDisablingReason                   = "Disabling"
-	UserAccountTerminatingReason                 = "Terminating"
+	UserAccountTerminatingReason                 = terminatingReason
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.

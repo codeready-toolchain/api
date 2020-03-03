@@ -14,11 +14,11 @@ const (
 
 // These are valid status condition reasons of a NSTemplateSet
 const (
-	NSTemplateSetProvisionedReason                = "Provisioned"
-	NSTemplateSetProvisioningReason               = "Provisioning"
+	NSTemplateSetProvisionedReason                = provisionedReason
+	NSTemplateSetProvisioningReason               = provisioningReason
 	NSTemplateSetUnableToProvisionReason          = "UnableToProvision"
 	NSTemplateSetUnableToProvisionNamespaceReason = "UnableToProvisionNamespace"
-	NSTemplateSetTerminatingReason                = "Terminating"
+	NSTemplateSetTerminatingReason                = terminatingReason
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
