@@ -20,7 +20,7 @@ const (
 	NSTemplateSetUnableToProvisionReason          = "UnableToProvision"
 	NSTemplateSetUnableToProvisionNamespaceReason = "UnableToProvisionNamespace"
 	NSTemplateSetTerminatingReason                = terminatingReason
-	NSTemplateSetUpdatingReason                   = "Updating"
+	NSTemplateSetUpdatingReason                   = updatingReason
 	NSTemplateSetUpdateFailedReason               = "UpdateFailed"
 )
 

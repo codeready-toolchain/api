@@ -20,7 +20,7 @@ const (
 	MasterUserRecordTargetClusterNotReadyReason              = "TargetClusterNotReady"
 	MasterUserRecordProvisioningReason                       = provisioningReason
 	MasterUserRecordProvisionedReason                        = provisionedReason
-	MasterUserRecordUpdatingReason                           = "Updating"
+	MasterUserRecordUpdatingReason                           = updatingReason
 	MasterUserRecordUnableToAddFinalizerReason               = "UnableToAddFinalizer"
 	MasterUserRecordUnableToDeleteUserAccountsReason         = "UnableToDeleteUserAccounts"
 	MasterUserRecordUnableToRemoveFinalizerReason            = "UnableToRemoveFinalizer"

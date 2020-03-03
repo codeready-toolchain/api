@@ -18,6 +18,7 @@ const (
 	provisionedReason  = "Provisioned"
 	disabledReason     = "Disabled"
 	terminatingReason  = "Terminating"
+	updatingReason     = "Updating"
 )
 
 type Condition struct {

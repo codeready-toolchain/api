@@ -16,7 +16,7 @@ const (
 	UserAccountDisabledReason                    = disabledReason
 	UserAccountDisablingReason                   = "Disabling"
 	UserAccountTerminatingReason                 = terminatingReason
-	UserAccountUpdatingReason                    = "Updating"
+	UserAccountUpdatingReason                    = updatingReason
 	UserAccountNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
 )
 
