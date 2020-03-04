@@ -18,13 +18,13 @@ const (
 	MasterUserRecordUnableToCreateUserAccountReason          = "UnableToCreateUserAccount"
 	MasterUserRecordUnableToSynchronizeUserAccountSpecReason = "UnableToSynchronizeUserAccountSpecAccount"
 	MasterUserRecordTargetClusterNotReadyReason              = "TargetClusterNotReady"
-	MasterUserRecordProvisioningReason                       = "Provisioning"
-	MasterUserRecordUpdatingReason                           = "Updating"
-	MasterUserRecordProvisionedReason                        = "Provisioned"
+	MasterUserRecordProvisioningReason                       = provisioningReason
+	MasterUserRecordProvisionedReason                        = provisionedReason
+	MasterUserRecordUpdatingReason                           = updatingReason
 	MasterUserRecordUnableToAddFinalizerReason               = "UnableToAddFinalizer"
 	MasterUserRecordUnableToDeleteUserAccountsReason         = "UnableToDeleteUserAccounts"
 	MasterUserRecordUnableToRemoveFinalizerReason            = "UnableToRemoveFinalizer"
-	MasterUserRecordDisabledReason                           = "Disabled"
+	MasterUserRecordDisabledReason                           = disabledReason
 
 	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
 )

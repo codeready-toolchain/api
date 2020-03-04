@@ -11,12 +11,12 @@ const (
 	UserAccountUnableToCreateIdentityReason      = "UnableToCreateIdentity"
 	UserAccountUnableToCreateMappingReason       = "UnableToCreateMapping"
 	UserAccountUnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
-	UserAccountProvisioningReason                = "Provisioning"
-	UserAccountProvisionedReason                 = "Provisioned"
-	UserAccountDisabledReason                    = "Disabled"
+	UserAccountProvisioningReason                = provisioningReason
+	UserAccountProvisionedReason                 = provisionedReason
+	UserAccountDisabledReason                    = disabledReason
 	UserAccountDisablingReason                   = "Disabling"
-	UserAccountTerminatingReason                 = "Terminating"
-	UserAccountUpdatingReason                    = "Updating"
+	UserAccountTerminatingReason                 = terminatingReason
+	UserAccountUpdatingReason                    = updatingReason
 	UserAccountNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
 )
 
