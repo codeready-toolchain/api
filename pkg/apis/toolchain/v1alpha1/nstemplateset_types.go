@@ -15,12 +15,12 @@ const (
 
 // These are valid status condition reasons of a NSTemplateSet
 const (
-	NSTemplateSetProvisionedReason                = "Provisioned"
-	NSTemplateSetProvisioningReason               = "Provisioning"
+	NSTemplateSetProvisionedReason                = provisionedReason
+	NSTemplateSetProvisioningReason               = provisioningReason
 	NSTemplateSetUnableToProvisionReason          = "UnableToProvision"
 	NSTemplateSetUnableToProvisionNamespaceReason = "UnableToProvisionNamespace"
-	NSTemplateSetTerminatingReason                = "Terminating"
-	NSTemplateSetUpdatingReason                   = "Updating"
+	NSTemplateSetTerminatingReason                = terminatingReason
+	NSTemplateSetUpdatingReason                   = updatingReason
 	NSTemplateSetUpdateFailedReason               = "UpdateFailed"
 )
 
