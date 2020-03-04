@@ -27,7 +27,9 @@ type ChangeTierRequestSpec struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The cluster to define UserAccount whose tier should be changed.
-	TargetCluster string `json:"targetCluster"`
+	// Optional. If not set then update all the UserAccounts in the MasterUserRecord.
+	// +optional
+	TargetCluster string `json:"targetCluster,omitempty"`
 
 	// The murName is a name of MUR/UserAccount whose tier should be changed.
 	MurName string `json:"murName"`
