@@ -168,7 +168,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref common.Referen
 				Properties: map[string]spec.Schema{
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The cluster to define UserAccount whose tier should be changed.",
+							Description: "The cluster to define UserAccount whose tier should be changed. Optional. If not set then update all the UserAccounts in the MasterUserRecord.",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -188,7 +188,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref common.Referen
 						},
 					},
 				},
-				Required: []string{"targetCluster", "murName", "tierName"},
+				Required: []string{"murName", "tierName"},
 			},
 		},
 	}
