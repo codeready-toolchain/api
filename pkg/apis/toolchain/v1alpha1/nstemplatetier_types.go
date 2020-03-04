@@ -17,8 +17,8 @@ type NSTemplateTierSpec struct {
 	// +listType
 	Namespaces []NSTemplateTierNamespace `json:"namespaces"`
 
-	// the cluster resource quota template
-	ClusterResourceQuota NSTemplateTierClusterResourceQuota `json:"clusterResourceQuota"`
+	// the cluster resources template (for cluster-wide quotas, etc.)
+	ClusterResources NSTemplateTierClusterResources `json:"clusterResources"`
 }
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource
@@ -34,8 +34,8 @@ type NSTemplateTierNamespace struct {
 	Template templatev1.Template `json:"template"`
 }
 
-// NSTemplateTierClusterResourceQuota defines the cluster resource quota applied on all namespaces belonging to a given user
-type NSTemplateTierClusterResourceQuota struct {
+// NSTemplateTierClusterResources defines the cluster-scoped resources associated with a given user
+type NSTemplateTierClusterResources struct {
 
 	// The revision of the corresponding template
 	Revision string `json:"revision"`
