@@ -584,7 +584,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceC
 						},
 					},
 				},
-				Required: []string{"namespaces", "clusterResources"},
+				Required: []string{"namespaces"},
 			},
 		},
 		Dependencies: []string{
