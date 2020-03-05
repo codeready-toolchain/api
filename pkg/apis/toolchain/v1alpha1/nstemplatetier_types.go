@@ -41,7 +41,7 @@ type NSTemplateTierClusterResources struct {
 	// The revision of the corresponding template
 	Revision string `json:"revision"`
 
-	// Template contains an OpenShift Template to be used for the cluster resource quota provisioning
+	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
 	Template templatev1.Template `json:"template"`
 }
 
