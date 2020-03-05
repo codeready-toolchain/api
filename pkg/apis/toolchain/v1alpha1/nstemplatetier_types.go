@@ -18,7 +18,8 @@ type NSTemplateTierSpec struct {
 	Namespaces []NSTemplateTierNamespace `json:"namespaces"`
 
 	// the cluster resources template (for cluster-wide quotas, etc.)
-	ClusterResources NSTemplateTierClusterResources `json:"clusterResources"`
+	// +optional
+	ClusterResources NSTemplateTierClusterResources `json:"clusterResources,omitempty"`
 }
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource
