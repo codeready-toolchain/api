@@ -571,7 +571,11 @@ func (in *NSTemplateTierSpec) DeepCopyInto(out *NSTemplateTierSpec) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	in.ClusterResources.DeepCopyInto(&out.ClusterResources)
+	if in.ClusterResources != nil {
+		in, out := &in.ClusterResources, &out.ClusterResources
+		*out = new(NSTemplateTierClusterResources)
+		(*in).DeepCopyInto(*out)
+	}
 	return
 }
 
