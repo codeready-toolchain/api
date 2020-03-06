@@ -53,6 +53,7 @@ type NSTemplateSetNamespace struct {
 	Revision string `json:"revision"`
 
 	// Optional field. Used to specify a custom template
+	// +optional
 	Template string `json:"template,omitempty"`
 }
 
