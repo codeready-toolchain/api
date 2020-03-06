@@ -63,7 +63,8 @@ type NSTemplateSetClusterResources struct {
 	Revision string `json:"revision"`
 
 	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
-	Template string `json:"template"`
+	// +optional
+	Template string `json:"template,omitempty"`
 }
 
 // NSTemplateSetStatus defines the observed state of NSTemplateSet
