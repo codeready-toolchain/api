@@ -41,7 +41,7 @@ type NSTemplateSetSpec struct {
 
 	// the cluster resources template (for cluster-wide quotas, etc.)
 	// +optional
-	ClusterResources NSTemplateSetClusterResources `json:"clusterResources,omitempty"`
+	ClusterResources *NSTemplateSetClusterResources `json:"clusterResources,omitempty"`
 }
 
 // NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource

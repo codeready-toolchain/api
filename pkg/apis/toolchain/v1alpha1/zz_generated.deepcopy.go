@@ -446,7 +446,11 @@ func (in *NSTemplateSetSpec) DeepCopyInto(out *NSTemplateSetSpec) {
 		*out = make([]NSTemplateSetNamespace, len(*in))
 		copy(*out, *in)
 	}
-	out.ClusterResources = in.ClusterResources
+	if in.ClusterResources != nil {
+		in, out := &in.ClusterResources, &out.ClusterResources
+		*out = new(NSTemplateSetClusterResources)
+		**out = **in
+	}
 	return
 }
 
