@@ -29,6 +29,9 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 	return map[string]common.OpenAPIDefinition{
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUser":                schema_pkg_apis_toolchain_v1alpha1_BannedUser(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUserSpec":            schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequest":         schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec":     schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus":   schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":          schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":      schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus":    schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
@@ -109,6 +112,120 @@ func schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref common.ReferenceCallb
 				Required: []string{"email"},
 			},
 		},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ChangeTierRequest requests for changing tier for MUR/UserAccount",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ChangeTierRequestSpec defines the desired state of ChangeTierRequest",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"targetCluster": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The cluster to define UserAccount whose tier should be changed. Optional. If not set then update all the UserAccounts in the MasterUserRecord.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"murName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The murName is a name of MUR/UserAccount whose tier should be changed.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"tierName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The tier name the tier should be changed to.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"murName", "tierName"},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ChangeTierRequestStatus defines the observed state of ChangeTierRequest",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type":       "",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current ChangeTierRequest conditions Supported condition types: Complete",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
 	}
 }
 
@@ -460,12 +577,18 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceC
 							},
 						},
 					},
+					"clusterResources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "the cluster resources template (for cluster-wide quotas, etc.)",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierClusterResources"),
+						},
+					},
 				},
 				Required: []string{"namespaces"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierNamespace"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierNamespace"},
 	}
 }
 

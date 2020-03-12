@@ -12,6 +12,13 @@ type ConditionType string
 const (
 	// ConditionReady specifies that the resource is ready
 	ConditionReady ConditionType = "Ready"
+
+	// Status reasons
+	provisioningReason = "Provisioning"
+	provisionedReason  = "Provisioned"
+	disabledReason     = "Disabled"
+	terminatingReason  = "Terminating"
+	updatingReason     = "Updating"
 )
 
 type Condition struct {

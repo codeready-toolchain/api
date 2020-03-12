@@ -10,15 +10,18 @@ const (
 	OwnerLabelKey    = LabelKeyPrefix + "owner"
 	RevisionLabelKey = LabelKeyPrefix + "revision"
 	TypeLabelKey     = LabelKeyPrefix + "type"
+	TierLabelKey     = LabelKeyPrefix + "tier"
 )
 
 // These are valid status condition reasons of a NSTemplateSet
 const (
-	NSTemplateSetProvisionedReason                = "Provisioned"
-	NSTemplateSetProvisioningReason               = "Provisioning"
+	NSTemplateSetProvisionedReason                = provisionedReason
+	NSTemplateSetProvisioningReason               = provisioningReason
 	NSTemplateSetUnableToProvisionReason          = "UnableToProvision"
 	NSTemplateSetUnableToProvisionNamespaceReason = "UnableToProvisionNamespace"
-	NSTemplateSetTerminatingReason                = "Terminating"
+	NSTemplateSetTerminatingReason                = terminatingReason
+	NSTemplateSetUpdatingReason                   = updatingReason
+	NSTemplateSetUpdateFailedReason               = "UpdateFailed"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -39,7 +42,6 @@ type NSTemplateSetSpec struct {
 
 // NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
 type NSTemplateSetNamespace struct {
-
 	// The type of the namespace. For example: ide|cicd|stage|default
 	Type string `json:"type"`
 
