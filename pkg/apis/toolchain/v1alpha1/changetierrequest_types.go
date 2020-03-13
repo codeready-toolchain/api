@@ -56,7 +56,7 @@ type ChangeTierRequestStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// ChangeTierRequest requests for changing tier for MUR/UserAccount
+// ChangeTierRequest is used as a trigger for a tier change in MasterUserRecord/UserAccount
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced

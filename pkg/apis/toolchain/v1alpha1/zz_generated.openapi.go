@@ -119,7 +119,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref common.ReferenceCa
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "ChangeTierRequest requests for changing tier for MUR/UserAccount",
+				Description: "ChangeTierRequest is used as a trigger for a tier change in MasterUserRecord/UserAccount",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
