@@ -30,6 +30,12 @@ const (
 	UserSignupApprovedAutomaticallyReason          = "ApprovedAutomatically"
 	UserSignupApprovedByAdminReason                = "ApprovedByAdmin"
 	UserSignupPendingApprovalReason                = "PendingApproval"
+	UserSignupUserBanningReason                    = "Banning"
+	UserSignupUserBannedReason                     = "Banned"
+	UserSignupFailedToReadBannedUsersReason        = "FailedToReadBannedUsers"
+	UserSignupMissingUserEmailAnnotationReason     = "MissingUserEmailAnnotation"
+	UserSignupMissingEmailHashLabelReason          = "MissingEmailHashLabel"
+	UserSignupInvalidEmailHashLabelReason          = "InvalidEmailHashLabel"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
