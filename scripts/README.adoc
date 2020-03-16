@@ -22,10 +22,22 @@ NOTE: This script requires multiple parameters - see help for more information.
 The `olm-catalog-generate.sh` script (re)generates OLM catalog files in their respective operator repositories/directories.
 It generates:
 
-* The operator bundle that is used as the base template for all next releases. Under the hood, it runs the `operator-sdk` command with specific parameters.
+* The operator bundle that is used as the base template for all next releases.
 * Some "hack" files, including:
 ** `deploy_csv.yaml` that helps in deploying the current version of the operator bundle to the cluster. It's the same file as is generated using <<generate-deploy-hack,generate-deploy-hack.sh>> script.
 ** `install_operator.yaml` that installs the operator using `OperatorGroup` and `Subscription` resources.
+
+Under the hood, it runs the `operator-sdk` command with specific parameters.
+Based on the fact if the operator repository contains CRD types (if it contains `pkg/apis/toolchain/v1alpha1` directory) it decides where the `operator-sdk` command will be executed.
+
+* If the repository contains the CRD types (in case of toolchain-operator) then the command is executed inside of the operator repo.
+* If the repository doesn't contain the CRD types (in case of hosted toolchain operators) then the command is executed inside of codeready-toolchain/api repo. To do that, the script:
++
+1. Either copies (if the script is called locally) or clones the codeready-toolchain/api into a temp directory.
+2. Copies the operator's `csv-config.yaml` file to a temp location and modifies the paths so it points to the correct files and directories.
+3. Copies the whole operator package directory into the api repo.
+4. Runs `operator-sdk` command by feeding it with the temporal `csv-config.yaml` file.
+5. Copies the operator package directory back to the operator repo.
 
 NOTE: The `olm-catalog-generate.sh` requires a single parameter `--project-root`, and optionally the `--allnamespaces` param. It relies on `olm-setup.sh`.
 
