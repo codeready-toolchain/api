@@ -97,7 +97,9 @@ read_arguments() {
         exit 1;
     fi
 
-    PRJ_ROOT_DIR=$(readlink -f ${PRJ_ROOT_DIR})
+    cd ${PRJ_ROOT_DIR}
+    PRJ_ROOT_DIR=${PWD}
+    cd - > /dev/null
 
     if [[ -n "${EMBEDDED_REPO_URL}" ]] && [[ -n "${MAIN_REPO_URL}" ]]; then
         echo "you cannot specify both parameters '--main-repo' and '--embedded-repo' at the same time - use only one" >> /dev/stderr
