@@ -464,12 +464,18 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 							},
 						},
 					},
+					"clusterResources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "the cluster resources template (for cluster-wide quotas, etc.)",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetClusterResources"),
+						},
+					},
 				},
 				Required: []string{"tierName", "namespaces"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetNamespace"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetNamespace"},
 	}
 }
 
