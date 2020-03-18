@@ -176,7 +176,7 @@ generate_bundle() {
 
         # copy the operator package directory from the operator repo to api to generate using the latest manifests
         mkdir -p ${API_PACKAGE_DIR}
-        cp -rT ${PKG_DIR} ${API_PACKAGE_DIR}
+        cp -r ${PKG_DIR} ${API_PACKAGE_DIR}/..
 
         # Replace the REPLACE_ROOT_PATH inside of the package file and store the new version in tmp file
         sed -e "s|REPLACE_ROOT_PATH|${PRJ_ROOT_DIR}|g" ${PRJ_ROOT_DIR}/deploy/olm-catalog/csv-config.yaml > ${TMP_CSV_CONFIG}
@@ -187,7 +187,7 @@ generate_bundle() {
         cd ${CURRENT_DIR}
 
         # Copy the regenerated operator package directory back
-        cp -rT ${API_PACKAGE_DIR} ${PKG_DIR}
+        cp -r ${API_PACKAGE_DIR} ${PKG_DIR}/..
     fi
 
     CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml || true`
