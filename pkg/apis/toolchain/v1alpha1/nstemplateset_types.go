@@ -15,13 +15,14 @@ const (
 
 // These are valid status condition reasons of a NSTemplateSet
 const (
-	NSTemplateSetProvisionedReason                = provisionedReason
-	NSTemplateSetProvisioningReason               = provisioningReason
-	NSTemplateSetUnableToProvisionReason          = "UnableToProvision"
-	NSTemplateSetUnableToProvisionNamespaceReason = "UnableToProvisionNamespace"
-	NSTemplateSetTerminatingReason                = terminatingReason
-	NSTemplateSetUpdatingReason                   = updatingReason
-	NSTemplateSetUpdateFailedReason               = "UpdateFailed"
+	NSTemplateSetProvisionedReason                       = provisionedReason
+	NSTemplateSetProvisioningReason                      = provisioningReason
+	NSTemplateSetUnableToProvisionReason                 = "UnableToProvision"
+	NSTemplateSetUnableToProvisionNamespaceReason        = "UnableToProvisionNamespace"
+	NSTemplateSetUnableToProvisionClusterResourcesReason = "UnableToProvisionClusteResources"
+	NSTemplateSetTerminatingReason                       = terminatingReason
+	NSTemplateSetUpdatingReason                          = updatingReason
+	NSTemplateSetUpdateFailedReason                      = "UpdateFailed"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -38,6 +39,10 @@ type NSTemplateSetSpec struct {
 	// The namespace templates
 	// +listType
 	Namespaces []NSTemplateSetNamespace `json:"namespaces"`
+
+	// the cluster resources template (for cluster-wide quotas, etc.)
+	// +optional
+	ClusterResources *NSTemplateSetClusterResources `json:"clusterResources,omitempty"`
 }
 
 // NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
@@ -49,6 +54,18 @@ type NSTemplateSetNamespace struct {
 	Revision string `json:"revision"`
 
 	// Optional field. Used to specify a custom template
+	// +optional
+	Template string `json:"template,omitempty"`
+}
+
+// NSTemplateSetClusterResources defines the cluster-scoped resources associated with a given user
+type NSTemplateSetClusterResources struct {
+
+	// The revision of the corresponding template
+	Revision string `json:"revision"`
+
+	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
+	// +optional
 	Template string `json:"template,omitempty"`
 }
 
