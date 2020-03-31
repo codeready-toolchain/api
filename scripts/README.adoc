@@ -28,7 +28,7 @@ It generates:
 ** `install_operator.yaml` that installs the operator using `OperatorGroup` and `Subscription` resources.
 
 Under the hood, it runs the `operator-sdk` command with specific parameters.
-Based on the fact if the operator repository contains CRD types (if it contains `pkg/apis/toolchain/v1alpha1` directory) it decides where the `operator-sdk` command will be executed.
+If the operator repository contains CRD types (i.e., contains the `pkg/apis/toolchain/v1alpha1` directory) it decides where the `operator-sdk` command will be executed.
 
 * If the repository contains the CRD types (in case of toolchain-operator) then the command is executed inside of the operator repo.
 * If the repository doesn't contain the CRD types (in case of hosted toolchain operators) then the command is executed inside of codeready-toolchain/api repo. To do that, the script:
