@@ -97,6 +97,10 @@ read_arguments() {
         exit 1;
     fi
 
+    cd ${PRJ_ROOT_DIR}
+    PRJ_ROOT_DIR=${PWD}
+    cd - > /dev/null
+
     if [[ -n "${EMBEDDED_REPO_URL}" ]] && [[ -n "${MAIN_REPO_URL}" ]]; then
         echo "you cannot specify both parameters '--main-repo' and '--embedded-repo' at the same time - use only one" >> /dev/stderr
         user_help
@@ -140,12 +144,51 @@ generate_bundle() {
     if [[ -n "${CHANNEL}" ]]; then
         CHANNEL_PARAM="--csv-channel ${CHANNEL}"
     fi
+    CURRENT_DIR=${PWD}
 
     echo "## Generating operator bundle of project '${PRJ_NAME}' ..."
-    CURRENT_DIR=${PWD}
-    cd ${PRJ_ROOT_DIR}
-    operator-sdk olm-catalog gen-csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
-    cd ${CURRENT_DIR}
+
+    # check if pkg/apis/toolchain/v1alpha1/ folder is available, if yes then run "operator-sdk generate csv" within the operator repo directory
+    if [[ -d "${PRJ_ROOT_DIR}/pkg/apis/toolchain/v1alpha1" ]]; then
+        echo "  - running 'operator-sdk generate csv' command inside of the operator directory '${PRJ_ROOT_DIR}'"
+        cd ${PRJ_ROOT_DIR}
+        operator-sdk generate csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+        cd ${CURRENT_DIR}
+    else
+        # We have to run operator-sdk generate from the codeready-toolchain/api repo so it can reach the api source code to scan annotations
+        # So, we either copy or clone codeready-toolchain/api repo to tmp dir, generate a temporal csv-config.yaml which points to the specific operator manifests and feed it to the generator
+        GENERATE_BUNDLE_TMP_DIR="/tmp/generate_bundle"
+        API_TMP_DIR="${GENERATE_BUNDLE_TMP_DIR}/api"
+        API_PACKAGE_DIR="${API_TMP_DIR}/deploy/olm-catalog/${OPERATOR_NAME}"
+        TMP_CSV_CONFIG="${GENERATE_BUNDLE_TMP_DIR}/${PRJ_NAME}_csv-config.yaml"
+
+        rm -rf ${GENERATE_BUNDLE_TMP_DIR} > /dev/null || true
+        mkdir ${GENERATE_BUNDLE_TMP_DIR}
+
+        # check if the script directory is api repository directory - contains ../cmd/manager/main.go
+        # if it is, then copy the directory to the temporary one, if not then clone the repo there
+        SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
+        if [[ -f ${SCRIPT_DIR}/../cmd/manager/main.go ]]; then
+            cp -r ${SCRIPT_DIR}/.. ${API_TMP_DIR}
+        else
+            git clone https://github.com/codeready-toolchain/api.git ${API_TMP_DIR}
+        fi
+
+        # copy the operator package directory from the operator repo to api to generate using the latest manifests
+        mkdir -p ${API_PACKAGE_DIR}
+        cp -r ${PKG_DIR} ${API_PACKAGE_DIR}/..
+
+        # Replace the REPLACE_ROOT_PATH inside of the package file and store the new version in tmp file
+        sed -e "s|REPLACE_ROOT_PATH|${PRJ_ROOT_DIR}|g" ${PRJ_ROOT_DIR}/deploy/olm-catalog/csv-config.yaml > ${TMP_CSV_CONFIG}
+
+        echo "  - running 'operator-sdk generate csv' command inside of the codeready-toolchain/api directory '${API_TMP_DIR}'"
+        cd ${API_TMP_DIR}
+        operator-sdk generate csv --csv-config ${TMP_CSV_CONFIG} --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+        cd ${CURRENT_DIR}
+
+        # Copy the regenerated operator package directory back
+        cp -r ${API_PACKAGE_DIR} ${PKG_DIR}/..
+    fi
 
     CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml || true`
     if [[ -n "${REPLACE_VERSION}" ]]; then
