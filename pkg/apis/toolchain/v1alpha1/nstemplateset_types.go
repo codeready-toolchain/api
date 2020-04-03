@@ -7,10 +7,12 @@ import (
 )
 
 const (
-	OwnerLabelKey    = LabelKeyPrefix + "owner"
-	RevisionLabelKey = LabelKeyPrefix + "revision"
-	TypeLabelKey     = LabelKeyPrefix + "type"
-	TierLabelKey     = LabelKeyPrefix + "tier"
+	OwnerLabelKey      = LabelKeyPrefix + "owner"
+	RevisionLabelKey   = LabelKeyPrefix + "revision"
+	TypeLabelKey       = LabelKeyPrefix + "type"
+	TierLabelKey       = LabelKeyPrefix + "tier"
+	ProviderLabelKey   = LabelKeyPrefix + "provider"
+	ProviderLabelValue = "codeready-toolchain"
 )
 
 // These are valid status condition reasons of a NSTemplateSet
