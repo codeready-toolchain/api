@@ -11,6 +11,7 @@ const (
 	RevisionLabelKey = LabelKeyPrefix + "revision"
 	TypeLabelKey     = LabelKeyPrefix + "type"
 	TierLabelKey     = LabelKeyPrefix + "tier"
+	ProviderLabelKey = LabelKeyPrefix + "provider"
 )
 
 // These are valid status condition reasons of a NSTemplateSet
