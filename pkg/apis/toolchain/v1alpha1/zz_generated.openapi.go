@@ -1021,7 +1021,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 						},
 					},
 				},
-				Required: []string{"username", "givenName", "familyName", "company"},
+				Required: []string{"username"},
 			},
 		},
 	}
