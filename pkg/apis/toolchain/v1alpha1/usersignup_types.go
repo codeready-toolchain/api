@@ -62,6 +62,18 @@ type UserSignupSpec struct {
 
 	// The user's username, obtained from the identity provider.
 	Username string `json:"username"`
+
+	// The user's first name, obtained from the identity provider.
+	// +optional
+	GivenName string `json:"givenName,omitempty"`
+
+	// The user's last name, obtained from the identity provider.
+	// +optional
+	FamilyName string `json:"familyName,omitempty"`
+
+	// The user's company name, obtained from the identity provider.
+	// +optional
+	Company string `json:"company,omitempty"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup
@@ -92,6 +104,9 @@ type UserSignupStatus struct {
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=`.spec.userID`,priority=1
 // +kubebuilder:printcolumn:name="Username",type="string",JSONPath=`.spec.username`
+// +kubebuilder:printcolumn:name="First Name",type="string",JSONPath=`.spec.givenName`,priority=1
+// +kubebuilder:printcolumn:name="Last Name",type="string",JSONPath=`.spec.familyName`,priority=1
+// +kubebuilder:printcolumn:name="Company",type="string",JSONPath=`.spec.company`,priority=1
 // +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=`.spec.targetCluster`,priority=1
 // +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
