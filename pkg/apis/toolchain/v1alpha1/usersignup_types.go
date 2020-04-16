@@ -65,15 +65,15 @@ type UserSignupSpec struct {
 
 	// The user's first name, obtained from the identity provider.
 	// +optional
-	GivenName string `json:"givenName"`
+	GivenName string `json:"givenName,omitempty"`
 
 	// The user's last name, obtained from the identity provider.
 	// +optional
-	FamilyName string `json:"familyName"`
+	FamilyName string `json:"familyName,omitempty"`
 
 	// The user's company name, obtained from the identity provider.
 	// +optional
-	Company string `json:"company"`
+	Company string `json:"company,omitempty"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup
