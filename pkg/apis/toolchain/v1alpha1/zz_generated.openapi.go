@@ -41,6 +41,11 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":            schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":        schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":      schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Notification":              schema_pkg_apis_toolchain_v1alpha1_Notification(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationSpec":          schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationStatus":        schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationTemplate":      schema_pkg_apis_toolchain_v1alpha1_NotificationTemplate(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationTemplateSpec":  schema_pkg_apis_toolchain_v1alpha1_NotificationTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationService":       schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec":   schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus": schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
@@ -630,6 +635,180 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.Referenc
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_Notification(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Notification registers a notification in the CodeReady Toolchain",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NotificationSpec defines the desired state of Notification",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"userID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"template": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Template is the notification template",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"userID", "template"},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NotificationStatus defines the observed state of Notification",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type":       "",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current Notification conditions Supported condition types: Delivered",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_NotificationTemplate(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NotificationTemplate defines a notification template in the CodeReady Toolchain",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationTemplateSpec"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationTemplateSpec", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_NotificationTemplateSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NotificationTemplateSpec defines the template used for generating notifications",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"subject": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Subject is the subject line (e.g. in an email) for the notification",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"content": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Content defines the content of the notification",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"subject", "content"},
+			},
+		},
 	}
 }
 
