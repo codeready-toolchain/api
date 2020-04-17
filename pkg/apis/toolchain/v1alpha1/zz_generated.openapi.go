@@ -1178,6 +1178,27 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 							Format:      "",
 						},
 					},
+					"givenName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The user's first name, obtained from the identity provider.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"familyName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The user's last name, obtained from the identity provider.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"company": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The user's company name, obtained from the identity provider.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"username"},
 			},
