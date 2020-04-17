@@ -19,10 +19,12 @@ type NotificationSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
+	// UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by
+	// the notification service (i.e. the NotificationController) to lookup the UserSignup resource for the user,
+	// and extract from it the values required to generate the notification content and to deliver the notification
 	UserID string `json:"userID"`
 
-	// Template is the notification template
+	// Template is the name of the NotificationTemplate resource that will be used to generate the notification
 	Template string `json:"template"`
 }
 
