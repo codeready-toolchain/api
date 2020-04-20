@@ -9,6 +9,9 @@ const (
 
 	// NotificationDelivered reflects whether the notification has been delivered to the user
 	NotificationDelivered ConditionType = "Delivered"
+
+	// Status condition reasons
+	NotificationInvalidTemplateNameReason = "InvalidTemplateName"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
