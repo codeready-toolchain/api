@@ -23,6 +23,8 @@ type TierTemplateSpec struct {
 
 // TierTemplate is the Schema for the tiertemplates API
 // +kubebuilder:resource:path=tiertemplates,scope=Namespaced
+// +kubebuilder:printcolumn:name="Type",type="string",JSONPath=`.spec.type`
+// +kubebuilder:printcolumn:name="Revision",type="string",JSONPath=`.spec.revision`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Template Tier"
 type TierTemplate struct {
