@@ -15,7 +15,7 @@ type TierTemplateSpec struct {
 	// The revision of the corresponding template
 	Revision string `json:"revision"`
 
-	// Template the OpenShift Template to be used to provision a user's namespace or cluster-wide resources
+	// Template contains an OpenShift Template to be used to provision either a user's namespace or cluster-wide resources
 	Template templatev1.Template `json:"template"`
 }
 
