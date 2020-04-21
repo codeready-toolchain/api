@@ -9,7 +9,7 @@ import (
 // +k8s:openapi-gen=true
 type TierTemplateSpec struct {
 	
-	// The type of the template. For example: "code", "dev" or "stage"
+	// The type of the template. For example: "code", "dev", "stage" or "cluster"
 	Type string `json:"type"`
 
 	// The revision of the corresponding template
