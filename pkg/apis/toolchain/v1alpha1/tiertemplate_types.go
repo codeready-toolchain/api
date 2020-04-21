@@ -8,7 +8,7 @@ import (
 // TierTemplateSpec defines the desired state of TierTemplate
 // +k8s:openapi-gen=true
 type TierTemplateSpec struct {
-	
+
 	// The type of the template. For example: "code", "dev", "stage" or "cluster"
 	Type string `json:"type"`
 
@@ -41,8 +41,4 @@ type TierTemplateList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []TierTemplate `json:"items"`
-}
-
-func init() {
-	SchemeBuilder.Register(&TierTemplate{}, &TierTemplateList{})
 }
