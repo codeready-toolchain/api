@@ -929,7 +929,7 @@ func schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref common.ReferenceCal
 				Properties: map[string]spec.Schema{
 					"type": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The type of the template. For example: \"code\", \"dev\" or \"stage\"",
+							Description: "The type of the template. For example: \"code\", \"dev\", \"stage\" or \"cluster\"",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -943,7 +943,7 @@ func schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref common.ReferenceCal
 					},
 					"template": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Template the OpenShift Template to be used to provision a user's namespace or cluster-wide resources",
+							Description: "Template contains an OpenShift Template to be used to provision either a user's namespace or cluster-wide resources",
 							Ref:         ref("github.com/openshift/api/template/v1.Template"),
 						},
 					},
