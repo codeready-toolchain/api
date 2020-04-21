@@ -60,7 +60,7 @@ type NSTemplateSetNamespace struct {
 	// +optional
 	Template string `json:"template,omitempty"`
 
-	// TemplateRef the name of the TemplateTier resource on the host cluster and which contains the template to use
+	// The name of the TierTemplate resource that exists in the host cluster and that contains the template to be used
 	// +optional
 	TemplateRef string `json:"templateRef,omitempty"`
 }
