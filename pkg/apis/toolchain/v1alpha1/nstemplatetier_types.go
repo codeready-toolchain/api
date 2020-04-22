@@ -34,7 +34,7 @@ type NSTemplateTierNamespace struct {
 	// Template contains an OpenShift Template to be used for namespace provisioning
 	Template templatev1.Template `json:"template"`
 
-	// TemplateRef the name of the TemplateTier resource on the host cluster and which contains the template to use
+	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
 	// +optional
 	TemplateRef string `json:"templateRef,omitempty"`
 }
@@ -48,7 +48,7 @@ type NSTemplateTierClusterResources struct {
 	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
 	Template templatev1.Template `json:"template"`
 
-	// TemplateRef the name of the TemplateTier resource which contains the template to use
+	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
 	// +optional
 	TemplateRef string `json:"templateRef,omitempty"`
 }
