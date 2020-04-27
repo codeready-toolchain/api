@@ -45,3 +45,7 @@ type TierTemplateList struct {
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []TierTemplate `json:"items"`
 }
+
+func init() {
+	SchemeBuilder.Register(&TierTemplate{}, &TierTemplateList{})
+}
