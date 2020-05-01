@@ -12,6 +12,8 @@ const (
 	MasterUserRecordUserAccountNotReady ConditionType = "UserAccountNotReady"
 	// MasterUserRecordReady means the Master User Record provisioning succeeded
 	MasterUserRecordReady ConditionType = "Ready"
+	// MasterUserRecordUserNotificationSent is used to track the status of notifications
+	MasterUserRecordUserNotificationSent ConditionType = "NotificationSent"
 
 	// Status condition reasons
 	MasterUserRecordUnableToGetUserAccountReason             = "UnableToGetUserAccount"
