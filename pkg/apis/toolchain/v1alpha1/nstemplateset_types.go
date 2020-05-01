@@ -59,6 +59,10 @@ type NSTemplateSetNamespace struct {
 	// Optional field. Used to specify a custom template
 	// +optional
 	Template string `json:"template,omitempty"`
+
+	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
+	// +optional
+	TemplateRef string `json:"templateRef,omitempty"`
 }
 
 // NSTemplateSetClusterResources defines the cluster-scoped resources associated with a given user
@@ -70,6 +74,10 @@ type NSTemplateSetClusterResources struct {
 	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
 	// +optional
 	Template string `json:"template,omitempty"`
+
+	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
+	// +optional
+	TemplateRef string `json:"templateRef,omitempty"`
 }
 
 // NSTemplateSetStatus defines the observed state of NSTemplateSet

@@ -49,6 +49,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationService":       schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec":   schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus": schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TierTemplateSpec":          schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":               schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":           schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase":       schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref),
@@ -691,14 +692,14 @@ func schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref common.ReferenceCal
 				Properties: map[string]spec.Schema{
 					"userID": {
 						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
+							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by the notification service (i.e. the NotificationController) to lookup the UserSignup resource for the user, and extract from it the values required to generate the notification content and to deliver the notification",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"template": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Template is the notification template",
+							Description: "Template is the name of the NotificationTemplate resource that will be used to generate the notification",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -916,6 +917,49 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "TierTemplateSpec defines the desired state of TierTemplate",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"tierName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The tier of the template. For example: \"basic\", \"advanced\", or \"team\"",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"type": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The type of the template. For example: \"code\", \"dev\", \"stage\" or \"cluster\"",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"revision": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The revision of the corresponding template",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"template": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Template contains an OpenShift Template to be used to provision either a user's namespace or cluster-wide resources",
+							Ref:         ref("github.com/openshift/api/template/v1.Template"),
+						},
+					},
+				},
+				Required: []string{"tierName", "type", "revision", "template"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/openshift/api/template/v1.Template"},
 	}
 }
 
