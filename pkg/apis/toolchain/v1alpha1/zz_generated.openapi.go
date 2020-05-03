@@ -927,6 +927,13 @@ func schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref common.ReferenceCal
 				Description: "TierTemplateSpec defines the desired state of TierTemplate",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"tierName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The tier of the template. For example: \"basic\", \"advanced\", or \"team\"",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"type": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The type of the template. For example: \"code\", \"dev\", \"stage\" or \"cluster\"",
@@ -948,7 +955,7 @@ func schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref common.ReferenceCal
 						},
 					},
 				},
-				Required: []string{"type", "revision", "template"},
+				Required: []string{"tierName", "type", "revision", "template"},
 			},
 		},
 		Dependencies: []string{
