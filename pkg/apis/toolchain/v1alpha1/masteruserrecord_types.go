@@ -13,22 +13,22 @@ const (
 	// MasterUserRecordReady means the Master User Record provisioning succeeded
 	MasterUserRecordReady ConditionType = "Ready"
 	// MasterUserRecordUserProvisionedNotificationCreated means that the Notification CR was created so the user should be notified about the successful provisioning
-	MasterUserRecordUserProvisioningNotificationCreated ConditionType = "ProvisioningNotificationCreated"
+	MasterUserRecordUserProvisionedNotificationCreated ConditionType = "ProvisioningNotificationCreated"
 
 	// Status condition reasons
-	MasterUserRecordUnableToGetUserAccountReason              = "UnableToGetUserAccount"
-	MasterUserRecordUnableToCreateUserAccountReason           = "UnableToCreateUserAccount"
-	MasterUserRecordUnableToSynchronizeUserAccountSpecReason  = "UnableToSynchronizeUserAccountSpecAccount"
-	MasterUserRecordTargetClusterNotReadyReason               = "TargetClusterNotReady"
-	MasterUserRecordProvisioningReason                        = provisioningReason
-	MasterUserRecordProvisionedReason                         = provisionedReason
-	MasterUserRecordUpdatingReason                            = updatingReason
-	MasterUserRecordUnableToAddFinalizerReason                = "UnableToAddFinalizer"
-	MasterUserRecordUnableToDeleteUserAccountsReason          = "UnableToDeleteUserAccounts"
-	MasterUserRecordUnableToRemoveFinalizerReason             = "UnableToRemoveFinalizer"
-	MasterUserRecordDisabledReason                            = disabledReason
-	MasterUserRecordUserProvisioningNotificationCreatedReason = "Created"
-	MasterUserRecordUserProvisioningNotificationFailedReason  = "Failed"
+	MasterUserRecordUnableToGetUserAccountReason             = "UnableToGetUserAccount"
+	MasterUserRecordUnableToCreateUserAccountReason          = "UnableToCreateUserAccount"
+	MasterUserRecordUnableToSynchronizeUserAccountSpecReason = "UnableToSynchronizeUserAccountSpecAccount"
+	MasterUserRecordTargetClusterNotReadyReason              = "TargetClusterNotReady"
+	MasterUserRecordProvisioningReason                       = provisioningReason
+	MasterUserRecordProvisionedReason                        = provisionedReason
+	MasterUserRecordUpdatingReason                           = updatingReason
+	MasterUserRecordUnableToAddFinalizerReason               = "UnableToAddFinalizer"
+	MasterUserRecordUnableToDeleteUserAccountsReason         = "UnableToDeleteUserAccounts"
+	MasterUserRecordUnableToRemoveFinalizerReason            = "UnableToRemoveFinalizer"
+	MasterUserRecordDisabledReason                           = disabledReason
+	MasterUserRecordUserProvisionedNotificationCreatedReason = "Created"
+	MasterUserRecordUserProvisionedNotificationFailedReason  = "Failed"
 
 	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
 )
