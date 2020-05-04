@@ -12,7 +12,7 @@ const (
 	MasterUserRecordUserAccountNotReady ConditionType = "UserAccountNotReady"
 	// MasterUserRecordReady means the Master User Record provisioning succeeded
 	MasterUserRecordReady ConditionType = "Ready"
-	// MasterUserRecordProvisioningNotificationCreated is used to track the status of provisioned notification
+	// MasterUserRecordUserProvisionedNotificationCreated means that the Notification CR was created so the user should be notified about the successful provisioning
 	MasterUserRecordUserProvisioningNotificationCreated ConditionType = "ProvisioningNotificationCreated"
 
 	// Status condition reasons
