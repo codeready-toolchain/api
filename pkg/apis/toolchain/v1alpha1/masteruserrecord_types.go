@@ -12,6 +12,8 @@ const (
 	MasterUserRecordUserAccountNotReady ConditionType = "UserAccountNotReady"
 	// MasterUserRecordReady means the Master User Record provisioning succeeded
 	MasterUserRecordReady ConditionType = "Ready"
+	// MasterUserRecordUserProvisionedNotificationCreated means that the Notification CR was created so the user should be notified about the successful provisioning
+	MasterUserRecordUserProvisionedNotificationCreated ConditionType = "UserProvisionedNotificationCreated"
 
 	// Status condition reasons
 	MasterUserRecordUnableToGetUserAccountReason             = "UnableToGetUserAccount"
@@ -25,8 +27,9 @@ const (
 	MasterUserRecordUnableToDeleteUserAccountsReason         = "UnableToDeleteUserAccounts"
 	MasterUserRecordUnableToRemoveFinalizerReason            = "UnableToRemoveFinalizer"
 	MasterUserRecordDisabledReason                           = disabledReason
-
-	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
+	MasterUserRecordNotificationCRCreatedReason              = "NotificationCRCreated"
+	MasterUserRecordNotificationCRCreationFailedReason       = "NotificationCRCreationFailed"
+	MasterUserRecordUserIDLabelKey                           = LabelKeyPrefix + "user-id"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
