@@ -7,12 +7,11 @@ import (
 )
 
 const (
-	OwnerLabelKey      = LabelKeyPrefix + "owner"
-	RevisionLabelKey   = LabelKeyPrefix + "revision"
-	TypeLabelKey       = LabelKeyPrefix + "type"
-	TierLabelKey       = LabelKeyPrefix + "tier"
-	ProviderLabelKey   = LabelKeyPrefix + "provider"
-	ProviderLabelValue = "codeready-toolchain"
+	OwnerLabelKey       = LabelKeyPrefix + "owner"
+	TypeLabelKey        = LabelKeyPrefix + "type"
+	TemplateRefLabelKey = LabelKeyPrefix + "templateref"
+	ProviderLabelKey    = LabelKeyPrefix + "provider"
+	ProviderLabelValue  = "codeready-toolchain"
 )
 
 // These are valid status condition reasons of a NSTemplateSet
@@ -50,34 +49,34 @@ type NSTemplateSetSpec struct {
 
 // NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
 type NSTemplateSetNamespace struct {
-	// The type of the namespace. For example: ide|cicd|stage|default
-	Type string `json:"type"`
+	//The type of the namespace. For example: ide|cicd|stage|default
+	// +optional
+	Type string `json:"type,omitempty"`
 
 	// The revision of the corresponding template
-	Revision string `json:"revision"`
+	// +optional
+	Revision string `json:"revision,omitempty"`
 
 	// Optional field. Used to specify a custom template
 	// +optional
 	Template string `json:"template,omitempty"`
 
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
-	// +optional
-	TemplateRef string `json:"templateRef,omitempty"`
+	TemplateRef string `json:"templateRef"`
 }
 
 // NSTemplateSetClusterResources defines the cluster-scoped resources associated with a given user
 type NSTemplateSetClusterResources struct {
-
 	// The revision of the corresponding template
-	Revision string `json:"revision"`
+	// +optional
+	Revision string `json:"revision,omitempty"`
 
 	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
 	// +optional
 	Template string `json:"template,omitempty"`
 
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
-	// +optional
-	TemplateRef string `json:"templateRef,omitempty"`
+	TemplateRef string `json:"templateRef"`
 }
 
 // NSTemplateSetStatus defines the observed state of NSTemplateSet
