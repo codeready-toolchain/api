@@ -10,6 +10,7 @@ const (
 	OwnerLabelKey       = LabelKeyPrefix + "owner"
 	TypeLabelKey        = LabelKeyPrefix + "type"
 	TemplateRefLabelKey = LabelKeyPrefix + "templateref"
+	TierLabelKey        = LabelKeyPrefix + "tier"
 	ProviderLabelKey    = LabelKeyPrefix + "provider"
 	ProviderLabelValue  = "codeready-toolchain"
 )
