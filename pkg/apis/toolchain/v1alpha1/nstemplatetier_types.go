@@ -1,7 +1,6 @@
 package v1alpha1
 
 import (
-	templatev1 "github.com/openshift/api/template/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -25,31 +24,14 @@ type NSTemplateTierSpec struct {
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource
 type NSTemplateTierNamespace struct {
 
-	// The type of the namespace. For example: ide|cicd|stage|default
-	Type string `json:"type"`
-
-	// The revision of the corresponding template
-	Revision string `json:"revision"`
-
-	// Template contains an OpenShift Template to be used for namespace provisioning
-	Template templatev1.Template `json:"template"`
-
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
-	// +optional
 	TemplateRef string `json:"templateRef,omitempty"`
 }
 
 // NSTemplateTierClusterResources defines the cluster-scoped resources associated with a given user
 type NSTemplateTierClusterResources struct {
 
-	// The revision of the corresponding template
-	Revision string `json:"revision"`
-
-	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
-	Template templatev1.Template `json:"template"`
-
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
-	// +optional
 	TemplateRef string `json:"templateRef,omitempty"`
 }
 
