@@ -23,14 +23,12 @@ type NSTemplateTierSpec struct {
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource
 type NSTemplateTierNamespace struct {
-
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
 	TemplateRef string `json:"templateRef"`
 }
 
 // NSTemplateTierClusterResources defines the cluster-scoped resources associated with a given user
 type NSTemplateTierClusterResources struct {
-
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
 	TemplateRef string `json:"templateRef"`
 }
