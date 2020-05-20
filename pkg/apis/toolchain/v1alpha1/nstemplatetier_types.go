@@ -32,7 +32,7 @@ type NSTemplateTierNamespace struct {
 type NSTemplateTierClusterResources struct {
 
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
-	TemplateRef string `json:"templateRef,omitempty"`
+	TemplateRef string `json:"templateRef"`
 }
 
 // NSTemplateTierStatus defines the observed state of NSTemplateTier
