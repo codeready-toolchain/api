@@ -5,6 +5,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// ClusterResourcesType contains a type name of the template containing cluster-scoped resources
+const ClusterResourcesTemplateType = "clusterresources"
+
 // TierTemplateSpec defines the desired state of TierTemplate
 // +k8s:openapi-gen=true
 type TierTemplateSpec struct {
