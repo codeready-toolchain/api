@@ -50,7 +50,7 @@ type ChangeTierRequestStatus struct {
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
-	// +listType
+	// +listType=set
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 

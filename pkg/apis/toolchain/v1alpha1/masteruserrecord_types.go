@@ -58,7 +58,7 @@ type MasterUserRecordSpec struct {
 	Deprovisioned bool `json:"deprovisioned,omitempty"`
 
 	// The list of user accounts in the member clusters which belong to this MasterUserRecord
-	// +listType
+	// +listType=set
 	UserAccounts []UserAccountEmbedded `json:"userAccounts,omitempty"`
 }
 
@@ -87,11 +87,11 @@ type MasterUserRecordStatus struct {
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
-	// +listType
+	// +listType=set
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
 	// The status of user accounts in the member clusters which belong to this MasterUserRecord
-	// +listType
+	// +listType=set
 	UserAccounts []UserAccountStatusEmbedded `json:"userAccounts,omitempty"`
 }
 
