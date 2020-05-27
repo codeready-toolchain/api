@@ -36,9 +36,6 @@ type NSTemplateSetSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// The name of the tier represented by this template set
-	TierName string `json:"tierName"`
-
 	// The namespace templates
 	// +listType
 	Namespaces []NSTemplateSetNamespace `json:"namespaces"`
@@ -86,7 +83,6 @@ type NSTemplateSetStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
-// +kubebuilder:printcolumn:name="Tier Name",type="string",JSONPath=`.spec.tierName`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:validation:XPreserveUnknownFields
@@ -114,9 +110,6 @@ func init() {
 
 // CompareTo compares given second spec with this spec
 func (first *NSTemplateSetSpec) CompareTo(second NSTemplateSetSpec) bool {
-	if first.TierName != second.TierName {
-		return false
-	}
 	return compareNamespaces(first.Namespaces, second.Namespaces)
 }
 
