@@ -443,13 +443,6 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 				Description: "NSTemplateSetSpec defines the desired state of NSTemplateSet",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"tierName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The name of the tier represented by this template set",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"namespaces": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -475,7 +468,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 						},
 					},
 				},
-				Required: []string{"tierName", "namespaces"},
+				Required: []string{"namespaces"},
 			},
 		},
 		Dependencies: []string{
