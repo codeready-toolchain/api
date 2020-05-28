@@ -14,7 +14,6 @@ type NSTemplateTierSpec struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The namespace templates
-	// +listType=set
 	Namespaces []NSTemplateTierNamespace `json:"namespaces"`
 
 	// the cluster resources template (for cluster-wide quotas, etc.)
@@ -64,7 +63,6 @@ type NSTemplateTierStatus struct {
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
-	// +listType=set
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 

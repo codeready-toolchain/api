@@ -88,7 +88,6 @@ type UserSignupStatus struct {
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
-	// +listType=set
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
 	// CompliantUsername is used to store the transformed, DNS-1123 compliant username
