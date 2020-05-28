@@ -54,12 +54,14 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 		{
 			name: "both_same",
 			first: &NSTemplateSetSpec{
+				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
 					{Template: tmpl1dev},
 					{Template: tmpl1code},
 				},
 			},
 			second: NSTemplateSetSpec{
+				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
 					{Template: tmpl2code},
 					{Template: tmpl2dev},
@@ -69,14 +71,27 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 		},
 
 		{
+			name: "tier_not_same",
+			first: &NSTemplateSetSpec{
+				TierName: "basic",
+			},
+			second: NSTemplateSetSpec{
+				TierName: "advance",
+			},
+			want: false,
+		},
+
+		{
 			name: "ns_count_not_same",
 			first: &NSTemplateSetSpec{
+				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
 					{Template: ""},
 					{Template: ""},
 				},
 			},
 			second: NSTemplateSetSpec{
+				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
 					{Template: ""},
 				},
@@ -87,12 +102,14 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 		{
 			name: "template_not_same",
 			first: &NSTemplateSetSpec{
+				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
 					{Template: tmpl1dev},
 					{Template: tmpl1code},
 				},
 			},
 			second: NSTemplateSetSpec{
+				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
 					{Template: tmpl2code},
 					{Template: ""},
