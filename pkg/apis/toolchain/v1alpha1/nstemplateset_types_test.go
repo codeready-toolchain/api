@@ -117,6 +117,44 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			},
 			want: false,
 		},
+
+		{
+			name: "ns_revision_in_templateref_not_same",
+			first: &NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []NSTemplateSetNamespace{
+					{Template: "", TemplateRef: "basic-dev-rev1"},
+					{Template: "", TemplateRef: "basic-code-rev1"},
+				},
+			},
+			second: NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []NSTemplateSetNamespace{
+					{Template: "", TemplateRef: "basic-dev-rev1"},
+					{Template: "", TemplateRef: "basic-stage-rev2"},
+				},
+			},
+			want: false,
+		},
+
+		{
+			name: "ns_type_in_templateref_not_same",
+			first: &NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []NSTemplateSetNamespace{
+					{Template: "", TemplateRef: "basic-dev-rev1"},
+					{Template: "", TemplateRef: "basic-code-rev1"},
+				},
+			},
+			second: NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []NSTemplateSetNamespace{
+					{Template: "", TemplateRef: "basic-dev-rev1"},
+					{Template: "", TemplateRef: "basic-stage-rev1"},
+				},
+			},
+			want: false,
+		},
 	}
 
 	for _, table := range tables {
