@@ -5,7 +5,7 @@ API_VERSION:=v1alpha1
 
 # how to dispatch the CRD files per repository (space-separated lists)
 HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup registrationservice banneduser changetierrequest notification tiertemplate
-MEMBER_CLUSTER_CRDS:=useraccount nstemplateset
+MEMBER_CLUSTER_CRDS:=useraccount nstemplateset idler
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
