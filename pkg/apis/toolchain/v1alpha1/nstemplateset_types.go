@@ -50,14 +50,6 @@ type NSTemplateSetSpec struct {
 
 // NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
 type NSTemplateSetNamespace struct {
-	//The type of the namespace. For example: ide|cicd|stage|default
-	// +optional
-	Type string `json:"type,omitempty"`
-
-	// The revision of the corresponding template
-	// +optional
-	Revision string `json:"revision,omitempty"`
-
 	// Optional field. Used to specify a custom template
 	// +optional
 	Template string `json:"template,omitempty"`
@@ -68,10 +60,6 @@ type NSTemplateSetNamespace struct {
 
 // NSTemplateSetClusterResources defines the cluster-scoped resources associated with a given user
 type NSTemplateSetClusterResources struct {
-	// The revision of the corresponding template
-	// +optional
-	Revision string `json:"revision,omitempty"`
-
 	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
 	// +optional
 	Template string `json:"template,omitempty"`
