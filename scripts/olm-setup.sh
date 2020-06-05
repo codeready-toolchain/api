@@ -148,11 +148,17 @@ generate_bundle() {
 
     echo "## Generating operator bundle of project '${PRJ_NAME}' ..."
 
+    IS_016=$(operator-sdk version | grep "v0.16." || true)
+
     # check if pkg/apis/toolchain/v1alpha1/ folder is available, if yes then run "operator-sdk generate csv" within the operator repo directory
     if [[ -d "${PRJ_ROOT_DIR}/pkg/apis/toolchain/v1alpha1" ]]; then
         echo "  - running 'operator-sdk generate csv' command inside of the operator directory '${PRJ_ROOT_DIR}'"
         cd ${PRJ_ROOT_DIR}
-        operator-sdk generate csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+        if [[ -n ${IS_016} ]]; then
+            operator-sdk generate csv --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+        else
+            operator-sdk generate csv --verbose --make-manifests=false --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+        fi
         cd ${CURRENT_DIR}
     else
         # We have to run operator-sdk generate from the codeready-toolchain/api repo so it can reach the api source code to scan annotations
@@ -174,20 +180,27 @@ generate_bundle() {
             git clone https://github.com/codeready-toolchain/api.git ${API_TMP_DIR}
         fi
 
-        # copy the operator package directory from the operator repo to api to generate using the latest manifests
-        mkdir -p ${API_PACKAGE_DIR}
-        cp -r ${PKG_DIR} ${API_PACKAGE_DIR}/..
-
-        # Replace the REPLACE_ROOT_PATH inside of the package file and store the new version in tmp file
-        sed -e "s|REPLACE_ROOT_PATH|${PRJ_ROOT_DIR}|g" ${PRJ_ROOT_DIR}/deploy/olm-catalog/csv-config.yaml > ${TMP_CSV_CONFIG}
-
         echo "  - running 'operator-sdk generate csv' command inside of the codeready-toolchain/api directory '${API_TMP_DIR}'"
         cd ${API_TMP_DIR}
-        operator-sdk generate csv --csv-config ${TMP_CSV_CONFIG} --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
-        cd ${CURRENT_DIR}
+        if [[ -n ${IS_016} ]]; then
+            # copy the operator package directory from the operator repo to api to generate using the latest manifests
+            mkdir -p ${API_PACKAGE_DIR}
+            cp -r ${PKG_DIR} ${API_PACKAGE_DIR}/..
 
-        # Copy the regenerated operator package directory back
-        cp -r ${API_PACKAGE_DIR} ${PKG_DIR}/..
+            # Replace the REPLACE_ROOT_PATH inside of the package file and store the new version in tmp file
+            sed -e "s|REPLACE_ROOT_PATH|${PRJ_ROOT_DIR}|g" ${PRJ_ROOT_DIR}/deploy/olm-catalog/csv-config.yaml > ${TMP_CSV_CONFIG}
+
+            operator-sdk generate csv --csv-config ${TMP_CSV_CONFIG} --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+
+            cd ${CURRENT_DIR}
+
+            # Copy the regenerated operator package directory back
+            cp -r ${API_PACKAGE_DIR} ${PKG_DIR}/..
+        else
+            operator-sdk generate csv --verbose --output-dir ${PRJ_ROOT_DIR}/deploy --deploy-dir ${PRJ_ROOT_DIR}/deploy --make-manifests=false --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+
+            cd ${CURRENT_DIR}
+        fi
     fi
 
     CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml || true`
