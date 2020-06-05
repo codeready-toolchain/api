@@ -56,15 +56,15 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			first: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
-					{Type: "dev", Revision: "rev1", Template: tmpl1dev},
-					{Type: "code", Revision: "rev1", Template: tmpl1code},
+					{Template: tmpl1dev},
+					{Template: tmpl1code},
 				},
 			},
 			second: NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
-					{Type: "code", Revision: "rev1", Template: tmpl2code},
-					{Type: "dev", Revision: "rev1", Template: tmpl2dev},
+					{Template: tmpl2code},
+					{Template: tmpl2dev},
 				},
 			},
 			want: true,
@@ -86,52 +86,14 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			first: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
-					{Type: "dev", Revision: "rev1", Template: ""},
-					{Type: "code", Revision: "rev1", Template: ""},
+					{Template: ""},
+					{Template: ""},
 				},
 			},
 			second: NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
-					{Type: "dev", Revision: "rev1", Template: ""},
-				},
-			},
-			want: false,
-		},
-
-		{
-			name: "ns_revision_not_same",
-			first: &NSTemplateSetSpec{
-				TierName: "basic",
-				Namespaces: []NSTemplateSetNamespace{
-					{Type: "dev", Revision: "rev1", Template: ""},
-					{Type: "code", Revision: "rev1", Template: ""},
-				},
-			},
-			second: NSTemplateSetSpec{
-				TierName: "basic",
-				Namespaces: []NSTemplateSetNamespace{
-					{Type: "dev", Revision: "rev1", Template: ""},
-					{Type: "code", Revision: "rev2", Template: ""},
-				},
-			},
-			want: false,
-		},
-
-		{
-			name: "ns_type_not_same",
-			first: &NSTemplateSetSpec{
-				TierName: "basic",
-				Namespaces: []NSTemplateSetNamespace{
-					{Type: "dev", Revision: "rev1", Template: ""},
-					{Type: "code", Revision: "rev1", Template: ""},
-				},
-			},
-			second: NSTemplateSetSpec{
-				TierName: "basic",
-				Namespaces: []NSTemplateSetNamespace{
-					{Type: "dev", Revision: "rev1", Template: ""},
-					{Type: "stage", Revision: "rev1", Template: ""},
+					{Template: ""},
 				},
 			},
 			want: false,
@@ -142,15 +104,53 @@ func TestNSTemplateSetSpecCompareTo(t *testing.T) {
 			first: &NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
-					{Type: "dev", Revision: "rev1", Template: tmpl1dev},
-					{Type: "code", Revision: "rev1", Template: tmpl1code},
+					{Template: tmpl1dev},
+					{Template: tmpl1code},
 				},
 			},
 			second: NSTemplateSetSpec{
 				TierName: "basic",
 				Namespaces: []NSTemplateSetNamespace{
-					{Type: "code", Revision: "rev1", Template: tmpl2code},
-					{Type: "dev", Revision: "rev1", Template: ""},
+					{Template: tmpl2code},
+					{Template: ""},
+				},
+			},
+			want: false,
+		},
+
+		{
+			name: "ns_revision_in_templateref_not_same",
+			first: &NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []NSTemplateSetNamespace{
+					{Template: "", TemplateRef: "basic-dev-rev1"},
+					{Template: "", TemplateRef: "basic-code-rev1"},
+				},
+			},
+			second: NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []NSTemplateSetNamespace{
+					{Template: "", TemplateRef: "basic-dev-rev1"},
+					{Template: "", TemplateRef: "basic-stage-rev2"},
+				},
+			},
+			want: false,
+		},
+
+		{
+			name: "ns_type_in_templateref_not_same",
+			first: &NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []NSTemplateSetNamespace{
+					{Template: "", TemplateRef: "basic-dev-rev1"},
+					{Template: "", TemplateRef: "basic-code-rev1"},
+				},
+			},
+			second: NSTemplateSetSpec{
+				TierName: "basic",
+				Namespaces: []NSTemplateSetNamespace{
+					{Template: "", TemplateRef: "basic-dev-rev1"},
+					{Template: "", TemplateRef: "basic-stage-rev1"},
 				},
 			},
 			want: false,

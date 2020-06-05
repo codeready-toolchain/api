@@ -78,12 +78,14 @@ generate-crds: vendor prepare-host-operator prepare-member-operator generate-kub
     # When dispatching CRD files we delete two first lines of CRDs ("\n----\n") to make a single manifest file out of the original multiple manifest file
     # Also we remove the line with 'type: object' from validation.openAPIV3Schema.properties path because it's incompatible with kube 1.11 which is used by minishift
 	@for crd in $(HOST_CLUSTER_CRDS) ; do \
-		sed -e '1,2d' -e '/^      type: object/d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml > ../host-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
-		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml; \
+		crd_plural=$$(echo $${crd} | sed -e 's/s$$/se/')s; \
+		sed -e '1,2d' -e '/^      type: object/d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml > ../host-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
+		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml; \
 	done
 	@for crd in $(MEMBER_CLUSTER_CRDS) ; do \
-		sed -e '1,2d' -e '/^      type: object/d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml > ../member-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
-		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd}s.yaml; \
+		crd_plural=$$(echo $${crd} | sed -e 's/s$$/se/')s; \
+		sed -e '1,2d' -e '/^      type: object/d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml > ../member-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
+		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml; \
 	done
 ifneq ($(wildcard deploy/crds/*.yaml),)
 	@echo "ERROR: some CRD files were not dispatched: $(wildcard deploy/crds/*.yaml)"
