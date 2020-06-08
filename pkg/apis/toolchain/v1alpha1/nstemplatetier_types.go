@@ -13,8 +13,7 @@ type NSTemplateTierSpec struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The namespace templates
-	// +listType=map
-	// +listMapKey=type
+	// +listType=atomic
 	Namespaces []NSTemplateTierNamespace `json:"namespaces"`
 
 	// the cluster resources template (for cluster-wide quotas, etc.)
