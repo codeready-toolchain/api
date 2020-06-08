@@ -22,7 +22,8 @@ type RegistrationServiceSpec struct {
 
 	// The environment variables are supposed to be set to registration service deployment template
 	// +optional
-	EnvironmentVariables map[string]string `json:"envVars,omitempty"`
+	// +mapType=atomic
+	EnvironmentVariables map[string]string `json:"environmentVariables,omitempty"`
 }
 
 // RegistrationServiceStatus defines the observed state of RegistrationService
@@ -38,7 +39,8 @@ type RegistrationServiceStatus struct {
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
-	// +listType
+	// +listType=map
+	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
