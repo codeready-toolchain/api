@@ -40,8 +40,7 @@ type NSTemplateSetSpec struct {
 	TierName string `json:"tierName"`
 
 	// The namespace templates
-	// +listType=map
-	// +listMapKey=type
+	// +listType=atomic
 	Namespaces []NSTemplateSetNamespace `json:"namespaces"`
 
 	// the cluster resources template (for cluster-wide quotas, etc.)

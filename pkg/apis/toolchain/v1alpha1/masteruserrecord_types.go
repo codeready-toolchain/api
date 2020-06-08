@@ -93,8 +93,7 @@ type MasterUserRecordStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
 	// The status of user accounts in the member clusters which belong to this MasterUserRecord
-	// +listType=map
-	// +listMapKey=targetCluster
+	// +listType=atomic
 	UserAccounts []UserAccountStatusEmbedded `json:"userAccounts,omitempty"`
 }
 
