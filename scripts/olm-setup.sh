@@ -131,7 +131,10 @@ setup_variables() {
     CRDS_DIR=${PRJ_ROOT_DIR}/deploy/crds
     PKG_DIR=${PRJ_ROOT_DIR}/deploy/olm-catalog/${OPERATOR_NAME}
     PKG_FILE=${PKG_DIR}/${OPERATOR_NAME}.package.yaml
-    CSV_DIR=${PKG_DIR}/${NEXT_CSV_VERSION}
+    CSV_DIR=${PKG_DIR}/manifests
+    if [[ -d ${PKG_DIR}/0.0.1 ]] || [[ ${NEXT_CSV_VERSION} != ${DEFAULT_VERSION} ]]; then
+        CSV_DIR=${PKG_DIR}/${NEXT_CSV_VERSION}
+    fi
 
     export GO111MODULE=on
 }
@@ -146,13 +149,19 @@ generate_bundle() {
     fi
     CURRENT_DIR=${PWD}
 
+    OUTPUT_DIR_PARAM="--output-dir ${PKG_DIR}"
+    if [[ -d ${PKG_DIR}/0.0.1 ]] || [[ ${NEXT_CSV_VERSION} != ${DEFAULT_VERSION} ]]; then
+        MAKE_MANIFESTS_PARAM="--make-manifests=false"
+        OUTPUT_DIR_PARAM="--output-dir ${PRJ_ROOT_DIR}/deploy"
+    fi
+
     echo "## Generating operator bundle of project '${PRJ_NAME}' ..."
 
     # check if pkg/apis/toolchain/v1alpha1/ folder is available, if yes then run "operator-sdk generate csv" without pointing to specific dir as sources of api types
     if [[ -d "${PRJ_ROOT_DIR}/pkg/apis/toolchain/v1alpha1" ]]; then
         echo "  - running 'operator-sdk generate csv' using the local api types"
         cd ${PRJ_ROOT_DIR}
-        operator-sdk generate csv --verbose --make-manifests=false --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+        operator-sdk generate csv --verbose --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM} ${OUTPUT_DIR_PARAM} ${MAKE_MANIFESTS_PARAM}
         cd ${CURRENT_DIR}
     else
         # We have to run operator-sdk generate from the codeready-toolchain/api repo so it can reach the api source code to scan annotations
@@ -175,24 +184,20 @@ generate_bundle() {
 
         cd ${API_REPO_DIR}
         echo "  - running 'operator-sdk generate csv' command inside of the codeready-toolchain/api directory '${API_REPO_DIR}'"
-        operator-sdk generate csv --verbose --make-manifests=false --output-dir ${PRJ_ROOT_DIR}/deploy --deploy-dir ${PRJ_ROOT_DIR}/deploy --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+        operator-sdk generate csv --verbose  --deploy-dir ${PRJ_ROOT_DIR}/deploy --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM} ${OUTPUT_DIR_PARAM} ${MAKE_MANIFESTS_PARAM}
         cd ${CURRENT_DIR}
     fi
 
     CURRENT_REPLACE_CLAUSE=`grep "replaces:" ${CSV_DIR}/*clusterserviceversion.yaml || true`
     if [[ -n "${REPLACE_VERSION}" ]]; then
-        if [[ -n "${TEMPLATE_CSV_VERSION}" ]]; then
-            CSV_SED_REPLACE+=";s/replaces: ${OPERATOR_NAME}.v${TEMPLATE_CSV_VERSION}/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
-        else
-            if [[ -n "${CURRENT_REPLACE_CLAUSE}" ]]; then
-                CSV_SED_REPLACE+=";s/replaces: ${OPERATOR_NAME}.*$/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
-            else
-                CSV_SED_REPLACE+=";s/  version: ${NEXT_CSV_VERSION}/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}\n  version: ${NEXT_CSV_VERSION}/"
-            fi
-        fi
-    else
         if [[ -n "${CURRENT_REPLACE_CLAUSE}" ]]; then
-            CSV_SED_REPLACE+="/${CURRENT_REPLACE_CLAUSE}$/d"
+            if [[ -n "${TEMPLATE_CSV_VERSION}" ]]; then
+                CSV_SED_REPLACE+=";s/replaces: ${OPERATOR_NAME}.v${TEMPLATE_CSV_VERSION}/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
+            else
+                CSV_SED_REPLACE+=";s/replaces: ${OPERATOR_NAME}.*$/replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}/"
+            fi
+        else
+            CSV_SED_REPLACE+=";s/  version: ${NEXT_CSV_VERSION}/  replaces: ${OPERATOR_NAME}.v${REPLACE_VERSION}\n  version: ${NEXT_CSV_VERSION}/"
         fi
     fi
     if [[ -n "${IMAGE_IN_CSV}" ]]; then
