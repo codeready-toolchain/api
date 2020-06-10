@@ -174,9 +174,10 @@ generate_bundle() {
             echo "  - using local codeready-toolchain/api repo from ${SCRIPT_DIR}"
             API_REPO_DIR=${SCRIPT_DIR}/..
         else
-            API_TMP_DIR="/tmp/generate_bundle/api"
-            rm -rf ${API_TMP_DIR} > /dev/null || true
-            mkdir ${API_TMP_DIR}
+            GENERATE_BUNDLE_TMP_DIR="/tmp/generate_bundle"
+            API_TMP_DIR="${GENERATE_BUNDLE_TMP_DIR}/api"
+            rm -rf ${GENERATE_BUNDLE_TMP_DIR} > /dev/null || true
+            mkdir -p ${GENERATE_BUNDLE_TMP_DIR}
             echo "  - cloning codeready-toolchain/api repo to ${API_TMP_DIR}"
             git clone https://github.com/codeready-toolchain/api.git ${API_TMP_DIR}
             API_REPO_DIR=${API_TMP_DIR}
