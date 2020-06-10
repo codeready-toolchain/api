@@ -14,10 +14,6 @@ type TemplateUpdateRequestSpec struct {
 	NSTemplateTierSpec `json:",inline"` // TODO: factorize this struct with NSTemplateTierSpec and NSTemplateSetSpec
 }
 
-// TemplateUpdateRequestStatus defines the observed state of TemplateUpdateRequest
-type TemplateUpdateRequestStatus struct {
-}
-
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // TemplateUpdateRequest is the Schema for the templateupdaterequests API
@@ -27,8 +23,7 @@ type TemplateUpdateRequest struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   TemplateUpdateRequestSpec   `json:"spec,omitempty"`
-	Status TemplateUpdateRequestStatus `json:"status,omitempty"`
+	Spec TemplateUpdateRequestSpec `json:"spec,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
