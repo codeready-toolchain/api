@@ -47,6 +47,8 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationService":       schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec":   schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus": schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequest":     schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec": schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TierTemplateSpec":          schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":               schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":           schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
@@ -869,6 +871,91 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "TemplateUpdateRequest is the Schema for the templateupdaterequests API",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "TemplateUpdateRequestSpec defines the desired state of TemplateUpdateRequest It contains the new TemplateRefs to use in the MasterUserRecords",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"tierName": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"namespaces": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "The namespace templates",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierNamespace"),
+									},
+								},
+							},
+						},
+					},
+					"clusterResources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "the cluster resources template (for cluster-wide quotas, etc.)",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierClusterResources"),
+						},
+					},
+				},
+				Required: []string{"tierName", "namespaces"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierNamespace"},
 	}
 }
 

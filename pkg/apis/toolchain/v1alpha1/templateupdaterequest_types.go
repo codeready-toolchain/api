@@ -8,17 +8,27 @@ import (
 const NSTemplateTierNameLabelKey = LabelKeyPrefix + "nstemplatetier"
 
 // TemplateUpdateRequestSpec defines the desired state of TemplateUpdateRequest
-// It contains the new TemplateRefs to
+// It contains the new TemplateRefs to use in the MasterUserRecords
+// +k8s:openapi-gen=true
 type TemplateUpdateRequestSpec struct {
-	TierName           string           `json:"tierName"`
-	NSTemplateTierSpec `json:",inline"` // TODO: factorize this struct with NSTemplateTierSpec and NSTemplateSetSpec
+	TierName string `json:"tierName"`
+
+	// The namespace templates
+	// +listType=atomic
+	Namespaces []NSTemplateTierNamespace `json:"namespaces"`
+
+	// the cluster resources template (for cluster-wide quotas, etc.)
+	// +optional
+	ClusterResources *NSTemplateTierClusterResources `json:"clusterResources,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // TemplateUpdateRequest is the Schema for the templateupdaterequests API
-// +kubebuilder:subresource:status
+// +k8s:openapi-gen=true
 // +kubebuilder:resource:path=templateupdaterequests,scope=Namespaced
+// +kubebuilder:validation:XPreserveUnknownFields
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Template UpdateRequest"
 type TemplateUpdateRequest struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
