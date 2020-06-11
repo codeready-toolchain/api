@@ -47,10 +47,12 @@ fi
 
 GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short origin/master`
 # generate manifests
-count_images_and_generate_manifests --channel alpha --template-version ${DEFAULT_VERSION} ${REPLACE_LAST_VERSION_PARAM}
+check_main_and_embedded_repos_and_generate_manifests --channel alpha --template-version ${DEFAULT_VERSION} ${REPLACE_LAST_VERSION_PARAM}
 
-# delete the default version that is used as a template
-rm -rf ${PKG_DIR}/${DEFAULT_VERSION}
+copy_manifests_to_versioned_dir_and_adjust_package_file alpha
+
+# delete the default bundle directory that is used as a template
+rm -rf ${BUNDLE_DIR}
 
 # copy everything from package dir to manifests
 if [[ ! -d ${MANIFESTS_DIR} ]]; then
