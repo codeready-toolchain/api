@@ -74,7 +74,9 @@ read_arguments $@
 setup_version_variables
 
 # generate manifests
-count_images_and_generate_manifests $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
+check_main_and_embedded_repos_and_generate_manifests $@ --channel nightly --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
+
+copy_manifests_to_versioned_dir_and_adjust_package_file nightly
 
 # push manifests to quay
 DIR_TO_PUSH=${PKG_DIR}
