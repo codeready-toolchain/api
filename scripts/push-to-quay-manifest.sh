@@ -32,8 +32,7 @@ NEXT_CSV_VERSION=`basename $(ls -d ${MANIFESTS_DIR}/*/ | sort | tail -1)`
 
 # read final arguments and setup vars
 read_arguments $@ --channel alpha --next-version ${NEXT_CSV_VERSION}
-setup_variables
 
 # push manifests to quay
 DIR_TO_PUSH=${MANIFESTS_DIR}
-push_to_quay
+push_manifests_as_app_to_quay
