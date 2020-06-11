@@ -22,6 +22,19 @@ type TemplateUpdateRequestSpec struct {
 	ClusterResources *NSTemplateTierClusterResources `json:"clusterResources,omitempty"`
 }
 
+// TemplateUpdateRequestStatus defines the observed state of TemplateUpdateRequest
+// +k8s:openapi-gen=true
+type TemplateUpdateRequestStatus struct {
+	// Conditions is an array of current TemplateUpdateRequest conditions
+	// Supported condition types: ConditionReady
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=type
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+}
+
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // TemplateUpdateRequest is the Schema for the templateupdaterequests API
@@ -34,6 +47,8 @@ type TemplateUpdateRequest struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
 	Spec TemplateUpdateRequestSpec `json:"spec,omitempty"`
+
+	Status TemplateUpdateRequestStatus `json:"status,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
