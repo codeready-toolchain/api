@@ -134,6 +134,9 @@ setup_variables() {
 
     # Temporal directory
     TEMP_DIR=${TEMP_DIR:-/tmp}
+    if [[ "${TEMP_DIR}" != "/tmp" ]]; then
+        mkdir -p ${TEMP_DIR} || true
+    fi
     OTHER_REPO_ROOT_DIR=${TEMP_DIR}/cd/other-repo
 
     # Files and directories related vars
