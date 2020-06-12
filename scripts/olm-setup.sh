@@ -16,6 +16,7 @@ user_help () {
     echo "-er, --embedded-repo     URL of the GH repo that should be used as the embedded repo (for CD). The repository should be embedded in the current repo. The operator bundle should be taken from the current repository (example of the embedded repo: https://github.com/codeready-toolchain/registration-service)"
     echo "-an, --allnamespaces     If set to true, then defines that the hack files should be created for AllNamespaces mode"
     echo "-qn, --quay-namespace    Specify the quay namespace the CSV should be pushed to - if not used then it uses the one stored in \"\${QUAY_NAMESPACE}\" variable"
+    echo "-td, --temp-dir          Directory that should be used for storing temporal files - by default '/tmp' is used"
     echo "-h,  --help              To show this help text"
     echo ""
     additional_help 2>/dev/null || true
@@ -83,6 +84,11 @@ read_arguments() {
                     QUAY_NAMESPACE_TO_PUSH=$1
                     shift
                     ;;
+                -td|--temp-dir)
+                    shift
+                    TEMP_DIR=$1
+                    shift
+                    ;;
                 *)
                    echo "$1 is not a recognized flag!" >> /dev/stderr
                    user_help
@@ -118,7 +124,6 @@ read_arguments() {
 
 # Default version var - it has to be out of the function to make it available in help text
 DEFAULT_VERSION=0.0.1
-OTHER_REPO_ROOT_DIR=/tmp/cd/other-repo
 
 setup_variables() {
     # Version vars
@@ -127,6 +132,10 @@ setup_variables() {
     # Channel to be used
     CHANNEL=${CHANNEL:alpha}
 
+    # Temporal directory
+    TEMP_DIR=${TEMP_DIR:-/tmp}
+    OTHER_REPO_ROOT_DIR=${TEMP_DIR}/cd/other-repo
+
     # Files and directories related vars
     PRJ_NAME=`basename ${PRJ_ROOT_DIR}`
     OPERATOR_NAME=${SET_OPERATOR_NAME:-toolchain-${PRJ_NAME}}
@@ -134,7 +143,7 @@ setup_variables() {
     PKG_DIR=${PRJ_ROOT_DIR}/deploy/olm-catalog/${OPERATOR_NAME}
     PKG_FILE=${PKG_DIR}/${OPERATOR_NAME}.package.yaml
     BUNDLE_DIR=${PKG_DIR}/manifests
-    PKG_DIR_BACKUP=/tmp/deploy_olm-catalog_${PRJ_NAME}_backup
+    PKG_DIR_BACKUP=${TEMP_DIR}/deploy_olm-catalog_${PRJ_NAME}_backup
 
     export GO111MODULE=on
 }
@@ -168,7 +177,7 @@ generate_bundle() {
             echo "  - using local codeready-toolchain/api repo from ${SCRIPT_DIR}"
             API_REPO_DIR=${SCRIPT_DIR}/..
         else
-            GENERATE_BUNDLE_TMP_DIR="/tmp/generate_bundle"
+            GENERATE_BUNDLE_TMP_DIR="${TEMP_DIR}/generate_bundle"
             API_TMP_DIR="${GENERATE_BUNDLE_TMP_DIR}/api"
             rm -rf ${GENERATE_BUNDLE_TMP_DIR} > /dev/null || true
             mkdir -p ${GENERATE_BUNDLE_TMP_DIR}
@@ -246,7 +255,7 @@ get_digest_format() {
 
 
 enrich-by-envs-from-yaml() {
-    ENRICHED_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}-enriched-file"
+    ENRICHED_CSV="${TEMP_DIR}/${OPERATOR_NAME}_${NEXT_CSV_VERSION}-enriched-file"
 
     ENRICH_BY_ENVS_FROM_YAML=scripts/enrich-by-envs-from-yaml.sh
     if [[ -f ${ENRICH_BY_ENVS_FROM_YAML} ]]; then
@@ -262,7 +271,7 @@ enrich-by-envs-from-yaml() {
 }
 
 replace_with_sed() {
-    TMP_CSV="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_replace-file"
+    TMP_CSV="${TEMP_DIR}/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_replace-file"
     sed -e "$1" $2 > ${TMP_CSV}
     cat ${TMP_CSV} > $2
     rm -rf ${TMP_CSV}
@@ -331,7 +340,7 @@ setup_version_variables_based_on_commits() {
     # check if there is main repo or inner repo specified
     if [[ -n "${MAIN_REPO_URL}${EMBEDDED_REPO_URL}" ]]; then
         if [[ "true" == "$1" ]]; then
-            # if there is, then clone the latest version of the repo to /tmp dir
+            # if there is, then clone the latest version of the repo to ${TEMP_DIR} dir
             if [[ -d ${OTHER_REPO_ROOT_DIR} ]]; then
                 rm -rf ${OTHER_REPO_ROOT_DIR}
             fi
@@ -408,7 +417,7 @@ generate_manifests() {
 }
 
 push_manifests_as_app_to_quay() {
-    RELEASE_BACKUP_DIR="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_${CHANNEL}"
+    RELEASE_BACKUP_DIR="${TEMP_DIR}/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_${CHANNEL}"
 
     echo "## Pushing the OperatorHub package '${OPERATOR_NAME}' to the Quay.io '${QUAY_NAMESPACE_TO_PUSH}' organization ..."
 
@@ -437,9 +446,9 @@ copy_manifests_to_versioned_dir_and_adjust_package_file() {
 
     if [[ -n $(grep "name: ${CHANNEL}" ${PKG_FILE}) ]]; then
         VERSION_TO_REPLACE=`grep "name: ${CHANNEL}" -B 1  ${PKG_FILE} | grep currentCSV`
-        sed "s/${VERSION_TO_REPLACE}/- currentCSV: ${CSV_NAME}/" ${PKG_FILE} > /tmp/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml
+        sed "s/${VERSION_TO_REPLACE}/- currentCSV: ${CSV_NAME}/" ${PKG_FILE} > ${TEMP_DIR}/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml
     else
-        sed "s/channels:/channels:\n- currentCSV: ${CSV_NAME}\n  name: ${CHANNEL}/" ${PKG_FILE} > /tmp/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml
+        sed "s/channels:/channels:\n- currentCSV: ${CSV_NAME}\n  name: ${CHANNEL}/" ${PKG_FILE} > ${TEMP_DIR}/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml
     fi
-    mv /tmp/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml ${PKG_FILE}
+    mv ${TEMP_DIR}/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml ${PKG_FILE}
 }

@@ -6,7 +6,7 @@ additional_help() {
     echo ""
     echo "Example:"
     echo "   ./scripts/recover-operator-dir.sh   -pr ../host-operator"
-    echo "          - This command will recover the operator bundle directory from the backup folder stored in /tmp/."
+    echo "          - This command will recover the operator bundle directory from the backup folder stored in /<temp-dir>/."
 }
 
 # use the olm-setup as the source
