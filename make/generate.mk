@@ -52,7 +52,7 @@ ifdef host_repo_status
 	@exit 1
 endif
 ifneq ($(wildcard ../host-operator/deploy/crds/*.yaml),)
-	@-find ../host-operator/deploy/crds -type f -not -name "*kubefed*" | xargs rm
+	@-find ../host-operator/deploy/crds -type f | grep -v "kubefed\|cr\.yaml" | xargs rm
 else
 	@-mkdir -p ../host-operator/deploy/crds
 endif
@@ -64,7 +64,7 @@ ifdef member_repo_status
 	@exit 1
 endif
 ifneq ($(wildcard ../member-operator/deploy/crds/*.yaml),)
-	@-find ../member-operator/deploy/crds -type f -not -name "*kubefed*" | xargs rm
+	@-find ../member-operator/deploy/crds -type f | grep -v "kubefed\|cr\.yaml" | xargs rm
 else
 	@-mkdir -p ../member-operator/deploy/crds
 endif
