@@ -7,11 +7,11 @@ import (
 const (
 	// These are valid conditions of a Notification
 
-	// NotificationDelivered reflects whether the notification has been delivered to the user
-	NotificationDelivered ConditionType = "Delivered"
+	// NotificationSent reflects whether the notification has been sent to the user
+	NotificationSent ConditionType = "Sent"
 
 	// Status condition reasons
-	NotificationServiceDeliveredReason = "Delivered"
+	NotificationServiceSentReason = "Sent"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
