@@ -112,6 +112,8 @@ read_arguments() {
     fi
 
     MANIFESTS_DIR=${PRJ_ROOT_DIR}/manifests
+
+    setup_variables
 }
 
 # Default version var - it has to be out of the function to make it available in help text
@@ -132,6 +134,7 @@ setup_variables() {
     PKG_DIR=${PRJ_ROOT_DIR}/deploy/olm-catalog/${OPERATOR_NAME}
     PKG_FILE=${PKG_DIR}/${OPERATOR_NAME}.package.yaml
     BUNDLE_DIR=${PKG_DIR}/manifests
+    PKG_DIR_BACKUP=/tmp/deploy_olm-catalog_${PRJ_NAME}_backup
 
     export GO111MODULE=on
 }
@@ -318,6 +321,45 @@ generate_deploy_hack() {
     fi
 }
 
+# it takes one boolean parameter - if the other repo (either embedded or main one) should be cloned or not
+setup_version_variables_based_on_commits() {
+    # setup version and commit variables for the current repo
+    GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD`
+    PREVIOUS_GIT_COMMIT_ID=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-parse --short HEAD^`
+    NUMBER_OF_COMMITS=`git --git-dir=${PRJ_ROOT_DIR}/.git --work-tree=${PRJ_ROOT_DIR} rev-list --count HEAD`
+
+    # check if there is main repo or inner repo specified
+    if [[ -n "${MAIN_REPO_URL}${EMBEDDED_REPO_URL}" ]]; then
+        if [[ "true" == "$1" ]]; then
+            # if there is, then clone the latest version of the repo to /tmp dir
+            if [[ -d ${OTHER_REPO_ROOT_DIR} ]]; then
+                rm -rf ${OTHER_REPO_ROOT_DIR}
+            fi
+            mkdir -p ${OTHER_REPO_ROOT_DIR}
+            git -C ${OTHER_REPO_ROOT_DIR} clone ${MAIN_REPO_URL}${EMBEDDED_REPO_URL}
+        fi
+        OTHER_REPO_PATH=${OTHER_REPO_ROOT_DIR}/`basename -s .git $(echo ${MAIN_REPO_URL}${EMBEDDED_REPO_URL})`
+
+        # and set version and comit variables also for this repo
+        OTHER_REPO_GIT_COMMIT_ID=`git --git-dir=${OTHER_REPO_PATH}/.git --work-tree=${OTHER_REPO_PATH} rev-parse --short HEAD`
+        OTHER_REPO_NUMBER_OF_COMMITS=`git --git-dir=${OTHER_REPO_PATH}/.git --work-tree=${OTHER_REPO_PATH} rev-list --count HEAD`
+
+        if [[ -n "${MAIN_REPO_URL}"  ]]; then
+            # the other repo is main, so the number of commits and commit ID should be specified as the first one
+            NEXT_CSV_VERSION="0.0.${OTHER_REPO_NUMBER_OF_COMMITS}-${NUMBER_OF_COMMITS}-commit-${OTHER_REPO_GIT_COMMIT_ID}-${GIT_COMMIT_ID}"
+            REPLACE_CSV_VERSION="0.0.${OTHER_REPO_NUMBER_OF_COMMITS}-$((${NUMBER_OF_COMMITS}-1))-commit-${OTHER_REPO_GIT_COMMIT_ID}-${PREVIOUS_GIT_COMMIT_ID}"
+        else
+            # the other repo is inner, so the number of commits and commit ID should be specified as the second one
+            NEXT_CSV_VERSION="0.0.${NUMBER_OF_COMMITS}-${OTHER_REPO_NUMBER_OF_COMMITS}-commit-${GIT_COMMIT_ID}-${OTHER_REPO_GIT_COMMIT_ID}"
+            REPLACE_CSV_VERSION="0.0.$((${NUMBER_OF_COMMITS}-1))-${OTHER_REPO_NUMBER_OF_COMMITS}-commit-${PREVIOUS_GIT_COMMIT_ID}-${OTHER_REPO_GIT_COMMIT_ID}"
+        fi
+    else
+        # there is no other repo specified - use the basic version format
+        NEXT_CSV_VERSION="0.0.${NUMBER_OF_COMMITS}-commit-${GIT_COMMIT_ID}"
+        REPLACE_CSV_VERSION="0.0.$((${NUMBER_OF_COMMITS}-1))-commit-${PREVIOUS_GIT_COMMIT_ID}"
+    fi
+}
+
 check_main_and_embedded_repos_and_generate_manifests() {
     #read arguments and setup variables
     read_arguments $@
@@ -351,7 +393,6 @@ generate_manifests() {
     setup_variables
 
     # create backup of the current operator package directory
-    PKG_DIR_BACKUP=/tmp/deploy_olm-catalog_${PRJ_NAME}_backup
     if [[ -d ${PKG_DIR_BACKUP} ]]; then
         rm -rf ${PKG_DIR_BACKUP}
     fi
@@ -366,7 +407,7 @@ generate_manifests() {
     generate_bundle
 }
 
-push_to_quay() {
+push_manifests_as_app_to_quay() {
     RELEASE_BACKUP_DIR="/tmp/${OPERATOR_NAME}_${NEXT_CSV_VERSION}_${CHANNEL}"
 
     echo "## Pushing the OperatorHub package '${OPERATOR_NAME}' to the Quay.io '${QUAY_NAMESPACE_TO_PUSH}' organization ..."
@@ -394,13 +435,11 @@ copy_manifests_to_versioned_dir_and_adjust_package_file() {
     cp -r ${BUNDLE_DIR} ${VERSIONED_DIR}
     CSV_NAME=`grep "^  name: " ${BUNDLE_DIR}/*clusterserviceversion.yaml | awk '{print $2}'`
 
-    CHANNEL_TO_USE=$1
-
-    if [[ -n $(grep "name: ${CHANNEL_TO_USE}" ${PKG_FILE}) ]]; then
-        VERSION_TO_REPLACE=`grep "name: ${CHANNEL_TO_USE}" -B 1  ${PKG_FILE} | grep currentCSV`
+    if [[ -n $(grep "name: ${CHANNEL}" ${PKG_FILE}) ]]; then
+        VERSION_TO_REPLACE=`grep "name: ${CHANNEL}" -B 1  ${PKG_FILE} | grep currentCSV`
         sed "s/${VERSION_TO_REPLACE}/- currentCSV: ${CSV_NAME}/" ${PKG_FILE} > /tmp/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml
     else
-        sed "s/channels:/channels:\n- currentCSV: ${CSV_NAME}\n  name: ${CHANNEL_TO_USE}/" ${PKG_FILE} > /tmp/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml
+        sed "s/channels:/channels:\n- currentCSV: ${CSV_NAME}\n  name: ${CHANNEL}/" ${PKG_FILE} > /tmp/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml
     fi
     mv /tmp/${OPERATOR_NAME}_${CURRENT_VERSION}.package.yaml ${PKG_FILE}
 }

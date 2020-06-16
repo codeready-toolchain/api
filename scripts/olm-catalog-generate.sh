@@ -26,7 +26,6 @@ else
 fi
 
 read_arguments $@
-setup_variables
 generate_bundle
 generate_hack
 
