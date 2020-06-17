@@ -54,19 +54,24 @@ mv ${TEMP_DIR}/${PRJ_NAME}_${CURRENT_VERSION}_bundle.Dockerfile ${PKG_DIR}/bundl
 
 # build and push the bundle image
 if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
-    ${IMAGE_BUILDER} bud -f ${PKG_DIR}/bundle.Dockerfile -t ${BUNDLE_IMAGE} ${PKG_DIR}/.
+    ${IMAGE_BUILDER} bud --layers -f ${PKG_DIR}/bundle.Dockerfile -t ${BUNDLE_IMAGE} ${PKG_DIR}/.
+    ${IMAGE_BUILDER} push ${BUNDLE_IMAGE} docker://${BUNDLE_IMAGE}
 else
     ${IMAGE_BUILDER} build -f ${PKG_DIR}/bundle.Dockerfile -t ${BUNDLE_IMAGE} ${PKG_DIR}/.
+    ${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
 fi
-${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
 
 # add manifests to the bundle image
 cd ${PKG_DIR}
 opm alpha bundle build --image-builder ${IMAGE_BUILDER} --directory ./manifests/ -t ${BUNDLE_IMAGE} -p ${OPERATOR_NAME} -c ${CHANNEL} -e ${CHANNEL}
-opm alpha bundle validate --tag ${BUNDLE_IMAGE} --image-builder ${IMAGE_BUILDER}
 ${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
+opm alpha bundle validate --tag ${BUNDLE_IMAGE} --image-builder ${IMAGE_BUILDER}
 cd ${CURRENT_DIR}
 
 
 opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${INDEX_IMAGE}
-${IMAGE_BUILDER} push ${INDEX_IMAGE}
+if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
+    ${IMAGE_BUILDER} push ${INDEX_IMAGE} docker://${INDEX_IMAGE}
+else
+    ${IMAGE_BUILDER} push ${INDEX_IMAGE}
+fi
