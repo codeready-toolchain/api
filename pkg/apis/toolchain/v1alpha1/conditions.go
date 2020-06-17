@@ -21,7 +21,7 @@ const (
 	updatingReason     = "Updating"
 
 	// Condition types
-	deletionError = "DeletionError"
+	deletionErrorCondition = "DeletionError"
 )
 
 type Condition struct {
