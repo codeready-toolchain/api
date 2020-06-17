@@ -16,8 +16,8 @@ user_help () {
     echo "-h,    --help            To show this help text"
     echo ""
     echo "Examples:"
-    echo "   ./scripts/generate-deploy-hack.sh -on codeready-toolchain-operator -csvs manifests/ -crds manifests/0.1.1/ -pf manifests/codeready-toolchain-operator.package.yaml -hd /tmp/crto-0.1.1"
-    echo "          - This command will generate deploy_csv.yaml file inside of /tmp/crto-0.1.1 directory."
+    echo "   ./scripts/generate-deploy-hack.sh -on codeready-toolchain-operator -csvs manifests/ -crds manifests/0.1.1/ -pf manifests/codeready-toolchain-operator.package.yaml -hd /<temp-dir>/crto-0.1.1"
+    echo "          - This command will generate deploy_csv.yaml file inside of /<temp-dir>/crto-0.1.1 directory."
     echo "             The deployment will contain all CSVs found in manifests/ directory recursively and all CRDs from manifests/0.1.1/ directory. "
     echo ""
     exit 0
