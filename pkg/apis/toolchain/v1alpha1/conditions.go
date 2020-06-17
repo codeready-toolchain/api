@@ -19,6 +19,9 @@ const (
 	disabledReason     = "Disabled"
 	terminatingReason  = "Terminating"
 	updatingReason     = "Updating"
+
+	// Condition types
+	deletionError = "DeletionError"
 )
 
 type Condition struct {
