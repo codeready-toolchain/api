@@ -8,7 +8,7 @@ const (
 	// These are valid conditions of a Notification
 
 	// NotificationDeletionError indicates that the notification failed to be deleted
-	NotificationDeletionError ConditionType = deletionErrorCondition
+	NotificationDeleted ConditionType = deletedCondition
 
 	// NotificationSent reflects whether the notification has been sent to the user
 	NotificationSent ConditionType = "Sent"
