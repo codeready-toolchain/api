@@ -35,4 +35,7 @@ type Condition struct {
 	// Human readable message indicating details about last transition.
 	// +optional
 	Message string `json:"message,omitempty"`
+	// Last time the condition was updated
+	// +optional
+	LastUpdatedTime metav1.Time `json:"lastUpdatedTime,omitempty"`
 }
