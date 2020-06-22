@@ -6,6 +6,13 @@ import (
 	kubefed "sigs.k8s.io/kubefed/pkg/apis/core/v1beta1"
 )
 
+// These are valid status condition reasons of a MemberStatus
+const (
+	// Status condition reasons
+	MemberStatusAllComponentsReady = "AllComponentsReady"
+	MemberStatusComponentsNotReady = "ComponentsNotReady"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // MemberStatusSpec defines the desired state of MemberStatus

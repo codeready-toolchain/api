@@ -40,5 +40,5 @@ type Condition struct {
 	Message string `json:"message,omitempty"`
 	// Last time the condition was updated
 	// +optional
-	LastUpdatedTime metav1.Time `json:"lastUpdatedTime,omitempty"`
+	LastUpdatedTime *metav1.Time `json:"lastUpdatedTime,omitempty"`
 }
