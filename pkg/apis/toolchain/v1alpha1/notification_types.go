@@ -7,11 +7,15 @@ import (
 const (
 	// These are valid conditions of a Notification
 
+	// NotificationDeletionError indicates that the notification failed to be deleted
+	NotificationDeletionError ConditionType = deletionError
+
 	// NotificationSent reflects whether the notification has been sent to the user
 	NotificationSent ConditionType = "Sent"
 
 	// Status condition reasons
-	NotificationServiceSentReason = "Sent"
+	NotificationSentReason          = "Sent"
+	NotificationDeletionErrorReason = "UnableToDeleteNotification"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.

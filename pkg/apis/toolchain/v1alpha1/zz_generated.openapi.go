@@ -35,6 +35,9 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":            schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":        schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus":      schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatus":                schema_pkg_apis_toolchain_v1alpha1_MemberStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusSpec":            schema_pkg_apis_toolchain_v1alpha1_MemberStatusSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus":          schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":               schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":           schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":         schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
@@ -401,6 +404,112 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_MemberStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "MemberStatus is used to track toolchain member status",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_MemberStatusSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "MemberStatusSpec defines the desired state of MemberStatus",
+				Type:        []string{"object"},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "MemberStatusStatus defines the observed state of the toolchain member status",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"memberOperator": {
+						SchemaProps: spec.SchemaProps{
+							Description: "MemberOperator is the status of a toolchain member operator",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus"),
+						},
+					},
+					"hostConnection": {
+						SchemaProps: spec.SchemaProps{
+							Description: "HostConnection is the status of the connection with the host cluster",
+							Ref:         ref("sigs.k8s.io/kubefed/pkg/apis/core/v1beta1.KubeFedClusterStatus"),
+						},
+					},
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current toolchain status conditions Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"memberOperator", "hostConnection"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "sigs.k8s.io/kubefed/pkg/apis/core/v1beta1.KubeFedClusterStatus"},
 	}
 }
 
