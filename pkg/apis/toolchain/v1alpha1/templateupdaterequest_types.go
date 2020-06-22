@@ -7,6 +7,13 @@ import (
 // NSTemplateTierNameLabelKey stores the name of NSTemplateTier that this TemplateUpdateRequest is related to
 const NSTemplateTierNameLabelKey = LabelKeyPrefix + "nstemplatetier"
 
+// These are valid conditions of a TemplateUpdateRequest
+const (
+	// TemplateUpdateRequestComplete when the MasterUserRecord has been updated (via the TemplateUpdateRequest)
+	// (for the Template Update Request, "complete" makes more sense than the usual "ready" condition type)
+	TemplateUpdateRequestComplete ConditionType = "Complete"
+)
+
 // TemplateUpdateRequestSpec defines the desired state of TemplateUpdateRequest
 // It contains the new TemplateRefs to use in the MasterUserRecords
 // +k8s:openapi-gen=true
