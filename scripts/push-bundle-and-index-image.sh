@@ -64,12 +64,19 @@ fi
 # add manifests to the bundle image
 cd ${PKG_DIR}
 opm alpha bundle build --image-builder ${IMAGE_BUILDER} --directory ./manifests/ -t ${BUNDLE_IMAGE} -p ${OPERATOR_NAME} -c ${CHANNEL} -e ${CHANNEL}
-${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
-opm alpha bundle validate --tag ${BUNDLE_IMAGE} --image-builder ${IMAGE_BUILDER}
+
+if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
+    ${IMAGE_BUILDER} push ${BUNDLE_IMAGE} docker://${BUNDLE_IMAGE}
+else
+    ${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
+fi
 cd ${CURRENT_DIR}
 
+if [[ ${IMAGE_BUILDER} == "podman" ]]; then
+    PULL_TOOL_PARAM="--pull-tool podman"
+fi
 
-opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${INDEX_IMAGE}
+opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${INDEX_IMAGE} ${PULL_TOOL_PARAM}
 if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
     ${IMAGE_BUILDER} push ${INDEX_IMAGE} docker://${INDEX_IMAGE}
 else
