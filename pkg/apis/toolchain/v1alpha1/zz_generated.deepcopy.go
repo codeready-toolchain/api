@@ -219,7 +219,10 @@ func (in *Cluster) DeepCopy() *Cluster {
 func (in *Condition) DeepCopyInto(out *Condition) {
 	*out = *in
 	in.LastTransitionTime.DeepCopyInto(&out.LastTransitionTime)
-	in.LastUpdatedTime.DeepCopyInto(&out.LastUpdatedTime)
+	if in.LastUpdatedTime != nil {
+		in, out := &in.LastUpdatedTime, &out.LastUpdatedTime
+		*out = (*in).DeepCopy()
+	}
 	return
 }
 
