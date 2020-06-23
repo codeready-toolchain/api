@@ -4,8 +4,8 @@ API_FULL_GROUPNAME=toolchain.dev.openshift.com
 API_VERSION:=v1alpha1
 
 # how to dispatch the CRD files per repository (space-separated lists)
-HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup registrationservice banneduser changetierrequest notification tiertemplate
-MEMBER_CLUSTER_CRDS:=useraccount nstemplateset idler
+HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup registrationservice banneduser changetierrequest notification tiertemplate templateupdaterequest
+MEMBER_CLUSTER_CRDS:=useraccount nstemplateset memberstatus idler
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified

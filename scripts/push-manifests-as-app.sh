@@ -50,7 +50,6 @@ setup_version_variables_based_on_commits false
 # if the main repo is specified then reconfigure the variables so the project root points to the temp directory
 if [[ -n "${MAIN_REPO_URL}"  ]]; then
     read_arguments $@ -pr ${OTHER_REPO_PATH}
-    setup_variables
 fi
 
 # copy manifestst to versioned directory and adjust the package file so it can be pushed to quay application

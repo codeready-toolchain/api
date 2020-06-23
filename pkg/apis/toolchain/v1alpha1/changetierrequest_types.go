@@ -10,12 +10,16 @@ const (
 	// ChangeTierRequestComplete means that the change of the tier is complete
 	ChangeTierRequestComplete ConditionType = "Complete"
 
+	// ChangeTierRequestDeletionError indicates that the ChangeTierRequest failed to be deleted
+	ChangeTierRequestDeletionError ConditionType = deletionError
+
 	// MurNameLabelKey stores the name of MasterUserRecord the tier was changed for
 	MurNameLabelKey = LabelKeyPrefix + "murname"
 
 	// Status condition reasons
-	ChangeTierRequestChangedReason     = "Changed"
-	ChangeTierRequestChangeFiledReason = "ChangeFailed"
+	ChangeTierRequestChangedReason       = "Changed"
+	ChangeTierRequestChangeFiledReason   = "ChangeFailed"
+	ChangeTierRequestDeletionErrorReason = "UnableToDeleteChangeTierRequest"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
