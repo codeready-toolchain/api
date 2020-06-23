@@ -18,6 +18,7 @@ const (
 // It contains the new TemplateRefs to use in the MasterUserRecords
 // +k8s:openapi-gen=true
 type TemplateUpdateRequestSpec struct {
+	// The name of the tier to be updated
 	TierName string `json:"tierName"`
 
 	// The namespace templates
