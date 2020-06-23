@@ -26,6 +26,7 @@ const (
 	MasterUserRecordUnableToAddFinalizerReason               = "UnableToAddFinalizer"
 	MasterUserRecordUnableToDeleteUserAccountsReason         = "UnableToDeleteUserAccounts"
 	MasterUserRecordUnableToRemoveFinalizerReason            = "UnableToRemoveFinalizer"
+	MasterUserRecordUnableToCheckLabelsReason                = "UnableToCheckLabels"
 	MasterUserRecordDisabledReason                           = disabledReason
 	MasterUserRecordNotificationCRCreatedReason              = "NotificationCRCreated"
 	MasterUserRecordNotificationCRCreationFailedReason       = "NotificationCRCreationFailed"
