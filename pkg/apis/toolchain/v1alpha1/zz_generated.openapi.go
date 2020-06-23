@@ -1037,8 +1037,9 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref common.Ref
 				Properties: map[string]spec.Schema{
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
-							Type:   []string{"string"},
-							Format: "",
+							Description: "The name of the tier to be updated",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 					"namespaces": {
