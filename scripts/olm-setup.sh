@@ -17,6 +17,8 @@ user_help () {
     echo "-an, --allnamespaces     If set to true, then defines that the hack files should be created for AllNamespaces mode"
     echo "-qn, --quay-namespace    Specify the quay namespace the CSV should be pushed to - if not used then it uses the one stored in \"\${QUAY_NAMESPACE}\" variable"
     echo "-td, --temp-dir          Directory that should be used for storing temporal files - by default '/tmp' is used"
+    echo "-ib, --image-builder     Tool to build container images - will be used by opm. One of: [docker, podman, buildah] (default "docker")"
+    echo "-im, --index-image       Name of the index image where the bundle image should be added - when building & pushing operator bundle as an image."
     echo "-h,  --help              To show this help text"
     echo ""
     additional_help 2>/dev/null || true
@@ -89,6 +91,16 @@ read_arguments() {
                     TEMP_DIR=$1
                     shift
                     ;;
+                -ib|--image-builder)
+                    shift
+                    IMAGE_BUILDER=$1
+                    shift
+                    ;;
+                -im|--index-image)
+                    shift
+                    INDEX_IMAGE=$1
+                    shift
+                    ;;
                 *)
                    echo "$1 is not a recognized flag!" >> /dev/stderr
                    user_help
@@ -139,6 +151,9 @@ setup_variables() {
     fi
     OTHER_REPO_ROOT_DIR=${TEMP_DIR}/cd/other-repo
 
+    # Image builder
+    IMAGE_BUILDER=${IMAGE_BUILDER:-"docker"}
+
     # Files and directories related vars
     PRJ_NAME=`basename ${PRJ_ROOT_DIR}`
     OPERATOR_NAME=${SET_OPERATOR_NAME:-toolchain-${PRJ_NAME}}
@@ -147,6 +162,7 @@ setup_variables() {
     PKG_FILE=${PKG_DIR}/${OPERATOR_NAME}.package.yaml
     BUNDLE_DIR=${PKG_DIR}/manifests
     PKG_DIR_BACKUP=${TEMP_DIR}/deploy_olm-catalog_${PRJ_NAME}_backup
+    CURRENT_DIR=${PWD}
 
     export GO111MODULE=on
 }
@@ -159,7 +175,6 @@ generate_bundle() {
     if [[ -n "${CHANNEL}" ]]; then
         CHANNEL_PARAM="--csv-channel ${CHANNEL}"
     fi
-    CURRENT_DIR=${PWD}
 
     echo "## Generating operator bundle of project '${PRJ_NAME}' ..."
 
