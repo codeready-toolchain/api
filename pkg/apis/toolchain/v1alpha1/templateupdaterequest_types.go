@@ -49,6 +49,7 @@ type TemplateUpdateRequestStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:resource:path=templateupdaterequests,scope=Namespaced
 // +kubebuilder:validation:XPreserveUnknownFields
+// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Template UpdateRequest"
 type TemplateUpdateRequest struct {
 	metav1.TypeMeta   `json:",inline"`
