@@ -36,6 +36,8 @@ read_arguments $@
 
 # if the main repo is specified then reconfigure the variables so the project root points to the temp directory
 if [[ -n "${MAIN_REPO_URL}"  ]]; then
+    REPO_NAME_WITH_GIT=$(basename $(echo ${MAIN_REPO_URL}))
+    OTHER_REPO_PATH=${OTHER_REPO_ROOT_DIR}/${REPO_NAME_WITH_GIT%.*}
     read_arguments $@ -pr ${OTHER_REPO_PATH}
 fi
 
