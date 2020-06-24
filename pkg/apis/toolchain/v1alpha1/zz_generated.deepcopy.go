@@ -1087,6 +1087,13 @@ func (in *TemplateUpdateRequestStatus) DeepCopyInto(out *TemplateUpdateRequestSt
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.SyncIndexes != nil {
+		in, out := &in.SyncIndexes, &out.SyncIndexes
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
 	return
 }
 

@@ -12,6 +12,14 @@ const (
 	// TemplateUpdateRequestComplete when the MasterUserRecord has been updated (via the TemplateUpdateRequest)
 	// (for the Template Update Request, "complete" makes more sense than the usual "ready" condition type)
 	TemplateUpdateRequestComplete ConditionType = "Complete"
+
+	// Status condition reasons
+	// TemplateUpdateRequestCompleteReason when the MasterUserRecord was successfully updated
+	TemplateUpdateRequestCompleteReason = "Updated"
+	// TemplateUpdateRequestUpdateInProgressReason when the MasterUserRecord is still being updated
+	TemplateUpdateRequestInProgressReason = updatingReason
+	// TemplateUpdateRequestFailedReason when an error occurred while updating the MasterUserRecord
+	TemplateUpdateRequestFailedReason = "UnableToUpdate"
 )
 
 // TemplateUpdateRequestSpec defines the desired state of TemplateUpdateRequest
@@ -34,22 +42,32 @@ type TemplateUpdateRequestSpec struct {
 // +k8s:openapi-gen=true
 type TemplateUpdateRequestStatus struct {
 	// Conditions is an array of current TemplateUpdateRequest conditions
-	// Supported condition types: ConditionReady
+	// Supported condition types: TemplateUpdateRequestComplete
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+
+	// SyncIndexes is a map of the sync indexes per cluster before the template refs
+	// were updates in the MasterUserRecord
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	SyncIndexes map[string]string `json:"syncIndexes,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // TemplateUpdateRequest is the Schema for the templateupdaterequests API
 // +k8s:openapi-gen=true
-// +kubebuilder:resource:path=templateupdaterequests,scope=Namespaced
-// +kubebuilder:validation:XPreserveUnknownFields
 // +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
+// +kubebuilder:printcolumn:name="Status",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].status`
+// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
+// +kubebuilder:resource:path=templateupdaterequests,scope=Namespaced
+// +kubebuilder:subresource:status
+// +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Template UpdateRequest"
 type TemplateUpdateRequest struct {
 	metav1.TypeMeta   `json:",inline"`
