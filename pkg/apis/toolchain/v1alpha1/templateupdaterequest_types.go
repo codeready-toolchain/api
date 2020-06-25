@@ -69,7 +69,7 @@ type TemplateUpdateRequestStatus struct {
 // +kubebuilder:resource:path=templateupdaterequests,scope=Namespaced
 // +kubebuilder:subresource:status
 // +kubebuilder:validation:XPreserveUnknownFields
-// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Template UpdateRequest"
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Template Update Request"
 type TemplateUpdateRequest struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
