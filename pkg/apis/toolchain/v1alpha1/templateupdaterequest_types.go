@@ -55,6 +55,7 @@ type TemplateUpdateRequestStatus struct {
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
+	// +mapType=atomic
 	SyncIndexes map[string]string `json:"syncIndexes,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
