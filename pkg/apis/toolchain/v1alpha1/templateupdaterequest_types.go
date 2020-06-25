@@ -50,13 +50,13 @@ type TemplateUpdateRequestStatus struct {
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
-	// SyncIndexes is a map of the sync indexes per cluster before the template refs
-	// were updates in the MasterUserRecord
+	// SyncIndexes contains the `syncIndex` for each cluster in the MasterUserRecord.
+	// The values here are "captured" before the MasterUserRecord is updated, so we can
+	// track the update progress on the member clusters.
 	// +optional
-	// +patchMergeKey=type
 	// +patchStrategy=merge
 	// +mapType=atomic
-	SyncIndexes map[string]string `json:"syncIndexes,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+	SyncIndexes map[string]string `json:"syncIndexes,omitempty" patchStrategy:"merge"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

@@ -1094,7 +1094,7 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref common.R
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current TemplateUpdateRequest conditions Supported condition types: TemplateUpdateRequestCompleted",
+							Description: "Conditions is an array of current TemplateUpdateRequest conditions Supported condition types: TemplateUpdateRequestComplete",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -1108,12 +1108,11 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref common.R
 					"syncIndexes": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
-								"x-kubernetes-patch-merge-key": "type",
-								"x-kubernetes-patch-strategy":  "merge",
+								"x-kubernetes-patch-strategy": "merge",
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "SyncIndexes is a map of the sync indexes per cluster before the template refs were updates in the MasterUserRecord",
+							Description: "SyncIndexes contains the `syncIndex` for each cluster in the MasterUserRecord. The values here are \"captured\" before the MasterUserRecord is updated, so we can track the update progress on the member clusters.",
 							Type:        []string{"object"},
 							AdditionalProperties: &spec.SchemaOrBool{
 								Allows: true,
