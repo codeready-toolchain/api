@@ -54,10 +54,14 @@ copy_manifests_to_versioned_dir_and_adjust_package_file
 # delete the default bundle directory that is used as a template
 rm -rf ${BUNDLE_DIR}
 
-# copy everything from package dir to manifests
+# make sure that manifests dire at the root of the project exists
 if [[ ! -d ${MANIFESTS_DIR} ]]; then
     mkdir -p ${MANIFESTS_DIR}
 fi
+# delete folder and file related to the new operator bundle
+rm -r ${PKG_DIR}/metadata
+rm ${PKG_DIR}/bundle.Dockerfile
+# copy everything from package dir to manifests
 cp -r ${PKG_DIR}/* ${MANIFESTS_DIR}/
 
 # bring back the original operator package directory
