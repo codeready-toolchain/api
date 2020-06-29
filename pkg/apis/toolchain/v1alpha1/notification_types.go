@@ -16,6 +16,8 @@ const (
 	// Status condition reasons
 	NotificationSentReason          = "Sent"
 	NotificationDeletionErrorReason = "UnableToDeleteNotification"
+	NotificationContextErrorReason  = "NotificationContextError"
+	NotificationDeliveryErrorReason = "NotificationDeliveryError"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
