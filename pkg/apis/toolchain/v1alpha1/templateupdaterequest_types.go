@@ -18,8 +18,8 @@ const (
 	TemplateUpdateRequestUpdatedReason = "Updated"
 	// TemplateUpdateRequestUpdatingReason when the MasterUserRecord is still being updated
 	TemplateUpdateRequestUpdatingReason = updatingReason
-	// TemplateUpdateRequestFailedReason when an error occurred while updating the MasterUserRecord
-	TemplateUpdateRequestFailedReason = "UnableToUpdate"
+	// TemplateUpdateRequestUnableToUpdateReason when an error occurred while updating the MasterUserRecord
+	TemplateUpdateRequestUnableToUpdateReason = "UnableToUpdate"
 )
 
 // TemplateUpdateRequestSpec defines the desired state of TemplateUpdateRequest
