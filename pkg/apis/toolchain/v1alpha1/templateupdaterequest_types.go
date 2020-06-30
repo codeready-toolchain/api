@@ -16,8 +16,8 @@ const (
 	// Status condition reasons
 	// TemplateUpdateRequestUpdatedReason when the MasterUserRecord was successfully updated
 	TemplateUpdateRequestUpdatedReason = "Updated"
-	// TemplateUpdateRequestUpdateInProgressReason when the MasterUserRecord is still being updated
-	TemplateUpdateRequestInProgressReason = updatingReason
+	// TemplateUpdateRequestUpdatingReason when the MasterUserRecord is still being updated
+	TemplateUpdateRequestUpdatingReason = updatingReason
 	// TemplateUpdateRequestFailedReason when an error occurred while updating the MasterUserRecord
 	TemplateUpdateRequestFailedReason = "UnableToUpdate"
 )
