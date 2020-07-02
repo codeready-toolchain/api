@@ -32,10 +32,10 @@ type IdlerStatus struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// Idler enables automatic idling of payloads in a namespace
+// Idler enables automatic idling of payloads in all user's namespaces
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
-// +kubebuilder:resource:scope=Namespaced
+// +kubebuilder:resource:scope=Cluster
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Idler"
 type Idler struct {

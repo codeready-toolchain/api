@@ -249,7 +249,7 @@ func schema_pkg_apis_toolchain_v1alpha1_Idler(ref common.ReferenceCallback) comm
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "Idler enables automatic idling of payloads in a namespace",
+				Description: "Idler enables automatic idling of payloads in all user's namespaces",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
