@@ -1094,12 +1094,32 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref common.R
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current TemplateUpdateRequest conditions Supported condition types: ConditionReady",
+							Description: "Conditions is an array of current TemplateUpdateRequest conditions Supported condition types: TemplateUpdateRequestComplete",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+					"syncIndexes": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-patch-strategy": "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "SyncIndexes contains the `syncIndex` for each cluster in the MasterUserRecord. The values here are \"captured\" before the MasterUserRecord is updated, so we can track the update progress on the member clusters.",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Type:   []string{"string"},
+										Format: "",
 									},
 								},
 							},
