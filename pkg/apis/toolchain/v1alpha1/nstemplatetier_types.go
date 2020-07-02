@@ -4,8 +4,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
 // NSTemplateTierSpec defines the desired state of NSTemplateTier
 // +k8s:openapi-gen=true
 type NSTemplateTierSpec struct {
