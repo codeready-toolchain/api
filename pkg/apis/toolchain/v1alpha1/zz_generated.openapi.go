@@ -317,6 +317,29 @@ func schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref common.ReferenceCallback
 				Description: "IdlerStatus defines the observed state of Idler",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"pods": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"name",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "name",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Pods is an array of tracked pods",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Pod"),
+									},
+								},
+							},
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -344,7 +367,7 @@ func schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref common.ReferenceCallback
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Pod"},
 	}
 }
 

@@ -20,6 +20,14 @@ type IdlerStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
+	// Pods is an array of tracked pods
+	// +optional
+	// +patchMergeKey=name
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=name
+	Pods []Pod `json:"pods,omitempty" patchStrategy:"merge" patchMergeKey:"name"`
+
 	// Conditions is an array of current Idler conditions
 	// Supported condition types: ConditionReady
 	// +optional
@@ -28,6 +36,11 @@ type IdlerStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+}
+
+type Pod struct {
+	Name      string      `json:"name"`
+	StartTime metav1.Time `json:"startTime"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
