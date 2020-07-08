@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 additional_help() {
-    echo "Important info: push-to-quay-nightly.sh scripts overrides all the parameters but \"--project-root\", \"--embedded-repo\", \"--quay-namespace\" and \"--operator-name\", so use only these to specify necessary values."
+    echo "Important info: push-to-quay-nightly.sh scripts overrides all the parameters but \"--project-root\", \"--embedded-repo\", \"--quay-namespace\", \"--index-image\", \"--image-builder\" and \"--operator-name\", so use only these to specify necessary values."
     echo "                The parameters are overridden with these values:"
     echo "                      --channel nightly"
     echo "                      --template-version ${DEFAULT_VERSION}"
