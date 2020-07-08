@@ -61,7 +61,7 @@ type Idler struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// UserAccountList contains a list of UserAccount
+// IdlerList contains a list of Idlers
 type IdlerList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
