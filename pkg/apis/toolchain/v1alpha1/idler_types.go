@@ -2,6 +2,16 @@ package v1alpha1
 
 import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
+// These are valid conditions of an Idler
+const (
+	// IdlerReady means the Idler is in a healthy state
+	IdlerReady ConditionType = "Ready"
+
+	// Status condition reasons
+	IdlerUnableToEnsureIdlingReason = "UnableToEnsureIdling"
+	IdlerRunningReason              = "Running"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // IdlerSpec defines the desired state of Idler
