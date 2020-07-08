@@ -45,7 +45,9 @@ type Pod struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// Idler enables automatic idling of payloads in all user's namespaces
+// Idler enables automatic idling of payloads in a user namespaces
+// where the name of the Idler matches the name of the corresponding namespace.
+// For example an Idler with "foo" name will be managing pods in namespace "foo".
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster
