@@ -1,16 +1,8 @@
 package v1alpha1
 
 import (
-	appsv1 "k8s.io/api/apps/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	kubefed "sigs.k8s.io/kubefed/pkg/apis/core/v1beta1"
-)
-
-// These are valid status condition reasons of a MemberStatus
-const (
-	// Status condition reasons
-	MemberStatusAllComponentsReady = "AllComponentsReady"
-	MemberStatusComponentsNotReady = "ComponentsNotReady"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -31,10 +23,12 @@ type MemberStatusStatus struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// MemberOperator is the status of a toolchain member operator
-	MemberOperator MemberOperatorStatus `json:"memberOperator"`
+	// +optional
+	MemberOperator *MemberOperatorStatus `json:"memberOperator,omitempty"`
 
 	// HostConnection is the status of the connection with the host cluster
-	HostConnection kubefed.KubeFedClusterStatus `json:"hostConnection"`
+	// +optional
+	HostConnection *kubefed.KubeFedClusterStatus `json:"hostConnection,omitempty"`
 
 	// Conditions is an array of current toolchain status conditions
 	// Supported condition types: ConditionReady
@@ -61,7 +55,7 @@ type MemberOperatorStatus struct {
 	BuildTimestamp string `json:"buildTimestamp"`
 
 	// The status of the member operator's deployment
-	Deployment MemberOperatorDeploymentStatus `json:"deployment"`
+	DeploymentName string `json:"deploymentName"`
 
 	// Conditions is an array of current member operator status conditions
 	// Supported condition types: ConditionReady
@@ -71,19 +65,6 @@ type MemberOperatorStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
-}
-
-type MemberOperatorDeploymentStatus struct {
-	Name string `json:"name"`
-
-	// Conditions is an array of current deployment status conditions for a member operator
-	// Supported condition types: Available, Progressing
-	// +optional
-	// +patchMergeKey=type
-	// +patchStrategy=merge
-	// +listType=map
-	// +listMapKey=type
-	DeploymentConditions []appsv1.DeploymentCondition `json:"deploymentConditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

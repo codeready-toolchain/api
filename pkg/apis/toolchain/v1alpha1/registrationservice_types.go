@@ -4,7 +4,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// These are valid conditions of a MasterUserRecord
+// These are valid conditions of a RegistrationService
 const (
 	RegistrationServiceDeployingReason       = "Deploying"
 	RegistrationServiceDeployingFailedReason = "DeployingFailed"
