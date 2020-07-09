@@ -61,6 +61,9 @@ type Pod struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster
+// +kubebuilder:printcolumn:name="Timeout",type="integer",JSONPath=`.spec.timeoutSeconds`
+// +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
+// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Idler"
 type Idler struct {
