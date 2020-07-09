@@ -4,9 +4,6 @@ import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
 // These are valid conditions of an Idler
 const (
-	// IdlerReady means the Idler is in a healthy state
-	IdlerReady ConditionType = "Ready"
-
 	// Status condition reasons
 	IdlerUnableToEnsureIdlingReason = "UnableToEnsureIdling"
 	IdlerRunningReason              = "Running"
