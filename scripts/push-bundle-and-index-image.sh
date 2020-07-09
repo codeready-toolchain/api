@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
 additional_help() {
-    echo "Important info: push-to-quay-nightly.sh scripts overrides all the parameters but \"--project-root\", \"--embedded-repo\", \"--quay-namespace\", \"--index-image\", \"--image-builder\" and \"--operator-name\", so use only these to specify necessary values."
-    echo "                The parameters are overridden with these values:"
-    echo "                      --channel nightly"
-    echo "                      --template-version ${DEFAULT_VERSION}"
-    echo "                      --next-version 0.0.<number-of-commits>-<short-sha-of-latest-commit>"
-    echo "                      --replace-version 0.0.<number-of-commits-1>-<short-sha-of-last-but-one-commit>"
+    echo "Important info: push-bundle-and-index-image.sh scripts use only some parameters, so use only these to specify necessary values:"
+    echo "                      --project-root"
+    echo "                      --embedded-repo"
+    echo "                      --main-repo"
+    echo "                      --quay-namespace"
+    echo "                      --index-image"
+    echo "                      --image-builder"
+    echo "                      --operator-name"
+    echo "                      --channel"
     echo ""
     echo "                Variables overrides:"
     echo "                      QUAY_NAMESPACE  - If this variables is set then you don't have to use the --quay-namespace parameter."
@@ -15,9 +18,9 @@ additional_help() {
     echo "                      QUAY_AUTH_TOKEN - Quay authentication token to be used for pushing to the quay namespace. If not set, then it's taken from ~/.docker/config.json file."
     echo ""
     echo "Example:"
-    echo "   ./scripts/push-to-quay-nightly.sh -pr ../host-operator"
-    echo "          - This command will generate CSV, CRDs and package info with the values defined above for the host-operator project"
-    echo "            and pushes it to quay namespace defined by either \"\${QUAY_NAMESPACE}\" variable or --quay-namespace parameter."
+    echo "   ./scripts/push-bundle-and-index-image.sh -pr ../host-operator --image-builder podman --index-image hosted-toolchain-index"
+    echo "          - This command generates bundle image (using 'staging' channel) for the host-operator project, adds it to the index image 'hosted-toolchain-index'"
+    echo "            and pushes them to a repository in quay namespace defined by either \"\${QUAY_NAMESPACE}\" variable or --quay-namespace parameter."
 }
 
 handle_missing_version_in_combined_repo() {
