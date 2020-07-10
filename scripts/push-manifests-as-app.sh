@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 
 additional_help() {
-    echo "Important info: push-manifests-as-app.sh scripts overrides several parameters and expects/uses only some of the other ones - see below."
-    echo ""
-    echo "                The parameters written below are overridden with these values:"
-    echo "                      --template-version ${DEFAULT_VERSION}"
-    echo "                      --next-version 0.0.<number-of-commits>-<short-sha-of-latest-commit>"
-    echo "                      --replace-version 0.0.<number-of-commits-1>-<short-sha-of-last-but-one-commit>"
-    echo ""
-    echo "                Expected parameters to be passed (if needed):"
+    echo "Important info: push-manifests-as-app.sh scripts use only some parameters, so use only these to specify necessary values:"
     echo "                      --project-root"
     echo "                      --embedded-repo"
+    echo "                      --main-repo"
     echo "                      --quay-namespace"
     echo "                      --operator-name"
     echo "                      --channel"
@@ -22,7 +16,7 @@ additional_help() {
     echo "                      QUAY_AUTH_TOKEN - Quay authentication token to be used for pushing to the quay namespace. If not set, then it's taken from ~/.docker/config.json file."
     echo ""
     echo "Example:"
-    echo "   ./scripts/push-to-quay-nightly.sh -pr ../host-operator"
+    echo "   ./scripts/push-manifests-as-app.sh -pr ../host-operator"
     echo "          - This command will copy manifests to versioned directory, modify the package file and push it all to quay namespace"
     echo "            defined by either \"\${QUAY_NAMESPACE}\" variable or --quay-namespace parameter."
 }

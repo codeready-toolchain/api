@@ -70,31 +70,65 @@ Once the key-value pairs have been generated, they are included in the CSV as ad
 The modified CSV is printed on the standard output.
 
 
-== push-to-quay-nightly.sh
-The `push-to-quay-nightly.sh` generates new operator bundles for every commit to master and pushes them to the "nightly" channel to https://quay.io[].
+== generate-cd-release-manifests.sh
+The `generate-cd-release-manifests.sh` regenerates operator bundles manifests for the latest commit in master.
 The simplified flow of the script is the following:
 
 1. It calculates the version of the new CSV and of the previous one as well.
-2. It runs the `operator-sdk` command to generate a new version of the operator bundle (for the "nightly" channel) using the base template that is stored in `<operator-repo>/deploy/olm-catalog/`.
-3. It replaces the variables and parameters in the newly generated CSV.
+2. It runs the `operator-sdk` command to regenerate the operator bundle manifests using the versions for the latest commit in master.
+3. It replaces the variables and parameters in the newly regenerated CSV.
 4. It executes the `enrich-by-envs-from-yaml.sh` script to parse the `<operator-repo>/deploy/env/prod.yaml` file (if it exists) and to add additional deployment variables into the CSV.
-5. It retrieves the Quay auth token. If the `QUAY_AUTH_TOKEN` variable is not provided then it uses the token found in the `~/.docker/config.json` file.
-6. Using the `operator-courier` binary it pushes the new operator bundle as a package (application) to https://quay.io[].
 
-NOTE: The `push-to-quay-nightly.sh` requires a single parameter `--project-root`, and optionally `--operator-name`, `--embedded-repo` as well as `--quay-namespace`. It relies on `olm-setup.sh`.
+NOTE: The `generate-cd-release-manifests.sh` requires a single parameter `--project-root`, and optionally `--operator-name`, `--embedded-repo` as well as `--quay-namespace`. It relies on `olm-setup.sh`.
+
+
+== push-manifests-as-app.sh
+The `push-manifests-as-app.sh` takes the current operator bundle manifests in the `deploy/olm-catalog/<operator-name>/` directory and pushes them as an application to the "nightly" channel to https://quay.io[].
+The simplified flow of the script is the following:
+
+1. It calculates the version of the new CSV and of the previous one as well.
+2. Copies the manifests to a new versioned directory `deploy/olm-catalog/<operator-name>/<manifests-version>/`
+3. Sets the channel to "nightly" in the package yaml file.
+4. Retrieves the Quay auth token. If the `QUAY_AUTH_TOKEN` variable is not provided then it uses the token found in the `~/.docker/config.json` file.
+5. Using the `operator-courier` binary it pushes the new operator bundle as a package (application) to https://quay.io[].
+
+NOTE: The `push-manifests-as-app.sh` requires a single parameter `--project-root`, and optionally `--operator-name`, `--embedded-repo`, `--quay-namespace` as well as `--channel` in case you want to use different channel than "nightly". It relies on `olm-setup.sh`.
+
+
+== push-bundle-and-index-image.sh
+The `push-bundle-and-index-image.sh` takes the current operator bundle manifests in the `deploy/olm-catalog/<operator-name>/` directory and using the files it generates bundle image (uses "staging" channel), adds it to an index image and pushes them to a repository in https://quay.io[].
+The simplified flow of the script is the following:
+
+1. Reads the new version in CSV, parses it and checks if it contains 5 parts which means that when the CSV was being generated then either embedded or main repo was specified (eg. host-operator / registration-service)
+2. If the version contains 5 parts then it checks if the "replaces" version corresponds to what is in the index image:
+.. Reads the "replaces" version in the CSV
+.. Calls `opm index export` command for the given index and operator name and redirects the output to a file
+.. As soon as the file contains information that `opm` starts pulling bundle images, then the scripts stop the command and reads the latest version specified in the output line.
+.. Compare the "replaces" version from CSV with the latest version in index and if
+* they are the same, then it continues using the same "replaces" version.
+* if they both have "at least something in common", then the script assumes that there was one or more commits of the same repository skipped so it uses the version from the index as the one for replacement.
+* (there are more cases - see the script and the inline comments for more info)
+
+3. Replaces the channel name to "staging" in both bundle.Dockerfile and metadata/annotations.yaml.
+4. Builds a container for a bundle image.
+5. Builds the bundle image and pushes it to quay.
+6. Adds the bundle image to index image and pushes it to quay.
+
+NOTE: The `push-bundle-and-index-image.sh` requires two parameters `--project-root` and `--index-image`, and optionally `--operator-name`, `--embedded-repo`, `--quay-namespace`, `--image-builder` as well as `--channel` in case you want to use different channel than "staging". It relies on `olm-setup.sh`.
 
 
 == create-release-bundle.sh
-The `create-release-bundle.sh` script creates an operator bundle of a given version in `<project-root>/manifests/` directory.
+The `create-release-bundle.sh` script creates an operator bundle (not the image, only the bundle) of a given version in `<project-root>/manifests/` directory.
 The simplified flow of the script is the following:
 
 1. Lists and sorts all existing directories in `<project-root>/manifests/`, detects the latest one (according to semver) and takes the directory name (which is the latest CSV version).
 2. It runs the `operator-sdk` command to generate a new version of the operator bundle (for the "alpha" channel) using  the base template in `<operator-repo>/deploy/olm-catalog/`.
 3. It replaces all the variables and parameters in the newly generated CSV.
 4. It runs the `enrich-by-envs-from-yaml.sh` script to parse the `<operator-repo>/deploy/env/prod.yaml` file (if it exists) and adds the additional deployment variables into the CSV.
-5. It copies the operator bundle in the `<project-root>/manifests/` directory and updates the `*-package.yaml` file at the root of this directory.
-6. It verifies the generated operator bundle with the help of the `operator-courier` binary.
-7. It generates the deploy hack file to make testing of the bundle easier.
+5. Deletes metadata/ folder and bundle.Dockerfile that is related to the new operator bundle image format.
+6. It copies the operator bundle in the `<project-root>/manifests/` directory and updates the `*-package.yaml` file at the root of this directory.
+7. It verifies the generated operator bundle with the help of the `operator-courier` binary.
+8. It generates the deploy hack file to make testing of the bundle easier.
 
 The `create-release-bundle.sh` script doesn't push anything to quay yet - to do that please use the `push-to-quay-manifests.sh` script described below.
 
