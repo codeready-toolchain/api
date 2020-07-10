@@ -7,27 +7,27 @@ import (
 // These are valid status condition reasons for Toolchain status
 const (
 	// overall status condition reasons
-	ToolchainStatusReasonAllComponentsReady = "AllComponentsReady"
-	ToolchainStatusReasonComponentsNotReady = "ComponentsNotReady"
+	ToolchainStatusAllComponentsReadyReason = "AllComponentsReady"
+	ToolchainStatusComponentsNotReadyReason = "ComponentsNotReady"
 
 	// deployment reasons
-	ToolchainStatusReasonDeploymentReady    = "DeploymentReady"
-	ToolchainStatusReasonDeploymentNotReady = "DeploymentNotReady"
-	ToolchainStatusReasonDeploymentNotFound = "DeploymentNotFound"
+	ToolchainStatusDeploymentReadyReason    = "DeploymentReady"
+	ToolchainStatusDeploymentNotReadyReason = "DeploymentNotReady"
+	ToolchainStatusDeploymentNotFoundReason = "DeploymentNotFound"
 
 	// kubefed reasons
-	ToolchainStatusReasonClusterConnectionNotFound              = "KubefedNotFound"
-	ToolchainStatusReasonClusterConnectionLastProbeTimeExceeded = "KubefedLastProbeTimeExceeded"
+	ToolchainStatusClusterConnectionNotFoundReason              = "KubefedNotFound"
+	ToolchainStatusClusterConnectionLastProbeTimeExceededReason = "KubefedLastProbeTimeExceeded"
 
 	// registration service reasons
-	ToolchainStatusReasonRegServiceReady              = "RegServiceReady"
-	ToolchainStatusReasonRegServiceNotReady           = "RegServiceNotReady"
-	ToolchainStatusReasonRegServiceResourceNotFound   = "RegServiceResourceNotFound"
-	ToolchainStatusReasonRegServiceDeploymentNotFound = "RegServiceDeploymentNotFound"
+	ToolchainStatusRegServiceReadyReason              = "RegServiceReady"
+	ToolchainStatusRegServiceNotReadyReason           = "RegServiceNotReady"
+	ToolchainStatusRegServiceResourceNotFoundReason   = "RegServiceResourceNotFound"
+	ToolchainStatusRegServiceDeploymentNotFoundReason = "RegServiceDeploymentNotFound"
 
 	// member status reasons
-	ToolchainStatusReasonMemberStatusNoClustersFound = "NoMemberClustersFound"
-	ToolchainStatusReasonMemberStatusNotFound        = "MemberStatusNotFound"
+	ToolchainStatusMemberStatusNoClustersFoundReason = "NoMemberClustersFound"
+	ToolchainStatusMemberStatusNotFoundReason        = "MemberStatusNotFound"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
