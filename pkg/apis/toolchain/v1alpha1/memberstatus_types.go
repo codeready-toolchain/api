@@ -2,7 +2,6 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	kubefed "sigs.k8s.io/kubefed/pkg/apis/core/v1beta1"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -28,7 +27,7 @@ type MemberStatusStatus struct {
 
 	// HostConnection is the status of the connection with the host cluster
 	// +optional
-	HostConnection *kubefed.KubeFedClusterStatus `json:"hostConnection,omitempty"`
+	HostConnection *ToolchainClusterStatus `json:"hostConnection,omitempty"`
 
 	// Host is the status of the connection with the host cluster
 	// +optional
