@@ -4,6 +4,32 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// These are valid status condition reasons for Toolchain status
+const (
+	// overall status condition reasons
+	ToolchainStatusReasonAllComponentsReady = "AllComponentsReady"
+	ToolchainStatusReasonComponentsNotReady = "ComponentsNotReady"
+
+	// deployment reasons
+	ToolchainStatusReasonDeploymentReady    = "DeploymentReady"
+	ToolchainStatusReasonDeploymentNotReady = "DeploymentNotReady"
+	ToolchainStatusReasonDeploymentNotFound = "DeploymentNotFound"
+
+	// kubefed reasons
+	ToolchainStatusReasonClusterConnectionNotFound              = "KubefedNotFound"
+	ToolchainStatusReasonClusterConnectionLastProbeTimeExceeded = "KubefedLastProbeTimeExceeded"
+
+	// registration service reasons
+	ToolchainStatusReasonRegServiceReady              = "RegServiceReady"
+	ToolchainStatusReasonRegServiceNotReady           = "RegServiceNotReady"
+	ToolchainStatusReasonRegServiceResourceNotFound   = "RegServiceResourceNotFound"
+	ToolchainStatusReasonRegServiceDeploymentNotFound = "RegServiceDeploymentNotFound"
+
+	// member status reasons
+	ToolchainStatusReasonMemberStatusNoClustersFound = "NoMemberClustersFound"
+	ToolchainStatusReasonMemberStatusNotFound        = "MemberStatusNotFound"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // ToolchainStatusSpec defines the desired state of ToolchainStatus

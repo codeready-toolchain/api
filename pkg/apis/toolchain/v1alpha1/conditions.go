@@ -24,32 +24,6 @@ const (
 	deletionError = "DeletionError"
 )
 
-// These are valid status condition reasons for Toolchain status
-const (
-	// overall status condition reasons
-	ToolchainStatusReasonAllComponentsReady = "AllComponentsReady"
-	ToolchainStatusReasonComponentsNotReady = "ComponentsNotReady"
-
-	// deployment reasons
-	ToolchainStatusReasonDeploymentReady    = "DeploymentReady"
-	ToolchainStatusReasonDeploymentNotReady = "DeploymentNotReady"
-	ToolchainStatusReasonDeploymentNotFound = "DeploymentNotFound"
-
-	// kubefed reasons
-	ToolchainStatusReasonClusterConnectionNotFound              = "KubefedNotFound"
-	ToolchainStatusReasonClusterConnectionLastProbeTimeExceeded = "KubefedLastProbeTimeExceeded"
-
-	// registration service reasons
-	ToolchainStatusReasonRegServiceReady              = "RegServiceReady"
-	ToolchainStatusReasonRegServiceNotReady           = "RegServiceNotReady"
-	ToolchainStatusReasonRegServiceResourceNotFound   = "RegServiceResourceNotFound"
-	ToolchainStatusReasonRegServiceDeploymentNotFound = "RegServiceDeploymentNotFound"
-
-	// member status reasons
-	ToolchainStatusReasonMemberStatusNoClustersFound = "NoMemberClustersFound"
-	ToolchainStatusReasonMemberStatusNotFound        = "MemberStatusNotFound"
-)
-
 type Condition struct {
 	// Type of condition
 	Type ConditionType `json:"type"`
