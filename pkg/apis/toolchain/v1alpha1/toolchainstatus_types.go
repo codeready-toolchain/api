@@ -49,11 +49,11 @@ type ToolchainStatusStatus struct {
 
 	// HostOperator is the status of a toolchain host operator
 	// +optional
-	HostOperator *HostOperatorStatus `json:"hostOperator"`
+	HostOperator *HostOperatorStatus `json:"hostOperator,omitempty"`
 
 	// RegistrationService is the status of the registration service
 	// +optional
-	RegistrationService *HostRegistrationServiceStatus `json:"registrationService"`
+	RegistrationService *HostRegistrationServiceStatus `json:"registrationService,omitempty"`
 
 	// Members is an array of member status objects
 	// +optional
