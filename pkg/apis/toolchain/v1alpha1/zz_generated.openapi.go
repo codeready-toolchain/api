@@ -1428,7 +1428,6 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 						},
 					},
 				},
-				Required: []string{"hostOperator", "registrationService"},
 			},
 		},
 		Dependencies: []string{

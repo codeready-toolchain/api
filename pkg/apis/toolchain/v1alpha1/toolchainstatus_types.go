@@ -48,10 +48,12 @@ type ToolchainStatusStatus struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// HostOperator is the status of a toolchain host operator
-	HostOperator HostOperatorStatus `json:"hostOperator"`
+	// +optional
+	HostOperator *HostOperatorStatus `json:"hostOperator"`
 
 	// RegistrationService is the status of the registration service
-	RegistrationService HostRegistrationServiceStatus `json:"registrationService"`
+	// +optional
+	RegistrationService *HostRegistrationServiceStatus `json:"registrationService"`
 
 	// Members is an array of member status objects
 	// +optional
