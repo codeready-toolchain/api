@@ -20,10 +20,9 @@ const (
 	ToolchainStatusClusterConnectionLastProbeTimeExceededReason = "KubefedLastProbeTimeExceeded"
 
 	// registration service reasons
-	ToolchainStatusRegServiceReadyReason              = "RegServiceReady"
-	ToolchainStatusRegServiceNotReadyReason           = "RegServiceNotReady"
-	ToolchainStatusRegServiceResourceNotFoundReason   = "RegServiceResourceNotFound"
-	ToolchainStatusRegServiceDeploymentNotFoundReason = "RegServiceDeploymentNotFound"
+	ToolchainStatusRegServiceReadyReason            = "RegServiceReady"
+	ToolchainStatusRegServiceNotReadyReason         = "RegServiceNotReady"
+	ToolchainStatusRegServiceResourceNotFoundReason = "RegServiceResourceNotFound"
 
 	// member status reasons
 	ToolchainStatusMemberStatusNoClustersFoundReason = "NoMemberClustersFound"
