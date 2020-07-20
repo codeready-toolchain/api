@@ -4,6 +4,16 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+const (
+	// NSTemplateTierSuccessfulUpdatesCount specifies that number of MasterUserRecords that were successfully updated
+	// after the NSTemplateTier was updated
+	NSTemplateTierSuccessfulUpdatesCount ConditionType = "SucessfulUpdates"
+
+	// NSTemplateTierFailedUpdatesCount specifies that number of MasterUserRecords that failed to update
+	// after the NSTemplateTier was updated
+	NSTemplateTierFailedUpdatesCount ConditionType = "FailedUpdates"
+)
+
 // NSTemplateTierSpec defines the desired state of NSTemplateTier
 // +k8s:openapi-gen=true
 type NSTemplateTierSpec struct {
@@ -38,13 +48,37 @@ type NSTemplateTierStatus struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current NSTemplateTier conditions
-	// Supported condition types: ConditionReady
+	// Supported condition types: ConditionReady NSTemplateTierSuccessfulUpdatesCount NSTemplateTierFailedUpdatesCount
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+
+	// Updates is an array of all NSTemplateTier updates
+	// +optional
+	// +patchMergeKey=startTime
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=startTime
+	Updates []NSTemplateTierHistory `json:"updates,omitempty" patchStrategy:"merge" patchMergeKey:"startTime"`
+}
+
+// NSTemplateTierHistory a track record of an update
+type NSTemplateTierHistory struct {
+	// StartTime is the time when the NSTemplateTier was updated
+	StartTime metav1.Time `json:"startTime"`
+	// Hash the hash matching on the templateRefs in the resource spec
+	Hash string `json:"hash"`
+	// CompletionTime is the time when the last MasterUserRecord was updated
+	// +optional
+	CompletionTime *metav1.Time `json:"completionTime,omitempty"`
+	// Failures is the number of MasterUserRecords which failed to be updated
+	Failures int `json:"failures"`
+	// FailedAccounts
+	// +optional
+	FailedAccounts []string `json:"failedAccounts,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

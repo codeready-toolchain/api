@@ -876,7 +876,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.Referenc
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current NSTemplateTier conditions Supported condition types: ConditionReady",
+							Description: "Conditions is an array of current NSTemplateTier conditions Supported condition types: ConditionReady NSTemplateTierSuccessfulUpdatesCount NSTemplateTierFailedUpdatesCount",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -887,11 +887,34 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.Referenc
 							},
 						},
 					},
+					"updates": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"startTime",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "startTime",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Updates is an array of all NSTemplateTier updates",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierHistory"),
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierHistory"},
 	}
 }
 
