@@ -15,7 +15,9 @@ const (
 	ToolchainStatusDeploymentNotReadyReason = "DeploymentNotReady"
 	ToolchainStatusDeploymentNotFoundReason = "DeploymentNotFound"
 
-	// kubefed reasons
+	// host connection reasons
+	ToolchainStatusClusterConnectionReadyReason                 = "HostConnectionReady"
+	ToolchainStatusClusterConnectionNotReadyReason              = "HostConnectionNotReady"
 	ToolchainStatusClusterConnectionNotFoundReason              = "KubefedNotFound"
 	ToolchainStatusClusterConnectionLastProbeTimeExceededReason = "KubefedLastProbeTimeExceeded"
 
