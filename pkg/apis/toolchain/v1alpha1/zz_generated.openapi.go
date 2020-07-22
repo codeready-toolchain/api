@@ -613,6 +613,12 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 							Ref:         ref("sigs.k8s.io/kubefed/pkg/apis/core/v1beta1.KubeFedClusterStatus"),
 						},
 					},
+					"host": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Host is the status of the connection with the host cluster",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus"),
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -640,7 +646,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "sigs.k8s.io/kubefed/pkg/apis/core/v1beta1.KubeFedClusterStatus"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "sigs.k8s.io/kubefed/pkg/apis/core/v1beta1.KubeFedClusterStatus"},
 	}
 }
 

@@ -30,7 +30,26 @@ type MemberStatusStatus struct {
 	// +optional
 	HostConnection *kubefed.KubeFedClusterStatus `json:"hostConnection,omitempty"`
 
+	// Host is the status of the connection with the host cluster
+	// +optional
+	Host *HostStatus `json:"host,omitempty"`
+
 	// Conditions is an array of current toolchain status conditions
+	// Supported condition types: ConditionReady
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=type
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+}
+
+// HostStatus defines the status of the connection with the host cluster
+type HostStatus struct {
+	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
+
+	// Conditions is an array of current member operator status conditions
 	// Supported condition types: ConditionReady
 	// +optional
 	// +patchMergeKey=type
