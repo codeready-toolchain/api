@@ -44,11 +44,8 @@ type TemplateUpdateRequestStatus struct {
 	// Conditions is an array of current TemplateUpdateRequest conditions
 	// Supported condition types: TemplateUpdateRequestComplete
 	// +optional
-	// +patchMergeKey=type
-	// +patchStrategy=merge
-	// +listType=map
-	// +listMapKey=type
-	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+	// +listType=atomic
+	Conditions []Condition `json:"conditions,omitempty"`
 
 	// SyncIndexes contains the `syncIndex` for each cluster in the MasterUserRecord.
 	// The values here are "captured" before the MasterUserRecord is updated, so we can
