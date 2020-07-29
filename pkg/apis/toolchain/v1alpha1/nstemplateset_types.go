@@ -1,8 +1,6 @@
 package v1alpha1
 
 import (
-	"reflect"
-
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -111,34 +109,4 @@ type NSTemplateSetList struct {
 
 func init() {
 	SchemeBuilder.Register(&NSTemplateSet{}, &NSTemplateSetList{})
-}
-
-// CompareTo compares given second spec with this spec
-func (first *NSTemplateSetSpec) CompareTo(second NSTemplateSetSpec) bool {
-	if first.TierName != second.TierName {
-		return false
-	}
-	return compareNamespaces(first.Namespaces, second.Namespaces)
-}
-
-func compareNamespaces(namespaces1, namespaces2 []NSTemplateSetNamespace) bool {
-	if len(namespaces1) != len(namespaces2) {
-		return false
-	}
-	for _, ns1 := range namespaces1 {
-		found := findNamespace(ns1, namespaces2)
-		if !found {
-			return false
-		}
-	}
-	return true
-}
-
-func findNamespace(thisNs NSTemplateSetNamespace, namespaces []NSTemplateSetNamespace) bool {
-	for _, ns := range namespaces {
-		if reflect.DeepEqual(thisNs, ns) {
-			return true
-		}
-	}
-	return false
 }
