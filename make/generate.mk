@@ -4,8 +4,8 @@ API_FULL_GROUPNAME=toolchain.dev.openshift.com
 API_VERSION:=v1alpha1
 
 # how to dispatch the CRD files per repository (space-separated lists)
-HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup registrationservice banneduser changetierrequest notification tiertemplate templateupdaterequest toolchainstatus
-MEMBER_CLUSTER_CRDS:=useraccount nstemplateset memberstatus idler
+HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup registrationservice banneduser changetierrequest notification tiertemplate templateupdaterequest toolchainstatus toolchaincluster
+MEMBER_CLUSTER_CRDS:=useraccount nstemplateset memberstatus idler toolchaincluster
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
@@ -52,7 +52,7 @@ ifdef host_repo_status
 	@exit 1
 endif
 ifneq ($(wildcard ../host-operator/deploy/crds/*.yaml),)
-	@-find ../host-operator/deploy/crds -type f | grep -v "kubefed\|cr\.yaml" | xargs rm
+	@-find ../host-operator/deploy/crds -type f | grep -v "cr\.yaml" | xargs rm || true
 else
 	@-mkdir -p ../host-operator/deploy/crds
 endif
@@ -64,13 +64,13 @@ ifdef member_repo_status
 	@exit 1
 endif
 ifneq ($(wildcard ../member-operator/deploy/crds/*.yaml),)
-	@-find ../member-operator/deploy/crds -type f | grep -v "kubefed\|cr\.yaml" | xargs rm
+	@-find ../member-operator/deploy/crds -type f | grep -v "cr\.yaml" | xargs rm || true
 else
 	@-mkdir -p ../member-operator/deploy/crds
 endif
 
 .PHONY: generate-crds
-generate-crds: vendor prepare-host-operator prepare-member-operator generate-kubefed-crd
+generate-crds: vendor prepare-host-operator prepare-member-operator
 	@echo "Re-generating the Toolchain CRD files..."
 	$(Q)go run $(shell pwd)/vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go crd:trivialVersions=true \
 	paths=./pkg/apis/... output:crd:dir=deploy/crds output:stdout
@@ -80,31 +80,21 @@ generate-crds: vendor prepare-host-operator prepare-member-operator generate-kub
 	@for crd in $(HOST_CLUSTER_CRDS) ; do \
 		crd_plural=$$(echo $${crd} | sed -e 's/s$$/se/')s; \
 		sed -e '1,2d' -e '/^      type: object/d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml > ../host-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
-		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml; \
 	done
 	@for crd in $(MEMBER_CLUSTER_CRDS) ; do \
 		crd_plural=$$(echo $${crd} | sed -e 's/s$$/se/')s; \
 		sed -e '1,2d' -e '/^      type: object/d' deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml > ../member-operator/deploy/crds/$(API_GROUPNAME)_$(API_VERSION)_$${crd}_crd.yaml ; \
-		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml; \
+	done
+	# Now let's remove the CRDs from deploy/crds directory
+	@for crd in $(HOST_CLUSTER_CRDS) $(MEMBER_CLUSTER_CRDS) ; do \
+		crd_plural=$$(echo $${crd} | sed -e 's/s$$/se/')s; \
+		rm deploy/crds/$(API_FULL_GROUPNAME)_$${crd_plural}.yaml || true; \
 	done
 ifneq ($(wildcard deploy/crds/*.yaml),)
 	@echo "ERROR: some CRD files were not dispatched: $(wildcard deploy/crds/*.yaml)"
 	@echo "Please update this Makefile accordingly."
 	@exit 1
 endif
-
-.PHONY: generate-kubefed-crd
-generate-kubefed-crd: vendor
-	@echo "Re-generating the KubeFed CRD..."
-	$(Q)go run $(shell pwd)/vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go crd:trivialVersions=true \
-	paths=./vendor/sigs.k8s.io/kubefed/pkg/apis/core/v1beta1/... output:crd:dir=deploy/crds/kubefed/row output:stdout
-    # Delete two first lines of the CRD ("\n----\n") to make a single manifest file out of the original multiple manifest file
-    # Also remove the line with 'type: object' from validation.openAPIV3Schema.properties path because it's incompatible with kube 1.11 which is used by minishift
-	@sed -e '1,2d' -e '/^      type: object/d' deploy/crds/kubefed/row/core.kubefed.io_kubefedclusters.yaml > deploy/crds/kubefed/core.kubefed.io_kubefedclusters.yaml
-	@echo "Generating bindata and dispatching it in the 'toolchain-common' repository..."
-	@go install github.com/go-bindata/go-bindata/...
-	@$(GOPATH)/bin/go-bindata -pkg cluster -o ../toolchain-common/pkg/cluster/kubefedcluster_assets.go -nocompress -prefix deploy/crds/kubefed deploy/crds/kubefed
-	@rm -rf deploy/crds/kubefed
 
 .PHONY: copy-reg-service-template
 copy-reg-service-template:
