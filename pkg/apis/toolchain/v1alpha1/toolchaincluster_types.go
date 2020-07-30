@@ -27,7 +27,7 @@ type ToolchainClusterConditionType string
 
 // These are valid conditions of a cluster.
 const (
-	// ClusterReady means the cluster is ready to accept workloads.
+	// ToolchainClusterReady means the cluster is ready to accept workloads.
 	ToolchainClusterReady ToolchainClusterConditionType = "Ready"
 	// ClusterOffline means the cluster is temporarily down or not reachable
 	ToolchainClusterOffline ToolchainClusterConditionType = "Offline"
