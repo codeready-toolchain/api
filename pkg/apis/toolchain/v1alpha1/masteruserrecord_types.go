@@ -122,7 +122,7 @@ type UserAccountStatusEmbedded struct {
 }
 
 type Cluster struct {
-	// Name is the name of the corresponding KubeFedCluster resource
+	// Name is the name of the corresponding ToolchainCluster resource
 	Name string `json:"name"`
 
 	// APIEndpoint is the API Endpoint of the cluster

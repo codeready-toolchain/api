@@ -18,8 +18,8 @@ const (
 	// host connection reasons
 	ToolchainStatusClusterConnectionReadyReason                 = "HostConnectionReady"
 	ToolchainStatusClusterConnectionNotReadyReason              = "HostConnectionNotReady"
-	ToolchainStatusClusterConnectionNotFoundReason              = "KubefedNotFound"
-	ToolchainStatusClusterConnectionLastProbeTimeExceededReason = "KubefedLastProbeTimeExceeded"
+	ToolchainStatusClusterConnectionNotFoundReason              = "ToolchainClusterNotFound"
+	ToolchainStatusClusterConnectionLastProbeTimeExceededReason = "ToolchainClusterLastProbeTimeExceeded"
 
 	// registration service reasons
 	ToolchainStatusRegServiceReadyReason            = "RegServiceReady"
