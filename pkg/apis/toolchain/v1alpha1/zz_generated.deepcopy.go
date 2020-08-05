@@ -524,6 +524,10 @@ func (in *MasterUserRecordStatus) DeepCopyInto(out *MasterUserRecordStatus) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.ProvisionedTime != nil {
+		in, out := &in.ProvisionedTime, &out.ProvisionedTime
+		*out = (*in).DeepCopy()
+	}
 	return
 }
 
