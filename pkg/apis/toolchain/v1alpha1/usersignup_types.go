@@ -14,9 +14,21 @@ const (
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
+	//UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
+	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
+	//UserSignupVerificationTimestamp is used for the usersignup verification timestamp annotation key
+	UserSignupVerificationTimestamp = LabelKeyPrefix + "verification-timestamp"
+	//UserSignupVerificationCounter is used for the usersignup verification counter annotation key
+	UserSignupVerificationCounter = LabelKeyPrefix + "verification-counter"
+	//UserVerificationAttempts is used for the usersignup verification attempts annotation key
+	UserVerificationAttempts = LabelKeyPrefix + "verification-attempts"
+	//UserVerficationExpiry is used for the usersignup verification expiry annotation key
+	UserVerficationExpiry = LabelKeyPrefix + "verification-expiry"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
+	// UserSignupPhoneNumberLabelKey is used for the usersignup phone number label key
+	UserSignupPhoneNumberLabelKey = LabelKeyPrefix + "phone-number"
 
 	// Status condition reasons
 	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
@@ -74,6 +86,10 @@ type UserSignupSpec struct {
 	// The user's company name, obtained from the identity provider.
 	// +optional
 	Company string `json:"company,omitempty"`
+
+	// VerificationRequired is used to determine if a user requires phone verification
+	// +optional
+	VerificationRequired bool `json:"verificationRequired,omitempty"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup
