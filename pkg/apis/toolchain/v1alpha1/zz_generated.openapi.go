@@ -1984,6 +1984,13 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 							Format:      "",
 						},
 					},
+					"verificationRequired": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VerificationRequired is used to determine if a user requires phone verification",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"username"},
 			},
