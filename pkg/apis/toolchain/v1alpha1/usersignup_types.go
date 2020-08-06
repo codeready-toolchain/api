@@ -14,16 +14,16 @@ const (
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
-	//UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
+	// UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
 	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
-	//UserSignupVerificationTimestamp is used for the usersignup verification timestamp annotation key
-	UserSignupVerificationTimestamp = LabelKeyPrefix + "verification-timestamp"
-	//UserSignupVerificationCounter is used for the usersignup verification counter annotation key
-	UserSignupVerificationCounter = LabelKeyPrefix + "verification-counter"
-	//UserVerificationAttempts is used for the usersignup verification attempts annotation key
-	UserVerificationAttempts = LabelKeyPrefix + "verification-attempts"
-	//UserVerficationExpiry is used for the usersignup verification expiry annotation key
-	UserVerficationExpiry = LabelKeyPrefix + "verification-expiry"
+	// UserSignupVerificationTimestampAnnotationKey is used for the usersignup verification timestamp annotation key
+	UserSignupVerificationTimestampAnnotationKey = LabelKeyPrefix + "verification-timestamp"
+	// UserSignupVerificationCounterAnnotationKey is used for the usersignup verification counter annotation key
+	UserSignupVerificationCounterAnnotationKey = LabelKeyPrefix + "verification-counter"
+	// UserVerificationAttemptsAnnotationKey is used for the usersignup verification attempts annotation key
+	UserVerificationAttemptsAnnotationKey = LabelKeyPrefix + "verification-attempts"
+	// UserVerficationExpiryAnnotationKey is used for the usersignup verification expiry annotation key
+	UserVerficationExpiryAnnotationKey = LabelKeyPrefix + "verification-expiry"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
@@ -87,7 +87,10 @@ type UserSignupSpec struct {
 	// +optional
 	Company string `json:"company,omitempty"`
 
-	// VerificationRequired is used to determine if a user requires phone verification
+	// VerificationRequired is used to determine if a user requires phone verification.
+	// The user should not be provisioned if VerificationRequired is set to true.
+	// VerificationRequired is set to false when the user is ether exempt from phone verification or has already successfully passed the verification.
+	// Default value is false.
 	// +optional
 	VerificationRequired bool `json:"verificationRequired,omitempty"`
 }
