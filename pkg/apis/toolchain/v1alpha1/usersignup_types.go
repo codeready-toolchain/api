@@ -14,9 +14,21 @@ const (
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
+	// UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
+	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
+	// UserSignupVerificationTimestampAnnotationKey is used for the usersignup verification timestamp annotation key
+	UserSignupVerificationTimestampAnnotationKey = LabelKeyPrefix + "verification-timestamp"
+	// UserSignupVerificationCounterAnnotationKey is used for the usersignup verification counter annotation key
+	UserSignupVerificationCounterAnnotationKey = LabelKeyPrefix + "verification-counter"
+	// UserVerificationAttemptsAnnotationKey is used for the usersignup verification attempts annotation key
+	UserVerificationAttemptsAnnotationKey = LabelKeyPrefix + "verification-attempts"
+	// UserVerficationExpiryAnnotationKey is used for the usersignup verification expiry annotation key
+	UserVerficationExpiryAnnotationKey = LabelKeyPrefix + "verification-expiry"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
+	// UserSignupPhoneNumberLabelKey is used for the usersignup phone number label key
+	UserSignupPhoneNumberLabelKey = LabelKeyPrefix + "phone-number"
 
 	// Status condition reasons
 	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
@@ -74,6 +86,13 @@ type UserSignupSpec struct {
 	// The user's company name, obtained from the identity provider.
 	// +optional
 	Company string `json:"company,omitempty"`
+
+	// VerificationRequired is used to determine if a user requires phone verification.
+	// The user should not be provisioned if VerificationRequired is set to true.
+	// VerificationRequired is set to false when the user is ether exempt from phone verification or has already successfully passed the verification.
+	// Default value is false.
+	// +optional
+	VerificationRequired bool `json:"verificationRequired,omitempty"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup
