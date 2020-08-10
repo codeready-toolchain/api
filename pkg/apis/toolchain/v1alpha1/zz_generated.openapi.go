@@ -557,11 +557,17 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 							},
 						},
 					},
+					"provisionedTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The timestamp when the user was provisioned",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
 	}
 }
 

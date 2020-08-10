@@ -96,6 +96,10 @@ type MasterUserRecordStatus struct {
 	// The status of user accounts in the member clusters which belong to this MasterUserRecord
 	// +listType=atomic
 	UserAccounts []UserAccountStatusEmbedded `json:"userAccounts,omitempty"`
+
+	// The timestamp when the user was provisioned
+	// +optional
+	ProvisionedTime *metav1.Time `json:"provisionedTime,omitempty"`
 }
 
 // UserAccountSpecEmbedded defines the desired state of UserAccount
