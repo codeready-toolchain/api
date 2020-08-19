@@ -9,7 +9,7 @@ ENV LANG=en_US.utf8 \
     PATH=$PATH:$GOPATH/bin \
     GIT_COMMITTER_NAME=devtools \
     GIT_COMMITTER_EMAIL=devtools@redhat.com \
-    OPERATOR_SDK_VERSION=v0.17.1
+    OPERATOR_SDK_VERSION=v0.18.2
 
 ARG GO_PACKAGE_PATH=github.com/codeready-toolchain/api
 
@@ -34,12 +34,11 @@ WORKDIR /tmp
 
 # download, verify and install golang
 ENV PATH=$PATH:/usr/local/go/bin
-RUN curl -Lo go1.13.4.linux-amd64.tar.gz https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz \
-    && echo "692d17071736f74be04a72a06dab9cac1cd759377bd85316e52b2227604c004c go1.13.4.linux-amd64.tar.gz" > go1.13.4.linux-amd64.sha256 \
-    && sha256sum -c go1.13.4.linux-amd64.sha256 \
-    && tar xzf go1.13.4.linux-amd64.tar.gz \
-    && tar -C /usr/local -xzf go1.13.4.linux-amd64.tar.gz \
-    && rm -f go1.13.4.linux-amd64.tar.gz \
+RUN curl -Lo go1.15.linux-amd64.tar.gz https://golang.org/dl/go1.15.linux-amd64.tar.gz \
+    && echo "2d75848ac606061efe52a8068d0e647b35ce487a15bb52272c427df485193602 go1.15.linux-amd64.tar.gz" > go1.15.linux-amd64.sha256 \
+    && sha256sum -c go1.15.linux-amd64.sha256 \
+    && tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz \
+    && rm -f go1.15.linux-amd64.tar.gz \
     && go version
 
 # download, verify and install openshift client tools (oc and kubectl)
