@@ -970,6 +970,11 @@ func (in *NSTemplateTierSpec) DeepCopyInto(out *NSTemplateTierSpec) {
 		*out = new(NSTemplateTierClusterResources)
 		**out = **in
 	}
+	if in.DeactivationTimeoutDays != nil {
+		in, out := &in.DeactivationTimeoutDays, &out.DeactivationTimeoutDays
+		*out = new(int)
+		**out = **in
+	}
 	return
 }
 
