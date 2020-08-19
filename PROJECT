@@ -1,0 +1,10 @@
+domain: dev.openshift.com
+layout: go.kubebuilder.io/v2
+repo: github.com/codeready-toolchain/member-operator
+resources:
+- group: toolchain
+  kind: Tier
+  version: v1alpha1
+version: 3-alpha
+plugins:
+  go.operator-sdk.io/v2-alpha: {}

@@ -7,26 +7,33 @@ API_VERSION:=v1alpha1
 HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup registrationservice banneduser changetierrequest notification tiertemplate templateupdaterequest toolchainstatus toolchaincluster
 MEMBER_CLUSTER_CRDS:=useraccount nstemplateset memberstatus idler toolchaincluster
 
+
+
 .PHONY: generate
+# Generate code
+generate: controller-gen
+	$(CONTROLLER_GEN) object:headerFile="hack/boilerplate.go.txt" paths="./..."
+
+
 ## Generate deepcopy, openapi and CRD files after the API was modified
-generate: vendor generate-deepcopy generate-openapi generate-crds generate-csv copy-reg-service-template
+# generate: vendor generate-deepcopy generate-openapi generate-crds generate-csv copy-reg-service-template
 	
-.PHONY: generate-deepcopy
-generate-deepcopy:
-	@echo "re-generating the deepcopy go file..."
-	$(Q)go run $(shell pwd)/vendor/k8s.io/code-generator/cmd/deepcopy-gen/main.go \
-	--input-dirs ./pkg/apis/$(API_GROUPNAME)/$(API_VERSION)/ -O zz_generated.deepcopy \
-	--bounding-dirs github.com/codeready-toolchain/api/pkg/apis "$(API_GROUPNAME):$(API_VERSION)" \
-	--go-header-file=make/go-header.txt
+# .PHONY: generate-deepcopy
+# generate-deepcopy:
+# 	@echo "re-generating the deepcopy go file..."
+# 	$(Q)go run $(shell pwd)/vendor/k8s.io/code-generator/cmd/deepcopy-gen/main.go \
+# 	--input-dirs ./pkg/apis/$(API_GROUPNAME)/$(API_VERSION)/ -O zz_generated.deepcopy \
+# 	--bounding-dirs github.com/codeready-toolchain/api/pkg/apis "$(API_GROUPNAME):$(API_VERSION)" \
+# 	--go-header-file=make/go-header.txt
 	
-.PHONY: generate-openapi
-generate-openapi:
-	@echo "re-generating the openapi go file..."
-	$(Q)go run $(shell pwd)/vendor/k8s.io/kube-openapi/cmd/openapi-gen/openapi-gen.go \
-	--input-dirs ./pkg/apis/$(API_GROUPNAME)/$(API_VERSION)/ \
-	--output-package github.com/codeready-toolchain/api/pkg/apis/$(API_GROUPNAME)/$(API_VERSION) \
-	--output-file-base zz_generated.openapi \
-	--go-header-file=make/go-header.txt
+# .PHONY: generate-openapi
+# generate-openapi:
+# 	@echo "re-generating the openapi go file..."
+# 	$(Q)go run $(shell pwd)/vendor/k8s.io/kube-openapi/cmd/openapi-gen/openapi-gen.go \
+# 	--input-dirs ./pkg/apis/$(API_GROUPNAME)/$(API_VERSION)/ \
+# 	--output-package github.com/codeready-toolchain/api/pkg/apis/$(API_GROUPNAME)/$(API_VERSION) \
+# 	--output-file-base zz_generated.openapi \
+# 	--go-header-file=make/go-header.txt
 
 # make sure that that the `host-operator` and `member-operator` repositories exist locally 
 # and that they don't have any pending changes (except for the CRD files). 
