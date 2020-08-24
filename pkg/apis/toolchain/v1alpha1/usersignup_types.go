@@ -22,8 +22,8 @@ const (
 	UserSignupVerificationCounterAnnotationKey = LabelKeyPrefix + "verification-counter"
 	// UserVerificationAttemptsAnnotationKey is used for the usersignup verification attempts annotation key
 	UserVerificationAttemptsAnnotationKey = LabelKeyPrefix + "verification-attempts"
-	// UserVerficationExpiryAnnotationKey is used for the usersignup verification expiry annotation key
-	UserVerficationExpiryAnnotationKey = LabelKeyPrefix + "verification-expiry"
+	// UserVerificationExpiryAnnotationKey is used for the usersignup verification expiry annotation key
+	UserVerificationExpiryAnnotationKey = LabelKeyPrefix + "verification-expiry"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
