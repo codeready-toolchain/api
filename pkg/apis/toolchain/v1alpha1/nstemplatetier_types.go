@@ -27,6 +27,10 @@ type NSTemplateTierSpec struct {
 	// the cluster resources template (for cluster-wide quotas, etc.)
 	// +optional
 	ClusterResources *NSTemplateTierClusterResources `json:"clusterResources,omitempty"`
+
+	// the period (in days) after which users within the tier will be deactivated
+	// +optional
+	DeactivationTimeoutDays int `json:"deactivationTimeoutDays,omitempty"`
 }
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource
