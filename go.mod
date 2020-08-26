@@ -13,7 +13,7 @@ require (
 	github.com/onsi/ginkgo v1.12.0 // indirect
 	github.com/onsi/gomega v1.9.0 // indirect
 	// using latest commit from 'github.com/openshift/api@release-4.5'
-	github.com/openshift/api v0.0.0-20200526144822-34f54f12813a
+	github.com/openshift/api v0.0.0-20200821140346-b94c46af3f2b
 	github.com/spf13/cobra v1.0.0 // indirect
 	github.com/stretchr/testify v1.5.1 // indirect
 	golang.org/x/net v0.0.0-20200301022130-244492dfa37a // indirect
