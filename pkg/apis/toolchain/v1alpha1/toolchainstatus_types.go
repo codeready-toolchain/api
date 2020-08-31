@@ -72,6 +72,15 @@ type ToolchainStatusStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+
+	// Number of MasterUserRecords created within the host cluster
+	// +optional
+	MasterUserRecordCount int `json:"masterUserRecordCount,omitempty"`
+
+	// A map of number of UserAccounts per cluster created within the member clusters
+	// +optional
+	// +patchStrategy=merge
+	UserAccountsPerClusterCounts map[string]int `json:"userAccountsPerClusterCounts,omitempty" patchStrategy:"merge"`
 }
 
 // HostOperatorStatus defines the observed state of a toolchain's host operator
@@ -118,7 +127,6 @@ type HostRegistrationServiceStatus struct {
 
 // RegistrationServiceDeploymentStatus contains status of the registration service's deployment
 type RegistrationServiceDeploymentStatus struct {
-
 	// The host operator deployment name
 	Name string `json:"name"`
 
@@ -152,7 +160,6 @@ type RegistrationServiceHealth struct {
 
 // Member contains the status of a member cluster
 type Member struct {
-
 	// The cluster identifier
 	ClusterName string `json:"clusterName"`
 

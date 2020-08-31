@@ -1706,6 +1706,33 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 							},
 						},
 					},
+					"masterUserRecordCount": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Number of MasterUserRecords created within the host cluster",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"userAccountsPerClusterCounts": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-patch-strategy": "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "A map of number of UserAccounts per cluster created within the member clusters",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Type:   []string{"integer"},
+										Format: "int32",
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},

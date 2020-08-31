@@ -1741,6 +1741,13 @@ func (in *ToolchainStatusStatus) DeepCopyInto(out *ToolchainStatusStatus) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.UserAccountsPerClusterCounts != nil {
+		in, out := &in.UserAccountsPerClusterCounts, &out.UserAccountsPerClusterCounts
+		*out = make(map[string]int, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
 	return
 }
 
