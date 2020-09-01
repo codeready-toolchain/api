@@ -27,52 +27,60 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUser":                  schema_pkg_apis_toolchain_v1alpha1_BannedUser(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUserSpec":              schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequest":           schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec":       schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus":     schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Idler":                       schema_pkg_apis_toolchain_v1alpha1_Idler(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerSpec":                   schema_pkg_apis_toolchain_v1alpha1_IdlerSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerStatus":                 schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.LocalSecretReference":        schema_pkg_apis_toolchain_v1alpha1_LocalSecretReference(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":            schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":        schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus":      schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatus":                schema_pkg_apis_toolchain_v1alpha1_MemberStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusSpec":            schema_pkg_apis_toolchain_v1alpha1_MemberStatusSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus":          schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":               schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":           schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":         schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":              schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":          schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":        schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Notification":                schema_pkg_apis_toolchain_v1alpha1_Notification(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationSpec":            schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationStatus":          schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationService":         schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec":     schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus":   schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequest":       schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec":   schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestStatus": schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TierTemplateSpec":            schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainCluster":            schema_pkg_apis_toolchain_v1alpha1_ToolchainCluster(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterCondition":   schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterCondition(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterSpec":        schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus":      schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatus":             schema_pkg_apis_toolchain_v1alpha1_ToolchainStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusSpec":         schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusStatus":       schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":                 schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":             schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase":         schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecEmbedded":     schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":           schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":                  schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec":              schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus":            schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUser":                          schema_pkg_apis_toolchain_v1alpha1_BannedUser(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUserSpec":                      schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageHost":                   schema_pkg_apis_toolchain_v1alpha1_CapacityUsageHost(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageMember":                 schema_pkg_apis_toolchain_v1alpha1_CapacityUsageMember(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequest":                   schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec":               schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus":             schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorStatus":                  schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostRegistrationServiceStatus":       schema_pkg_apis_toolchain_v1alpha1_HostRegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Idler":                               schema_pkg_apis_toolchain_v1alpha1_Idler(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerSpec":                           schema_pkg_apis_toolchain_v1alpha1_IdlerSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerStatus":                         schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.LocalSecretReference":                schema_pkg_apis_toolchain_v1alpha1_LocalSecretReference(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":                    schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":                schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus":              schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Member":                              schema_pkg_apis_toolchain_v1alpha1_Member(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatus":                        schema_pkg_apis_toolchain_v1alpha1_MemberStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusSpec":                    schema_pkg_apis_toolchain_v1alpha1_MemberStatusSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus":                  schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":                       schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":                   schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":                 schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":                      schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":                  schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":                schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Notification":                        schema_pkg_apis_toolchain_v1alpha1_Notification(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationSpec":                    schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationStatus":                  schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationService":                 schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceDeploymentStatus": schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceDeploymentStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceHealth":           schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceHealth(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceResourcesStatus":  schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceResourcesStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec":             schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus":           schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequest":               schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec":           schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestStatus":         schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TierTemplateSpec":                    schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainCluster":                    schema_pkg_apis_toolchain_v1alpha1_ToolchainCluster(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterCondition":           schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterCondition(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterSpec":                schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus":              schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatus":                     schema_pkg_apis_toolchain_v1alpha1_ToolchainStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusSpec":                 schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusStatus":               schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":                         schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":                     schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase":                 schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecEmbedded":             schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":                   schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":                          schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec":                      schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus":                    schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref),
 	}
 }
 
@@ -131,6 +139,46 @@ func schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref common.ReferenceCallb
 					},
 				},
 				Required: []string{"email"},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_CapacityUsageHost(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "CapacityUsageHost contains information about the capacity usage in host cluster",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"masterUserRecordCount": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Number of MasterUserRecords created within the host cluster",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_CapacityUsageMember(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "CapacityUsageMember contains information about the capacity usage in member cluster",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"userAccountCount": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Number of UserAccounts created within the member cluster",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
 			},
 		},
 	}
@@ -250,6 +298,113 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref common.Refer
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "HostOperatorStatus defines the observed state of a toolchain's host operator",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"version": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The version of the operator",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"revision": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The commit id from the host-operator repository used to build the operator",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"buildTimestamp": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The timestamp of the host operator build",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"deploymentName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The status of the host operator's deployment",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"capacityUsage": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Capacity usage of the host cluster",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageHost"),
+						},
+					},
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current host operator status conditions Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"version", "revision", "buildTimestamp", "deploymentName"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageHost", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_HostRegistrationServiceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "HostRegistrationServiceStatus defines the observed state of a toolchain's registration service",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"deployment": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Deployment is the status of the registration service's deployment",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceDeploymentStatus"),
+						},
+					},
+					"registrationServiceResources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "RegistrationServiceResources is the status for resources created for the registration service",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceResourcesStatus"),
+						},
+					},
+					"health": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Health provides health status of the registration service",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceHealth"),
+						},
+					},
+				},
+				Required: []string{"deployment", "registrationServiceResources", "health"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceDeploymentStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceHealth", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceResourcesStatus"},
 	}
 }
 
@@ -568,6 +723,41 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_Member(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Member contains the status of a member cluster",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"clusterName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The cluster identifier",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"capacityUsage": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Capacity usage of the member cluster",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageMember"),
+						},
+					},
+					"memberStatus": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The array of member status objects",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus"),
+						},
+					},
+				},
+				Required: []string{"clusterName", "memberStatus"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageMember", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus"},
 	}
 }
 
@@ -1114,6 +1304,159 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref common.Reference
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceDeploymentStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceDeploymentStatus contains status of the registration service's deployment",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The host operator deployment name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current deployment status conditions for a host operator Supported condition types: Available, Progressing",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"name"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceHealth(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceHealth contains health status of the registration service",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"alive": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"buildTime": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"environment": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"revision": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"startTime": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of status conditions for the health of the registration service Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"alive", "buildTime", "environment", "revision", "startTime"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceResourcesStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceResourcesStatus contains conditions for creation/deployment of registration service resources",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current registration service resource status conditions Supported condition types: Deployed, Deploying, DeployingFailed",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
 	}
 }
 
@@ -1701,33 +2044,6 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-					"masterUserRecordCount": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Number of MasterUserRecords created within the host cluster",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
-					"userAccountsPerClusterCounts": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-patch-strategy": "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "A map of number of UserAccounts per cluster created within the member clusters",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Type:   []string{"integer"},
-										Format: "int32",
 									},
 								},
 							},

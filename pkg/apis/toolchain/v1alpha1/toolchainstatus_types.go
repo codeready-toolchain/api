@@ -72,18 +72,10 @@ type ToolchainStatusStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
-
-	// Number of MasterUserRecords created within the host cluster
-	// +optional
-	MasterUserRecordCount int `json:"masterUserRecordCount,omitempty"`
-
-	// A map of number of UserAccounts per cluster created within the member clusters
-	// +optional
-	// +patchStrategy=merge
-	UserAccountsPerClusterCounts map[string]int `json:"userAccountsPerClusterCounts,omitempty" patchStrategy:"merge"`
 }
 
 // HostOperatorStatus defines the observed state of a toolchain's host operator
+// +k8s:openapi-gen=true
 type HostOperatorStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
@@ -100,6 +92,10 @@ type HostOperatorStatus struct {
 	// The status of the host operator's deployment
 	DeploymentName string `json:"deploymentName"`
 
+	// Capacity usage of the host cluster
+	// +optional
+	CapacityUsage CapacityUsageHost `json:"capacityUsage,omitempty"`
+
 	// Conditions is an array of current host operator status conditions
 	// Supported condition types: ConditionReady
 	// +optional
@@ -110,7 +106,16 @@ type HostOperatorStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
+// CapacityUsageHost contains information about the capacity usage in host cluster
+// +k8s:openapi-gen=true
+type CapacityUsageHost struct {
+	// Number of MasterUserRecords created within the host cluster
+	// +optional
+	MasterUserRecordCount int `json:"masterUserRecordCount,omitempty"`
+}
+
 // HostRegistrationServiceStatus defines the observed state of a toolchain's registration service
+// +k8s:openapi-gen=true
 type HostRegistrationServiceStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
@@ -126,6 +131,7 @@ type HostRegistrationServiceStatus struct {
 }
 
 // RegistrationServiceDeploymentStatus contains status of the registration service's deployment
+// +k8s:openapi-gen=true
 type RegistrationServiceDeploymentStatus struct {
 	// The host operator deployment name
 	Name string `json:"name"`
@@ -141,6 +147,7 @@ type RegistrationServiceDeploymentStatus struct {
 }
 
 // RegistrationServiceHealth contains health status of the registration service
+// +k8s:openapi-gen=true
 type RegistrationServiceHealth struct {
 	Alive       string `json:"alive"`
 	BuildTime   string `json:"buildTime"`
@@ -159,15 +166,29 @@ type RegistrationServiceHealth struct {
 }
 
 // Member contains the status of a member cluster
+// +k8s:openapi-gen=true
 type Member struct {
 	// The cluster identifier
 	ClusterName string `json:"clusterName"`
+
+	// Capacity usage of the member cluster
+	// +optional
+	CapacityUsage CapacityUsageMember `json:"capacityUsage,omitempty"`
 
 	// The array of member status objects
 	MemberStatus MemberStatusStatus `json:"memberStatus"`
 }
 
+// CapacityUsageMember contains information about the capacity usage in member cluster
+// +k8s:openapi-gen=true
+type CapacityUsageMember struct {
+	// Number of UserAccounts created within the member cluster
+	// +optional
+	UserAccountCount int `json:"userAccountCount,omitempty"`
+}
+
 // RegistrationServiceResourcesStatus contains conditions for creation/deployment of registration service resources
+// +k8s:openapi-gen=true
 type RegistrationServiceResourcesStatus struct {
 	// Conditions is an array of current registration service resource status conditions
 	// Supported condition types: Deployed, Deploying, DeployingFailed
