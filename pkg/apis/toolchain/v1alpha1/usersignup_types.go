@@ -20,8 +20,8 @@ const (
 	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
 	// UserSignupVerificationTimestampAnnotationKey is used for the usersignup verification timestamp annotation key
 	UserSignupVerificationTimestampAnnotationKey = LabelKeyPrefix + "verification-timestamp"
-	// UserSignupVerificationCodeGeneratedTimestampAnnotationKey is used for the usersignup verification code generated timestamp annotation key
-	UserSignupVerificationCodeGeneratedTimestampAnnotationKey = LabelKeyPrefix + "verification-code-generated-timestamp"
+	// UserSignupVerificationInitTimestampAnnotationKey is used for the usersignup verification code generated timestamp annotation key
+	UserSignupVerificationInitTimestampAnnotationKey = LabelKeyPrefix + "verification-init-timestamp"
 	// UserSignupVerificationCounterAnnotationKey is used for the usersignup verification counter annotation key
 	UserSignupVerificationCounterAnnotationKey = LabelKeyPrefix + "verification-counter"
 	// UserVerificationAttemptsAnnotationKey is used for the usersignup verification attempts annotation key
