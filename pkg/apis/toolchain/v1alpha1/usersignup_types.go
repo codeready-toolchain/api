@@ -14,10 +14,14 @@ const (
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
+	// UserSignupPhoneNumberLabelKey is used for the usersignup phone number label key
+	UserSignupPhoneNumberLabelKey = LabelKeyPrefix + "phone-number"
 	// UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
 	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
 	// UserSignupVerificationTimestampAnnotationKey is used for the usersignup verification timestamp annotation key
 	UserSignupVerificationTimestampAnnotationKey = LabelKeyPrefix + "verification-timestamp"
+	// UserSignupVerificationCodeGeneratedTimestampAnnotationKey is used for the usersignup verification code generated timestamp annotation key
+	UserSignupVerificationCodeGeneratedTimestampAnnotationKey = LabelKeyPrefix + "verification-code-generated-timestamp"
 	// UserSignupVerificationCounterAnnotationKey is used for the usersignup verification counter annotation key
 	UserSignupVerificationCounterAnnotationKey = LabelKeyPrefix + "verification-counter"
 	// UserVerificationAttemptsAnnotationKey is used for the usersignup verification attempts annotation key
@@ -27,8 +31,8 @@ const (
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
-	// UserSignupPhoneNumberLabelKey is used for the usersignup phone number label key
-	UserSignupPhoneNumberLabelKey = LabelKeyPrefix + "phone-number"
+	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
+	UserSignupUserPhoneHashLabelKey = LabelKeyPrefix + "phone-hash"
 
 	// Status condition reasons
 	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
