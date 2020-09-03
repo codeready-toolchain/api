@@ -27,8 +27,9 @@ const (
 	ToolchainStatusRegServiceResourceNotFoundReason = "RegServiceResourceNotFound"
 
 	// member status reasons
-	ToolchainStatusMemberStatusNoClustersFoundReason = "NoMemberClustersFound"
-	ToolchainStatusMemberStatusNotFoundReason        = "MemberStatusNotFound"
+	ToolchainStatusMemberStatusNoClustersFoundReason   = "NoMemberClustersFound"
+	ToolchainStatusMemberStatusNotFoundReason          = "MemberStatusNotFound"
+	ToolchainStatusMemberToolchainClusterRemovedReason = "MemberToolchainClusterRemoved"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
