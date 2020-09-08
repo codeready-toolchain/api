@@ -8,8 +8,7 @@ const (
 	// BannedUserEmailHashLabelKey is used for the banneduser email hash label key
 	BannedUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 
-	// BannedUserPhoneNumberLabelKey is used for the banneduser phone number label key
-	BannedUserPhoneNumberLabelKey     = LabelKeyPrefix + "phone-number"
+	// BannedUserPhoneNumberHashLabelKey is used for the banneduser phone number label key
 	BannedUserPhoneNumberHashLabelKey = LabelKeyPrefix + "phone-hash"
 )
 
