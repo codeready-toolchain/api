@@ -14,10 +14,14 @@ const (
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
+	// UserSignupPhoneNumberLabelKey is used for the usersignup phone number label key
+	UserSignupPhoneNumberLabelKey = LabelKeyPrefix + "phone-number"
 	// UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
 	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
 	// UserSignupVerificationTimestampAnnotationKey is used for the usersignup verification timestamp annotation key
 	UserSignupVerificationTimestampAnnotationKey = LabelKeyPrefix + "verification-timestamp"
+	// UserSignupVerificationInitTimestampAnnotationKey is used for the usersignup verification code generated timestamp annotation key
+	UserSignupVerificationInitTimestampAnnotationKey = LabelKeyPrefix + "verification-init-timestamp"
 	// UserSignupVerificationCounterAnnotationKey is used for the usersignup verification counter annotation key
 	UserSignupVerificationCounterAnnotationKey = LabelKeyPrefix + "verification-counter"
 	// UserVerificationAttemptsAnnotationKey is used for the usersignup verification attempts annotation key
@@ -27,14 +31,22 @@ const (
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
-	// UserSignupPhoneNumberLabelKey is used for the usersignup phone number label key
-	UserSignupPhoneNumberLabelKey = LabelKeyPrefix + "phone-number"
+	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
+	UserSignupUserPhoneHashLabelKey = LabelKeyPrefix + "phone-hash"
+	// UserSignupApprovedLabelKey is used for filtering unapproved UserSignup resources
+	UserSignupApprovedLabelKey = LabelKeyPrefix + "approved"
+
+	// UserSignupApprovedLabelValueTrue is used for setting that the UserSignup has been approved
+	UserSignupApprovedLabelValueTrue = "true"
+	// UserSignupApprovedLabelValueFalse is used for setting that the UserSignup has not been approved
+	UserSignupApprovedLabelValueFalse = "false"
 
 	// Status condition reasons
 	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
 	UserSignupNoTemplateTierAvailableReason        = "NoTemplateTierAvailable"
 	UserSignupFailedToReadUserApprovalPolicyReason = "FailedToReadUserApprovalPolicy"
 	UserSignupUnableToCreateMURReason              = "UnableToCreateMUR"
+	UserSignupUnableToUpdateApprovedLabelReason    = "UnableToUpdateApprovedLabel"
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
 	UserSignupUserDeactivatingReason               = "Deactivating"
 	UserSignupUserDeactivatedReason                = "Deactivated"
