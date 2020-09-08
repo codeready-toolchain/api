@@ -40,4 +40,8 @@ read_arguments $@
 setup_version_variables_based_on_commits true
 
 # generate manifests
-check_main_and_embedded_repos_and_generate_manifests $@ --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
+if [[ "${FIRST_RELEASE}" == "true" ]]; then
+    check_main_and_embedded_repos_and_generate_manifests $@ --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION}
+else
+    check_main_and_embedded_repos_and_generate_manifests $@ --template-version ${DEFAULT_VERSION} --next-version ${NEXT_CSV_VERSION} --replace-version ${REPLACE_CSV_VERSION}
+fi

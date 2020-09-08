@@ -24,10 +24,6 @@ additional_help() {
 }
 
 handle_missing_version_in_combined_repo() {
-    # get the current version that is in the "replaces" clause of the CSV
-    REPLACE_VERSION=`grep "^  replaces: " ${CSV_LOCATION} | awk '{print $2}'`
-    # get only the suffix from the replace version (ie. from toolchain-host-operator.v0.0.217-105-commit-6c9926d-64af1be get only 0.0.217-105-commit-6c9926d-64af1be)
-    REPLACE_VERSION_SUFFIX=`echo ${REPLACE_VERSION} | sed -e "s/^.*operator.v//"`
     # split the version to get the number of commits and commit hashes as separated params (ie. from 0.0.217-105-commit-6c9926d-64af1be to 0.0.217 105 commit 6c9926d 64af1be)
     SPLIT_REPLACE_VERSION=(${REPLACE_VERSION_SUFFIX//-/ })
     # check if the number of split parts in the array is 5 to handle the missing version only for cases with embedded or main repos (host-operator + registration-service)
@@ -39,7 +35,7 @@ handle_missing_version_in_combined_repo() {
         echo "going to check the latest bundle image in the index image ..."
         EXPORT_OUTPUT_FILE=${TEMP_DIR}/export-output
         cd ${TEMP_DIR}
-            opm index export --index=${INDEX_IMAGE} -c=${IMAGE_BUILDER} -o=${OPERATOR_NAME} >${EXPORT_OUTPUT_FILE} 2>&1 &
+            opm index export --index=${FROM_INDEX_IMAGE} -c=${IMAGE_BUILDER} -o=${OPERATOR_NAME} >${EXPORT_OUTPUT_FILE} 2>&1 &
         cd ${CURRENT_DIR}
         # read the file containing the output and check if it contains "Preparing to pull bundles" clause. The timeout is 1 minute
         LAST_VERSION_IN_INDEX=""
@@ -130,9 +126,27 @@ CURRENT_VERSION=`grep "^  version: " ${CSV_LOCATION} | awk '{print $2}'`
 
 # set the image names variables
 BUNDLE_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${PRJ_NAME}-bundle:${CURRENT_VERSION}
-INDEX_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${INDEX_IMAGE}:latest
+INDEX_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${INDEX_IMAGE_NAME}:latest
+FROM_INDEX_IMAGE="${INDEX_IMAGE}"
 
-handle_missing_version_in_combined_repo
+if [[ "${INDEX_PER_COMMIT}" == "true" ]]; then
+    INDEX_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${INDEX_IMAGE_NAME}:${CURRENT_VERSION}
+fi
+
+# get the current version that is in the "replaces" clause of the CSV
+REPLACE_VERSION=`grep "^  replaces: " ${CSV_LOCATION} | awk '{print $2}'`
+if [[ -n ${REPLACE_VERSION} ]]; then
+    # get only the suffix from the replace version (ie. from toolchain-host-operator.v0.0.217-105-commit-6c9926d-64af1be get only 0.0.217-105-commit-6c9926d-64af1be)
+    REPLACE_VERSION_SUFFIX=`echo ${REPLACE_VERSION} | sed -e "s/^.*operator.v//"`
+
+    if [[ "${INDEX_PER_COMMIT}" == "true" ]]; then
+        FROM_INDEX_IMAGE="quay.io/${QUAY_NAMESPACE_TO_PUSH}/${INDEX_IMAGE_NAME}:${REPLACE_VERSION_SUFFIX}"
+    fi
+
+    handle_missing_version_in_combined_repo
+elif [[ "${INDEX_PER_COMMIT}" == "true" ]]; then
+        FROM_INDEX_IMAGE=""
+fi
 
 # replace the channels in both the bundle.Dockerfile and annotation.yaml file
 sed "s/\(channel.*: \)\".*\"/\1\"${CHANNEL}\"/" ${PKG_DIR}/metadata/annotations.yaml > ${TEMP_DIR}/${PRJ_NAME}_${CURRENT_VERSION}_metadata_annotations.yaml
@@ -164,7 +178,12 @@ if [[ ${IMAGE_BUILDER} == "podman" ]]; then
     PULL_TOOL_PARAM="--pull-tool podman"
 fi
 
-opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${INDEX_IMAGE} ${PULL_TOOL_PARAM}
+if [[ -n ${FROM_INDEX_IMAGE} ]] && [[ `${IMAGE_BUILDER} pull ${FROM_INDEX_IMAGE}` ]]; then
+    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${FROM_INDEX_IMAGE} ${PULL_TOOL_PARAM}
+else
+    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} ${PULL_TOOL_PARAM}
+fi
+
 if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
     ${IMAGE_BUILDER} push ${INDEX_IMAGE} docker://${INDEX_IMAGE}
 else
