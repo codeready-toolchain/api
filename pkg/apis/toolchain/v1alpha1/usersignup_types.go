@@ -31,12 +31,20 @@ const (
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
 	UserSignupUserPhoneHashLabelKey = LabelKeyPrefix + "phone-hash"
+	// UserSignupApprovedLabelKey is used for filtering unapproved UserSignup resources
+	UserSignupApprovedLabelKey = LabelKeyPrefix + "approved"
+
+	// UserSignupApprovedLabelValueTrue is used for setting that the UserSignup has been approved
+	UserSignupApprovedLabelValueTrue = "true"
+	// UserSignupApprovedLabelValueFalse is used for setting that the UserSignup has not been approved
+	UserSignupApprovedLabelValueFalse = "false"
 
 	// Status condition reasons
 	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
 	UserSignupNoTemplateTierAvailableReason        = "NoTemplateTierAvailable"
 	UserSignupFailedToReadUserApprovalPolicyReason = "FailedToReadUserApprovalPolicy"
 	UserSignupUnableToCreateMURReason              = "UnableToCreateMUR"
+	UserSignupUnableToUpdateApprovedLabelReason    = "UnableToUpdateApprovedLabel"
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
 	UserSignupUserDeactivatingReason               = "Deactivating"
 	UserSignupUserDeactivatedReason                = "Deactivated"
