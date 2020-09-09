@@ -93,9 +93,9 @@ type HostOperatorStatus struct {
 	// The status of the host operator's deployment
 	DeploymentName string `json:"deploymentName"`
 
-	// Capacity usage of the host cluster
+	// Number of MasterUserRecords created within the host cluster
 	// +optional
-	CapacityUsage CapacityUsageHost `json:"capacityUsage,omitempty"`
+	MasterUserRecordCount int `json:"masterUserRecordCount,omitempty"`
 
 	// Conditions is an array of current host operator status conditions
 	// Supported condition types: ConditionReady
@@ -105,14 +105,6 @@ type HostOperatorStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
-}
-
-// CapacityUsageHost contains information about the capacity usage in host cluster
-// +k8s:openapi-gen=true
-type CapacityUsageHost struct {
-	// Number of MasterUserRecords created within the host cluster
-	// +optional
-	MasterUserRecordCount int `json:"masterUserRecordCount,omitempty"`
 }
 
 // HostRegistrationServiceStatus defines the observed state of a toolchain's registration service
@@ -172,20 +164,12 @@ type Member struct {
 	// The cluster identifier
 	ClusterName string `json:"clusterName"`
 
-	// Capacity usage of the member cluster
-	// +optional
-	CapacityUsage CapacityUsageMember `json:"capacityUsage,omitempty"`
-
-	// The array of member status objects
-	MemberStatus MemberStatusStatus `json:"memberStatus"`
-}
-
-// CapacityUsageMember contains information about the capacity usage in member cluster
-// +k8s:openapi-gen=true
-type CapacityUsageMember struct {
 	// Number of UserAccounts created within the member cluster
 	// +optional
 	UserAccountCount int `json:"userAccountCount,omitempty"`
+
+	// The array of member status objects
+	MemberStatus MemberStatusStatus `json:"memberStatus"`
 }
 
 // RegistrationServiceResourcesStatus contains conditions for creation/deployment of registration service resources
