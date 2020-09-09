@@ -7,6 +7,7 @@ import (
 // HostOperatorConfigSpec contains all configuration parameters of the host operator
 // +k8s:openapi-gen=true
 type HostOperatorConfigSpec struct {
+	// Keeps parameters necessary for automatic approval
 	// +optional
 	AutomaticApproval AutomaticApproval `json:"automaticApproval,omitempty"`
 }

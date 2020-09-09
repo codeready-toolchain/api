@@ -309,7 +309,8 @@ func schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigSpec(ref common.Refere
 				Properties: map[string]spec.Schema{
 					"automaticApproval": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval"),
+							Description: "Keeps parameters necessary for automatic approval",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval"),
 						},
 					},
 				},
