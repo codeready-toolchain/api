@@ -29,8 +29,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 	return map[string]common.OpenAPIDefinition{
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUser":                          schema_pkg_apis_toolchain_v1alpha1_BannedUser(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUserSpec":                      schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageHost":                   schema_pkg_apis_toolchain_v1alpha1_CapacityUsageHost(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageMember":                 schema_pkg_apis_toolchain_v1alpha1_CapacityUsageMember(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequest":                   schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec":               schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus":             schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref),
@@ -62,6 +60,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceResourcesStatus":  schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceResourcesStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec":             schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus":           schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage":                       schema_pkg_apis_toolchain_v1alpha1_ResourceUsage(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequest":               schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec":           schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestStatus":         schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref),
@@ -139,46 +138,6 @@ func schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref common.ReferenceCallb
 					},
 				},
 				Required: []string{"email"},
-			},
-		},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_CapacityUsageHost(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "CapacityUsageHost contains information about the capacity usage in host cluster",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"masterUserRecordCount": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Number of MasterUserRecords created within the host cluster",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_CapacityUsageMember(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "CapacityUsageMember contains information about the capacity usage in member cluster",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"userAccountCount": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Number of UserAccounts created within the member cluster",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
-				},
 			},
 		},
 	}
@@ -336,10 +295,11 @@ func schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref common.ReferenceC
 							Format:      "",
 						},
 					},
-					"capacityUsage": {
+					"masterUserRecordCount": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Capacity usage of the host cluster",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageHost"),
+							Description: "Number of MasterUserRecords created within the host cluster",
+							Type:        []string{"integer"},
+							Format:      "int32",
 						},
 					},
 					"conditions": {
@@ -370,7 +330,7 @@ func schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref common.ReferenceC
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageHost", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
 	}
 }
 
@@ -740,10 +700,11 @@ func schema_pkg_apis_toolchain_v1alpha1_Member(ref common.ReferenceCallback) com
 							Format:      "",
 						},
 					},
-					"capacityUsage": {
+					"userAccountCount": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Capacity usage of the member cluster",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageMember"),
+							Description: "Number of UserAccounts created within the member cluster",
+							Type:        []string{"integer"},
+							Format:      "int32",
 						},
 					},
 					"memberStatus": {
@@ -757,7 +718,7 @@ func schema_pkg_apis_toolchain_v1alpha1_Member(ref common.ReferenceCallback) com
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CapacityUsageMember", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus"},
 	}
 }
 
@@ -864,11 +825,17 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 							},
 						},
 					},
+					"resourceUsage": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Resource usage of the cluster",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"},
 	}
 }
 
@@ -1523,6 +1490,34 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_ResourceUsage(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Contains information about the resource usage of the cluster",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"memoryUsagePerNodeRole": {
+						SchemaProps: spec.SchemaProps{
+							Description: "How many percent of the available memory is used per node role (eg. worker, master)",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Type:   []string{"integer"},
+										Format: "int32",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
