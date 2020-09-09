@@ -233,8 +233,8 @@ generate_bundle() {
         else
             CSV_SED_REPLACE+=";s/replaces: ${OPERATOR_NAME}.*$/${NEW_REPLACE_CLAUSE}/"
         fi
-    else
-        CSV_SED_REPLACE+=";s/  version: ${NEXT_CSV_VERSION}/  ${NEW_REPLACE_CLAUSE}\n  version: ${NEXT_CSV_VERSION}/"
+    elif [[ -n "${NEW_REPLACE_CLAUSE}" ]]; then
+            CSV_SED_REPLACE+=";s/  version: ${NEXT_CSV_VERSION}/  ${NEW_REPLACE_CLAUSE}\n  version: ${NEXT_CSV_VERSION}/"
     fi
 
     if [[ -n "${IMAGE_IN_CSV}" ]]; then
