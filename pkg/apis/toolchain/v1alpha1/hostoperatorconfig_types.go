@@ -37,6 +37,7 @@ type ResourceCapacityThreshold struct {
 	// Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names
 	// +optional
 	// +patchStrategy=merge
+	// +mapType=atomic
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty" patchStrategy:"merge"`
 }
 
