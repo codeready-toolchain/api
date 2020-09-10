@@ -52,6 +52,7 @@ type MaxNumberOfUsers struct {
 	// - equals to max number of UserAccounts in member cluster
 	// +optional
 	// +patchStrategy=merge
+	// +mapType=atomic
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty" patchStrategy:"merge"`
 }
 
