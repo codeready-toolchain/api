@@ -15,8 +15,8 @@ type HostOperatorConfigSpec struct {
 // Defines all parameters necessary for automatic approval
 // +k8s:openapi-gen=true
 type AutomaticApproval struct {
-	// Defines if the automatic approval is activated or not
-	Activated bool `json:"activated"`
+	// Defines if the automatic approval is enabled or not
+	Enabled bool `json:"enabled"`
 
 	// Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped
 	// +optional
@@ -64,7 +64,7 @@ type HostOperatorConfigStatus struct {
 // HostOperatorConfig keeps all configuration parameters needed in host operator
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=hostoperatorconfigs,scope=Namespaced
-// +kubebuilder:printcolumn:name="AutomaticApproval",type="boolean",JSONPath=`.spec.automaticApproval.activated`
+// +kubebuilder:printcolumn:name="AutomaticApproval",type="boolean",JSONPath=`.spec.automaticApproval.enabled`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Host Operator Config"
 type HostOperatorConfig struct {

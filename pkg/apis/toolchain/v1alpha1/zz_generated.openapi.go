@@ -95,9 +95,9 @@ func schema_pkg_apis_toolchain_v1alpha1_AutomaticApproval(ref common.ReferenceCa
 				Description: "Defines all parameters necessary for automatic approval",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"activated": {
+					"enabled": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Defines if the automatic approval is activated or not",
+							Description: "Defines if the automatic approval is enabled or not",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
@@ -115,7 +115,7 @@ func schema_pkg_apis_toolchain_v1alpha1_AutomaticApproval(ref common.ReferenceCa
 						},
 					},
 				},
-				Required: []string{"activated"},
+				Required: []string{"enabled"},
 			},
 		},
 		Dependencies: []string{
