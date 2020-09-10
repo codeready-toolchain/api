@@ -64,7 +64,7 @@ type HostOperatorConfigStatus struct {
 // HostOperatorConfig keeps all configuration parameters needed in host operator
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=hostoperatorconfigs,scope=Namespaced
-// +kubebuilder:printcolumn:name="AutomaticApprovalActivated",type="bool",JSONPath=`.spec.automaticApproval.activated`
+// +kubebuilder:printcolumn:name="AutomaticApproval",type="boolean",JSONPath=`.spec.automaticApproval.activated`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Host Operator Config"
 type HostOperatorConfig struct {
