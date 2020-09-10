@@ -22,7 +22,7 @@ type AutomaticApproval struct {
 	// +optional
 	ResourceCapacityThreshold ResourceCapacityThreshold `json:"resourceCapacityThreshold,omitempty"`
 
-	// Defines what is the maximal number of users to be allowed for automatic approval.
+	// Defines the maximal number of users to be allowed for automatic approval.
 	// When the number is reached, then the automatic approval is stopped.
 	// +optional
 	MaxNumberOfUsers MaxNumberOfUsers `json:"maxNumberOfUsers,omitempty"`
