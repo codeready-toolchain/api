@@ -110,7 +110,7 @@ func schema_pkg_apis_toolchain_v1alpha1_AutomaticApproval(ref common.ReferenceCa
 					},
 					"maxNumberOfUsers": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Defines what is the maximal number of users to be allowed for automatic approval. When the number is reached, then the automatic approval is stopped.",
+							Description: "Defines the maximal number of users to be allowed for automatic approval. When the number is reached, then the automatic approval is stopped.",
 							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MaxNumberOfUsers"),
 						},
 					},
@@ -773,11 +773,6 @@ func schema_pkg_apis_toolchain_v1alpha1_MaxNumberOfUsers(ref common.ReferenceCal
 						},
 					},
 					"specificPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-patch-strategy": "merge",
-							},
-						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Contains a map of maximal number of users provisioned per member cluster mapped by the cluster name - equals to max number of UserAccounts in member cluster",
 							Type:        []string{"object"},
@@ -1621,11 +1616,6 @@ func schema_pkg_apis_toolchain_v1alpha1_ResourceCapacityThreshold(ref common.Ref
 						},
 					},
 					"specificPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-patch-strategy": "merge",
-							},
-						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names",
 							Type:        []string{"object"},

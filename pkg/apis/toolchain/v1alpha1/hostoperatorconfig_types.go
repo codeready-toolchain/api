@@ -36,9 +36,8 @@ type ResourceCapacityThreshold struct {
 
 	// Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names
 	// +optional
-	// +patchStrategy=merge
 	// +mapType=atomic
-	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty" patchStrategy:"merge"`
+	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
 }
 
 // Contains maximal number of users to be provisioned automatically in the system overall as well as
@@ -51,9 +50,8 @@ type MaxNumberOfUsers struct {
 	// Contains a map of maximal number of users provisioned per member cluster mapped by the cluster name
 	// - equals to max number of UserAccounts in member cluster
 	// +optional
-	// +patchStrategy=merge
 	// +mapType=atomic
-	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty" patchStrategy:"merge"`
+	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
 }
 
 // HostOperatorConfigStatus defines the observed state of HostOperatorConfig
