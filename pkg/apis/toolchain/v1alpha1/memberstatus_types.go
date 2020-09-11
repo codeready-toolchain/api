@@ -41,6 +41,18 @@ type MemberStatusStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+
+	// Resource usage of the cluster
+	// +optional
+	ResourceUsage ResourceUsage `json:"resourceUsage,omitempty"`
+}
+
+// Contains information about the resource usage of the cluster
+// +k8s:openapi-gen=true
+type ResourceUsage struct {
+	// How many percent of the available memory is used per node role (eg. worker, master)
+	// +optional
+	MemoryUsagePerNodeRole map[string]int `json:"memoryUsagePerNodeRole,omitempty"`
 }
 
 // HostStatus defines the status of the connection with the host cluster
