@@ -14,8 +14,6 @@ const (
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
-	// UserSignupPhoneNumberLabelKey is used for the usersignup phone number label key
-	UserSignupPhoneNumberLabelKey = LabelKeyPrefix + "phone-number"
 	// UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
 	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
 	// UserSignupVerificationTimestampAnnotationKey is used for the usersignup verification timestamp annotation key
