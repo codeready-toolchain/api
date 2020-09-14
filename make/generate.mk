@@ -4,7 +4,7 @@ API_FULL_GROUPNAME=toolchain.dev.openshift.com
 API_VERSION:=v1alpha1
 
 # how to dispatch the CRD files per repository (space-separated lists)
-HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup registrationservice banneduser changetierrequest notification tiertemplate templateupdaterequest toolchainstatus toolchaincluster
+HOST_CLUSTER_CRDS:=masteruserrecord nstemplatetier usersignup registrationservice banneduser changetierrequest notification tiertemplate templateupdaterequest toolchainstatus toolchaincluster hostoperatorconfig
 MEMBER_CLUSTER_CRDS:=useraccount nstemplateset memberstatus idler toolchaincluster
 
 .PHONY: generate
@@ -72,7 +72,7 @@ endif
 .PHONY: generate-crds
 generate-crds: vendor prepare-host-operator prepare-member-operator
 	@echo "Re-generating the Toolchain CRD files..."
-	rm -rf deploy/crds/ 2>/dev/null || true
+	rm -rf deploy/crds/
 	operator-sdk generate crds
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
     # Dispatching CRD files to operator repositories
