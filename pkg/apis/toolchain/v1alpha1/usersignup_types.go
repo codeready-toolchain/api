@@ -62,7 +62,7 @@ const (
 	UserSignupInvalidEmailHashLabelReason                   = "InvalidEmailHashLabel"
 	UserSignupVerificationRequiredReason                    = "VerificationRequired"
 	UserSignupDeactivatedNotificationCRCreatedReason        = "NotificationCRCreated"
-	UserSignupDeactivatedNotificationCRNotCreatedReason     = "NotificationCRNotCreated"
+	UserSignupDeactivatedNotificationUserIsActiveReason     = "UserIsActive"
 	UserSignupDeactivatedNotificationCRCreationFailedReason = "NotificationCRCreationFailed"
 )
 
