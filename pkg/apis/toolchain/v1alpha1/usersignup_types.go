@@ -11,6 +11,8 @@ const (
 	UserSignupApproved ConditionType = "Approved"
 	// UserSignupComplete means provisioning is complete
 	UserSignupComplete ConditionType = "Complete"
+	// UserSignupUserDeactivatedNotificationCreated means that the Notification CR was created so the user should be notified about their deactivated account
+	UserSignupUserDeactivatedNotificationCreated ConditionType = "UserDeactivatedNotificationCreated"
 
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
@@ -40,25 +42,28 @@ const (
 	UserSignupApprovedLabelValueFalse = "false"
 
 	// Status condition reasons
-	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
-	UserSignupNoTemplateTierAvailableReason        = "NoTemplateTierAvailable"
-	UserSignupFailedToReadUserApprovalPolicyReason = "FailedToReadUserApprovalPolicy"
-	UserSignupUnableToCreateMURReason              = "UnableToCreateMUR"
-	UserSignupUnableToUpdateApprovedLabelReason    = "UnableToUpdateApprovedLabel"
-	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
-	UserSignupUserDeactivatingReason               = "Deactivating"
-	UserSignupUserDeactivatedReason                = "Deactivated"
-	UserSignupInvalidMURStateReason                = "InvalidMURState"
-	UserSignupApprovedAutomaticallyReason          = "ApprovedAutomatically"
-	UserSignupApprovedByAdminReason                = "ApprovedByAdmin"
-	UserSignupPendingApprovalReason                = "PendingApproval"
-	UserSignupUserBanningReason                    = "Banning"
-	UserSignupUserBannedReason                     = "Banned"
-	UserSignupFailedToReadBannedUsersReason        = "FailedToReadBannedUsers"
-	UserSignupMissingUserEmailAnnotationReason     = "MissingUserEmailAnnotation"
-	UserSignupMissingEmailHashLabelReason          = "MissingEmailHashLabel"
-	UserSignupInvalidEmailHashLabelReason          = "InvalidEmailHashLabel"
-	UserSignupVerificationRequiredReason           = "VerificationRequired"
+	UserSignupNoClusterAvailableReason                      = "NoClusterAvailable"
+	UserSignupNoTemplateTierAvailableReason                 = "NoTemplateTierAvailable"
+	UserSignupFailedToReadUserApprovalPolicyReason          = "FailedToReadUserApprovalPolicy"
+	UserSignupUnableToCreateMURReason                       = "UnableToCreateMUR"
+	UserSignupUnableToUpdateApprovedLabelReason             = "UnableToUpdateApprovedLabel"
+	UserSignupUnableToDeleteMURReason                       = "UnableToDeleteMUR"
+	UserSignupUserDeactivatingReason                        = "Deactivating"
+	UserSignupUserDeactivatedReason                         = "Deactivated"
+	UserSignupInvalidMURStateReason                         = "InvalidMURState"
+	UserSignupApprovedAutomaticallyReason                   = "ApprovedAutomatically"
+	UserSignupApprovedByAdminReason                         = "ApprovedByAdmin"
+	UserSignupPendingApprovalReason                         = "PendingApproval"
+	UserSignupUserBanningReason                             = "Banning"
+	UserSignupUserBannedReason                              = "Banned"
+	UserSignupFailedToReadBannedUsersReason                 = "FailedToReadBannedUsers"
+	UserSignupMissingUserEmailAnnotationReason              = "MissingUserEmailAnnotation"
+	UserSignupMissingEmailHashLabelReason                   = "MissingEmailHashLabel"
+	UserSignupInvalidEmailHashLabelReason                   = "InvalidEmailHashLabel"
+	UserSignupVerificationRequiredReason                    = "VerificationRequired"
+	UserSignupDeactivatedNotificationCRCreatedReason        = "NotificationCRCreated"
+	UserSignupDeactivatedNotificationUserIsActiveReason     = "UserIsActive"
+	UserSignupDeactivatedNotificationCRCreationFailedReason = "NotificationCRCreationFailed"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
