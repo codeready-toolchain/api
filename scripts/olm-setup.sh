@@ -21,6 +21,8 @@ user_help () {
     echo "-im, --index-image       Name of the index image where the bundle image should be added - when building & pushing operator bundle as an image."
     echo "-ic, --index-per-commit  If set to true, then the script will build&push unique index image for every release/commit."
     echo "-fr, --first-release     If set to true, then it will generate CSV without replaces clause."
+    echo "-iu, --index-image-url   The whole url of the next index image (including the tag)."
+    echo "-fu, --from-index-url    The whole url of the index image the script should build from (including the tag)."
     echo "-h,  --help              To show this help text"
     echo ""
     additional_help 2>/dev/null || true
@@ -111,6 +113,16 @@ read_arguments() {
                 -fr|--first-release)
                     shift
                     FIRST_RELEASE=$1
+                    shift
+                    ;;
+                -iu|--index-image-url)
+                    shift
+                    INDEX_IMAGE_URL=$1
+                    shift
+                    ;;
+                -fu|--from-index-url)
+                    shift
+                    FROM_INDEX_URL=$1
                     shift
                     ;;
                 *)
