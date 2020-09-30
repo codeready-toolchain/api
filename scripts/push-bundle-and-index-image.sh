@@ -178,6 +178,13 @@ if [[ ${IMAGE_BUILDER} == "podman" ]]; then
     PULL_TOOL_PARAM="--pull-tool podman"
 fi
 
+if [[ -n ${FROM_INDEX_URL} ]]; then
+    FROM_INDEX_IMAGE=${FROM_INDEX_URL}
+fi
+if [[ -n ${INDEX_IMAGE_URL} ]]; then
+    INDEX_IMAGE=${INDEX_IMAGE_URL}
+fi
+
 if [[ -n ${FROM_INDEX_IMAGE} ]] && [[ `${IMAGE_BUILDER} pull ${FROM_INDEX_IMAGE}` ]]; then
     opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${FROM_INDEX_IMAGE} ${PULL_TOOL_PARAM}
 else
