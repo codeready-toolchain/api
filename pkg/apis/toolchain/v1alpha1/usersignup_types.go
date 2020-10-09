@@ -33,20 +33,31 @@ const (
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
 	UserSignupUserPhoneHashLabelKey = LabelKeyPrefix + "phone-hash"
-	// UserSignupApprovedLabelKey is used for filtering unapproved UserSignup resources
-	UserSignupApprovedLabelKey = LabelKeyPrefix + "approved"
 
-	// UserSignupApprovedLabelValueTrue is used for setting that the UserSignup has been approved
-	UserSignupApprovedLabelValueTrue = "true"
-	// UserSignupApprovedLabelValueFalse is used for setting that the UserSignup has not been approved
-	UserSignupApprovedLabelValueFalse = "false"
+	// UserSignupStateLabelKey is used for setting the required/expected state of UserSignups (not-ready, pending, approved, banned, deactivated).
+	// The main purpose of the label is easy selecting the UserSignups based on the state - eg. get all UserSignup on the waiting list (state=pending).
+	// Another usage of the label is counting the UserSingups for and exposing it through metrics or ToolchainStatus CR.
+	// It may look like a duplication of the status conditions, but it more reflects the spec part combined with the actual state/configuration of the whole system.
+	// Every value is set before doing the action - approving/deactivating/banning. The only exception is the "not-ready" state which is used as an initial state
+	// for all UserSignups that were just created and are still not fully ready - eg. requires verification.
+	UserSignupStateLabelKey = LabelKeyPrefix + "state"
+	// UserSignupStateLabelValueNotReady is used for identifying that the UserSignup is not ready for approval yet (eg. requires verification)
+	UserSignupStateLabelValueNotReady = "not-ready"
+	// UserSignupStateLabelValuePending is used for identifying that the UserSignup is pending approval
+	UserSignupStateLabelValuePending = "pending"
+	// UserSignupStateLabelValueApproved is used for identifying that the UserSignup is approved
+	UserSignupStateLabelValueApproved = "approved"
+	// UserSignupStateLabelValueDeactivated is used for identifying that the UserSignup is deactivated
+	UserSignupStateLabelValueDeactivated = "deactivated"
+	// UserSignupStateLabelValueBanned is used for identifying that the UserSignup is banned
+	UserSignupStateLabelValueBanned = "banned"
 
 	// Status condition reasons
 	UserSignupNoClusterAvailableReason                      = "NoClusterAvailable"
 	UserSignupNoTemplateTierAvailableReason                 = "NoTemplateTierAvailable"
 	UserSignupFailedToReadUserApprovalPolicyReason          = "FailedToReadUserApprovalPolicy"
 	UserSignupUnableToCreateMURReason                       = "UnableToCreateMUR"
-	UserSignupUnableToUpdateApprovedLabelReason             = "UnableToUpdateApprovedLabel"
+	UserSignupUnableToUpdateStateLabelReason                = "UnableToUpdateStateLabel"
 	UserSignupUnableToDeleteMURReason                       = "UnableToDeleteMUR"
 	UserSignupUserDeactivatingReason                        = "Deactivating"
 	UserSignupUserDeactivatedReason                         = "Deactivated"
@@ -144,6 +155,7 @@ type UserSignupStatus struct {
 // +kubebuilder:printcolumn:name="Last Name",type="string",JSONPath=`.spec.familyName`,priority=1
 // +kubebuilder:printcolumn:name="Company",type="string",JSONPath=`.spec.company`,priority=1
 // +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=`.spec.targetCluster`,priority=1
+// +kubebuilder:printcolumn:name="State",type="string",JSONPath=`.metadata.labels["toolchain.dev.openshift.com/state"]`
 // +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
 // +kubebuilder:printcolumn:name="Approved",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].status`,priority=1
