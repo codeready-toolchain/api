@@ -45,6 +45,13 @@ type MemberStatusStatus struct {
 	// Resource usage of the cluster
 	// +optional
 	ResourceUsage ResourceUsage `json:"resourceUsage,omitempty"`
+
+	// ConsoleURL is the web console URL of the cluster
+	ConsoleURL string `json:"consoleURL"`
+
+	// CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed
+	// +optional
+	CheDashboardURL string `json:"cheDashboardURL,omitempty"`
 }
 
 // Contains information about the resource usage of the cluster

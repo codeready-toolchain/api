@@ -939,7 +939,22 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage"),
 						},
 					},
+					"consoleURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ConsoleURL is the web console URL of the cluster",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"cheDashboardURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
+				Required: []string{"consoleURL"},
 			},
 		},
 		Dependencies: []string{
