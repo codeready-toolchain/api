@@ -4,6 +4,14 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// These are valid status condition reasons of a MemberStatus
+const (
+	// Status condition reasons
+	MemberStatusConsoleRouteUnavailableReason = "ConsoleRouteUnavailable"
+	MemberStatusCheRouteUnavailableReason     = "CheRouteUnavailable"
+	MemberStatusRoutesAvailableReason         = "RoutesAvailable"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // MemberStatusSpec defines the desired state of MemberStatus
@@ -46,6 +54,14 @@ type MemberStatusStatus struct {
 	// +optional
 	ResourceUsage ResourceUsage `json:"resourceUsage,omitempty"`
 
+	// Routes/URLs of the cluster, such as Console and Che Dashboard URLs
+	// +optional
+	Routes *Routes `json:"routes,omitempty"`
+}
+
+// Routes contains information about the public routes available to the user in the cluster
+// +k8s:openapi-gen=true
+type Routes struct {
 	// ConsoleURL is the web console URL of the cluster
 	// +optional
 	ConsoleURL string `json:"consoleURL,omitempty"`
@@ -53,6 +69,15 @@ type MemberStatusStatus struct {
 	// CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed
 	// +optional
 	CheDashboardURL string `json:"cheDashboardURL,omitempty"`
+
+	// Conditions is an array of current member operator status conditions
+	// Supported condition types: ConditionReady
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=type
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // Contains information about the resource usage of the cluster
