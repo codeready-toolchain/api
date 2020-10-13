@@ -954,7 +954,6 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 						},
 					},
 				},
-				Required: []string{"consoleURL"},
 			},
 		},
 		Dependencies: []string{
