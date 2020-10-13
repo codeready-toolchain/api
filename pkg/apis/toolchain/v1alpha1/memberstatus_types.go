@@ -4,14 +4,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// These are valid status condition reasons of a MemberStatus
-const (
-	// Status condition reasons
-	MemberStatusConsoleRouteUnavailableReason = "ConsoleRouteUnavailable"
-	MemberStatusCheRouteUnavailableReason     = "CheRouteUnavailable"
-	MemberStatusRoutesAvailableReason         = "RoutesAvailable"
-)
-
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // MemberStatusSpec defines the desired state of MemberStatus
