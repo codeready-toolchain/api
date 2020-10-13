@@ -45,6 +45,31 @@ type MemberStatusStatus struct {
 	// Resource usage of the cluster
 	// +optional
 	ResourceUsage ResourceUsage `json:"resourceUsage,omitempty"`
+
+	// Routes/URLs of the cluster, such as Console and Che Dashboard URLs
+	// +optional
+	Routes *Routes `json:"routes,omitempty"`
+}
+
+// Routes contains information about the public routes available to the user in the cluster
+// +k8s:openapi-gen=true
+type Routes struct {
+	// ConsoleURL is the web console URL of the cluster
+	// +optional
+	ConsoleURL string `json:"consoleURL,omitempty"`
+
+	// CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed
+	// +optional
+	CheDashboardURL string `json:"cheDashboardURL,omitempty"`
+
+	// Conditions is an array of current member operator status conditions
+	// Supported condition types: ConditionReady
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=type
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // Contains information about the resource usage of the cluster

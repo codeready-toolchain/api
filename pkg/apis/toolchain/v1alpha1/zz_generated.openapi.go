@@ -66,6 +66,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus":           schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceCapacityThreshold":           schema_pkg_apis_toolchain_v1alpha1_ResourceCapacityThreshold(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage":                       schema_pkg_apis_toolchain_v1alpha1_ResourceUsage(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Routes":                              schema_pkg_apis_toolchain_v1alpha1_Routes(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequest":               schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec":           schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestStatus":         schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref),
@@ -939,11 +940,17 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage"),
 						},
 					},
+					"routes": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Routes/URLs of the cluster, such as Console and Che Dashboard URLs",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Routes"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Routes", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"},
 	}
 }
 
@@ -1662,6 +1669,58 @@ func schema_pkg_apis_toolchain_v1alpha1_ResourceUsage(ref common.ReferenceCallba
 				},
 			},
 		},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_Routes(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Routes contains information about the public routes available to the user in the cluster",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"consoleURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ConsoleURL is the web console URL of the cluster",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"cheDashboardURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current member operator status conditions Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
 	}
 }
 
