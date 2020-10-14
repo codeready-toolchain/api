@@ -70,13 +70,6 @@ type ToolchainClusterStatus struct {
 	// Conditions is an array of current cluster conditions.
 	// +listType=atomic
 	Conditions []ToolchainClusterCondition `json:"conditions"`
-	// Zones are the names of availability zones in which the nodes of the cluster exist, e.g. 'us-east1-a'.
-	// +optional
-	// +listType=set
-	Zones []string `json:"zones,omitempty"`
-	// Region is the name of the region in which all of the nodes in the cluster exist.  e.g. 'us-east1'.
-	// +optional
-	Region *string `json:"region,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
