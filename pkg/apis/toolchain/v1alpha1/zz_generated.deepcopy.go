@@ -1824,16 +1824,6 @@ func (in *ToolchainClusterStatus) DeepCopyInto(out *ToolchainClusterStatus) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.Zones != nil {
-		in, out := &in.Zones, &out.Zones
-		*out = make([]string, len(*in))
-		copy(*out, *in)
-	}
-	if in.Region != nil {
-		in, out := &in.Region, &out.Region
-		*out = new(string)
-		**out = **in
-	}
 	return
 }
 

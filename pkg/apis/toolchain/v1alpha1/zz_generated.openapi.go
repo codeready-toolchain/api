@@ -2092,32 +2092,6 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterStatus(ref common.Refere
 							},
 						},
 					},
-					"zones": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "set",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Zones are the names of availability zones in which the nodes of the cluster exist, e.g. 'us-east1-a'.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Type:   []string{"string"},
-										Format: "",
-									},
-								},
-							},
-						},
-					},
-					"region": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Region is the name of the region in which all of the nodes in the cluster exist.  e.g. 'us-east1'.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 				},
 				Required: []string{"conditions"},
 			},
