@@ -149,13 +149,12 @@ type UserSignupStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
-// +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=`.spec.userID`,priority=1
 // +kubebuilder:printcolumn:name="Username",type="string",JSONPath=`.spec.username`
 // +kubebuilder:printcolumn:name="First Name",type="string",JSONPath=`.spec.givenName`,priority=1
 // +kubebuilder:printcolumn:name="Last Name",type="string",JSONPath=`.spec.familyName`,priority=1
 // +kubebuilder:printcolumn:name="Company",type="string",JSONPath=`.spec.company`,priority=1
 // +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=`.spec.targetCluster`,priority=1
-// +kubebuilder:printcolumn:name="State",type="string",JSONPath=`.metadata.labels["toolchain.dev.openshift.com/state"]`
+// +kubebuilder:printcolumn:name="State",type="string",JSONPath=`.metadata.labels.toolchain\.dev\.openshift.com/state`
 // +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
 // +kubebuilder:printcolumn:name="Approved",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].status`,priority=1
