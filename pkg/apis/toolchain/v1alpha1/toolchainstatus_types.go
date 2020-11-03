@@ -6,6 +6,13 @@ import (
 
 // These are valid status condition reasons for Toolchain status
 const (
+	// ToolchainStatusUnreadyNotificationCreated is used when a notification has been sent to an admin mailing list
+	// after the toolchain status has been in an "unready" condition for an extended period of time
+	ToolchainStatusUnreadyNotificationCreated ConditionType = "ToolchainStatusUnreadyNotificationCreated"
+
+	// ToolchainStatusUnreadyNotificationCRCreationFailedReason is set when the controller fails to create an unready notification CR
+	ToolchainStatusUnreadyNotificationCRCreationFailedReason = "UnreadyNotificationCRCreationFailed"
+
 	// overall status condition reasons
 	ToolchainStatusAllComponentsReadyReason = "AllComponentsReady"
 	ToolchainStatusComponentsNotReadyReason = "ComponentsNotReady"
