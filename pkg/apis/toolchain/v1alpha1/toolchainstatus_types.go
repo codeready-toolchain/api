@@ -10,6 +10,9 @@ const (
 	// after the toolchain status has been in an "unready" condition for an extended period of time
 	ToolchainStatusUnreadyNotificationCreated ConditionType = "ToolchainStatusUnreadyNotificationCreated"
 
+	// ToolchainStatusUnreadyNotificationCRCreatedReason is used to indicate the Unready Notification CR has been created
+	ToolchainStatusUnreadyNotificationCRCreatedReason = "UnreadyNotificationCRCreated"
+
 	// ToolchainStatusUnreadyNotificationCRCreationFailedReason is set when the controller fails to create an unready notification CR
 	ToolchainStatusUnreadyNotificationCRCreationFailedReason = "UnreadyNotificationCRCreationFailed"
 
