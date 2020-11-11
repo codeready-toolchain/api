@@ -37,7 +37,15 @@ type NotificationSpec struct {
 	Recipient string `json:"recipient,omitempty"`
 
 	// Template is the name of the NotificationTemplate resource that will be used to generate the notification
-	Template string `json:"template"`
+	Template string `json:"template,omitempty"`
+
+	// Subject is used when no template value is specified, in cases where the complete notification subject is
+	// specified at notification creation time
+	Subject string `json:"subject,omitempty"`
+
+	// Content is used when no template value is specified, in cases where the complete notification content is
+	// specified at notification creation time
+	Content string `json:"content,omitempty"`
 }
 
 // NotificationStatus defines the observed state of Notification

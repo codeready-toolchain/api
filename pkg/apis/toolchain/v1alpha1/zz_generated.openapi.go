@@ -1307,8 +1307,21 @@ func schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref common.ReferenceCal
 							Format:      "",
 						},
 					},
+					"subject": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Subject is used when no template value is specified, in cases where the complete notification subject is specified at notification creation time",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"content": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Content is used when no template value is specified, in cases where the complete notification content is specified at notification creation time",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
-				Required: []string{"template"},
 			},
 		},
 	}
