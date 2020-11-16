@@ -31,10 +31,21 @@ type NotificationSpec struct {
 	// UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by
 	// the notification service (i.e. the NotificationController) to lookup the UserSignup resource for the user,
 	// and extract from it the values required to generate the notification content and to deliver the notification
-	UserID string `json:"userID"`
+	UserID string `json:"userID,omitempty"`
+
+	// Recipient may be used as an alternative to UserID to specify an email address where the notification will be delivered.
+	Recipient string `json:"recipient,omitempty"`
 
 	// Template is the name of the NotificationTemplate resource that will be used to generate the notification
-	Template string `json:"template"`
+	Template string `json:"template,omitempty"`
+
+	// Subject is used when no template value is specified, in cases where the complete notification subject is
+	// specified at notification creation time
+	Subject string `json:"subject,omitempty"`
+
+	// Content is used when no template value is specified, in cases where the complete notification content is
+	// specified at notification creation time
+	Content string `json:"content,omitempty"`
 }
 
 // NotificationStatus defines the observed state of Notification

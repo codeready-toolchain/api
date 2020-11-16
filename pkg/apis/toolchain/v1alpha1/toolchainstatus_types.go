@@ -6,6 +6,16 @@ import (
 
 // These are valid status condition reasons for Toolchain status
 const (
+	// ToolchainStatusUnreadyNotificationCreated is used when a notification has been sent to an admin mailing list
+	// after the toolchain status has been in an "unready" condition for an extended period of time
+	ToolchainStatusUnreadyNotificationCreated ConditionType = "ToolchainStatusUnreadyNotificationCreated"
+
+	// ToolchainStatusUnreadyNotificationCRCreatedReason is used to indicate the Unready Notification CR has been created
+	ToolchainStatusUnreadyNotificationCRCreatedReason = "UnreadyNotificationCRCreated"
+
+	// ToolchainStatusUnreadyNotificationCRCreationFailedReason is set when the controller fails to create an unready notification CR
+	ToolchainStatusUnreadyNotificationCRCreationFailedReason = "UnreadyNotificationCRCreationFailed"
+
 	// overall status condition reasons
 	ToolchainStatusAllComponentsReadyReason = "AllComponentsReady"
 	ToolchainStatusComponentsNotReadyReason = "ComponentsNotReady"
@@ -194,6 +204,7 @@ type RegistrationServiceResourcesStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
+// +kubebuilder:printcolumn:name="MURs",type="integer",JSONPath=`.status.hostOperator.masterUserRecordCount`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Last Updated",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].lastUpdatedTime`
 // +kubebuilder:validation:XPreserveUnknownFields

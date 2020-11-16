@@ -1293,6 +1293,13 @@ func schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref common.ReferenceCal
 							Format:      "",
 						},
 					},
+					"recipient": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Recipient may be used as an alternative to UserID to specify an email address where the notification will be delivered.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"template": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Template is the name of the NotificationTemplate resource that will be used to generate the notification",
@@ -1300,8 +1307,21 @@ func schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref common.ReferenceCal
 							Format:      "",
 						},
 					},
+					"subject": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Subject is used when no template value is specified, in cases where the complete notification subject is specified at notification creation time",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"content": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Content is used when no template value is specified, in cases where the complete notification content is specified at notification creation time",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
-				Required: []string{"userID", "template"},
 			},
 		},
 	}
