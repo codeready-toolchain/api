@@ -70,8 +70,6 @@ type UserAccountStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
-
-	CheUserID string `json:"cheUserID"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
