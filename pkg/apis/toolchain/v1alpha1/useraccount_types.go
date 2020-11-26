@@ -6,6 +6,9 @@ import (
 
 // These are valid status condition reasons of a UserAccount
 const (
+	// UserAccountCheCleanup reflects whether the user's Che data has been cleaned up or not
+	UserAccountCheCleanup ConditionType = "CheCleanup"
+
 	// Status condition reasons
 	UserAccountUnableToCreateUserReason          = "UnableToCreateUser"
 	UserAccountUnableToCreateIdentityReason      = "UnableToCreateIdentity"
@@ -16,6 +19,7 @@ const (
 	UserAccountDisabledReason                    = disabledReason
 	UserAccountDisablingReason                   = "Disabling"
 	UserAccountTerminatingReason                 = terminatingReason
+	UserAccountDeletingCheDataReason             = "DeletingCheData"
 	UserAccountUpdatingReason                    = updatingReason
 	UserAccountNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
 )
