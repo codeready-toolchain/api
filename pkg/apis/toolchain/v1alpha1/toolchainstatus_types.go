@@ -37,9 +37,8 @@ const (
 	ToolchainStatusRegServiceResourceNotFoundReason = "RegServiceResourceNotFound"
 
 	// member status reasons
-	ToolchainStatusMemberStatusNoClustersFoundReason         = "NoMemberClustersFound"
 	ToolchainStatusMemberStatusNotFoundReason                = "MemberStatusNotFound"
-	ToolchainStatusMemberToolchainClusterRemovedReason       = "MemberToolchainClusterRemoved"
+	ToolchainStatusMemberToolchainClusterMissingReason       = "MemberToolchainClusterMissing"
 	ToolchainStatusMemberStatusConsoleRouteUnavailableReason = "ConsoleRouteUnavailable"
 	ToolchainStatusMemberStatusRoutesAvailableReason         = "RoutesAvailable"
 	ToolchainStatusMemberStatusCheRouteUnavailableReason     = "CheRouteUnavailable"
