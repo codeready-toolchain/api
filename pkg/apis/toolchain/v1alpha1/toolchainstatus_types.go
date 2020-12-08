@@ -41,8 +41,11 @@ const (
 	ToolchainStatusMemberStatusNotFoundReason                = "MemberStatusNotFound"
 	ToolchainStatusMemberToolchainClusterRemovedReason       = "MemberToolchainClusterRemoved"
 	ToolchainStatusMemberStatusConsoleRouteUnavailableReason = "ConsoleRouteUnavailable"
-	ToolchainStatusMemberStatusCheRouteUnavailableReason     = "CheRouteUnavailable"
 	ToolchainStatusMemberStatusRoutesAvailableReason         = "RoutesAvailable"
+	ToolchainStatusMemberStatusCheRouteUnavailableReason     = "CheRouteUnavailable"
+	ToolchainStatusMemberStatusCheUserAPICheckFailedReason   = "CheUserAPICheckFailed"
+	ToolchainStatusMemberStatusCheNotRequiredReason          = "CheNotRequired"
+	ToolchainStatusMemberStatusCheReadyReason                = "CheReady"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.

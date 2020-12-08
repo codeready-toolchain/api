@@ -33,6 +33,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequest":                   schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec":               schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus":             schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CheStatus":                           schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorConfigSpec":              schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorConfigStatus":            schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorStatus":                  schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref),
@@ -283,6 +284,44 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref common.Refer
 						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Conditions is an array of current ChangeTierRequest conditions Supported condition types: Complete",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+	}
+}
+
+func schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "CheStatus contains information about the Che installation configured available to the user in the cluster",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current member operator status conditions Supported condition types: ConditionReady",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -893,6 +932,12 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 				Description: "MemberStatusStatus defines the observed state of the toolchain member status",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"che": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Che is the status of Che/CRW, such as installed and whether the member configuration for Che is correct",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CheStatus"),
+						},
+					},
 					"memberOperator": {
 						SchemaProps: spec.SchemaProps{
 							Description: "MemberOperator is the status of a toolchain member operator",
@@ -950,7 +995,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Routes", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CheStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Routes", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"},
 	}
 }
 
