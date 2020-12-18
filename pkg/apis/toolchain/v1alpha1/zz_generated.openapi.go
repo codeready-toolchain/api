@@ -306,7 +306,7 @@ func schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref common.ReferenceCallback) 
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "CheStatus contains information about the Che installation configured available to the user in the cluster",
+				Description: "CheStatus contains information about the status of Che/CRW, such as installed and whether the member configuration is correct",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"conditions": {
@@ -934,7 +934,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 				Properties: map[string]spec.Schema{
 					"che": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Che is the status of Che/CRW, such as installed and whether the member configuration for Che is correct",
+							Description: "Che is the status of Che/CRW, such as installed and whether the member configuration is correct",
 							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CheStatus"),
 						},
 					},
