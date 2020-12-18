@@ -321,7 +321,7 @@ func schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref common.ReferenceCallback) 
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current member operator status conditions Supported condition types: ConditionReady",
+							Description: "Conditions is an array of current Che status conditions Supported condition types: ConditionReady",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{

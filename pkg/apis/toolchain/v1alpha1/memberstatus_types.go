@@ -58,7 +58,7 @@ type MemberStatusStatus struct {
 // CheStatus contains information about the status of Che/CRW, such as installed and whether the member configuration is correct
 // +k8s:openapi-gen=true
 type CheStatus struct {
-	// Conditions is an array of current member operator status conditions
+	// Conditions is an array of current Che status conditions
 	// Supported condition types: ConditionReady
 	// +optional
 	// +patchMergeKey=type
