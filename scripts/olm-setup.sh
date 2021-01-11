@@ -23,6 +23,7 @@ user_help () {
     echo "-fr, --first-release     If set to true, then it will generate CSV without replaces clause."
     echo "-iu, --index-image-url   The whole url of the next index image (including the tag)."
     echo "-fu, --from-index-url    The whole url of the index image the script should build from (including the tag)."
+    echo "-ci, --component-image   The name of the image to be used as a component of this operator."
     echo "-h,  --help              To show this help text"
     echo ""
     additional_help 2>/dev/null || true
@@ -123,6 +124,11 @@ read_arguments() {
                 -fu|--from-index-url)
                     shift
                     FROM_INDEX_URL=$1
+                    shift
+                    ;;
+                -ci|--component-image)
+                    shift
+                    COMPONENT_IMAGE=$1
                     shift
                     ;;
                 *)
@@ -256,6 +262,12 @@ generate_bundle() {
     if [[ -n "${EMBEDDED_REPO_IMAGE}" ]]; then
         EMBEDDED_REPO_IMAGE_DIGEST_FORMAT=`get_digest_format ${EMBEDDED_REPO_IMAGE}`
         CSV_SED_REPLACE+=";s|${EMBEDDED_REPO_REPLACEMENT}|${EMBEDDED_REPO_IMAGE_DIGEST_FORMAT}|g;"
+    fi
+    if [[ -n ${COMPONENT_IMAGE} ]]; then
+        COMPONENT_IMAGE_URL=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${COMPONENT_IMAGE}:${GIT_COMMIT_ID}
+        COMPONENT_IMAGE_DIGEST_FORMAT=`get_digest_format ${COMPONENT_IMAGE_URL}`
+        COMPONENT_IMAGE_REPLACEMENT=REPLACE_$(echo ${COMPONENT_IMAGE} | awk '{ print toupper($0) }' | tr '-' '_')_IMAGE
+        CSV_SED_REPLACE+=";s|${COMPONENT_IMAGE_REPLACEMENT}|${COMPONENT_IMAGE_DIGEST_FORMAT}|g;"
     fi
     if [[ "${CHANNEL}" == "nightly" ]]; then
         CSV_SED_REPLACE+=";s|  annotations:|  annotations:\n    olm.skipRange: '<${NEXT_CSV_VERSION}'|g;"

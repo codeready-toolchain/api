@@ -37,12 +37,16 @@ const (
 	ToolchainStatusRegServiceResourceNotFoundReason = "RegServiceResourceNotFound"
 
 	// member status reasons
-	ToolchainStatusMemberStatusNoClustersFoundReason         = "NoMemberClustersFound"
-	ToolchainStatusMemberStatusNotFoundReason                = "MemberStatusNotFound"
-	ToolchainStatusMemberToolchainClusterRemovedReason       = "MemberToolchainClusterRemoved"
-	ToolchainStatusMemberStatusConsoleRouteUnavailableReason = "ConsoleRouteUnavailable"
-	ToolchainStatusMemberStatusCheRouteUnavailableReason     = "CheRouteUnavailable"
-	ToolchainStatusMemberStatusRoutesAvailableReason         = "RoutesAvailable"
+	ToolchainStatusMemberStatusNotFoundReason                  = "MemberStatusNotFound"
+	ToolchainStatusMemberToolchainClusterMissingReason         = "MemberToolchainClusterMissing"
+	ToolchainStatusMemberStatusConsoleRouteUnavailableReason   = "ConsoleRouteUnavailable"
+	ToolchainStatusMemberStatusRoutesAvailableReason           = "RoutesAvailable"
+	ToolchainStatusMemberStatusCheRouteUnavailableReason       = "CheRouteUnavailable"
+	ToolchainStatusMemberStatusCheUserAPICheckFailedReason     = "CheUserAPICheckFailed"
+	ToolchainStatusMemberStatusCheNotRequiredReason            = "CheNotRequired"
+	ToolchainStatusMemberStatusCheAdminUserNotConfiguredReason = "CheAdminUserNotConfigured"
+	ToolchainStatusMemberStatusCheUserDeletionNotEnabledReason = "CheUserDeletionNotEnabled"
+	ToolchainStatusMemberStatusCheReadyReason                  = "CheReady"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
