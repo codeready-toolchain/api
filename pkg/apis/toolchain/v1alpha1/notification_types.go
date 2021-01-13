@@ -21,6 +21,9 @@ const (
 
 	// NotificationUserNameLabelKey is used to identify the user that the notification belongs to
 	NotificationUserNameLabelKey = LabelKeyPrefix + "username"
+
+	// NotificationReasonLabelKey is used to identify the notification reason
+	NotificationReasonLabelKey = LabelKeyPrefix + "reason"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
