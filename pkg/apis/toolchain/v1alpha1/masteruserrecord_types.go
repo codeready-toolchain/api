@@ -44,7 +44,7 @@ const (
 
 	// MasterUserRecordOwnerLabelKey indicates the label value that contains the owner reference for this resource,
 	// which will be the UserSignup instance with the corresponding resource name
-	MasterUserRecordOwnerLabelKey = LabelKeyPrefix + "owner"
+	MasterUserRecordOwnerLabelKey = OwnerLabelKey
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.

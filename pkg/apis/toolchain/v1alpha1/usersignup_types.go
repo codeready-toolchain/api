@@ -101,7 +101,7 @@ type UserSignupSpec struct {
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
 	// +optional
-	UserID string `json:"userid"`
+	UserID string `json:"userid,omitempty"`
 
 	// The user's username, obtained from the identity provider.
 	Username string `json:"username"`
