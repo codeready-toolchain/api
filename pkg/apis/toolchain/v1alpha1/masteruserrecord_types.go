@@ -6,6 +6,9 @@ import (
 
 // These are valid conditions of a MasterUserRecord
 const (
+
+	// #### CONDITION TYPES ####
+
 	// MasterUserRecordProvisioning means the Master User Record is being provisioned
 	MasterUserRecordProvisioning ConditionType = "Provisioning"
 	// MasterUserRecordUserAccountNotReady means the User Account failed to be provisioned
@@ -14,6 +17,8 @@ const (
 	MasterUserRecordReady ConditionType = "Ready"
 	// MasterUserRecordUserProvisionedNotificationCreated means that the Notification CR was created so the user should be notified about the successful provisioning
 	MasterUserRecordUserProvisionedNotificationCreated ConditionType = "UserProvisionedNotificationCreated"
+
+	// #### CONDITION REASONS ####
 
 	// Status condition reasons
 	MasterUserRecordUnableToGetUserAccountReason             = "UnableToGetUserAccount"
@@ -30,7 +35,16 @@ const (
 	MasterUserRecordDisabledReason                           = disabledReason
 	MasterUserRecordNotificationCRCreatedReason              = "NotificationCRCreated"
 	MasterUserRecordNotificationCRCreationFailedReason       = "NotificationCRCreationFailed"
-	MasterUserRecordUserIDLabelKey                           = LabelKeyPrefix + "user-id"
+
+	// #### LABELS ####
+
+	// MasterUserRecordUserIDLabelKey
+	// Deprecated: This is to be replaced with MasterUserRecordOwnerLabelKey
+	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
+
+	// MasterUserRecordOwnerLabelKey indicates the label value that contains the owner reference for this resource,
+	// which will be the UserSignup instance with the corresponding resource name
+	MasterUserRecordOwnerLabelKey = OwnerLabelKey
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
