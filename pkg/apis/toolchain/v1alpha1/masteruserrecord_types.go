@@ -38,10 +38,6 @@ const (
 
 	// #### LABELS ####
 
-	// MasterUserRecordUserIDLabelKey
-	// Deprecated: This is to be replaced with MasterUserRecordOwnerLabelKey
-	MasterUserRecordUserIDLabelKey = LabelKeyPrefix + "user-id"
-
 	// MasterUserRecordOwnerLabelKey indicates the label value that contains the owner reference for this resource,
 	// which will be the UserSignup instance with the corresponding resource name
 	MasterUserRecordOwnerLabelKey = OwnerLabelKey
