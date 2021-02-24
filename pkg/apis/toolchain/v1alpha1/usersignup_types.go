@@ -100,8 +100,7 @@ type UserSignupSpec struct {
 	Deactivated bool `json:"deactivated,omitempty"`
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
-	// +optional
-	UserID string `json:"userid,omitempty"`
+	UserID string `json:"userid"`
 
 	// The user's username, obtained from the identity provider.
 	Username string `json:"username"`
