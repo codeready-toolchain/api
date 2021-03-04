@@ -1391,7 +1391,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref common.ReferenceC
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current Notification conditions Supported condition types: Delivered",
+							Description: "Conditions is an array of current Notification conditions Supported condition types: Sent",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{

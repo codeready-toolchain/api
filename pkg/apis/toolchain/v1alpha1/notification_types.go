@@ -66,7 +66,7 @@ type NotificationStatus struct {
 
 	// Conditions is an array of current Notification conditions
 	// Supported condition types:
-	// Delivered
+	// Sent
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
@@ -82,7 +82,7 @@ type NotificationStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=`.spec.userID`,priority=1
-// +kubebuilder:printcolumn:name="Delivered",type="string",JSONPath=`.status.conditions[?(@.type=="Delivered")].status`
+// +kubebuilder:printcolumn:name="Sent",type="string",JSONPath=`.status.conditions[?(@.type=="Sent")].status`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Notification"
 type Notification struct {
