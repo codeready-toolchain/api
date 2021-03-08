@@ -17,7 +17,7 @@ user_help () {
     echo "-an, --allnamespaces     If set to true, then defines that the hack files should be created for AllNamespaces mode"
     echo "-qn, --quay-namespace    Specify the quay namespace the CSV should be pushed to - if not used then it uses the one stored in \"\${QUAY_NAMESPACE}\" variable"
     echo "-td, --temp-dir          Directory that should be used for storing temporal files - by default '/tmp' is used"
-    echo "-ib, --image-builder     Tool to build container images - will be used by opm. One of: [docker, podman, buildah] (default "docker")"
+    echo "-ib, --image-builder     Tool to build container images - will be used by opm. One of: [docker, podman] (default "docker")"
     echo "-im, --index-image       Name of the index image where the bundle image should be added - when building & pushing operator bundle as an image."
     echo "-ic, --index-per-commit  If set to true, then the script will build&push unique index image for every release/commit."
     echo "-fr, --first-release     If set to true, then it will generate CSV without replaces clause."

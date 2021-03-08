@@ -44,7 +44,7 @@ handle_missing_version_in_combined_repo() {
             # ie. from:
             #     ... Preparing to pull bundles [\"quay.io/matousjobanek/host-operator-bundle:0.0.217-105-commit-25cbcfd-64af1be\" \"quay.io ...
             # take only 0.0.217-105-commit-25cbcfd-64af1be
-            LAST_VERSION_IN_INDEX=$(grep "Preparing to pull bundles" ${EXPORT_OUTPUT_FILE} | sed  's|^.*\[\\"[^"]*bundle:\([^"]*\)\\".*$|\1|')
+            LAST_VERSION_IN_INDEX=$(grep "Preparing to pull bundles" ${EXPORT_OUTPUT_FILE} | sed 's/.*\\"\(.*\)\\"}].*/\1/')
             echo "$(( NEXT_WAIT_TIME++ )). attempt of waiting for the latest bundle image in the index"
             sleep 1
         done
@@ -155,23 +155,16 @@ sed "s/\(channel.*=\).*$/\1${CHANNEL}/" ${PKG_DIR}/bundle.Dockerfile > ${TEMP_DI
 mv ${TEMP_DIR}/${PRJ_NAME}_${CURRENT_VERSION}_bundle.Dockerfile ${PKG_DIR}/bundle.Dockerfile
 
 # build and push the bundle image
-if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
-    ${IMAGE_BUILDER} bud --layers -f ${PKG_DIR}/bundle.Dockerfile -t ${BUNDLE_IMAGE} ${PKG_DIR}/.
-    ${IMAGE_BUILDER} push ${BUNDLE_IMAGE} docker://${BUNDLE_IMAGE}
-else
-    ${IMAGE_BUILDER} build -f ${PKG_DIR}/bundle.Dockerfile -t ${BUNDLE_IMAGE} ${PKG_DIR}/.
-    ${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
-fi
+${IMAGE_BUILDER} build -f ${PKG_DIR}/bundle.Dockerfile -t ${BUNDLE_IMAGE} ${PKG_DIR}/.
+${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
+
 
 # add manifests to the bundle image
 cd ${PKG_DIR}
 opm alpha bundle build --image-builder ${IMAGE_BUILDER} --directory ./manifests/ -t ${BUNDLE_IMAGE} -p ${OPERATOR_NAME} -c ${CHANNEL} -e ${CHANNEL}
 
-if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
-    ${IMAGE_BUILDER} push ${BUNDLE_IMAGE} docker://${BUNDLE_IMAGE}
-else
-    ${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
-fi
+${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
+
 cd ${CURRENT_DIR}
 
 if [[ ${IMAGE_BUILDER} == "podman" ]]; then
@@ -186,17 +179,13 @@ if [[ -n ${INDEX_IMAGE_URL} ]]; then
 fi
 
 if [[ -z ${GITHUB_ACTIONS} ]]; then
-    BINARY_IMAGE_PARAM=--binary-image registry.redhat.io/openshift4/ose-operator-registry:v4.6
+    ${IMAGE_BUILDER} image rm quay.io/operator-framework/upstream-opm-builder:latest || true
 fi
 
 if [[ -n ${FROM_INDEX_IMAGE} ]] && [[ `${IMAGE_BUILDER} pull ${FROM_INDEX_IMAGE}` ]]; then
-    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${FROM_INDEX_IMAGE} ${PULL_TOOL_PARAM} ${BINARY_IMAGE_PARAM}
+    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${FROM_INDEX_IMAGE} ${PULL_TOOL_PARAM}
 else
-    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} ${PULL_TOOL_PARAM} ${BINARY_IMAGE_PARAM}
+    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} ${PULL_TOOL_PARAM}
 fi
 
-if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
-    ${IMAGE_BUILDER} push ${INDEX_IMAGE} docker://${INDEX_IMAGE}
-else
-    ${IMAGE_BUILDER} push ${INDEX_IMAGE}
-fi
+${IMAGE_BUILDER} push ${INDEX_IMAGE}
