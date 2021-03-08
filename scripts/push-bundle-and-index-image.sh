@@ -186,9 +186,9 @@ if [[ -n ${INDEX_IMAGE_URL} ]]; then
 fi
 
 if [[ -n ${FROM_INDEX_IMAGE} ]] && [[ `${IMAGE_BUILDER} pull ${FROM_INDEX_IMAGE}` ]]; then
-    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${FROM_INDEX_IMAGE} ${PULL_TOOL_PARAM}
+    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${FROM_INDEX_IMAGE} ${PULL_TOOL_PARAM} --binary-image registry.redhat.io/openshift4/ose-operator-registry:v4.6
 else
-    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} ${PULL_TOOL_PARAM}
+    opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} ${PULL_TOOL_PARAM} --binary-image registry.redhat.io/openshift4/ose-operator-registry:v4.6
 fi
 
 if [[ ${IMAGE_BUILDER} == "buildah" ]]; then
