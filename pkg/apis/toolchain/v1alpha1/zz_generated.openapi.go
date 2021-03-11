@@ -2556,7 +2556,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 							Format:      "",
 						},
 					},
-					"userID": {
+					"userid": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The user's user ID, obtained from the identity provider from the 'sub' (subject) claim",
 							Type:        []string{"string"},
@@ -2599,7 +2599,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 						},
 					},
 				},
-				Required: []string{"userID", "username"},
+				Required: []string{"userid", "username"},
 			},
 		},
 	}
