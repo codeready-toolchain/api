@@ -932,6 +932,13 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 				Description: "MemberStatusStatus defines the observed state of the toolchain member status",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"apiEndpoint": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ApiEndpoint is the server API URL of the cluster",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"che": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Che is the status of Che/CRW, such as installed and whether the member configuration is correct",
@@ -2549,7 +2556,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 							Format:      "",
 						},
 					},
-					"userid": {
+					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The user's user ID, obtained from the identity provider from the 'sub' (subject) claim",
 							Type:        []string{"string"},
@@ -2592,7 +2599,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 						},
 					},
 				},
-				Required: []string{"userid", "username"},
+				Required: []string{"userID", "username"},
 			},
 		},
 	}
