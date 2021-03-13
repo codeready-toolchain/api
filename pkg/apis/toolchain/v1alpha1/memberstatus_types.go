@@ -21,6 +21,9 @@ type MemberStatusStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
+	// ApiEndpoint is the server API URL of the cluster
+	// +optional
+	ApiEndpoint string `json:"apiEndpoint,omitempty"`
 	// Che is the status of Che/CRW, such as installed and whether the member configuration is correct
 	// +optional
 	Che *CheStatus `json:"che,omitempty"`
