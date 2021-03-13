@@ -26,8 +26,9 @@ const (
 	NotificationTypeLabelKey = LabelKeyPrefix + "type"
 
 	// Notification Types which describe the type of notification being sent
-	NotificationTypeDeactivated = "deactivated"
-	NotificationTypeProvisioned = "provisioned"
+	NotificationTypeDeactivating = "deactivating"
+	NotificationTypeDeactivated  = "deactivated"
+	NotificationTypeProvisioned  = "provisioned"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
