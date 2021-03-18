@@ -841,6 +841,13 @@ func schema_pkg_apis_toolchain_v1alpha1_Member(ref common.ReferenceCallback) com
 				Description: "Member contains the status of a member cluster",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"apiEndpoint": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ApiEndpoint is the server API URL of the cluster",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"clusterName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The cluster identifier",
@@ -932,13 +939,6 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 				Description: "MemberStatusStatus defines the observed state of the toolchain member status",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"apiEndpoint": {
-						SchemaProps: spec.SchemaProps{
-							Description: "ApiEndpoint is the server API URL of the cluster",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"che": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Che is the status of Che/CRW, such as installed and whether the member configuration is correct",

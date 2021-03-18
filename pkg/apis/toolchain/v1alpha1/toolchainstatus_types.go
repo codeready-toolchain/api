@@ -178,6 +178,10 @@ type RegistrationServiceHealth struct {
 // Member contains the status of a member cluster
 // +k8s:openapi-gen=true
 type Member struct {
+	// ApiEndpoint is the server API URL of the cluster
+	// +optional
+	ApiEndpoint string `json:"apiEndpoint,omitempty"`
+
 	// The cluster identifier
 	ClusterName string `json:"clusterName"`
 
