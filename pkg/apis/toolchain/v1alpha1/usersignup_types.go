@@ -123,10 +123,12 @@ type UserSignupSpec struct {
 	// If Approved set to 'true' then the user has been manually approved
 	// If not set then the user is subject of auto-approval (if enabled)
 	// +optional
+	// Deprecated: will be replaced by States
 	Approved bool `json:"approved,omitempty"`
 
 	// Deactivated is used to deactivate the user.  If not set, then by default the user is active
 	// +optional
+	// Deprecated: will be replaced by States
 	Deactivated bool `json:"deactivated,omitempty"`
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
@@ -152,7 +154,12 @@ type UserSignupSpec struct {
 	// VerificationRequired is set to false when the user is ether exempt from phone verification or has already successfully passed the verification.
 	// Default value is false.
 	// +optional
+	// Deprecated: will be replaced by States
 	VerificationRequired bool `json:"verificationRequired,omitempty"`
+
+	// States contains a number of values that reflect the desired state of the UserSignup.
+	// +optional
+	States []string `json:"states,omitempty"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup

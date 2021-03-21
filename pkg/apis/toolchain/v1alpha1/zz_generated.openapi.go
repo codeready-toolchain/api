@@ -2544,14 +2544,14 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 					},
 					"approved": {
 						SchemaProps: spec.SchemaProps{
-							Description: "If Approved set to 'true' then the user has been manually approved If not set then the user is subject of auto-approval (if enabled)",
+							Description: "If Approved set to 'true' then the user has been manually approved If not set then the user is subject of auto-approval (if enabled) Deprecated: will be replaced by States",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
 					},
 					"deactivated": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Deactivated is used to deactivate the user.  If not set, then by default the user is active",
+							Description: "Deactivated is used to deactivate the user.  If not set, then by default the user is active Deprecated: will be replaced by States",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
@@ -2593,9 +2593,23 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 					},
 					"verificationRequired": {
 						SchemaProps: spec.SchemaProps{
-							Description: "VerificationRequired is used to determine if a user requires phone verification. The user should not be provisioned if VerificationRequired is set to true. VerificationRequired is set to false when the user is ether exempt from phone verification or has already successfully passed the verification. Default value is false.",
+							Description: "VerificationRequired is used to determine if a user requires phone verification. The user should not be provisioned if VerificationRequired is set to true. VerificationRequired is set to false when the user is ether exempt from phone verification or has already successfully passed the verification. Default value is false. Deprecated: will be replaced by States",
 							Type:        []string{"boolean"},
 							Format:      "",
+						},
+					},
+					"states": {
+						SchemaProps: spec.SchemaProps{
+							Description: "States contains a number of values that reflect the desired state of the UserSignup.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Type:   []string{"string"},
+										Format: "",
+									},
+								},
+							},
 						},
 					},
 				},
