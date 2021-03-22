@@ -105,7 +105,19 @@ const (
 	UserSignupDeactivatingNotificationCRCreatedReason = notificationCRCreated
 
 	UserSignupDeactivatingNotificationCRCreationFailedReason = notificationCRCreationFailed
+
+	// ###############################################################################
+	//    UserSignup States
+	// ###############################################################################
+
+	UserSignupStateApproved             = UserSignupState("approved")
+	UserSignupStateVerificationRequired = UserSignupState("verification-required")
+	UserSignupStateDeactivated          = UserSignupState("deactivated")
+	UserSignupStateDeactivating         = UserSignupState("deactivating")
+	UserSignupStateBanned               = UserSignupState("banned")
 )
+
+type UserSignupState string
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
@@ -159,7 +171,7 @@ type UserSignupSpec struct {
 
 	// States contains a number of values that reflect the desired state of the UserSignup.
 	// +optional
-	States []string `json:"states,omitempty"`
+	States []UserSignupState `json:"states,omitempty"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup

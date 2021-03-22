@@ -2218,7 +2218,7 @@ func (in *UserSignupSpec) DeepCopyInto(out *UserSignupSpec) {
 	*out = *in
 	if in.States != nil {
 		in, out := &in.States, &out.States
-		*out = make([]string, len(*in))
+		*out = make([]UserSignupState, len(*in))
 		copy(*out, *in)
 	}
 	return
