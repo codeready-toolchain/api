@@ -32,6 +32,10 @@ const (
 	// UserVerificationExpiryAnnotationKey is used for the usersignup verification expiry annotation key
 	UserVerificationExpiryAnnotationKey = LabelKeyPrefix + "verification-expiry"
 
+	// UserSignupActivationCounterAnnotationKey is used for the usersignup activation counter annotation key
+	// Activations are counted after phone verification succeeded
+	UserSignupActivationCounterAnnotationKey = LabelKeyPrefix + "activation-counter"
+
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
@@ -75,6 +79,8 @@ const (
 	UserSignupMissingEmailHashLabelReason          = "MissingEmailHashLabel"
 	UserSignupInvalidEmailHashLabelReason          = "InvalidEmailHashLabel"
 	UserSignupVerificationRequiredReason           = "VerificationRequired"
+	UserSignupUnableToAddFinalizerReason           = "UnableToAddFinalizer"
+	UserSignupUnableToRemoveFinalizerReason        = "UnableToRemoveFinalizer"
 
 	notificationCRCreated        = "NotificationCRCreated"
 	userIsActive                 = "UserIsActive"

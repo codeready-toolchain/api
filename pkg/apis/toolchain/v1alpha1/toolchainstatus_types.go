@@ -47,6 +47,9 @@ const (
 	ToolchainStatusMemberStatusCheAdminUserNotConfiguredReason = "CheAdminUserNotConfigured"
 	ToolchainStatusMemberStatusCheUserDeletionNotEnabledReason = "CheUserDeletionNotEnabled"
 	ToolchainStatusMemberStatusCheReadyReason                  = "CheReady"
+
+	// Metric Keys
+	UsersPerActivationMetricKey = "UsersPerActivation"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -81,6 +84,8 @@ type ToolchainStatusStatus struct {
 	// +listType=map
 	// +listMapKey=clusterName
 	Members []Member `json:"members,omitempty" patchStrategy:"merge" patchMergeKey:"clusterName"`
+
+	Metrics map[string]string `json:"metrics,omitempty"`
 
 	// Conditions is an array of the current overall toolchain status conditions
 	// Supported condition types: ConditionReady
