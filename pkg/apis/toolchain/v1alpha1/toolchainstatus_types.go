@@ -85,7 +85,11 @@ type ToolchainStatusStatus struct {
 	// +listMapKey=clusterName
 	Members []Member `json:"members,omitempty" patchStrategy:"merge" patchMergeKey:"clusterName"`
 
-	Metrics map[string]string `json:"metrics,omitempty"`
+	// Metrics is a map that stores (seralized) metrics to be exposed on Prometheus.
+	// +optional
+	// +mapType=atomic
+	// +patchStrategy=merge
+	Metrics map[string]string `json:"metrics,omitempty" patchStrategy:"merge"`
 
 	// Conditions is an array of the current overall toolchain status conditions
 	// Supported condition types: ConditionReady
