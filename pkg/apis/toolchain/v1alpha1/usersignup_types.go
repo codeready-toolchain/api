@@ -79,8 +79,6 @@ const (
 	UserSignupMissingEmailHashLabelReason          = "MissingEmailHashLabel"
 	UserSignupInvalidEmailHashLabelReason          = "InvalidEmailHashLabel"
 	UserSignupVerificationRequiredReason           = "VerificationRequired"
-	UserSignupUnableToAddFinalizerReason           = "UnableToAddFinalizer"
-	UserSignupUnableToRemoveFinalizerReason        = "UnableToRemoveFinalizer"
 
 	notificationCRCreated        = "NotificationCRCreated"
 	userIsActive                 = "UserIsActive"
