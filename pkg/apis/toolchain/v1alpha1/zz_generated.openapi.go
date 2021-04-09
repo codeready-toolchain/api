@@ -2283,8 +2283,16 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 								Allows: true,
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Type:   []string{"string"},
-										Format: "",
+										Type: []string{"object"},
+										AdditionalProperties: &spec.SchemaOrBool{
+											Allows: true,
+											Schema: &spec.Schema{
+												SchemaProps: spec.SchemaProps{
+													Type:   []string{"integer"},
+													Format: "int32",
+												},
+											},
+										},
 									},
 								},
 							},

@@ -89,7 +89,7 @@ type ToolchainStatusStatus struct {
 	// +optional
 	// +mapType=atomic
 	// +patchStrategy=merge
-	Metrics map[string]string `json:"metrics,omitempty" patchStrategy:"merge"`
+	Metrics map[string]Metric `json:"metrics,omitempty" patchStrategy:"merge"`
 
 	// Conditions is an array of the current overall toolchain status conditions
 	// Supported condition types: ConditionReady
@@ -100,6 +100,8 @@ type ToolchainStatusStatus struct {
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
+
+type Metric map[string]int
 
 // HostOperatorStatus defines the observed state of a toolchain's host operator
 // +k8s:openapi-gen=true
