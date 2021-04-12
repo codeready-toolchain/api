@@ -16,6 +16,9 @@ const (
 	// ToolchainStatusUnreadyNotificationCRCreationFailedReason is set when the controller fails to create an unready notification CR
 	ToolchainStatusUnreadyNotificationCRCreationFailedReason = "UnreadyNotificationCRCreationFailed"
 
+	// ToolchainStatusRestoredNotificationCRCreationFailedReason is set when the controller fails to create restored notification
+	ToolchainStatusRestoredNotificationCRCreationFailedReason = "RestoredNotificationCRCreationFailed"
+
 	// overall status condition reasons
 	ToolchainStatusAllComponentsReadyReason = "AllComponentsReady"
 	ToolchainStatusComponentsNotReadyReason = "ComponentsNotReady"
