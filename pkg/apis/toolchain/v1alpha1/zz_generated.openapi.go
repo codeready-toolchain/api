@@ -353,11 +353,17 @@ func schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigSpec(ref common.Refere
 							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval"),
 						},
 					},
+					"deactivation": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with user deactivation",
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Deactivation"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Deactivation"},
 	}
 }
 

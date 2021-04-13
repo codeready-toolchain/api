@@ -4,12 +4,20 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+const (
+	DefaultUserSignupDeactivatingNotificationDays = 3
+)
+
 // HostOperatorConfigSpec contains all configuration parameters of the host operator
 // +k8s:openapi-gen=true
 type HostOperatorConfigSpec struct {
 	// Keeps parameters necessary for automatic approval
 	// +optional
 	AutomaticApproval AutomaticApproval `json:"automaticApproval,omitempty"`
+
+	// Keeps parameters concerned with user deactivation
+	// +optional
+	Deactivation Deactivation `json:"deactivation,omitempty"`
 }
 
 // Defines all parameters necessary for automatic approval
@@ -52,6 +60,13 @@ type MaxNumberOfUsers struct {
 	// +optional
 	// +mapType=atomic
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
+}
+
+type Deactivation struct {
+
+	// DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual
+	// deactivation occurs.  If this parameter is set to zero, then there will be no delay
+	DeactivatingNotificationDays int `json:"deactivatingNotificationDays,omitempty"`
 }
 
 // HostOperatorConfigStatus defines the observed state of HostOperatorConfig
