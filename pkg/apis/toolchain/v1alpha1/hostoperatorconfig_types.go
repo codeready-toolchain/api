@@ -62,6 +62,7 @@ type Deactivation struct {
 
 	// DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual
 	// deactivation occurs.  If this parameter is set to zero, then there will be no delay
+	// +optional
 	// +kubebuilder:default:=3
 	DeactivatingNotificationDays int `json:"deactivatingNotificationDays,omitempty"`
 }
