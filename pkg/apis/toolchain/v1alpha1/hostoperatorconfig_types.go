@@ -4,10 +4,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-const (
-	DefaultUserSignupDeactivatingNotificationDays = 3
-)
-
 // HostOperatorConfigSpec contains all configuration parameters of the host operator
 // +k8s:openapi-gen=true
 type HostOperatorConfigSpec struct {
@@ -66,6 +62,7 @@ type Deactivation struct {
 
 	// DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual
 	// deactivation occurs.  If this parameter is set to zero, then there will be no delay
+	// +kubebuilder:default:=3
 	DeactivatingNotificationDays int `json:"deactivatingNotificationDays,omitempty"`
 }
 
