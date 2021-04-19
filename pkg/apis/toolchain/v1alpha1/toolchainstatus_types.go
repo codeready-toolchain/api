@@ -85,7 +85,7 @@ type ToolchainStatusStatus struct {
 	// +listMapKey=clusterName
 	Members []Member `json:"members,omitempty" patchStrategy:"merge" patchMergeKey:"clusterName"`
 
-	// Metrics is a map that stores (seralized) metrics to be exposed on Prometheus.
+	// Metrics is a map that stores metrics to be exposed on Prometheus.
 	// +optional
 	// +mapType=atomic
 	// +patchStrategy=merge
