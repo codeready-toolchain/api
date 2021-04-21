@@ -2283,7 +2283,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Metrics is a map that stores (seralized) metrics to be exposed on Prometheus.",
+							Description: "Metrics is a map that stores metrics to be exposed on Prometheus.",
 							Type:        []string{"object"},
 							AdditionalProperties: &spec.SchemaOrBool{
 								Allows: true,
