@@ -2276,6 +2276,34 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 							},
 						},
 					},
+					"metrics": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-patch-strategy": "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Metrics is a map that stores metrics to be exposed on Prometheus.",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Type: []string{"object"},
+										AdditionalProperties: &spec.SchemaOrBool{
+											Allows: true,
+											Schema: &spec.Schema{
+												SchemaProps: spec.SchemaProps{
+													Type:   []string{"integer"},
+													Format: "int32",
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{

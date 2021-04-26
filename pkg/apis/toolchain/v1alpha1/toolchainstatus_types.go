@@ -50,6 +50,9 @@ const (
 	ToolchainStatusMemberStatusCheAdminUserNotConfiguredReason = "CheAdminUserNotConfigured"
 	ToolchainStatusMemberStatusCheUserDeletionNotEnabledReason = "CheUserDeletionNotEnabled"
 	ToolchainStatusMemberStatusCheReadyReason                  = "CheReady"
+
+	// Metric Keys
+	UsersPerActivationMetricKey = "usersPerActivation"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -85,6 +88,12 @@ type ToolchainStatusStatus struct {
 	// +listMapKey=clusterName
 	Members []Member `json:"members,omitempty" patchStrategy:"merge" patchMergeKey:"clusterName"`
 
+	// Metrics is a map that stores metrics to be exposed on Prometheus.
+	// +optional
+	// +mapType=atomic
+	// +patchStrategy=merge
+	Metrics map[string]Metric `json:"metrics,omitempty" patchStrategy:"merge"`
+
 	// Conditions is an array of the current overall toolchain status conditions
 	// Supported condition types: ConditionReady
 	// +optional
@@ -94,6 +103,8 @@ type ToolchainStatusStatus struct {
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
+
+type Metric map[string]int
 
 // HostOperatorStatus defines the observed state of a toolchain's host operator
 // +k8s:openapi-gen=true
