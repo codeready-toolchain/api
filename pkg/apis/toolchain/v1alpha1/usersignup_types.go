@@ -102,10 +102,10 @@ const (
 	//    Pre-Deactivation Notification Status Reasons
 	// ###############################################################################
 
-	// UserSignupDeactivatingNotificationUserIsActiveReason is the value that the condition reason is set to when
+	// UserSignupDeactivatingNotificationUserNotInPreDeactivationReason is the value that the condition reason is set to when
 	// a previously deactivated user has been reactivated again (for example when a user signs up again after their
-	// sandbox has been deactivated)
-	UserSignupDeactivatingNotificationUserIsActiveReason = userNotInPreDeactivation
+	// sandbox has been deactivated), and before a pre-deactivation notification has been sent.
+	UserSignupDeactivatingNotificationUserNotInPreDeactivationReason = userNotInPreDeactivation
 
 	UserSignupDeactivatingNotificationCRCreatedReason = notificationCRCreated
 
