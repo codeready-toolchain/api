@@ -2583,13 +2583,6 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 							Format:      "",
 						},
 					},
-					"deactivated": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Deactivated is used to deactivate the user.  If not set, then by default the user is active Deprecated: will be replaced by States",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
 					"userid": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The user's user ID, obtained from the identity provider from the 'sub' (subject) claim",
