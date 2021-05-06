@@ -142,11 +142,6 @@ type UserSignupSpec struct {
 	// Deprecated: will be replaced by States
 	Approved bool `json:"approved,omitempty"`
 
-	// Deactivated is used to deactivate the user.  If not set, then by default the user is active
-	// +optional
-	// Deprecated: will be replaced by States
-	Deactivated bool `json:"deactivated,omitempty"`
-
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
 	UserID string `json:"userid"`
 
@@ -214,7 +209,7 @@ type UserSignupStatus struct {
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
 // +kubebuilder:printcolumn:name="Approved",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].status`,priority=1
 // +kubebuilder:printcolumn:name="ApprovedBy",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].reason`,priority=1
-// +kubebuilder:printcolumn:name="Deactivated",type="string",JSONPath=`.spec.deactivated`,priority=1
+// +kubebuilder:printcolumn:name="Deactivated",type="string",JSONPath=`.spec.states[?(@=="deactivated")]`,priority=1
 // +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=`.status.compliantUsername`
 // +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.metadata.annotations.toolchain\.dev\.openshift\.com/user-email`
 // +kubebuilder:validation:XPreserveUnknownFields
