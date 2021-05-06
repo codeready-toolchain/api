@@ -41,6 +41,11 @@ const (
 	// MasterUserRecordOwnerLabelKey indicates the label value that contains the owner reference for this resource,
 	// which will be the UserSignup instance with the corresponding resource name
 	MasterUserRecordOwnerLabelKey = OwnerLabelKey
+
+	// #### ANNOTATIONS ####
+	// MasterUserRecordEmailAnnotationKey is used to store the user's email in an annotation
+	// (Note: key is the same as for the UserSignup annotation)
+	MasterUserRecordEmailAnnotationKey = UserSignupUserEmailAnnotationKey
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
