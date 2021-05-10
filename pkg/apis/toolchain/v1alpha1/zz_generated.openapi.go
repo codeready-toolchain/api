@@ -2618,13 +2618,6 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 							Format:      "",
 						},
 					},
-					"verificationRequired": {
-						SchemaProps: spec.SchemaProps{
-							Description: "VerificationRequired is used to determine if a user requires phone verification. The user should not be provisioned if VerificationRequired is set to true. VerificationRequired is set to false when the user is ether exempt from phone verification or has already successfully passed the verification. Default value is false. Deprecated: will be replaced by States",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
 					"states": {
 						SchemaProps: spec.SchemaProps{
 							Description: "States contains a number of values that reflect the desired state of the UserSignup.",
