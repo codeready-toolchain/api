@@ -187,7 +187,8 @@ type UserSignupStatus struct {
 	CompliantUsername string `json:"compliantUsername,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // UserSignup registers a user in the CodeReady Toolchain
 // +k8s:openapi-gen=true
@@ -215,7 +216,7 @@ type UserSignup struct {
 	Status UserSignupStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // UserSignupList contains a list of UserSignup
 type UserSignupList struct {

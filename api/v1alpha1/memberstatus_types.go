@@ -139,7 +139,8 @@ type MemberOperatorStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // MemberStatus is used to track toolchain member status
 // +k8s:openapi-gen=true
@@ -157,7 +158,7 @@ type MemberStatus struct {
 	Status MemberStatusStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // MemberStatusList contains a list of MemberStatus
 type MemberStatusList struct {
