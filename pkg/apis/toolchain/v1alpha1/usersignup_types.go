@@ -136,12 +136,6 @@ type UserSignupSpec struct {
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
 
-	// If Approved set to 'true' then the user has been manually approved
-	// If not set then the user is subject of auto-approval (if enabled)
-	// +optional
-	// Deprecated: will be replaced by States
-	Approved bool `json:"approved,omitempty"`
-
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
 	UserID string `json:"userid"`
 
