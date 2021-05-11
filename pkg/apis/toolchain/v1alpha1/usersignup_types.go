@@ -160,14 +160,6 @@ type UserSignupSpec struct {
 	// +optional
 	Company string `json:"company,omitempty"`
 
-	// VerificationRequired is used to determine if a user requires phone verification.
-	// The user should not be provisioned if VerificationRequired is set to true.
-	// VerificationRequired is set to false when the user is ether exempt from phone verification or has already successfully passed the verification.
-	// Default value is false.
-	// +optional
-	// Deprecated: will be replaced by States
-	VerificationRequired bool `json:"verificationRequired,omitempty"`
-
 	// States contains a number of values that reflect the desired state of the UserSignup.
 	// +optional
 	States []UserSignupState `json:"states,omitempty"`
