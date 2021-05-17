@@ -16,7 +16,7 @@ type MemberOperatorConfigSpec struct {
 // +k8s:openapi-gen=true
 type Status struct {
 	// Defines the period between refreshes of the member status
-	RefreshPeriod *string `json:"refreshPeriod"`
+	RefreshPeriod *string `json:"refreshPeriod,omitempty"`
 }
 
 // MemberOperatorConfigStatus defines the observed state of MemberOperatorConfig
@@ -29,7 +29,6 @@ type MemberOperatorConfigStatus struct {
 // MemberOperatorConfig keeps all configuration parameters needed in member operator
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=memberoperatorconfigs,scope=Namespaced
-// +kubebuilder:printcolumn:name="AutomaticApproval",type="boolean",JSONPath=`.spec.automaticApproval.enabled`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Member Operator Config"
 type MemberOperatorConfig struct {

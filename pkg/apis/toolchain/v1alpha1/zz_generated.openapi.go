@@ -2028,7 +2028,6 @@ func schema_pkg_apis_toolchain_v1alpha1_Status(ref common.ReferenceCallback) com
 						},
 					},
 				},
-				Required: []string{"refreshPeriod"},
 			},
 		},
 	}
