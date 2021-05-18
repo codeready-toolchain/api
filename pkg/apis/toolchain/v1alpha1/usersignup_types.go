@@ -143,7 +143,7 @@ type UserSignupSpec struct {
 	Approved bool `json:"approved,omitempty"`
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
-	UserID string `json:"userid"`
+	Userid string `json:"userid"`
 
 	// The user's username, obtained from the identity provider.
 	Username string `json:"username"`
@@ -162,6 +162,7 @@ type UserSignupSpec struct {
 
 	// States contains a number of values that reflect the desired state of the UserSignup.
 	// +optional
+	// +listType=atomic
 	States []UserSignupState `json:"states,omitempty"`
 }
 

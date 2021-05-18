@@ -2885,6 +2885,11 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 						},
 					},
 					"states": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
 						SchemaProps: spec.SchemaProps{
 							Description: "States contains a number of values that reflect the desired state of the UserSignup.",
 							Type:        []string{"array"},
