@@ -9,12 +9,12 @@ import (
 type MemberOperatorConfigSpec struct {
 	// Keeps parameters concerned with member status
 	// +optional
-	Status Status `json:"status,omitempty"`
+	MemberStatus MemberStatusConfig `json:"memberStatus,omitempty"`
 }
 
 // Defines all parameters concerned with member status
 // +k8s:openapi-gen=true
-type Status struct {
+type MemberStatusConfig struct {
 	// Defines the period between refreshes of the member status
 	RefreshPeriod *string `json:"refreshPeriod,omitempty"`
 }

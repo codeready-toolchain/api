@@ -37,6 +37,7 @@ type Members struct {
 
 	// A map of cluster-specific member operator configurations indexed by member toolchaincluster name
 	// +optional
+	// +mapType=atomic
 	SpecificPerMemberCluster map[string]MemberOperatorConfigSpec `json:"specificPerMemberCluster,omitempty"`
 }
 
@@ -44,7 +45,8 @@ type Members struct {
 // +k8s:openapi-gen=true
 type AutomaticApprovalCfg struct {
 	// Defines if the automatic approval is enabled or not
-	Enabled *bool `json:"enabled"`
+	// +optional
+	Enabled *bool `json:"enabled,omitempty"`
 
 	// Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped
 	// +optional
@@ -60,7 +62,8 @@ type AutomaticApprovalCfg struct {
 // +k8s:openapi-gen=true
 type ResourceCapacityThresholdCfg struct {
 	// It is the default capacity threshold (in percentage of usage) to be used for all member clusters if no special threshold is defined
-	DefaultThreshold *int `json:"defaultThreshold"`
+	// +optional
+	DefaultThreshold *int `json:"defaultThreshold,omitempty"`
 
 	// Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names
 	// +optional
@@ -73,7 +76,8 @@ type ResourceCapacityThresholdCfg struct {
 // +k8s:openapi-gen=true
 type MaxNumberOfUsersCfg struct {
 	// It is the maximal number of users provisioned in the system overall - equals to max number of MasterUserRecords in host cluster
-	Overall *int `json:"overall"`
+	// +optional
+	Overall *int `json:"overall,omitempty"`
 
 	// Contains a map of maximal number of users provisioned per member cluster mapped by the cluster name
 	// - equals to max number of UserAccounts in member cluster
@@ -87,7 +91,6 @@ type DeactivationCfg struct {
 	// DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual
 	// deactivation occurs.  If this parameter is set to zero, then there will be no delay
 	// +optional
-	// +kubebuilder:default:=3
 	DeactivatingNotificationDays *int `json:"deactivatingNotificationDays,omitempty"`
 }
 
