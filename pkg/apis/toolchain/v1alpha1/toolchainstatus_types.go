@@ -52,8 +52,13 @@ const (
 	ToolchainStatusMemberStatusCheReadyReason                  = "CheReady"
 
 	// Metric Keys
-	UsersPerActivationMetricKey         = "usersPerActivation"
+	// UsersPerActivationMetricKey the key to store the metric for the number of UserSignups per activations
+	// DEPRECATED: see `UserSignupsPerActivationAndDomainMetricKey`
+	UsersPerActivationMetricKey = "usersPerActivation"
+	// MasterUserRecordsPerDomainMetricKey the key to store the metric for the number of MasterUserRecords per email address domain
 	MasterUserRecordsPerDomainMetricKey = "masterUserRecordsPerDomain"
+	// UserSignupsPerActivationAndDomainMetricKey the key to store the metric for the number of UserSignups per activations and per email address domain
+	UserSignupsPerActivationAndDomainMetricKey = "userSignupsPerActivationAndDomain"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
