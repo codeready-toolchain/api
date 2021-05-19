@@ -9,7 +9,7 @@ import (
 type ToolchainConfigSpec struct {
 	// Contains all host operator configuration
 	// +optional
-	Host Host `json:"host,omitempty"`
+	Host HostConfig `json:"host,omitempty"`
 
 	// Contains all member operator configurations for all member clusters
 	// +optional
@@ -18,14 +18,14 @@ type ToolchainConfigSpec struct {
 
 // Host contains all configuration parameters of the host operator
 // +k8s:openapi-gen=true
-type Host struct {
+type HostConfig struct {
 	// Keeps parameters necessary for automatic approval
 	// +optional
-	AutomaticApproval AutomaticApprovalCfg `json:"automaticApproval,omitempty"`
+	AutomaticApproval AutomaticApproval `json:"automaticApproval,omitempty"`
 
 	// Keeps parameters concerned with user deactivation
 	// +optional
-	Deactivation DeactivationCfg `json:"deactivation,omitempty"`
+	Deactivation Deactivation `json:"deactivation,omitempty"`
 }
 
 // Members contains all configuration for member operators
@@ -43,24 +43,24 @@ type Members struct {
 
 // Defines all parameters necessary for automatic approval
 // +k8s:openapi-gen=true
-type AutomaticApprovalCfg struct {
+type AutomaticApproval struct {
 	// Defines if the automatic approval is enabled or not
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
 
 	// Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped
 	// +optional
-	ResourceCapacityThreshold ResourceCapacityThresholdCfg `json:"resourceCapacityThreshold,omitempty"`
+	ResourceCapacityThreshold ResourceCapacityThreshold `json:"resourceCapacityThreshold,omitempty"`
 
 	// Defines the maximal number of users to be allowed for automatic approval.
 	// When the number is reached, then the automatic approval is stopped.
 	// +optional
-	MaxNumberOfUsers MaxNumberOfUsersCfg `json:"maxNumberOfUsers,omitempty"`
+	MaxNumberOfUsers MaxNumberOfUsers `json:"maxNumberOfUsers,omitempty"`
 }
 
 // Contains default capacity threshold as well as specific ones for particular member clusters
 // +k8s:openapi-gen=true
-type ResourceCapacityThresholdCfg struct {
+type ResourceCapacityThreshold struct {
 	// It is the default capacity threshold (in percentage of usage) to be used for all member clusters if no special threshold is defined
 	// +optional
 	DefaultThreshold *int `json:"defaultThreshold,omitempty"`
@@ -74,7 +74,7 @@ type ResourceCapacityThresholdCfg struct {
 // Contains maximal number of users to be provisioned automatically in the system overall as well as
 // max number of users automatically provisioned per member cluster
 // +k8s:openapi-gen=true
-type MaxNumberOfUsersCfg struct {
+type MaxNumberOfUsers struct {
 	// It is the maximal number of users provisioned in the system overall - equals to max number of MasterUserRecords in host cluster
 	// +optional
 	Overall *int `json:"overall,omitempty"`
@@ -86,7 +86,7 @@ type MaxNumberOfUsersCfg struct {
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
 }
 
-type DeactivationCfg struct {
+type Deactivation struct {
 
 	// DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual
 	// deactivation occurs.  If this parameter is set to zero, then there will be no delay
