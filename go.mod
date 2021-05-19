@@ -6,6 +6,7 @@ require (
 	github.com/emicklei/go-restful v2.9.6+incompatible // indirect
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/go-bindata/go-bindata v3.1.2+incompatible
+	github.com/go-openapi/spec v0.19.3
 	github.com/gobuffalo/flect v0.2.1 // indirect
 	github.com/google/go-cmp v0.5.2 // indirect
 	github.com/json-iterator/go v1.1.9 // indirect
@@ -24,7 +25,13 @@ require (
 	k8s.io/apimachinery v0.18.3
 	k8s.io/code-generator v0.18.3
 	k8s.io/gengo v0.0.0-20200413195148-3a45101e95ac
-	k8s.io/kube-openapi v0.0.0-20210421082810-95288971da7e
+	k8s.io/klog/v2 v2.8.0 // indirect
+	k8s.io/kube-openapi v0.0.0-20200410145947-61e04a5be9a6
 	sigs.k8s.io/controller-runtime v0.6.0
 	sigs.k8s.io/controller-tools v0.4.1
+)
+
+replace (
+	github.com/go-logr/logr => github.com/go-logr/logr v0.1.0
+	k8s.io/klog/v2 => k8s.io/klog/v2 v2.0.0
 )

@@ -21,8 +21,8 @@ limitations under the License.
 package v1alpha1
 
 import (
+	spec "github.com/go-openapi/spec"
 	common "k8s.io/kube-openapi/pkg/common"
-	spec "k8s.io/kube-openapi/pkg/validation/spec"
 )
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
@@ -100,7 +100,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApproval(ref common.Re
 					"enabled": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines if the automatic approval is enabled or not",
-							Default:     false,
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
@@ -108,14 +107,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApproval(ref common.Re
 					"resourceCapacityThreshold": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"),
 						},
 					},
 					"maxNumberOfUsers": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines the maximal number of users to be allowed for automatic approval. When the number is reached, then the automatic approval is stopped.",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers"),
 						},
 					},
@@ -151,14 +148,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref common.Reference
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec"),
 						},
 					},
 				},
@@ -179,7 +174,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref common.Refer
 					"email": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The e-mail address of the account that has been banned",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -214,20 +208,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref common.Re
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus"),
 						},
 					},
 				},
@@ -255,7 +246,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref commo
 					"murName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The murName is a name of MUR/UserAccount whose tier should be changed.",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -263,7 +253,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref commo
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The tier name the tier should be changed to.",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -299,8 +288,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref com
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -338,8 +326,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref common.ReferenceC
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -363,14 +350,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigSpec(ref comm
 					"automaticApproval": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters necessary for automatic approval",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApproval"),
 						},
 					},
 					"deactivation": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with user deactivation",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Deactivation"),
 						},
 					},
@@ -403,7 +388,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 					"version": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The version of the operator",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -411,7 +395,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 					"revision": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The commit id from the host-operator repository used to build the operator",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -419,7 +402,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 					"buildTimestamp": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The timestamp of the host operator build",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -427,7 +409,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 					"deploymentName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The status of the host operator's deployment",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -456,8 +437,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -482,21 +462,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(r
 					"deployment": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Deployment is the status of the registration service's deployment",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus"),
 						},
 					},
 					"registrationServiceResources": {
 						SchemaProps: spec.SchemaProps{
 							Description: "RegistrationServiceResources is the status for resources created for the registration service",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus"),
 						},
 					},
 					"health": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Health provides health status of the registration service",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth"),
 						},
 					},
@@ -532,20 +509,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_Idler(ref common.ReferenceCallb
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus"),
 						},
 					},
 				},
@@ -566,7 +540,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdlerSpec(ref common.ReferenceC
 					"timeoutSeconds": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TimeoutSeconds is the number of seconds before the running pods will be deleted",
-							Default:     0,
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
@@ -602,8 +575,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref common.Referenc
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Pod"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Pod"),
 									},
 								},
 							},
@@ -626,8 +598,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref common.Referenc
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -651,7 +622,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_LocalSecretReference(ref common
 					"name": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Name of a secret within the enclosing namespace",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -686,20 +656,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecord(ref common.Ref
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus"),
 						},
 					},
 				},
@@ -720,7 +687,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -761,8 +727,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountEmbedded"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountEmbedded"),
 									},
 								},
 							},
@@ -801,8 +766,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref comm
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -820,8 +784,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref comm
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatusEmbedded"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatusEmbedded"),
 									},
 								},
 							},
@@ -851,17 +814,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref common.Ref
 					"overall": {
 						SchemaProps: spec.SchemaProps{
 							Description: "It is the maximal number of users provisioned in the system overall - equals to max number of MasterUserRecords in host cluster",
-							Default:     0,
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
 					},
 					"specificPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Contains a map of maximal number of users provisioned per member cluster mapped by the cluster name - equals to max number of UserAccounts in member cluster",
 							Type:        []string{"object"},
@@ -869,9 +826,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref common.Ref
 								Allows: true,
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: 0,
-										Type:    []string{"integer"},
-										Format:  "int32",
+										Type:   []string{"integer"},
+										Format: "int32",
 									},
 								},
 							},
@@ -901,7 +857,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCall
 					"clusterName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The cluster identifier",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -916,7 +871,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCall
 					"memberStatus": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The array of member status objects",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus"),
 						},
 					},
@@ -952,20 +906,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatus(ref common.Referen
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus"),
 						},
 					},
 				},
@@ -1035,8 +986,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1045,7 +995,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 					"resourceUsage": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Resource usage of the cluster",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage"),
 						},
 					},
@@ -1086,20 +1035,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref common.Refere
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus"),
 						},
 					},
 				},
@@ -1120,7 +1066,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref common.Re
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The name of the tier represented by this template set",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -1137,8 +1082,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref common.Re
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace"),
 									},
 								},
 							},
@@ -1183,8 +1127,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1221,20 +1164,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTier(ref common.Refer
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierStatus"),
 						},
 					},
 				},
@@ -1264,8 +1204,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"),
 									},
 								},
 							},
@@ -1317,8 +1256,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref common
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1341,8 +1279,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref common
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierHistory"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierHistory"),
 									},
 								},
 							},
@@ -1379,20 +1316,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_Notification(ref common.Referen
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus"),
 						},
 					},
 				},
@@ -1475,8 +1409,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref common.R
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1513,20 +1446,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref common.
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus"),
 						},
 					},
 				},
@@ -1547,7 +1477,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceDeploymentSt
 					"name": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The host operator deployment name",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -1569,8 +1498,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceDeploymentSt
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1594,37 +1522,32 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceHealth(ref c
 				Properties: map[string]spec.Schema{
 					"alive": {
 						SchemaProps: spec.SchemaProps{
-							Default: "",
-							Type:    []string{"string"},
-							Format:  "",
+							Type:   []string{"string"},
+							Format: "",
 						},
 					},
 					"buildTime": {
 						SchemaProps: spec.SchemaProps{
-							Default: "",
-							Type:    []string{"string"},
-							Format:  "",
+							Type:   []string{"string"},
+							Format: "",
 						},
 					},
 					"environment": {
 						SchemaProps: spec.SchemaProps{
-							Default: "",
-							Type:    []string{"string"},
-							Format:  "",
+							Type:   []string{"string"},
+							Format: "",
 						},
 					},
 					"revision": {
 						SchemaProps: spec.SchemaProps{
-							Default: "",
-							Type:    []string{"string"},
-							Format:  "",
+							Type:   []string{"string"},
+							Format: "",
 						},
 					},
 					"startTime": {
 						SchemaProps: spec.SchemaProps{
-							Default: "",
-							Type:    []string{"string"},
-							Format:  "",
+							Type:   []string{"string"},
+							Format: "",
 						},
 					},
 					"conditions": {
@@ -1644,8 +1567,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceHealth(ref c
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1684,8 +1606,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesSta
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1707,11 +1628,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref com
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"environmentVariables": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
 						SchemaProps: spec.SchemaProps{
 							Description: "The environment variables are supposed to be set to registration service deployment template",
 							Type:        []string{"object"},
@@ -1719,9 +1635,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref com
 								Allows: true,
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
+										Type:   []string{"string"},
+										Format: "",
 									},
 								},
 							},
@@ -1757,8 +1672,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref c
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1782,17 +1696,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref c
 					"defaultThreshold": {
 						SchemaProps: spec.SchemaProps{
 							Description: "It is the default capacity threshold (in percentage of usage) to be used for all member clusters if no special threshold is defined",
-							Default:     0,
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
 					},
 					"specificPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names",
 							Type:        []string{"object"},
@@ -1800,9 +1708,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref c
 								Allows: true,
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: 0,
-										Type:    []string{"integer"},
-										Format:  "int32",
+										Type:   []string{"integer"},
+										Format: "int32",
 									},
 								},
 							},
@@ -1830,9 +1737,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref common.Refere
 								Allows: true,
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: 0,
-										Type:    []string{"integer"},
-										Format:  "int32",
+										Type:   []string{"integer"},
+										Format: "int32",
 									},
 								},
 							},
@@ -1882,8 +1788,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_Routes(ref common.ReferenceCall
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1920,20 +1825,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequest(ref commo
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus"),
 						},
 					},
 				},
@@ -1954,7 +1856,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref c
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The name of the tier to be updated",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -1971,8 +1872,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref c
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"),
 									},
 								},
 							},
@@ -2012,8 +1912,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -2022,7 +1921,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref
 					"syncIndexes": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
-								"x-kubernetes-map-type":       "atomic",
 								"x-kubernetes-patch-strategy": "merge",
 							},
 						},
@@ -2033,9 +1931,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref
 								Allows: true,
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
+										Type:   []string{"string"},
+										Format: "",
 									},
 								},
 							},
@@ -2059,7 +1956,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The tier of the template. For example: \"basic\", \"advanced\", or \"team\"",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2067,7 +1963,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 					"type": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The type of the template. For example: \"code\", \"dev\", \"stage\" or \"cluster\"",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2075,7 +1970,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 					"revision": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The revision of the corresponding template",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2083,7 +1977,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 					"template": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Template contains an OpenShift Template to be used to provision either a user's namespace or cluster-wide resources",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/openshift/api/template/v1.Template"),
 						},
 					},
@@ -2119,20 +2012,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref common.Ref
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"),
 						},
 					},
 				},
@@ -2154,7 +2044,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 					"type": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Type of cluster condition, Ready or Offline.",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2162,7 +2051,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 					"status": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Status of the condition, one of True, False, Unknown.",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2170,7 +2058,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 					"lastProbeTime": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Last time the condition was checked.",
-							Default:     map[string]interface{}{},
 							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
 						},
 					},
@@ -2213,7 +2100,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 					"apiEndpoint": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2228,7 +2114,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 					"secretRef": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference"),
 						},
 					},
@@ -2244,9 +2129,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
+										Type:   []string{"string"},
+										Format: "",
 									},
 								},
 							},
@@ -2280,8 +2164,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"),
 									},
 								},
 							},
@@ -2319,20 +2202,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref common.Refe
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus"),
 						},
 					},
 				},
@@ -2390,8 +2270,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref commo
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Member"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Member"),
 									},
 								},
 							},
@@ -2400,7 +2279,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref commo
 					"metrics": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
-								"x-kubernetes-map-type":       "atomic",
 								"x-kubernetes-patch-strategy": "merge",
 							},
 						},
@@ -2416,9 +2294,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref commo
 											Allows: true,
 											Schema: &spec.Schema{
 												SchemaProps: spec.SchemaProps{
-													Default: 0,
-													Type:    []string{"integer"},
-													Format:  "int32",
+													Type:   []string{"integer"},
+													Format: "int32",
 												},
 											},
 										},
@@ -2444,8 +2321,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref commo
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -2482,20 +2358,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccount(ref common.Referenc
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus"),
 						},
 					},
 				},
@@ -2516,7 +2389,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim) Is to be used to create Identity and UserIdentityMapping resources",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2531,7 +2403,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The namespace limit name",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2539,7 +2410,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
@@ -2562,7 +2432,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref common.
 					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The namespace limit name",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2570,7 +2439,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref common.
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
@@ -2593,7 +2461,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref com
 					"nsLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The namespace limit name",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2601,7 +2468,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref com
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
@@ -2638,8 +2504,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountStatus(ref common.Re
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -2676,20 +2541,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref common.Reference
 					},
 					"metadata": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
 						},
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus"),
 						},
 					},
 				},
@@ -2724,7 +2586,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 					"userid": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The user's user ID, obtained from the identity provider from the 'sub' (subject) claim",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2732,7 +2593,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 					"username": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The user's username, obtained from the identity provider.",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2770,9 +2630,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
+										Type:   []string{"string"},
+										Format: "",
 									},
 								},
 							},
@@ -2809,8 +2668,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref common.Ref
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
