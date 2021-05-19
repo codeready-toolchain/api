@@ -34,8 +34,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec":               schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus":             schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CheStatus":                           schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Host":                                schema_pkg_apis_toolchain_v1alpha1_Host(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorConfigSpec":              schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigSpec(ref),
+		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostConfig":                          schema_pkg_apis_toolchain_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorConfigStatus":            schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorStatus":                  schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref),
 		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostRegistrationServiceStatus":       schema_pkg_apis_toolchain_v1alpha1_HostRegistrationServiceStatus(ref),
@@ -346,38 +345,11 @@ func schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref common.ReferenceCallback) 
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_Host(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_pkg_apis_toolchain_v1alpha1_HostConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "Host contains all configuration parameters of the host operator",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"automaticApproval": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for automatic approval",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval"),
-						},
-					},
-					"deactivation": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters concerned with user deactivation",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Deactivation"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Deactivation"},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "HostOperatorConfigSpec contains all configuration parameters of the host operator",
+				Description: "HostConfig contains all configuration parameters of the host operator",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"automaticApproval": {
@@ -2307,7 +2279,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainConfigSpec(ref common.Reference
 					"host": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Contains all host operator configuration",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Host"),
+							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostConfig"),
 						},
 					},
 					"members": {
@@ -2320,7 +2292,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainConfigSpec(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Host", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Members"},
+			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostConfig", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Members"},
 	}
 }
 

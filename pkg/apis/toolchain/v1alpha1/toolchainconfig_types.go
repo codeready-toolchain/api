@@ -16,7 +16,7 @@ type ToolchainConfigSpec struct {
 	Members Members `json:"members,omitempty"`
 }
 
-// Host contains all configuration parameters of the host operator
+// HostConfig contains all configuration parameters of the host operator
 // +k8s:openapi-gen=true
 type HostConfig struct {
 	// Keeps parameters necessary for automatic approval
