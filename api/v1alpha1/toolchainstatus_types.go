@@ -52,7 +52,8 @@ const (
 	ToolchainStatusMemberStatusCheReadyReason                  = "CheReady"
 
 	// Metric Keys
-	UsersPerActivationMetricKey = "usersPerActivation"
+	UsersPerActivationMetricKey         = "usersPerActivation"
+	MasterUserRecordsPerDomainMetricKey = "masterUserRecordsPerDomain"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -126,6 +127,7 @@ type HostOperatorStatus struct {
 
 	// Number of MasterUserRecords created within the host cluster
 	// +optional
+	// DEPRECATED: use `ToolchainStatusStatus.Metrics` instead
 	MasterUserRecordCount int `json:"masterUserRecordCount,omitempty"`
 
 	// Conditions is an array of current host operator status conditions
