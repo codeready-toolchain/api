@@ -68,7 +68,8 @@ type UserAccountStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // UserAccount keeps all information about user provisioned in the cluster
 // +k8s:openapi-gen=true
@@ -90,7 +91,7 @@ type UserAccount struct {
 	Status UserAccountStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // UserAccountList contains a list of UserAccount
 type UserAccountList struct {

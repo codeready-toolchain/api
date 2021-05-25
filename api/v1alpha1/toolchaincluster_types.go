@@ -72,7 +72,8 @@ type ToolchainClusterStatus struct {
 	Conditions []ToolchainClusterCondition `json:"conditions"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // ToolchainCluster configures Toolchain to be aware of a Kubernetes
 // cluster and encapsulates the details necessary to communicate with
@@ -115,7 +116,7 @@ type ToolchainClusterCondition struct {
 	Message string `json:"message,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // ToolchainClusterList contains a list of ToolchainCluster
 type ToolchainClusterList struct {

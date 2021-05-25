@@ -155,7 +155,8 @@ type Cluster struct {
 	CheDashboardURL string `json:"cheDashboardURL,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // MasterUserRecord keeps all information about user, user accounts and namespaces provisioned in CodeReady Toolchain
 // +k8s:openapi-gen=true
@@ -178,7 +179,7 @@ type MasterUserRecord struct {
 	Status MasterUserRecordStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // MasterUserRecordList contains a list of MasterUserRecord
 type MasterUserRecordList struct {

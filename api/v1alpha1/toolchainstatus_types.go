@@ -222,7 +222,8 @@ type RegistrationServiceResourcesStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // ToolchainStatus is used to track overall toolchain status
 // +k8s:openapi-gen=true
@@ -241,7 +242,7 @@ type ToolchainStatus struct {
 	Status ToolchainStatusStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // ToolchainStatusList contains a list of ToolchainStatus
 type ToolchainStatusList struct {

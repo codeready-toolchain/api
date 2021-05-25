@@ -236,7 +236,7 @@ generate_bundle() {
 
         cd ${API_REPO_DIR}
         echo "  - running 'operator-sdk generate csv' command inside of the codeready-toolchain/api directory '${API_REPO_DIR}'"
-        operator-sdk generate csv --verbose --output-dir ${PKG_DIR} --deploy-dir ${PRJ_ROOT_DIR}/deploy --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
+        operator-sdk generate csv --verbose --apis-dir api/ --output-dir ${PKG_DIR} --deploy-dir ${PRJ_ROOT_DIR}/deploy --csv-version ${NEXT_CSV_VERSION} --update-crds --operator-name ${OPERATOR_NAME} ${FROM_VERSION_PARAM} ${CHANNEL_PARAM}
         cd ${CURRENT_DIR}
     fi
 

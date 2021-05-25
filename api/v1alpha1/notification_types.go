@@ -76,7 +76,8 @@ type NotificationStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // Notification registers a notification in the CodeReady Toolchain
 // +k8s:openapi-gen=true
@@ -94,7 +95,7 @@ type Notification struct {
 	Status NotificationStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // NotificationList contains a list of Notification
 type NotificationList struct {
