@@ -99,7 +99,8 @@ type Deactivation struct {
 type ToolchainConfigStatus struct {
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // ToolchainConfig keeps all configuration parameters needed for host and member operators
 // +kubebuilder:subresource:status
@@ -115,7 +116,7 @@ type ToolchainConfig struct {
 	Status ToolchainConfigStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // ToolchainConfigList contains a list of ToolchainConfig
 type ToolchainConfigList struct {

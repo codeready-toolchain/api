@@ -24,7 +24,8 @@ type MemberStatusConfig struct {
 type MemberOperatorConfigStatus struct {
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // MemberOperatorConfig keeps all configuration parameters needed in member operator
 // +kubebuilder:subresource:status
@@ -39,7 +40,7 @@ type MemberOperatorConfig struct {
 	Status MemberOperatorConfigStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // MemberOperatorConfigList contains a list of MemberOperatorConfig
 type MemberOperatorConfigList struct {
