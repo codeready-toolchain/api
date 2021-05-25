@@ -9,9 +9,9 @@ GO_PACKAGE_PATH ?= github.com/${GO_PACKAGE_ORG_NAME}/${GO_PACKAGE_REPO_NAME}
 
 .PHONY: build
 ## Build
-build: $(shell find . -path ./vendor -prune -o -name '*.go' -print)
+build: remove-vendor $(shell find . -path ./vendor -prune -o -name '*.go' -print)
 	$(Q)CGO_ENABLED=0 GOARCH=amd64 GOOS=linux \
-	    go build github.com/codeready-toolchain/api/pkg/apis/
+	    go build github.com/codeready-toolchain/api/api/v1alpha1/
 
 .PHONY: vendor
 vendor: 

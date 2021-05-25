@@ -9,7 +9,8 @@ import (
 type HostOperatorConfigStatus struct {
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // HostOperatorConfig keeps all configuration parameters needed in host operator
 // +kubebuilder:subresource:status
@@ -25,7 +26,7 @@ type HostOperatorConfig struct {
 	Status HostOperatorConfigStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // HostOperatorConfigList contains a list of HostOperatorConfig
 type HostOperatorConfigList struct {

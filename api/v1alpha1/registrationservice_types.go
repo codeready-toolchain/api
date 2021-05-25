@@ -44,7 +44,8 @@ type RegistrationServiceStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // RegistrationService configures the registration service deployment
 // +k8s:openapi-gen=true
@@ -65,7 +66,7 @@ type RegistrationService struct {
 	Status RegistrationServiceStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // RegistrationServiceList contains a list of RegistrationService
 type RegistrationServiceList struct {

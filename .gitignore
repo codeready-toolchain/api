@@ -15,5 +15,6 @@
 /vendor
 /out
 build/_output
-# the 'deploy' directory should not be committed: all generated CRD files should be dispatched in the 'host-operator' and 'member-operator' repositories
+# the 'config' (originally deploy) directory should not be committed: all generated CRD files should be dispatched in the 'host-operator' and 'member-operator' repositories
+config
 deploy

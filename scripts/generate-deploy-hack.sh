@@ -89,7 +89,7 @@ metadata:
   namespace: openshift-marketplace
 data:
   customResourceDefinitions: |-
-$(for crd in `ls ${HACK_CRDS_DIR}/*crd.yaml `; do cat ${crd} | indent_list; done)
+$(for crd in `ls ${HACK_CSV_DIR}/toolchain.dev.openshift.com_*.yaml `; do cat ${crd} | sed '1d' | indent_list ; done)
   clusterServiceVersions: |-
 $(for csv in `find ${HACK_CSV_DIR} -name *clusterserviceversion.yaml`; do cat ${csv} | indent_list | sed -e 's|^ *$||g'; done)
   packages: |

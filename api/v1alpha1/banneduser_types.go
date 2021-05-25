@@ -24,7 +24,8 @@ type BannedUserSpec struct {
 	Email string `json:"email"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // BannedUser is used to maintain a list of banned e-mail addresses
 // +k8s:openapi-gen=true
@@ -39,7 +40,7 @@ type BannedUser struct {
 	Spec BannedUserSpec `json:"spec,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // BannedUserList contains a list of BannedUser
 type BannedUserList struct {

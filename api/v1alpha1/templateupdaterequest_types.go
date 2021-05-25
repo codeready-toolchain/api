@@ -56,7 +56,8 @@ type TemplateUpdateRequestStatus struct {
 	SyncIndexes map[string]string `json:"syncIndexes,omitempty" patchStrategy:"merge"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // TemplateUpdateRequest is the Schema for the templateupdaterequests API
 // +k8s:openapi-gen=true
@@ -76,7 +77,7 @@ type TemplateUpdateRequest struct {
 	Status TemplateUpdateRequestStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // TemplateUpdateRequestList contains a list of TemplateUpdateRequest
 type TemplateUpdateRequestList struct {

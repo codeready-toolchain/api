@@ -27,76 +27,70 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval":                   schema_pkg_apis_toolchain_v1alpha1_AutomaticApproval(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUser":                          schema_pkg_apis_toolchain_v1alpha1_BannedUser(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUserSpec":                      schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequest":                   schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec":               schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus":             schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CheStatus":                           schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostConfig":                          schema_pkg_apis_toolchain_v1alpha1_HostConfig(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorConfigStatus":            schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorStatus":                  schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostRegistrationServiceStatus":       schema_pkg_apis_toolchain_v1alpha1_HostRegistrationServiceStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Idler":                               schema_pkg_apis_toolchain_v1alpha1_Idler(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerSpec":                           schema_pkg_apis_toolchain_v1alpha1_IdlerSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerStatus":                         schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.LocalSecretReference":                schema_pkg_apis_toolchain_v1alpha1_LocalSecretReference(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecord":                    schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec":                schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus":              schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MaxNumberOfUsers":                    schema_pkg_apis_toolchain_v1alpha1_MaxNumberOfUsers(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Member":                              schema_pkg_apis_toolchain_v1alpha1_Member(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorConfigSpec":            schema_pkg_apis_toolchain_v1alpha1_MemberOperatorConfigSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorConfigStatus":          schema_pkg_apis_toolchain_v1alpha1_MemberOperatorConfigStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatus":                        schema_pkg_apis_toolchain_v1alpha1_MemberStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusConfig":                  schema_pkg_apis_toolchain_v1alpha1_MemberStatusConfig(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusSpec":                    schema_pkg_apis_toolchain_v1alpha1_MemberStatusSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus":                  schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Members":                             schema_pkg_apis_toolchain_v1alpha1_Members(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSet":                       schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec":                   schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus":                 schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTier":                      schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec":                  schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus":                schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Notification":                        schema_pkg_apis_toolchain_v1alpha1_Notification(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationSpec":                    schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationStatus":                  schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationService":                 schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceDeploymentStatus": schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceDeploymentStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceHealth":           schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceHealth(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceResourcesStatus":  schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceResourcesStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec":             schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus":           schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceCapacityThreshold":           schema_pkg_apis_toolchain_v1alpha1_ResourceCapacityThreshold(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage":                       schema_pkg_apis_toolchain_v1alpha1_ResourceUsage(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Routes":                              schema_pkg_apis_toolchain_v1alpha1_Routes(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequest":               schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec":           schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestStatus":         schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TierTemplateSpec":                    schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainCluster":                    schema_pkg_apis_toolchain_v1alpha1_ToolchainCluster(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterCondition":           schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterCondition(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterSpec":                schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus":              schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainConfigSpec":                 schema_pkg_apis_toolchain_v1alpha1_ToolchainConfigSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainConfigStatus":               schema_pkg_apis_toolchain_v1alpha1_ToolchainConfigStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatus":                     schema_pkg_apis_toolchain_v1alpha1_ToolchainStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusSpec":                 schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusStatus":               schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccount":                         schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec":                     schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecBase":                 schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpecEmbedded":             schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus":                   schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignup":                          schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec":                      schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref),
-		"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus":                    schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApproval":                   schema_codeready_toolchain_api_api_v1alpha1_AutomaticApproval(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                          schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                      schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequest":                   schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec":               schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus":             schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                           schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorConfigSpec":              schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorConfigStatus":            schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                  schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":       schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Idler":                               schema_codeready_toolchain_api_api_v1alpha1_Idler(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec":                           schema_codeready_toolchain_api_api_v1alpha1_IdlerSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus":                         schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference":                schema_codeready_toolchain_api_api_v1alpha1_LocalSecretReference(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecord":                    schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecord(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordSpec":                schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus":              schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers":                    schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Member":                              schema_codeready_toolchain_api_api_v1alpha1_Member(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatus":                        schema_codeready_toolchain_api_api_v1alpha1_MemberStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec":                    schema_codeready_toolchain_api_api_v1alpha1_MemberStatusSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus":                  schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSet":                       schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec":                   schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus":                 schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTier":                      schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTier(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpec":                  schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierStatus":                schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Notification":                        schema_codeready_toolchain_api_api_v1alpha1_Notification(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec":                    schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus":                  schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationService":                 schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceDeploymentStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth":           schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceHealth(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus":  schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus":           schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold":           schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage":                       schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Routes":                              schema_codeready_toolchain_api_api_v1alpha1_Routes(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequest":               schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequest(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec":           schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus":         schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                    schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                    schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition":           schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus":              schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatus":                     schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus":               schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccount":                         schema_codeready_toolchain_api_api_v1alpha1_UserAccount(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec":                     schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecBase":                 schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecEmbedded":             schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus":                   schema_codeready_toolchain_api_api_v1alpha1_UserAccountStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignup":                          schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec":                      schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus":                    schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref),
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_AutomaticApproval(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApproval(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -113,24 +107,24 @@ func schema_pkg_apis_toolchain_v1alpha1_AutomaticApproval(ref common.ReferenceCa
 					"resourceCapacityThreshold": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceCapacityThreshold"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"),
 						},
 					},
 					"maxNumberOfUsers": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines the maximal number of users to be allowed for automatic approval. When the number is reached, then the automatic approval is stopped.",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MaxNumberOfUsers"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MaxNumberOfUsers", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceCapacityThreshold"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_BannedUser(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -158,18 +152,18 @@ func schema_pkg_apis_toolchain_v1alpha1_BannedUser(ref common.ReferenceCallback)
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUserSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.BannedUserSpec", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -190,7 +184,7 @@ func schema_pkg_apis_toolchain_v1alpha1_BannedUserSpec(ref common.ReferenceCallb
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -218,23 +212,23 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequest(ref common.ReferenceCa
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ChangeTierRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -269,7 +263,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestSpec(ref common.Referen
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -293,7 +287,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref common.Refer
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -303,11 +297,11 @@ func schema_pkg_apis_toolchain_v1alpha1_ChangeTierRequestStatus(ref common.Refer
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -331,7 +325,7 @@ func schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref common.ReferenceCallback) 
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -341,11 +335,11 @@ func schema_pkg_apis_toolchain_v1alpha1_CheStatus(ref common.ReferenceCallback) 
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_HostConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -355,24 +349,24 @@ func schema_pkg_apis_toolchain_v1alpha1_HostConfig(ref common.ReferenceCallback)
 					"automaticApproval": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters necessary for automatic approval",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApproval"),
 						},
 					},
 					"deactivation": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with user deactivation",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Deactivation"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Deactivation"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.AutomaticApproval", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Deactivation"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApproval", "github.com/codeready-toolchain/api/api/v1alpha1.Deactivation"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -383,7 +377,7 @@ func schema_pkg_apis_toolchain_v1alpha1_HostOperatorConfigStatus(ref common.Refe
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -442,7 +436,7 @@ func schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref common.ReferenceC
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -453,11 +447,11 @@ func schema_pkg_apis_toolchain_v1alpha1_HostOperatorStatus(ref common.ReferenceC
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_HostRegistrationServiceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -467,19 +461,19 @@ func schema_pkg_apis_toolchain_v1alpha1_HostRegistrationServiceStatus(ref common
 					"deployment": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Deployment is the status of the registration service's deployment",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceDeploymentStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus"),
 						},
 					},
 					"registrationServiceResources": {
 						SchemaProps: spec.SchemaProps{
 							Description: "RegistrationServiceResources is the status for resources created for the registration service",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceResourcesStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus"),
 						},
 					},
 					"health": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Health provides health status of the registration service",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceHealth"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth"),
 						},
 					},
 				},
@@ -487,11 +481,11 @@ func schema_pkg_apis_toolchain_v1alpha1_HostRegistrationServiceStatus(ref common
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceDeploymentStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceHealth", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceResourcesStatus"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_Idler(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_Idler(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -519,23 +513,23 @@ func schema_pkg_apis_toolchain_v1alpha1_Idler(ref common.ReferenceCallback) comm
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.IdlerStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec", "github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_IdlerSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_IdlerSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -556,7 +550,7 @@ func schema_pkg_apis_toolchain_v1alpha1_IdlerSpec(ref common.ReferenceCallback) 
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -580,7 +574,7 @@ func schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref common.ReferenceCallback
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Pod"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Pod"),
 									},
 								},
 							},
@@ -603,7 +597,7 @@ func schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref common.ReferenceCallback
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -613,11 +607,11 @@ func schema_pkg_apis_toolchain_v1alpha1_IdlerStatus(ref common.ReferenceCallback
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Pod"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.Pod"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_LocalSecretReference(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_LocalSecretReference(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -638,7 +632,7 @@ func schema_pkg_apis_toolchain_v1alpha1_LocalSecretReference(ref common.Referenc
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecord(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -666,23 +660,23 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecord(ref common.ReferenceCal
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MasterUserRecordStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordSpec", "github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -732,7 +726,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountEmbedded"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountEmbedded"),
 									},
 								},
 							},
@@ -743,11 +737,11 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordSpec(ref common.Referenc
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountEmbedded"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountEmbedded"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -771,7 +765,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -789,7 +783,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatusEmbedded"),
 									},
 								},
 							},
@@ -805,11 +799,11 @@ func schema_pkg_apis_toolchain_v1alpha1_MasterUserRecordStatus(ref common.Refere
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatusEmbedded", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatusEmbedded", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_MaxNumberOfUsers(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -844,7 +838,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MaxNumberOfUsers(ref common.ReferenceCal
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_Member(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -875,7 +869,7 @@ func schema_pkg_apis_toolchain_v1alpha1_Member(ref common.ReferenceCallback) com
 					"memberStatus": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The array of member status objects",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus"),
 						},
 					},
 				},
@@ -883,43 +877,11 @@ func schema_pkg_apis_toolchain_v1alpha1_Member(ref common.ReferenceCallback) com
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_MemberOperatorConfigSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "MemberOperatorConfigSpec contains all configuration parameters of the member operator",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"memberStatus": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters concerned with member status",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusConfig"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusConfig"},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_MemberOperatorConfigStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "MemberOperatorConfigStatus defines the observed state of MemberOperatorConfig",
-				Type:        []string{"object"},
-			},
-		},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_MemberStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_MemberStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -947,43 +909,23 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatus(ref common.ReferenceCallbac
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberStatusStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_MemberStatusConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Defines all parameters concerned with member status",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"refreshPeriod": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines the period between refreshes of the member status",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_MemberStatusSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -994,7 +936,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusSpec(ref common.ReferenceCal
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1004,25 +946,25 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 					"che": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Che is the status of Che/CRW, such as installed and whether the member configuration is correct",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CheStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CheStatus"),
 						},
 					},
 					"memberOperator": {
 						SchemaProps: spec.SchemaProps{
 							Description: "MemberOperator is the status of a toolchain member operator",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorStatus"),
 						},
 					},
 					"hostConnection": {
 						SchemaProps: spec.SchemaProps{
 							Description: "HostConnection is the status of the connection with the host cluster",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"),
 						},
 					},
 					"host": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Host is the status of the connection with the host cluster",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.HostStatus"),
 						},
 					},
 					"conditions": {
@@ -1042,7 +984,7 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1051,59 +993,24 @@ func schema_pkg_apis_toolchain_v1alpha1_MemberStatusStatus(ref common.ReferenceC
 					"resourceUsage": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Resource usage of the cluster",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage"),
 						},
 					},
 					"routes": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Routes/URLs of the cluster, such as Console and Che Dashboard URLs",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Routes"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Routes"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.CheStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Routes", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus", "github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/api/v1alpha1.Routes", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_Members(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Members contains all configuration for member operators",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"default": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines default configuration to be applied to all member clusters",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorConfigSpec"),
-						},
-					},
-					"specificPerMemberCluster": {
-						SchemaProps: spec.SchemaProps{
-							Description: "A map of cluster-specific member operator configurations indexed by member toolchaincluster name",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorConfigSpec"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.MemberOperatorConfigSpec"},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1131,23 +1038,23 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSet(ref common.ReferenceCallba
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1173,7 +1080,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetNamespace"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace"),
 									},
 								},
 							},
@@ -1182,7 +1089,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 					"clusterResources": {
 						SchemaProps: spec.SchemaProps{
 							Description: "the cluster resources template (for cluster-wide quotas, etc.)",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetClusterResources"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources"),
 						},
 					},
 				},
@@ -1190,11 +1097,11 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCa
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1218,7 +1125,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref common.Reference
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1228,11 +1135,11 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateSetStatus(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTier(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1260,23 +1167,23 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTier(ref common.ReferenceCallb
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpec", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1295,7 +1202,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceC
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierNamespace"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"),
 									},
 								},
 							},
@@ -1304,7 +1211,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceC
 					"clusterResources": {
 						SchemaProps: spec.SchemaProps{
 							Description: "the cluster resources template (for cluster-wide quotas, etc.)",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierClusterResources"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources"),
 						},
 					},
 					"deactivationTimeoutDays": {
@@ -1319,11 +1226,11 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierSpec(ref common.ReferenceC
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1347,7 +1254,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.Referenc
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1370,7 +1277,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.Referenc
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierHistory"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierHistory"),
 									},
 								},
 							},
@@ -1380,11 +1287,11 @@ func schema_pkg_apis_toolchain_v1alpha1_NSTemplateTierStatus(ref common.Referenc
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierHistory"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierHistory"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_Notification(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_Notification(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1412,23 +1319,23 @@ func schema_pkg_apis_toolchain_v1alpha1_Notification(ref common.ReferenceCallbac
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NotificationStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1476,7 +1383,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NotificationSpec(ref common.ReferenceCal
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1500,7 +1407,7 @@ func schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref common.ReferenceC
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1510,11 +1417,11 @@ func schema_pkg_apis_toolchain_v1alpha1_NotificationStatus(ref common.ReferenceC
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1542,23 +1449,23 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationService(ref common.Reference
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.RegistrationServiceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceDeploymentStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceDeploymentStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1589,7 +1496,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceDeploymentStatus(ref 
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1600,11 +1507,11 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceDeploymentStatus(ref 
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceHealth(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceHealth(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1658,7 +1565,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceHealth(ref common.Ref
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1669,11 +1576,11 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceHealth(ref common.Ref
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceResourcesStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1697,7 +1604,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceResourcesStatus(ref c
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1707,11 +1614,11 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceResourcesStatus(ref c
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1739,7 +1646,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceSpec(ref common.Refer
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1763,7 +1670,7 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref common.Ref
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1773,11 +1680,11 @@ func schema_pkg_apis_toolchain_v1alpha1_RegistrationServiceStatus(ref common.Ref
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ResourceCapacityThreshold(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1812,7 +1719,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ResourceCapacityThreshold(ref common.Ref
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ResourceUsage(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1840,7 +1747,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ResourceUsage(ref common.ReferenceCallba
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_Routes(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_Routes(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1878,7 +1785,7 @@ func schema_pkg_apis_toolchain_v1alpha1_Routes(ref common.ReferenceCallback) com
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -1888,11 +1795,11 @@ func schema_pkg_apis_toolchain_v1alpha1_Routes(ref common.ReferenceCallback) com
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1920,23 +1827,23 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequest(ref common.Referen
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.TemplateUpdateRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec", "github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1962,7 +1869,7 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref common.Ref
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierNamespace"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"),
 									},
 								},
 							},
@@ -1971,7 +1878,7 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref common.Ref
 					"clusterResources": {
 						SchemaProps: spec.SchemaProps{
 							Description: "the cluster resources template (for cluster-wide quotas, etc.)",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierClusterResources"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources"),
 						},
 					},
 				},
@@ -1979,11 +1886,11 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestSpec(ref common.Ref
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateTierNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2002,7 +1909,7 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref common.R
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -2032,11 +1939,11 @@ func schema_pkg_apis_toolchain_v1alpha1_TemplateUpdateRequestStatus(ref common.R
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2079,7 +1986,7 @@ func schema_pkg_apis_toolchain_v1alpha1_TierTemplateSpec(ref common.ReferenceCal
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainCluster(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2107,12 +2014,12 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainCluster(ref common.ReferenceCal
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"),
 						},
 					},
 				},
@@ -2120,11 +2027,11 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainCluster(ref common.ReferenceCal
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2180,7 +2087,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterCondition(ref common.Ref
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2204,7 +2111,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterSpec(ref common.Referenc
 					"secretRef": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.LocalSecretReference"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference"),
 						},
 					},
 					"disabledTLSValidations": {
@@ -2231,11 +2138,11 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterSpec(ref common.Referenc
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.LocalSecretReference"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2254,7 +2161,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterStatus(ref common.Refere
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterCondition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"),
 									},
 								},
 							},
@@ -2265,49 +2172,11 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainClusterStatus(ref common.Refere
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainClusterCondition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainConfigSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "ToolchainConfigSpec contains all configuration for host and member operators",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"host": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains all host operator configuration",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostConfig"),
-						},
-					},
-					"members": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains all member operator configurations for all member clusters",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Members"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostConfig", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Members"},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainConfigStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "ToolchainConfigStatus defines the observed state of ToolchainConfig",
-				Type:        []string{"object"},
-			},
-		},
-	}
-}
-
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2335,23 +2204,23 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatus(ref common.ReferenceCall
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.ToolchainStatusStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2362,7 +2231,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusSpec(ref common.Reference
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2372,13 +2241,13 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 					"hostOperator": {
 						SchemaProps: spec.SchemaProps{
 							Description: "HostOperator is the status of a toolchain host operator",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus"),
 						},
 					},
 					"registrationService": {
 						SchemaProps: spec.SchemaProps{
 							Description: "RegistrationService is the status of the registration service",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostRegistrationServiceStatus"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus"),
 						},
 					},
 					"members": {
@@ -2398,7 +2267,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Member"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Member"),
 									},
 								},
 							},
@@ -2449,7 +2318,7 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -2459,11 +2328,11 @@ func schema_pkg_apis_toolchain_v1alpha1_ToolchainStatusStatus(ref common.Referen
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostOperatorStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.HostRegistrationServiceStatus", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Member"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus", "github.com/codeready-toolchain/api/api/v1alpha1.Member"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_UserAccount(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2491,23 +2360,23 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccount(ref common.ReferenceCallback
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserAccountStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec", "github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2538,7 +2407,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 				},
@@ -2546,11 +2415,11 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpec(ref common.ReferenceCall
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2567,7 +2436,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref common.Reference
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 				},
@@ -2575,11 +2444,11 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecBase(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2596,7 +2465,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref common.Refer
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Ref:         ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 				},
@@ -2604,11 +2473,11 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountSpecEmbedded(ref common.Refer
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.NSTemplateSetSpec"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_UserAccountStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2632,7 +2501,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref common.ReferenceCa
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -2642,11 +2511,11 @@ func schema_pkg_apis_toolchain_v1alpha1_UserAccountStatus(ref common.ReferenceCa
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2674,23 +2543,23 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignup(ref common.ReferenceCallback)
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus"),
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupSpec", "github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.UserSignupStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec", "github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2772,7 +2641,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupSpec(ref common.ReferenceCallb
 	}
 }
 
-func schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -2796,7 +2665,7 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref common.ReferenceCal
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"),
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -2813,6 +2682,6 @@ func schema_pkg_apis_toolchain_v1alpha1_UserSignupStatus(ref common.ReferenceCal
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/pkg/apis/toolchain/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
