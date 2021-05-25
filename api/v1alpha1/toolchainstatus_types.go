@@ -52,7 +52,8 @@ const (
 	ToolchainStatusMemberStatusCheReadyReason                  = "CheReady"
 
 	// Metric Keys
-	UsersPerActivationMetricKey = "usersPerActivation"
+	UsersPerActivationMetricKey         = "usersPerActivation"
+	MasterUserRecordsPerDomainMetricKey = "masterUserRecordsPerDomain"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -126,6 +127,7 @@ type HostOperatorStatus struct {
 
 	// Number of MasterUserRecords created within the host cluster
 	// +optional
+	// DEPRECATED: use `ToolchainStatusStatus.Metrics` instead
 	MasterUserRecordCount int `json:"masterUserRecordCount,omitempty"`
 
 	// Conditions is an array of current host operator status conditions
@@ -220,7 +222,8 @@ type RegistrationServiceResourcesStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // ToolchainStatus is used to track overall toolchain status
 // +k8s:openapi-gen=true
@@ -239,7 +242,7 @@ type ToolchainStatus struct {
 	Status ToolchainStatusStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // ToolchainStatusList contains a list of ToolchainStatus
 type ToolchainStatusList struct {

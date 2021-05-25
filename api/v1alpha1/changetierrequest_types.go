@@ -59,7 +59,8 @@ type ChangeTierRequestStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // ChangeTierRequest is used as a trigger for a tier change in MasterUserRecord/UserAccount
 // +k8s:openapi-gen=true
@@ -80,7 +81,7 @@ type ChangeTierRequest struct {
 	Status ChangeTierRequestStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // ChangeTierRequestList contains a list of ChangeTierRequest
 type ChangeTierRequestList struct {

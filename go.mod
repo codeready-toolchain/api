@@ -16,7 +16,6 @@ require (
 	github.com/onsi/ginkgo v1.13.0 // indirect
 	// using latest commit from 'github.com/openshift/api@release-4.5'
 	github.com/openshift/api v0.0.0-20200821140346-b94c46af3f2b
-	github.com/spf13/cobra v1.0.0 // indirect
 	github.com/stretchr/testify v1.6.1 // indirect
 	golang.org/x/sys v0.0.0-20200602225109-6fdc65e7d980 // indirect
 	golang.org/x/tools v0.0.0-20200812195022-5ae4c3c160a0 // indirect
@@ -25,8 +24,14 @@ require (
 	k8s.io/api v0.18.3
 	k8s.io/apimachinery v0.18.3
 	k8s.io/code-generator v0.18.3
-	k8s.io/gengo v0.0.0-20200114144118-36b2048a9120
+	k8s.io/gengo v0.0.0-20200413195148-3a45101e95ac
+	k8s.io/klog/v2 v2.8.0 // indirect
 	k8s.io/kube-openapi v0.0.0-20200410145947-61e04a5be9a6
 	sigs.k8s.io/controller-runtime v0.6.0
-	sigs.k8s.io/controller-tools v0.3.0
+	sigs.k8s.io/controller-tools v0.4.1
+)
+
+replace (
+	github.com/go-logr/logr => github.com/go-logr/logr v0.1.0
+	k8s.io/klog/v2 => k8s.io/klog/v2 v2.0.0
 )

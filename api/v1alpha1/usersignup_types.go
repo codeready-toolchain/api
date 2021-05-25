@@ -137,7 +137,7 @@ type UserSignupSpec struct {
 	TargetCluster string `json:"targetCluster,omitempty"`
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
-	UserID string `json:"userid"`
+	Userid string `json:"userid"`
 
 	// The user's username, obtained from the identity provider.
 	Username string `json:"username"`
@@ -156,6 +156,7 @@ type UserSignupSpec struct {
 
 	// States contains a number of values that reflect the desired state of the UserSignup.
 	// +optional
+	// +listType=atomic
 	States []UserSignupState `json:"states,omitempty"`
 }
 
@@ -180,7 +181,8 @@ type UserSignupStatus struct {
 	CompliantUsername string `json:"compliantUsername,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // UserSignup registers a user in the CodeReady Toolchain
 // +k8s:openapi-gen=true
@@ -208,7 +210,7 @@ type UserSignup struct {
 	Status UserSignupStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // UserSignupList contains a list of UserSignup
 type UserSignupList struct {
