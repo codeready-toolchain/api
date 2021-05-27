@@ -34,7 +34,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec":               schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus":             schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                           schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorConfigSpec":              schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                          schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorConfigStatus":            schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                  schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":       schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
@@ -47,9 +47,13 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus":              schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers":                    schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Member":                              schema_codeready_toolchain_api_api_v1alpha1_Member(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigSpec":            schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigStatus":          schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatus":                        schema_codeready_toolchain_api_api_v1alpha1_MemberStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig":                  schema_codeready_toolchain_api_api_v1alpha1_MemberStatusConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec":                    schema_codeready_toolchain_api_api_v1alpha1_MemberStatusSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus":                  schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Members":                             schema_codeready_toolchain_api_api_v1alpha1_Members(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSet":                       schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec":                   schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus":                 schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref),
@@ -76,6 +80,8 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition":           schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus":              schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigSpec":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigStatus":               schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatus":                     schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus":               schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref),
@@ -339,7 +345,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref common.ReferenceC
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -414,7 +420,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 					},
 					"masterUserRecordCount": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Number of MasterUserRecords created within the host cluster",
+							Description: "Number of MasterUserRecords created within the host cluster DEPRECATED: use `ToolchainStatusStatus.Metrics` instead",
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
@@ -881,6 +887,38 @@ func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCall
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "MemberOperatorConfigSpec contains all configuration parameters of the member operator",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"memberStatus": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with member status",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "MemberOperatorConfigStatus defines the observed state of MemberOperatorConfig",
+				Type:        []string{"object"},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_MemberStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -922,6 +960,26 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatus(ref common.Referen
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all parameters concerned with member status",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"refreshPeriod": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the period between refreshes of the member status",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -1007,6 +1065,41 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus", "github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/api/v1alpha1.Routes", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_Members(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Members contains all configuration for member operators",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"default": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines default configuration to be applied to all member clusters",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigSpec"),
+						},
+					},
+					"specificPerMemberCluster": {
+						SchemaProps: spec.SchemaProps{
+							Description: "A map of cluster-specific member operator configurations indexed by member toolchaincluster name",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigSpec"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigSpec"},
 	}
 }
 
@@ -2173,6 +2266,44 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ToolchainConfigSpec contains all configuration for host and member operators",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"host": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Contains all host operator configuration",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.HostConfig"),
+						},
+					},
+					"members": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Contains all member operator configurations for all member clusters",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Members"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig", "github.com/codeready-toolchain/api/api/v1alpha1.Members"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ToolchainConfigStatus defines the observed state of ToolchainConfig",
+				Type:        []string{"object"},
+			},
+		},
 	}
 }
 
