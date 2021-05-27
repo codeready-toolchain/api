@@ -66,19 +66,25 @@ const (
 	UserSignupUnableToCreateMURReason              = "UnableToCreateMUR"
 	UserSignupUnableToUpdateStateLabelReason       = "UnableToUpdateStateLabel"
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
-	UserSignupUserDeactivatingReason               = "Deactivating"
-	UserSignupUserDeactivatedReason                = "Deactivated"
-	UserSignupInvalidMURStateReason                = "InvalidMURState"
-	UserSignupApprovedAutomaticallyReason          = "ApprovedAutomatically"
-	UserSignupApprovedByAdminReason                = "ApprovedByAdmin"
-	UserSignupPendingApprovalReason                = "PendingApproval"
-	UserSignupUserBanningReason                    = "Banning"
-	UserSignupUserBannedReason                     = "Banned"
-	UserSignupFailedToReadBannedUsersReason        = "FailedToReadBannedUsers"
-	UserSignupMissingUserEmailAnnotationReason     = "MissingUserEmailAnnotation"
-	UserSignupMissingEmailHashLabelReason          = "MissingEmailHashLabel"
-	UserSignupInvalidEmailHashLabelReason          = "InvalidEmailHashLabel"
-	UserSignupVerificationRequiredReason           = "VerificationRequired"
+
+	// The UserSignupUserDeactivatingReason constant will be replaced with UserSignupDeactivationInProgressReason
+	// in order to reduce ambiguity.  The "Deactivating" state should only refer to the period of time before the
+	// user is deactivated (by default 3 days), not when the user is in the actual process of deactivation
+	UserSignupUserDeactivatingReason       = "Deactivating"
+	UserSignupDeactivationInProgressReason = "DeactivationInProgress"
+
+	UserSignupUserDeactivatedReason            = "Deactivated"
+	UserSignupInvalidMURStateReason            = "InvalidMURState"
+	UserSignupApprovedAutomaticallyReason      = "ApprovedAutomatically"
+	UserSignupApprovedByAdminReason            = "ApprovedByAdmin"
+	UserSignupPendingApprovalReason            = "PendingApproval"
+	UserSignupUserBanningReason                = "Banning"
+	UserSignupUserBannedReason                 = "Banned"
+	UserSignupFailedToReadBannedUsersReason    = "FailedToReadBannedUsers"
+	UserSignupMissingUserEmailAnnotationReason = "MissingUserEmailAnnotation"
+	UserSignupMissingEmailHashLabelReason      = "MissingEmailHashLabel"
+	UserSignupInvalidEmailHashLabelReason      = "InvalidEmailHashLabel"
+	UserSignupVerificationRequiredReason       = "VerificationRequired"
 
 	notificationCRCreated        = "NotificationCRCreated"
 	userIsActive                 = "UserIsActive"
