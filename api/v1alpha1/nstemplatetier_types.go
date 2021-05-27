@@ -85,7 +85,8 @@ type NSTemplateTierHistory struct {
 	FailedAccounts []string `json:"failedAccounts,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // NSTemplateTier configures user environment via templates used for namespaces the user has access to
 // +k8s:openapi-gen=true
@@ -102,7 +103,7 @@ type NSTemplateTier struct {
 	Status NSTemplateTierStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // NSTemplateTierList contains a list of NSTemplateTier
 type NSTemplateTierList struct {

@@ -79,7 +79,8 @@ type NSTemplateSetStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // NSTemplateSet defines user environment via templates that are used for namespace provisioning
 // +k8s:openapi-gen=true
@@ -98,7 +99,7 @@ type NSTemplateSet struct {
 	Status NSTemplateSetStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // NSTemplateSetList contains a list of NSTemplateSet
 type NSTemplateSetList struct {

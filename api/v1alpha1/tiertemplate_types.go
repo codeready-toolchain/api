@@ -25,7 +25,8 @@ type TierTemplateSpec struct {
 	Template templatev1.Template `json:"template"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // TierTemplate is the Schema for the tiertemplates API
 // +kubebuilder:resource:path=tiertemplates,scope=Namespaced
@@ -40,7 +41,7 @@ type TierTemplate struct {
 	Spec TierTemplateSpec `json:"spec,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // TierTemplateList contains a list of TierTemplate
 type TierTemplateList struct {

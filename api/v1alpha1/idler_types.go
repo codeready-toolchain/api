@@ -1,6 +1,8 @@
 package v1alpha1
 
-import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+import (
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+)
 
 // These are valid conditions of an Idler
 const (
@@ -50,7 +52,8 @@ type Pod struct {
 	StartTime metav1.Time `json:"startTime"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
 
 // Idler enables automatic idling of payloads in a user namespaces
 // where the name of the Idler matches the name of the corresponding namespace.
@@ -71,7 +74,7 @@ type Idler struct {
 	Status IdlerStatus `json:"status,omitempty"`
 }
 
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+//+kubebuilder:object:root=true
 
 // IdlerList contains a list of Idlers
 type IdlerList struct {
