@@ -67,6 +67,7 @@ const (
 	UserSignupUnableToUpdateStateLabelReason       = "UnableToUpdateStateLabel"
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
 	UserSignupUserDeactivatingReason               = "Deactivating"
+	UserSignupDeactivationInProgressReason         = "DeactivationInProgress"
 	UserSignupUserDeactivatedReason                = "Deactivated"
 	UserSignupInvalidMURStateReason                = "InvalidMURState"
 	UserSignupApprovedAutomaticallyReason          = "ApprovedAutomatically"
