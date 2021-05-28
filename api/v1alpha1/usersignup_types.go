@@ -120,11 +120,24 @@ const (
 	//    UserSignup States
 	// ###############################################################################
 
-	UserSignupStateApproved             = UserSignupState("approved")
+	// UserSignupStateApproved - If set then the user has been manually approved.  Otherwise, if not set then
+	// the user is subject of auto-approval (if enabled)
+	UserSignupStateApproved = UserSignupState("approved")
+
+	// UserSignupStateVerificationRequired - If set then the user must complete the phone verification process
 	UserSignupStateVerificationRequired = UserSignupState("verification-required")
-	UserSignupStateDeactivated          = UserSignupState("deactivated")
-	UserSignupStateDeactivating         = UserSignupState("deactivating")
-	UserSignupStateBanned               = UserSignupState("banned")
+
+	// UserSignupStateDeactivating - If this state is set, it indicates that the user has entered the "pre-deactivation"
+	// phase and their account will be deactivated shortly.  Setting this state triggers the sending of a notification
+	// to the user to warn them of their pending account deactivation.
+	UserSignupStateDeactivating = UserSignupState("deactivating")
+
+	// UserSignupStateDeactivated - If this state is set, it means the user has been deactivated and they may no
+	// longer use their account
+	UserSignupStateDeactivated = UserSignupState("deactivated")
+
+	// UserSignupStateBanned - If this state is set by an admin then the user's account will be banned.
+	UserSignupStateBanned = UserSignupState("banned")
 )
 
 type UserSignupState string
@@ -141,12 +154,6 @@ type UserSignupSpec struct {
 	// If not set then the target cluster will be picked automatically
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
-
-	// If Approved set to 'true' then the user has been manually approved
-	// If not set then the user is subject of auto-approval (if enabled)
-	// +optional
-	// Deprecated: will be replaced by States
-	Approved bool `json:"approved,omitempty"`
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
 	Userid string `json:"userid"`

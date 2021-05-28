@@ -415,7 +415,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 					},
 					"masterUserRecordCount": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Number of MasterUserRecords created within the host cluster",
+							Description: "Number of MasterUserRecords created within the host cluster DEPRECATED: use `ToolchainStatusStatus.Metrics` instead",
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
@@ -2573,13 +2573,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 						SchemaProps: spec.SchemaProps{
 							Description: "The cluster in which the user is provisioned in If not set then the target cluster will be picked automatically",
 							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"approved": {
-						SchemaProps: spec.SchemaProps{
-							Description: "If Approved set to 'true' then the user has been manually approved If not set then the user is subject of auto-approval (if enabled) Deprecated: will be replaced by States",
-							Type:        []string{"boolean"},
 							Format:      "",
 						},
 					},
