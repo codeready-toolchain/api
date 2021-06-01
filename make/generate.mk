@@ -12,20 +12,18 @@ PATH_TO_CRD_BASES=config/crd/bases
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
-generate: vendor generate-deepcopy-and-crds generate-openapi dispatch-crds generate-csv copy-reg-service-template
+generate: generate-deepcopy-and-crds generate-openapi dispatch-crds generate-csv copy-reg-service-template
 	
 .PHONY: generate-deepcopy-and-crds
-generate-deepcopy-and-crds: remove-config
+generate-deepcopy-and-crds: remove-config controller-gen
 	@echo "Re-generating the deepcopy go file & the Toolchain CRD files... "
-	$(Q)go run $(shell pwd)/vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go \
-	crd:trivialVersions=true,preserveUnknownFields=false \
+	$(Q)$(CONTROLLER_GEN) crd:trivialVersions=true,preserveUnknownFields=false \
 	object paths="./..." output:crd:artifacts:config=config/crd/bases
 	
 .PHONY: generate-openapi
-generate-openapi:
+generate-openapi: openapi-gen
 	@echo "re-generating the openapi go file..."
-	$(Q)go run $(shell pwd)/vendor/k8s.io/kube-openapi/cmd/openapi-gen/openapi-gen.go \
-	--input-dirs ./api/$(API_VERSION)/ \
+	$(Q)$(OPENAPI_GEN) --input-dirs ./api/$(API_VERSION)/ \
 	--output-package github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file-base zz_generated.openapi \
 	--go-header-file=make/go-header.txt
@@ -72,7 +70,7 @@ else
 endif
 
 .PHONY: dispatch-crds
-dispatch-crds: vendor prepare-host-operator prepare-member-operator
+dispatch-crds: prepare-host-operator prepare-member-operator
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
     # Dispatching CRD files to operator repositories
 	@for crd in $(HOST_CLUSTER_CRDS) ; do \
