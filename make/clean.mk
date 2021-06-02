@@ -1,11 +1,11 @@
 .PHONY: clean
 ## Clean
-clean: remove-vendor remove-config
+clean: remove-bin remove-config
 	$(Q)go clean ${X_FLAG} ./...
 
-.PHONY: remove-vendor
-remove-vendor:
-	$(Q)-rm -rf ${V_FLAG} ./vendor
+.PHONY: remove-bin
+remove-bin:
+	$(Q)rm -rf ./bin
 
 .PHONY: remove-config
 remove-config:
