@@ -418,13 +418,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 							Format:      "",
 						},
 					},
-					"masterUserRecordCount": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Number of MasterUserRecords created within the host cluster DEPRECATED: use `ToolchainStatusStatus.Metrics` instead",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
