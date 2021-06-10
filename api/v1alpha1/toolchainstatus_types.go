@@ -52,9 +52,6 @@ const (
 	ToolchainStatusMemberStatusCheReadyReason                  = "CheReady"
 
 	// Metric Keys
-	// UsersPerActivationMetricKey the key to store the metric for the number of UserSignups per activations
-	// DEPRECATED: see `UserSignupsPerActivationAndDomainMetricKey`
-	UsersPerActivationMetricKey = "usersPerActivation"
 	// MasterUserRecordsPerDomainMetricKey the key to store the metric for the number of MasterUserRecords per email address domain
 	MasterUserRecordsPerDomainMetricKey = "masterUserRecordsPerDomain"
 	// UserSignupsPerActivationAndDomainMetricKey the key to store the metric for the number of UserSignups per activations and per email address domain
@@ -129,11 +126,6 @@ type HostOperatorStatus struct {
 
 	// The status of the host operator's deployment
 	DeploymentName string `json:"deploymentName"`
-
-	// Number of MasterUserRecords created within the host cluster
-	// +optional
-	// DEPRECATED: use `ToolchainStatusStatus.Metrics` instead
-	MasterUserRecordCount int `json:"masterUserRecordCount,omitempty"`
 
 	// Conditions is an array of current host operator status conditions
 	// Supported condition types: ConditionReady
