@@ -2302,8 +2302,50 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigStatus(ref commo
 			SchemaProps: spec.SchemaProps{
 				Description: "ToolchainConfigStatus defines the observed state of ToolchainConfig",
 				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"syncErrors": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SyncErrors is a map of sync errors indexed by toolchaincluster name that indicates whether an attempt to sync configuration to a member cluster failed",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Type:   []string{"string"},
+										Format: "",
+									},
+								},
+							},
+						},
+					},
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of the current ToolchainConfig conditions Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
