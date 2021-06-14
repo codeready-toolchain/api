@@ -27,7 +27,7 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApproval":                   schema_codeready_toolchain_api_api_v1alpha1_AutomaticApproval(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig":             schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                          schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                      schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequest":                   schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref),
@@ -96,7 +96,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApproval(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -355,20 +355,26 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 					"automaticApproval": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters necessary for automatic approval",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApproval"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig"),
 						},
 					},
 					"deactivation": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with user deactivation",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Deactivation"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig"),
+						},
+					},
+					"metrics": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with metrics",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApproval", "github.com/codeready-toolchain/api/api/v1alpha1.Deactivation"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig"},
 	}
 }
 
