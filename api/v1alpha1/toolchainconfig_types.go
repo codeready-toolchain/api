@@ -4,6 +4,17 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// These are valid conditions of a ToolchainConfig
+const (
+	ToolchainConfigSyncComplete ConditionType = "SyncComplete"
+
+	// Status condition reasons
+	// ToolchainConfigSyncedReason when the MemberOperatorConfigs were successfully synced to the member clusters
+	ToolchainConfigSyncedReason = "Synced"
+	// ToolchainConfigSyncFailedReason when there were failures while syncing MemberOperatorConfigs to the member clusters
+	ToolchainConfigSyncFailedReason = "SyncFailed"
+)
+
 // ToolchainConfigSpec contains all configuration for host and member operators
 // +k8s:openapi-gen=true
 type ToolchainConfigSpec struct {
@@ -109,6 +120,21 @@ type MetricsConfig struct {
 // ToolchainConfigStatus defines the observed state of ToolchainConfig
 // +k8s:openapi-gen=true
 type ToolchainConfigStatus struct {
+
+	// SyncErrors is a map of sync errors indexed by toolchaincluster name that indicates whether
+	// an attempt to sync configuration to a member cluster failed
+	// +optional
+	// +mapType=atomic
+	SyncErrors map[string]string `json:"syncErrors,omitempty"`
+
+	// Conditions is an array of the current ToolchainConfig conditions
+	// Supported condition types: ConditionReady
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=type
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 //+kubebuilder:object:root=true
