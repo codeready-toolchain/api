@@ -1,28 +1,5 @@
 #!/usr/bin/env bash
 
-additional_help() {
-    echo "Important info: push-bundle-and-index-image.sh scripts use only some parameters, so use only these to specify necessary values:"
-    echo "                      --project-root"
-    echo "                      --embedded-repo"
-    echo "                      --main-repo"
-    echo "                      --quay-namespace"
-    echo "                      --index-image"
-    echo "                      --image-builder"
-    echo "                      --operator-name"
-    echo "                      --channel"
-    echo ""
-    echo "                Variables overrides:"
-    echo "                      QUAY_NAMESPACE  - If this variables is set then you don't have to use the --quay-namespace parameter."
-    echo ""
-    echo "                Optional variables:"
-    echo "                      QUAY_AUTH_TOKEN - Quay authentication token to be used for pushing to the quay namespace. If not set, then it's taken from ~/.docker/config.json file."
-    echo ""
-    echo "Example:"
-    echo "   ./scripts/push-bundle-and-index-image.sh -pr ../host-operator --image-builder podman --index-image hosted-toolchain-index"
-    echo "          - This command generates bundle image (using 'staging' channel) for the host-operator project, adds it to the index image 'hosted-toolchain-index'"
-    echo "            and pushes them to a repository in quay namespace defined by either \"\${QUAY_NAMESPACE}\" variable or --quay-namespace parameter."
-}
-
 handle_missing_version_in_combined_repo() {
     # split the version to get the number of commits and commit hashes as separated params (ie. from 0.0.217-105-commit-6c9926d-64af1be to 0.0.217 105 commit 6c9926d 64af1be)
     SPLIT_REPLACE_VERSION=(${REPLACE_VERSION_SUFFIX//-/ })
@@ -101,15 +78,18 @@ handle_missing_version_in_combined_repo() {
 
 # use the olm-setup as the source
 OLM_SETUP_FILE=scripts/olm-setup.sh
+OWNER_AND_BRANCH_LOCATION=${OWNER_AND_BRANCH_LOCATION:-codeready-toolchain/api/master}
+
 if [[ -f ${OLM_SETUP_FILE} ]]; then
     source ${OLM_SETUP_FILE}
 else
     if [[ -f ${GOPATH}/src/github.com/codeready-toolchain/api/${OLM_SETUP_FILE} ]]; then
         source ${GOPATH}/src/github.com/codeready-toolchain/api/${OLM_SETUP_FILE}
     else
-        source /dev/stdin <<< "$(curl -sSL https://raw.githubusercontent.com/codeready-toolchain/api/master/${OLM_SETUP_FILE})"
+        source /dev/stdin <<< "$(curl -sSL https://raw.githubusercontent.com/${OWNER_AND_BRANCH_LOCATION}/${OLM_SETUP_FILE})"
     fi
 fi
+
 # read argument to get project root dir
 read_arguments $@
 
@@ -121,16 +101,16 @@ if [[ -n "${MAIN_REPO_URL}"  ]]; then
 fi
 
 # retrieve the current version
-CSV_LOCATION="${BUNDLE_DIR}/*clusterserviceversion.yaml"
+CSV_LOCATION="${MANIFESTS_DIR}/*clusterserviceversion.yaml"
 CURRENT_VERSION=`grep "^  version: " ${CSV_LOCATION} | awk '{print $2}'`
 
 # set the image names variables
-BUNDLE_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${PRJ_NAME}-bundle:${CURRENT_VERSION}
+BUNDLE_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${PRJ_NAME}-bundle:${BUNDLE_TAG:-${CURRENT_VERSION}}
 INDEX_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${INDEX_IMAGE_NAME}:latest
 FROM_INDEX_IMAGE="${INDEX_IMAGE}"
 
-if [[ "${INDEX_PER_COMMIT}" == "true" ]]; then
-    INDEX_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${INDEX_IMAGE_NAME}:${CURRENT_VERSION}
+if [[ -n "${INDEX_IMAGE_TAG}" ]]; then
+    INDEX_IMAGE=quay.io/${QUAY_NAMESPACE_TO_PUSH}/${INDEX_IMAGE_NAME}:${INDEX_IMAGE_TAG}
 fi
 
 # get the current version that is in the "replaces" clause of the CSV
@@ -139,30 +119,12 @@ if [[ -n ${REPLACE_VERSION} ]]; then
     # get only the suffix from the replace version (ie. from toolchain-host-operator.v0.0.217-105-commit-6c9926d-64af1be get only 0.0.217-105-commit-6c9926d-64af1be)
     REPLACE_VERSION_SUFFIX=`echo ${REPLACE_VERSION} | sed -e "s/^.*operator.v//"`
 
-    if [[ "${INDEX_PER_COMMIT}" == "true" ]]; then
-        FROM_INDEX_IMAGE="quay.io/${QUAY_NAMESPACE_TO_PUSH}/${INDEX_IMAGE_NAME}:${REPLACE_VERSION_SUFFIX}"
-    fi
-
     handle_missing_version_in_combined_repo
-elif [[ "${INDEX_PER_COMMIT}" == "true" ]]; then
-        FROM_INDEX_IMAGE=""
+else
+    FROM_INDEX_IMAGE=""
 fi
 
-# replace the channels in both the bundle.Dockerfile and annotation.yaml file
-sed "s/\(channel.*: \)\".*\"/\1\"${CHANNEL}\"/" ${PKG_DIR}/metadata/annotations.yaml > ${TEMP_DIR}/${PRJ_NAME}_${CURRENT_VERSION}_metadata_annotations.yaml
-mv ${TEMP_DIR}/${PRJ_NAME}_${CURRENT_VERSION}_metadata_annotations.yaml ${PKG_DIR}/metadata/annotations.yaml
-sed "s/\(channel.*=\).*$/\1${CHANNEL}/" ${PKG_DIR}/bundle.Dockerfile > ${TEMP_DIR}/${PRJ_NAME}_${CURRENT_VERSION}_bundle.Dockerfile
-mv ${TEMP_DIR}/${PRJ_NAME}_${CURRENT_VERSION}_bundle.Dockerfile ${PKG_DIR}/bundle.Dockerfile
-
-# build and push the bundle image
-${IMAGE_BUILDER} build -f ${PKG_DIR}/bundle.Dockerfile -t ${BUNDLE_IMAGE} ${PKG_DIR}/.
-${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
-
-
-# add manifests to the bundle image
-cd ${PKG_DIR}
-opm alpha bundle build --image-builder ${IMAGE_BUILDER} --directory ./manifests/ -t ${BUNDLE_IMAGE} -p ${OPERATOR_NAME} -c ${CHANNEL} -e ${CHANNEL}
-
+${IMAGE_BUILDER} build -f bundle.Dockerfile -t ${BUNDLE_IMAGE} .
 ${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
 
 cd ${CURRENT_DIR}
@@ -171,12 +133,6 @@ if [[ ${IMAGE_BUILDER} == "podman" ]]; then
     PULL_TOOL_PARAM="--pull-tool podman"
 fi
 
-if [[ -n ${FROM_INDEX_URL} ]]; then
-    FROM_INDEX_IMAGE=${FROM_INDEX_URL}
-fi
-if [[ -n ${INDEX_IMAGE_URL} ]]; then
-    INDEX_IMAGE=${INDEX_IMAGE_URL}
-fi
 
 if [[ -z ${GITHUB_ACTIONS} ]]; then
     ${IMAGE_BUILDER} image rm quay.io/operator-framework/upstream-opm-builder:latest || true

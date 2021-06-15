@@ -1,5 +1,5 @@
 CONTROLLER_GEN_VERSION=v0.4.1
-OPENAPI_GEN_VERSION=61e04a5be9a6
+OPENAPI_GEN_VERSION=3c81807
 
 CONTROLLER_GEN = $(shell pwd)/bin/controller-gen
 controller-gen: ## Download controller-gen locally if necessary.
