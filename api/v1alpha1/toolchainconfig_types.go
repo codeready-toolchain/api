@@ -105,6 +105,12 @@ type Deactivation struct {
 	DeactivatingNotificationDays *int `json:"deactivatingNotificationDays,omitempty"`
 }
 
+type ToolchainSecret struct {
+	// Reference is the name of the secret resource to look up
+	// +optional
+	Ref *string `json:"ref,omitempty"`
+}
+
 // ToolchainConfigStatus defines the observed state of ToolchainConfig
 // +k8s:openapi-gen=true
 type ToolchainConfigStatus struct {
