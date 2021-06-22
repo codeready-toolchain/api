@@ -32,11 +32,15 @@ type ToolchainConfigSpec struct {
 type HostConfig struct {
 	// Keeps parameters necessary for automatic approval
 	// +optional
-	AutomaticApproval AutomaticApproval `json:"automaticApproval,omitempty"`
+	AutomaticApproval AutomaticApprovalConfig `json:"automaticApproval,omitempty"`
 
 	// Keeps parameters concerned with user deactivation
 	// +optional
-	Deactivation Deactivation `json:"deactivation,omitempty"`
+	Deactivation DeactivationConfig `json:"deactivation,omitempty"`
+
+	// Keeps parameters concerned with metrics
+	// +optional
+	Metrics MetricsConfig `json:"metrics,omitempty"`
 }
 
 // Members contains all configuration for member operators
@@ -54,7 +58,7 @@ type Members struct {
 
 // Defines all parameters necessary for automatic approval
 // +k8s:openapi-gen=true
-type AutomaticApproval struct {
+type AutomaticApprovalConfig struct {
 	// Defines if the automatic approval is enabled or not
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
@@ -97,7 +101,7 @@ type MaxNumberOfUsers struct {
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
 }
 
-type Deactivation struct {
+type DeactivationConfig struct {
 
 	// DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual
 	// deactivation occurs.  If this parameter is set to zero, then there will be no delay
@@ -109,6 +113,14 @@ type ToolchainSecret struct {
 	// Reference is the name of the secret resource to look up
 	// +optional
 	Ref *string `json:"ref,omitempty"`
+}
+
+type MetricsConfig struct {
+
+	// ForceSynchronization is a flag used to trigger synchronization of the metrics
+	// based on the resources rather than on the content of `ToolchainStatus.status.metrics`
+	// +optional
+	ForceSynchronization *bool `json:"forceSynchronization,omitempty"`
 }
 
 // ToolchainConfigStatus defines the observed state of ToolchainConfig
