@@ -110,7 +110,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_AuthConfig(ref common.Reference
 				Description: "Defines all parameters concerned with the autoscaler",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"idP": {
+					"idp": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Represents the configured identity provider",
 							Type:        []string{"string"},
@@ -410,7 +410,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref common.ReferenceC
 							Format:      "",
 						},
 					},
-					"cheSecret": {
+					"secret": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines all secrets related to Che configuration",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CheSecret"),
@@ -1071,13 +1071,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 				Description: "MemberOperatorConfigSpec contains all configuration parameters of the member operator",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"authConfig": {
+					"auth": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with authentication",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig"),
 						},
 					},
-					"autoscalerConfig": {
+					"autoscaler": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with the autoscaler",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig"),
@@ -1101,7 +1101,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig"),
 						},
 					},
-					"toolchainClusterConfig": {
+					"toolchainCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with the toolchaincluster",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig"),

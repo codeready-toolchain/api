@@ -9,11 +9,11 @@ import (
 type MemberOperatorConfigSpec struct {
 	// Keeps parameters concerned with authentication
 	// +optional
-	Auth AuthConfig `json:"authConfig,omitempty"`
+	Auth AuthConfig `json:"auth,omitempty"`
 
 	// Keeps parameters concerned with the autoscaler
 	// +optional
-	Autoscaler AutoscalerConfig `json:"autoscalerConfig,omitempty"`
+	Autoscaler AutoscalerConfig `json:"autoscaler,omitempty"`
 
 	// Keeps parameters concerned with Che/CRW
 	// +optional
@@ -29,7 +29,7 @@ type MemberOperatorConfigSpec struct {
 
 	// Keeps parameters concerned with the toolchaincluster
 	// +optional
-	ToolchainCluster ToolchainClusterConfig `json:"toolchainClusterConfig,omitempty"`
+	ToolchainCluster ToolchainClusterConfig `json:"toolchainCluster,omitempty"`
 
 	// Keeps parameters concerned with the webhook
 	// +optional
@@ -85,7 +85,7 @@ type CheConfig struct {
 
 	// Defines all secrets related to Che configuration
 	// +optional
-	Secret CheSecret `json:"cheSecret,omitempty"`
+	Secret CheSecret `json:"secret,omitempty"`
 }
 
 // Defines all secrets related to Che configuration
