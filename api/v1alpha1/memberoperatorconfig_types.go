@@ -40,7 +40,7 @@ type MemberOperatorConfigSpec struct {
 // +k8s:openapi-gen=true
 type AuthConfig struct {
 	// Represents the configured identity provider
-	IdP *string `json:"idP,omitempty"`
+	Idp *string `json:"idp,omitempty"`
 }
 
 // Defines all parameters concerned with the autoscaler
