@@ -36,6 +36,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec":               schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus":             schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                           schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                           schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                           schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                       schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                          schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
@@ -179,7 +180,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref common.Ref
 					},
 					"bufferReplicas": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Represents the number of autoscaler buffer pods",
+							Description: "Represents the number of autoscaler buffer replicas to request",
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
@@ -411,7 +412,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref common.ReferenceC
 					},
 					"cheSecret": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.CheSecret"),
+							Description: "Defines all secrets related to Che configuration",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CheSecret"),
 						},
 					},
 				},
@@ -419,6 +421,40 @@ func schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref common.ReferenceC
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all secrets related to Che configuration",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"ref": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Reference is the name of the secret resource to look up",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"cheAdminUsernameKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The key for the Che admin username in the secret values map",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"cheAdminPasswordKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The key for the Che admin password in the secret values map",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -2361,7 +2397,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterConfig(ref comm
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "Defines all parameters concerned with the console",
+				Description: "Defines all parameters concerned with the toolchaincluster resource",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"healthCheckPeriod": {
