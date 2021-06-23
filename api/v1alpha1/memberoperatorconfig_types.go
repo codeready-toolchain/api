@@ -52,7 +52,7 @@ type AutoscalerConfig struct {
 	// Represents how much memory should be required by the autoscaler buffer
 	BufferMemory *string `json:"bufferMemory,omitempty"`
 
-	// Represents the number of autoscaler buffer pods
+	// Represents the number of autoscaler buffer replicas to request
 	BufferReplicas *int `json:"bufferReplicas,omitempty"`
 }
 
@@ -74,13 +74,20 @@ type CheConfig struct {
 	// Defines a flag to turn the Che user deletion logic on/off
 	UserDeletionEnabled *bool `json:"userDeletionEnabled,omitempty"`
 
+	// Defines all secrets related to Che configuration
 	Secret CheSecret `json:"cheSecret,omitempty"`
 }
 
+// Defines all secrets related to Che configuration
+// +k8s:openapi-gen=true
 type CheSecret struct {
+	// The reference to the secret that is expected to contain the keys below
 	ToolchainSecret `json:",inline"`
 
+	// The key for the Che admin username in the secret values map
 	CheAdminUsernameKey *string `json:"cheAdminUsernameKey,omitempty"`
+
+	// The key for the Che admin password in the secret values map
 	CheAdminPasswordKey *string `json:"cheAdminPasswordKey,omitempty"`
 }
 
@@ -94,7 +101,7 @@ type ConsoleConfig struct {
 	RouteName *string `json:"routeName,omitempty"`
 }
 
-// Defines all parameters concerned with the console
+// Defines all parameters concerned with the toolchaincluster resource
 // +k8s:openapi-gen=true
 type ToolchainClusterConfig struct {
 	// Defines the period in between health checks
