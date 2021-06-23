@@ -27,13 +27,17 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
+		"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig":                          schema_codeready_toolchain_api_api_v1alpha1_AuthConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig":             schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig":                    schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                          schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                      schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequest":                   schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec":               schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus":             schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                           schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                           schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                       schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                          schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorConfigStatus":            schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                  schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
@@ -78,6 +82,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                    schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                    schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition":           schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig":              schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus":              schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigSpec":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigSpec(ref),
@@ -93,6 +98,27 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignup":                          schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec":                      schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus":                    schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig":                       schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref),
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_AuthConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all parameters concerned with the autoscaler",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"idP": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Represents the configured identity provider",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -127,6 +153,40 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref com
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all parameters concerned with the autoscaler",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"deploy": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the flag that determines whether to deploy the autoscaler buffer",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"bufferMemory": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Represents how much memory should be required by the autoscaler buffer",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"bufferReplicas": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Represents the number of autoscaler buffer pods",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -307,6 +367,61 @@ func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref com
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all parameters concerned with Che",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"keycloakRouteName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the Che/CRW Keycloak route name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"routeName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the Che/CRW route name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"namespace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the Che/CRW operator namespace",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"required": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines a flag that indicates whether the Che/CRW operator is required to be installed on the cluster. May be used in monitoring.",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"userDeletionEnabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines a flag to turn the Che user deletion logic on/off",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"cheSecret": {
+						SchemaProps: spec.SchemaProps{
+							Ref: ref("github.com/codeready-toolchain/api/api/v1alpha1.CheSecret"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret"},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -342,6 +457,33 @@ func schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref common.ReferenceC
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all parameters concerned with the console",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"namespace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the console route namespace",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"routeName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the console route name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -893,17 +1035,53 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 				Description: "MemberOperatorConfigSpec contains all configuration parameters of the member operator",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"authConfig": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with authentication",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig"),
+						},
+					},
+					"autoscalerConfig": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with the autoscaler",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig"),
+						},
+					},
+					"che": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with Che/CRW",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CheConfig"),
+						},
+					},
+					"console": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with the console",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig"),
+						},
+					},
 					"memberStatus": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with member status",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig"),
 						},
 					},
+					"toolchainClusterConfig": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with the toolchaincluster",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig"),
+						},
+					},
+					"webhook": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with the webhook",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CheConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
 	}
 }
 
@@ -2179,6 +2357,33 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all parameters concerned with the console",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"healthCheckPeriod": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the period in between health checks",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"healthCheckTimeout": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the timeout for each health check",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -2848,5 +3053,32 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all parameters concerned with the Webhook",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"deploy": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the flag that determines whether to deploy the Webhook",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"image": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the Webhook image",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }

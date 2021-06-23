@@ -78,7 +78,8 @@ type CheConfig struct {
 }
 
 type CheSecret struct {
-	ToolchainSecret
+	ToolchainSecret `json:",inline"`
+
 	CheAdminUsernameKey *string `json:"cheAdminUsernameKey,omitempty"`
 	CheAdminPasswordKey *string `json:"cheAdminPasswordKey,omitempty"`
 }
