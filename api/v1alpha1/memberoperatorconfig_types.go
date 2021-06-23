@@ -40,6 +40,7 @@ type MemberOperatorConfigSpec struct {
 // +k8s:openapi-gen=true
 type AuthConfig struct {
 	// Represents the configured identity provider
+	// +optional
 	Idp *string `json:"idp,omitempty"`
 }
 
@@ -47,12 +48,15 @@ type AuthConfig struct {
 // +k8s:openapi-gen=true
 type AutoscalerConfig struct {
 	// Defines the flag that determines whether to deploy the autoscaler buffer
+	// +optional
 	Deploy *bool `json:"deploy,omitempty"`
 
 	// Represents how much memory should be required by the autoscaler buffer
+	// +optional
 	BufferMemory *string `json:"bufferMemory,omitempty"`
 
 	// Represents the number of autoscaler buffer replicas to request
+	// +optional
 	BufferReplicas *int `json:"bufferReplicas,omitempty"`
 }
 
@@ -60,21 +64,27 @@ type AutoscalerConfig struct {
 // +k8s:openapi-gen=true
 type CheConfig struct {
 	// Defines the Che/CRW Keycloak route name
+	// +optional
 	KeycloakRouteName *string `json:"keycloakRouteName,omitempty"`
 
 	// Defines the Che/CRW route name
+	// +optional
 	RouteName *string `json:"routeName,omitempty"`
 
 	// Defines the Che/CRW operator namespace
+	// +optional
 	Namespace *string `json:"namespace,omitempty"`
 
 	// Defines a flag that indicates whether the Che/CRW operator is required to be installed on the cluster. May be used in monitoring.
+	// +optional
 	Required *bool `json:"required,omitempty"`
 
 	// Defines a flag to turn the Che user deletion logic on/off
+	// +optional
 	UserDeletionEnabled *bool `json:"userDeletionEnabled,omitempty"`
 
 	// Defines all secrets related to Che configuration
+	// +optional
 	Secret CheSecret `json:"cheSecret,omitempty"`
 }
 
@@ -82,12 +92,15 @@ type CheConfig struct {
 // +k8s:openapi-gen=true
 type CheSecret struct {
 	// The reference to the secret that is expected to contain the keys below
+	// +optional
 	ToolchainSecret `json:",inline"`
 
 	// The key for the Che admin username in the secret values map
+	// +optional
 	CheAdminUsernameKey *string `json:"cheAdminUsernameKey,omitempty"`
 
 	// The key for the Che admin password in the secret values map
+	// +optional
 	CheAdminPasswordKey *string `json:"cheAdminPasswordKey,omitempty"`
 }
 
@@ -95,9 +108,11 @@ type CheSecret struct {
 // +k8s:openapi-gen=true
 type ConsoleConfig struct {
 	// Defines the console route namespace
+	// +optional
 	Namespace *string `json:"namespace,omitempty"`
 
 	// Defines the console route name
+	// +optional
 	RouteName *string `json:"routeName,omitempty"`
 }
 
@@ -105,9 +120,11 @@ type ConsoleConfig struct {
 // +k8s:openapi-gen=true
 type ToolchainClusterConfig struct {
 	// Defines the period in between health checks
+	// +optional
 	HealthCheckPeriod *string `json:"healthCheckPeriod,omitempty"`
 
 	// Defines the timeout for each health check
+	// +optional
 	HealthCheckTimeout *string `json:"healthCheckTimeout,omitempty"`
 }
 
@@ -115,9 +132,11 @@ type ToolchainClusterConfig struct {
 // +k8s:openapi-gen=true
 type WebhookConfig struct {
 	// Defines the flag that determines whether to deploy the Webhook
+	// +optional
 	Deploy *bool `json:"deploy,omitempty"`
 
 	// Defines the Webhook image
+	// +optional
 	Image *string `json:"image,omitempty"`
 }
 
@@ -125,6 +144,7 @@ type WebhookConfig struct {
 // +k8s:openapi-gen=true
 type MemberStatusConfig struct {
 	// Defines the period between refreshes of the member status
+	// +optional
 	RefreshPeriod *string `json:"refreshPeriod,omitempty"`
 }
 
