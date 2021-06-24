@@ -109,6 +109,12 @@ type DeactivationConfig struct {
 	DeactivatingNotificationDays *int `json:"deactivatingNotificationDays,omitempty"`
 }
 
+type ToolchainSecret struct {
+	// Reference is the name of the secret resource to look up
+	// +optional
+	Ref *string `json:"ref,omitempty"`
+}
+
 type MetricsConfig struct {
 
 	// ForceSynchronization is a flag used to trigger synchronization of the metrics
