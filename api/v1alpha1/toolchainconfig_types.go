@@ -30,6 +30,10 @@ type ToolchainConfigSpec struct {
 // HostConfig contains all configuration parameters of the host operator
 // +k8s:openapi-gen=true
 type HostConfig struct {
+	ChangeTierRequest ch
+
+	TemplateUpdateRequestMaxPoolSize tu
+
 	// Keeps parameters necessary for automatic approval
 	// +optional
 	AutomaticApproval AutomaticApprovalConfig `json:"automaticApproval,omitempty"`
@@ -41,6 +45,14 @@ type HostConfig struct {
 	// Keeps parameters concerned with metrics
 	// +optional
 	Metrics MetricsConfig `json:"metrics,omitempty"`
+
+	// Keeps parameters concerned with notifications
+	// +optional
+	Notifications NotificationsConfig `json:"notifications,omitempty"`
+
+	// Keeps parameters necessary for the registration service
+	// +optional
+	RegistrationService RegistrationServiceConfig `json:"registrationService,omitempty"`
 }
 
 // Members contains all configuration for member operators
@@ -110,6 +122,7 @@ type DeactivationConfig struct {
 }
 
 type ToolchainSecret struct {
+
 	// Reference is the name of the secret resource to look up
 	// +optional
 	Ref *string `json:"ref,omitempty"`
@@ -121,6 +134,56 @@ type MetricsConfig struct {
 	// based on the resources rather than on the content of `ToolchainStatus.status.metrics`
 	// +optional
 	ForceSynchronization *bool `json:"forceSynchronization,omitempty"`
+}
+
+type NotificationsConfig struct {
+
+	// NotificationDeliveryService is notification delivery service to use for notifications
+	// +optional
+	NotificationDeliveryService *string `json:"notificationDeliveryService,omitempty"`
+
+	// DurationBeforeNotificationDeletion is notification delivery service to use for notifications
+	// +optional
+	DurationBeforeNotificationDeletion *string `json:"durationBeforeNotificationDeletion,omitempty"`
+
+	// The administrator email address for system notifications
+	// +optional
+	AdminEmail *string `json:"adminEmail,omitempty"`
+
+	// Defines all secrets related to notification configuration
+	// +optional
+	Secret NotificationSecret `json:"secret,omitempty"`
+}
+
+// Defines all secrets related to notification configuration
+// +k8s:openapi-gen=true
+type NotificationSecret struct {
+	// The reference to the secret that is expected to contain the keys below
+	// +optional
+	ToolchainSecret `json:",inline"`
+
+	// The key for the host operator mailgun domain used for creating an instance of mailgun
+	// +optional
+	MailgunDomain *string `json:"mailgunDomain,omitempty"`
+
+	// The key for the host operator mailgun api key used for creating an instance of mailgun
+	// +optional
+	MailgunAPIKey *string `json:"mailgunAPIKey,omitempty"`
+
+	// The key for the host operator mailgun senders email
+	// +optional
+	MailgunSenderEmail *string `json:"mailgunSenderEmail,omitempty"`
+
+	// The key for the reply-to email address that will be set in sent notifications
+	// +optional
+	MailgunReplyToEmail *string `json:"mailgunReplyToEmail,omitempty"`
+}
+
+type RegistrationServiceConfig struct {
+
+	// RegistrationServiceURL is the URL used to a ccess the registration service
+	// +optional
+	RegistrationServiceURL *string `json:"registrationServiceURL,omitempty"`
 }
 
 // ToolchainConfigStatus defines the observed state of ToolchainConfig
