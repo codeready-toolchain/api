@@ -134,10 +134,6 @@ type WebhookConfig struct {
 	// Defines the flag that determines whether to deploy the Webhook
 	// +optional
 	Deploy *bool `json:"deploy,omitempty"`
-
-	// Defines the Webhook image
-	// +optional
-	Image *string `json:"image,omitempty"`
 }
 
 // Defines all parameters concerned with member status
