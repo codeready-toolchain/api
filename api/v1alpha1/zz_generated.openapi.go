@@ -1650,16 +1650,31 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref common.Ref
 				Properties: map[string]spec.Schema{
 					"userID": {
 						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by the notification service (i.e. the NotificationController) to lookup the UserSignup resource for the user, and extract from it the values required to generate the notification content and to deliver the notification",
+							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by the notification service (i.e. the NotificationController) to lookup the UserSignup resource for the user, and extract from it the values required to generate the notification content and to deliver the notification Deprecated",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"recipient": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Recipient may be used as an alternative to UserID to specify an email address where the notification will be delivered.",
+							Description: "Recipient is used to specify the email address where the notification will be delivered.  It must comply with section 3.4.1 of RFC2822, and should be formatted to include the user's first and last names, e.g. \"John Smith <jsmith@example.com>\"",
 							Type:        []string{"string"},
 							Format:      "",
+						},
+					},
+					"context": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Context is used to set a number of arbitrary values to be passed to the notification content text formatter, for inclusion in the body of the notification.",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Type:   []string{"string"},
+										Format: "",
+									},
+								},
+							},
 						},
 					},
 					"template": {
@@ -1684,6 +1699,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref common.Ref
 						},
 					},
 				},
+				Required: []string{"recipient", "context"},
 			},
 		},
 	}
