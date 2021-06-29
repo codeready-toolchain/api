@@ -30,10 +30,6 @@ type ToolchainConfigSpec struct {
 // HostConfig contains all configuration parameters of the host operator
 // +k8s:openapi-gen=true
 type HostConfig struct {
-	ChangeTierRequest ch
-
-	TemplateUpdateRequestMaxPoolSize tu
-
 	// Keeps parameters necessary for automatic approval
 	// +optional
 	AutomaticApproval AutomaticApprovalConfig `json:"automaticApproval,omitempty"`
@@ -53,6 +49,18 @@ type HostConfig struct {
 	// Keeps parameters necessary for the registration service
 	// +optional
 	RegistrationService RegistrationServiceConfig `json:"registrationService,omitempty"`
+
+	// Keeps parameters concerned with tiers
+	// +optional
+	Tiers TiersConfig `json:"tiersConfig,omitempty"`
+
+	// Keeps parameters concerned with the toolchainstatus
+	// +optional
+	ToolchainStatus ToolchainStatusConfig `json:"toolchainStatusConfig,omitempty"`
+
+	// Keeps parameters concerned with user management
+	// +optional
+	Users UsersConfig `json:"usersConfig,omitempty"`
 }
 
 // Members contains all configuration for member operators
@@ -184,6 +192,32 @@ type RegistrationServiceConfig struct {
 	// RegistrationServiceURL is the URL used to a ccess the registration service
 	// +optional
 	RegistrationServiceURL *string `json:"registrationServiceURL,omitempty"`
+}
+
+type ToolchainStatusConfig struct {
+
+	// ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status
+	// +optional
+	ToolchainStatusRefreshTime *string `json:"toolchainStatusRefreshTime,omitempty"`
+}
+
+type TiersConfig struct {
+
+	// DurationBeforeChangeRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted
+	// +optional
+	DurationBeforeChangeRequestDeletion *string `json:"durationBeforeChangeRequestDeletion,omitempty"`
+
+	// TemplateUpdateRequestMaxPoolSize specifies the maximum number of concurrent TemplateUpdateRequests
+	// when updating MasterUserRecords
+	// +optional
+	TemplateUpdateRequestMaxPoolSize *string `json:"templateUpdateRequestMaxPoolSize,omitempty"`
+}
+
+type UsersConfig struct {
+
+	// MasterUserRecordUpdateFailureThreshold specifies the number of allowed failures before stopping attempts to update a MasterUserRecord
+	// +optional
+	MasterUserRecordUpdateFailureThreshold *int `json:"masterUserRecordUpdateFailureThreshold,omitempty"`
 }
 
 // ToolchainConfigStatus defines the observed state of ToolchainConfig
