@@ -66,6 +66,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpec":                  schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierStatus":                schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Notification":                        schema_codeready_toolchain_api_api_v1alpha1_Notification(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSecret":                  schema_codeready_toolchain_api_api_v1alpha1_NotificationSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec":                    schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus":                  schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationService":                 schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref),
@@ -530,6 +531,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 				Description: "HostConfig contains all configuration parameters of the host operator",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"environment": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Environment specifies the host-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"automaticApproval": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters necessary for automatic approval",
@@ -548,11 +556,41 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig"),
 						},
 					},
+					"notifications": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with notifications",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig"),
+						},
+					},
+					"registrationService": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for the registration service",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig"),
+						},
+					},
+					"tiers": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with tiers",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig"),
+						},
+					},
+					"toolchainStatus": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with the toolchainstatus",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig"),
+						},
+					},
+					"users": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters concerned with user management",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
 	}
 }
 
@@ -1638,6 +1676,54 @@ func schema_codeready_toolchain_api_api_v1alpha1_Notification(ref common.Referen
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_NotificationSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all secrets related to notification configuration",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"ref": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Reference is the name of the secret resource to look up",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"mailgunDomain": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The key for the host operator mailgun domain used for creating an instance of mailgun",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"mailgunAPIKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The key for the host operator mailgun api key used for creating an instance of mailgun",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"mailgunSenderEmail": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The key for the host operator mailgun senders email",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"mailgunReplyToEmail": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The key for the reply-to email address that will be set in sent notifications",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -3103,13 +3189,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref common.Refere
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines the flag that determines whether to deploy the Webhook",
 							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-					"image": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines the Webhook image",
-							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
