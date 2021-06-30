@@ -1650,7 +1650,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref common.Ref
 				Properties: map[string]spec.Schema{
 					"userID": {
 						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by the notification service (i.e. the NotificationController) to lookup the UserSignup resource for the user, and extract from it the values required to generate the notification content and to deliver the notification Deprecated",
+							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by the notification service (i.e. the NotificationController) to lookup the UserSignup resource for the user, and extract from it the values required to generate the notification content and to deliver the notification Deprecated: replaced by Context",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -1699,7 +1699,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref common.Ref
 						},
 					},
 				},
-				Required: []string{"recipient", "context"},
+				Required: []string{"recipient"},
 			},
 		},
 	}
