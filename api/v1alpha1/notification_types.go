@@ -49,7 +49,7 @@ type NotificationSpec struct {
 	// Recipient is used to specify the email address where the notification will be delivered.  It must comply with
 	// section 3.4.1 of RFC2822, and should be formatted to include the user's first and last names,
 	// e.g. "John Smith <jsmith@example.com>"
-	Recipient string `json:"recipient"`
+	Recipient string `json:"recipient,omitempty"`
 
 	// Context is used to set a number of arbitrary values to be passed to the notification content text formatter,
 	// for inclusion in the body of the notification.

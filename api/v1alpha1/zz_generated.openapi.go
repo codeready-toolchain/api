@@ -1699,7 +1699,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref common.Ref
 						},
 					},
 				},
-				Required: []string{"recipient"},
 			},
 		},
 	}
