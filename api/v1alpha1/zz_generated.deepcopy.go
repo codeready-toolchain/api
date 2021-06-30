@@ -2136,7 +2136,7 @@ func (in *TiersConfig) DeepCopyInto(out *TiersConfig) {
 	}
 	if in.TemplateUpdateRequestMaxPoolSize != nil {
 		in, out := &in.TemplateUpdateRequestMaxPoolSize, &out.TemplateUpdateRequestMaxPoolSize
-		*out = new(string)
+		*out = new(int)
 		**out = **in
 	}
 }

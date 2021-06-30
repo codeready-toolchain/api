@@ -233,7 +233,7 @@ type TiersConfig struct {
 	// TemplateUpdateRequestMaxPoolSize specifies the maximum number of concurrent TemplateUpdateRequests
 	// when updating MasterUserRecords
 	// +optional
-	TemplateUpdateRequestMaxPoolSize *string `json:"templateUpdateRequestMaxPoolSize,omitempty"`
+	TemplateUpdateRequestMaxPoolSize *int `json:"templateUpdateRequestMaxPoolSize,omitempty"`
 }
 
 type UsersConfig struct {
