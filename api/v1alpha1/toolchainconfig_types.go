@@ -30,6 +30,11 @@ type ToolchainConfigSpec struct {
 // HostConfig contains all configuration parameters of the host operator
 // +k8s:openapi-gen=true
 type HostConfig struct {
+
+	// Environment specifies the host-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc
+	// +optional
+	Environment *string `json:"environment,omitempty"`
+
 	// Keeps parameters necessary for automatic approval
 	// +optional
 	AutomaticApproval AutomaticApprovalConfig `json:"automaticApproval,omitempty"`
@@ -41,6 +46,26 @@ type HostConfig struct {
 	// Keeps parameters concerned with metrics
 	// +optional
 	Metrics MetricsConfig `json:"metrics,omitempty"`
+
+	// Keeps parameters concerned with notifications
+	// +optional
+	Notifications NotificationsConfig `json:"notifications,omitempty"`
+
+	// Keeps parameters necessary for the registration service
+	// +optional
+	RegistrationService RegistrationServiceConfig `json:"registrationService,omitempty"`
+
+	// Keeps parameters concerned with tiers
+	// +optional
+	Tiers TiersConfig `json:"tiers,omitempty"`
+
+	// Keeps parameters concerned with the toolchainstatus
+	// +optional
+	ToolchainStatus ToolchainStatusConfig `json:"toolchainStatus,omitempty"`
+
+	// Keeps parameters concerned with user management
+	// +optional
+	Users UsersConfig `json:"users,omitempty"`
 }
 
 // Members contains all configuration for member operators
@@ -107,9 +132,28 @@ type DeactivationConfig struct {
 	// deactivation occurs.  If this parameter is set to zero, then there will be no delay
 	// +optional
 	DeactivatingNotificationDays *int `json:"deactivatingNotificationDays,omitempty"`
+
+	// DeactivationDomainsExcluded is a string of comma-separated domains that should be excluded from automatic user deactivation
+	// For example: "@redhat.com,@ibm.com"
+	// +optional
+	DeactivationDomainsExcluded *string `json:"deactivationDomainsExcluded,omitempty"`
+
+	// UserSignupDeactivatedRetentionDays is used to configure how many days we should keep deactivated UserSignup
+	// resources before deleting them.  This parameter value should reflect an extended period of time sufficient for
+	// gathering user metrics before removing the resources from the cluster.
+	// +optional
+	UserSignupDeactivatedRetentionDays *int `json:"userSignupDeactivatedRetentionDays,omitempty"`
+
+	// UserSignupUnverifiedRetentionDays is used to configure how many days we should keep unverified (i.e. the user
+	// hasn't completed the user verification process via the registration service) UserSignup resources before deleting
+	// them.  It is intended for this parameter to define an aggressive cleanup schedule for unverified user signups,
+	// and the default configuration value for this parameter reflects this.
+	// +optional
+	UserSignupUnverifiedRetentionDays *int `json:"UserSignupUnverifiedRetentionDays,omitempty"`
 }
 
 type ToolchainSecret struct {
+
 	// Reference is the name of the secret resource to look up
 	// +optional
 	Ref *string `json:"ref,omitempty"`
@@ -121,6 +165,92 @@ type MetricsConfig struct {
 	// based on the resources rather than on the content of `ToolchainStatus.status.metrics`
 	// +optional
 	ForceSynchronization *bool `json:"forceSynchronization,omitempty"`
+}
+
+type NotificationsConfig struct {
+
+	// NotificationDeliveryService is notification delivery service to use for notifications
+	// +optional
+	NotificationDeliveryService *string `json:"notificationDeliveryService,omitempty"`
+
+	// DurationBeforeNotificationDeletion is notification delivery service to use for notifications
+	// +optional
+	DurationBeforeNotificationDeletion *string `json:"durationBeforeNotificationDeletion,omitempty"`
+
+	// The administrator email address for system notifications
+	// +optional
+	AdminEmail *string `json:"adminEmail,omitempty"`
+
+	// Defines all secrets related to notification configuration
+	// +optional
+	Secret NotificationSecret `json:"secret,omitempty"`
+}
+
+// Defines all secrets related to notification configuration
+// +k8s:openapi-gen=true
+type NotificationSecret struct {
+	// The reference to the secret that is expected to contain the keys below
+	// +optional
+	ToolchainSecret `json:",inline"`
+
+	// The key for the host operator mailgun domain used for creating an instance of mailgun
+	// +optional
+	MailgunDomain *string `json:"mailgunDomain,omitempty"`
+
+	// The key for the host operator mailgun api key used for creating an instance of mailgun
+	// +optional
+	MailgunAPIKey *string `json:"mailgunAPIKey,omitempty"`
+
+	// The key for the host operator mailgun senders email
+	// +optional
+	MailgunSenderEmail *string `json:"mailgunSenderEmail,omitempty"`
+
+	// The key for the reply-to email address that will be set in sent notifications
+	// +optional
+	MailgunReplyToEmail *string `json:"mailgunReplyToEmail,omitempty"`
+}
+
+type RegistrationServiceConfig struct {
+
+	// RegistrationServiceURL is the URL used to a ccess the registration service
+	// +optional
+	RegistrationServiceURL *string `json:"registrationServiceURL,omitempty"`
+}
+
+type ToolchainStatusConfig struct {
+
+	// ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status
+	// +optional
+	ToolchainStatusRefreshTime *string `json:"toolchainStatusRefreshTime,omitempty"`
+}
+
+type TiersConfig struct {
+
+	// DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted
+	// +optional
+	DurationBeforeChangeTierRequestDeletion *string `json:"durationBeforeChangeTierRequestDeletion,omitempty"`
+
+	// TemplateUpdateRequestMaxPoolSize specifies the maximum number of concurrent TemplateUpdateRequests
+	// when updating MasterUserRecords
+	// +optional
+	TemplateUpdateRequestMaxPoolSize *int `json:"templateUpdateRequestMaxPoolSize,omitempty"`
+}
+
+type UsersConfig struct {
+
+	// MasterUserRecordUpdateFailureThreshold specifies the number of allowed failures before stopping attempts to update a MasterUserRecord
+	// +optional
+	MasterUserRecordUpdateFailureThreshold *int `json:"masterUserRecordUpdateFailureThreshold,omitempty"`
+
+	// ForbiddenUsernamePrefixes is a comma-separated string that defines the prefixes that a username may not have when signing up.
+	// If a username has a forbidden prefix, then the username compliance prefix is added to the username
+	// +optional
+	ForbiddenUsernamePrefixes *string `json:"forbiddenUsernamePrefixes,omitempty"`
+
+	// ForbiddenUsernameSuffixes is a comma-separated string that defines the suffixes that a username may not have when signing up.  If a
+	// username has a forbidden suffix, then the username compliance suffix is added to the username
+	// +optional
+	ForbiddenUsernameSuffixes *string `json:"forbiddenUsernameSuffixes,omitempty"`
 }
 
 // ToolchainConfigStatus defines the observed state of ToolchainConfig
