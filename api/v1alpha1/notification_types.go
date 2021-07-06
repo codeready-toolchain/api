@@ -54,7 +54,7 @@ type NotificationSpec struct {
 	// Context is used to set a number of arbitrary values to be passed to the notification content text formatter,
 	// for inclusion in the body of the notification.
 	// +optional
-	Context map[string]string `json:"context"`
+	Context map[string]string `json:"context,omitempty"`
 
 	// Template is the name of the NotificationTemplate resource that will be used to generate the notification
 	Template string `json:"template,omitempty"`
