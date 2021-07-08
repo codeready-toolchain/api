@@ -12,7 +12,7 @@ PATH_TO_CRD_BASES=config/crd/bases
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
-generate: generate-deepcopy-and-crds generate-openapi dispatch-crds generate-csv copy-reg-service-template
+generate: generate-deepcopy-and-crds generate-openapi dispatch-crds copy-reg-service-template
 	
 .PHONY: generate-deepcopy-and-crds
 generate-deepcopy-and-crds: remove-config controller-gen
@@ -40,21 +40,16 @@ generate-openapi: openapi-gen
 host_repo_status := $(shell cd ../host-operator && git status -s | grep -v ${PATH_TO_CRD_BASES})
 member_repo_status := $(shell cd ../member-operator && git status -s | grep -v ${PATH_TO_CRD_BASES})
 
-PHONY: generate-csv
-generate-csv:
-	./scripts/olm-catalog-generate.sh -pr ../host-operator
-	./scripts/olm-catalog-generate.sh -pr ../member-operator
-
 PHONY: prepare-host-operator
 prepare-host-operator: ../host-operator
 ifdef host_repo_status
 	@echo "The local '../host-operator' repository has pending changes. Please stash them or commit them, first."
 	@exit 1
 endif
-ifneq ($(wildcard ../host-operator/deploy/crds/*.yaml),)
-	@-find ../host-operator/deploy/crds -type f | grep -v "cr\.yaml" | xargs rm || true
+ifneq ($(wildcard ../host-operator/${PATH_TO_CRD_BASES}/*.yaml),)
+	@-find ../host-operator/${PATH_TO_CRD_BASES} -type f | grep -v "cr\.yaml" | xargs rm || true
 else
-	@-mkdir -p ../host-operator/deploy/crds
+	@-mkdir -p ../host-operator/${PATH_TO_CRD_BASES}
 endif
 
 PHONY: prepare-member-operator
@@ -63,10 +58,10 @@ ifdef member_repo_status
 	@echo "The local '../member-operator' repository has pending changes. Please stash them or commit them, first."
 	@exit 1
 endif
-ifneq ($(wildcard ../member-operator/deploy/crds/*.yaml),)
-	@-find ../member-operator/deploy/crds -type f | grep -v "cr\.yaml" | xargs rm || true
+ifneq ($(wildcard ../member-operator/${PATH_TO_CRD_BASES}/*.yaml),)
+	@-find ../member-operator/${PATH_TO_CRD_BASES} -type f | grep -v "cr\.yaml" | xargs rm || true
 else
-	@-mkdir -p ../member-operator/deploy/crds
+	@-mkdir -p ../member-operator/${PATH_TO_CRD_BASES}
 endif
 
 .PHONY: dispatch-crds
@@ -74,20 +69,21 @@ dispatch-crds: prepare-host-operator prepare-member-operator
 	@echo "Dispatching CRD files in the 'host-operator' and 'member-operator' repositories..."
     # Dispatching CRD files to operator repositories
 	@for crd in $(HOST_CLUSTER_CRDS) ; do \
-		cp ${PATH_TO_CRD_BASES}/$(API_FULL_GROUPNAME)_$${crd}.yaml ../host-operator/deploy/crds/$(API_FULL_GROUPNAME)_$${crd}.yaml ; \
+		cp ${PATH_TO_CRD_BASES}/$(API_FULL_GROUPNAME)_$${crd}.yaml ../host-operator/${PATH_TO_CRD_BASES}/$(API_FULL_GROUPNAME)_$${crd}.yaml ; \
 	done
 	@for crd in $(MEMBER_CLUSTER_CRDS) ; do \
-		cp ${PATH_TO_CRD_BASES}/$(API_FULL_GROUPNAME)_$${crd}.yaml ../member-operator/deploy/crds/$(API_FULL_GROUPNAME)_$${crd}.yaml ; \
+		cp ${PATH_TO_CRD_BASES}/$(API_FULL_GROUPNAME)_$${crd}.yaml ../member-operator/${PATH_TO_CRD_BASES}/$(API_FULL_GROUPNAME)_$${crd}.yaml ; \
 	done
 	# Now let's remove the CRDs from config/crd/bases directory
 	@for crd in $(HOST_CLUSTER_CRDS) $(MEMBER_CLUSTER_CRDS) ; do \
 		rm ${PATH_TO_CRD_BASES}/$(API_FULL_GROUPNAME)_$${crd}.yaml 2>/dev/null || true; \
 	done
-	@if [[ "$$(ls -A ${PATH_TO_CRD_BASES}/*yaml)" ]]; then \
+	@if [[ "$$(ls -A ${PATH_TO_CRD_BASES}/*yaml || true)" ]]; then \
 	    echo "ERROR: some CRD files were not dispatched: $$(ls -A ${PATH_TO_CRD_BASES}/*yaml)"; \
 	    echo "Please update this Makefile accordingly."; \
 	    exit 1; \
 	fi
+	@echo "Dispatch successfuly finished \o/"
 
 .PHONY: copy-reg-service-template
 copy-reg-service-template:
