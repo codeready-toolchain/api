@@ -124,8 +124,9 @@ else
     FROM_INDEX_IMAGE=""
 fi
 
-${PRJ_ROOT_DIR}
+cd ${PRJ_ROOT_DIR}
 
+echo "building & pushing operator bundle image ${BUNDLE_IMAGE}..."
 ${IMAGE_BUILDER} build -f bundle.Dockerfile -t ${BUNDLE_IMAGE} .
 ${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
 
@@ -138,6 +139,7 @@ if [[ -z ${GITHUB_ACTIONS} ]]; then
     ${IMAGE_BUILDER} image rm quay.io/operator-framework/upstream-opm-builder:latest || true
 fi
 
+echo "modifying & pushing operator index image ${INDEX_IMAGE}..."
 if [[ -n ${FROM_INDEX_IMAGE} ]] && [[ `${IMAGE_BUILDER} pull ${FROM_INDEX_IMAGE}` ]]; then
     opm index add --bundles ${BUNDLE_IMAGE} --build-tool ${IMAGE_BUILDER} --tag ${INDEX_IMAGE} --from-index ${FROM_INDEX_IMAGE} ${PULL_TOOL_PARAM}
 else
