@@ -124,10 +124,10 @@ else
     FROM_INDEX_IMAGE=""
 fi
 
+${PRJ_ROOT_DIR}
+
 ${IMAGE_BUILDER} build -f bundle.Dockerfile -t ${BUNDLE_IMAGE} .
 ${IMAGE_BUILDER} push ${BUNDLE_IMAGE}
-
-cd ${CURRENT_DIR}
 
 if [[ ${IMAGE_BUILDER} == "podman" ]]; then
     PULL_TOOL_PARAM="--pull-tool podman"
@@ -145,3 +145,5 @@ else
 fi
 
 ${IMAGE_BUILDER} push ${INDEX_IMAGE}
+
+cd ${CURRENT_DIR}
