@@ -165,8 +165,6 @@ read_arguments() {
         QUAY_NAMESPACE_TO_PUSH=${QUAY_NAMESPACE:codeready-toolchain}
     fi
 
-    MANIFESTS_DIR=${PRJ_ROOT_DIR}/manifests
-
     setup_variables
 }
 
@@ -202,7 +200,7 @@ setup_variables() {
 generate_bundle() {
     echo "## Generating operator bundle of project '${PRJ_NAME}' ..."
 
-    make bundle CHANNEL=${CHANNEL} NEXT_VERSION=${NEXT_CSV_VERSION}
+    make -C ${PRJ_ROOT_DIR} bundle CHANNEL=${CHANNEL} NEXT_VERSION=${NEXT_CSV_VERSION}
 
     if [[ ${FIRST_RELEASE} != "true" ]] && [[ -n "${REPLACE_CSV_VERSION}" ]]; then
         REPLACE_CLAUSE="replaces: ${OPERATOR_NAME}.v${REPLACE_CSV_VERSION}"
