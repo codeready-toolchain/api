@@ -64,21 +64,21 @@ wait_until_is_installed() {
     set -e
     NEXT_WAIT_TIME=0
     SA_NAME=${PRJ_NAME}-controller-manager
-    while [[ -z `oc get sa ${SA_NAME} -n ${NAMESPACE} 2>/dev/null` ]] || [[ -z `oc get ClusterRoles | grep "^toolchain-${PRJ_NAME}\.v"` ]]; do \
-        if [[ ${NEXT_WAIT_TIME} -eq 300 ]]; then \
-           echo "reached timeout of waiting for ServiceAccount ${PRJ_NAME} to be available in namespace ${NAMESPACE} - see following info for debugging:"; \
-           echo "================================ CatalogSource =================================="; \
-           oc get catalogsource ${CATALOGSOURCE_NAME} -n ${NAMESPACE} -o yaml; \
-           echo "================================ CatalogSource Pod Logs =================================="; \
-           oc logs `oc get pods -l "olm.catalogSource=${CATALOGSOURCE_NAME#*/}" -n ${NAMESPACE} -o name` -n ${NAMESPACE}; \
-           echo "================================ Subscription =================================="; \
-           oc get subscription ${SUBSCRIPTION_NAME} -n ${NAMESPACE} -o yaml; \
-           echo "================================ InstallPlans =================================="; \
-           oc get installplans -n ${NAMESPACE} -o yaml; \
-           exit 1; \
-        fi; \
-        echo "$(( NEXT_WAIT_TIME++ )). attempt of waiting for ServiceAccount ${SA_NAME} in namespace ${NAMESPACE}"; \
-        sleep 1; \
+    while [[ -z `oc get sa ${SA_NAME} -n ${NAMESPACE} 2>/dev/null` ]] || [[ -z `oc get ClusterRoles | grep "^toolchain-${PRJ_NAME}\.v"` ]]; do
+        if [[ ${NEXT_WAIT_TIME} -eq 100 ]]; then
+           echo "reached timeout of waiting for ServiceAccount ${PRJ_NAME} to be available in namespace ${NAMESPACE} - see following info for debugging:"
+           echo "================================ CatalogSource =================================="
+           oc get catalogsource ${CATALOGSOURCE_NAME} -n ${NAMESPACE} -o yaml
+           echo "================================ CatalogSource Pod Logs =================================="
+           oc logs `oc get pods -l "olm.catalogSource=${CATALOGSOURCE_NAME#*/}" -n ${NAMESPACE} -o name` -n ${NAMESPACE}
+           echo "================================ Subscription =================================="
+           oc get subscription ${SUBSCRIPTION_NAME} -n ${NAMESPACE} -o yaml
+           echo "================================ InstallPlans =================================="
+           oc get installplans -n ${NAMESPACE} -o yaml
+           exit 1
+        fi
+        echo "$(( NEXT_WAIT_TIME++ )). attempt of waiting for ServiceAccount ${SA_NAME} in namespace ${NAMESPACE}"
+        sleep 1
     done
 }
 
