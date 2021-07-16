@@ -79,7 +79,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus":   schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceDeploymentStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceHealth(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceServerConfig":       schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceServerConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec":               schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationConfig(ref),
@@ -2196,13 +2195,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig"),
 						},
 					},
-					"server": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for the registration service server config",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceServerConfig"),
-						},
-					},
 					"verification": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters necessary for the registration service verification config",
@@ -2214,7 +2206,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceServerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig"},
 	}
 }
 
@@ -2377,61 +2369,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesSta
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceServerConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "RegistrationServiceServerConfig contains the subset of registration service configuration parameters related to the server",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"gracefulTimeout": {
-						SchemaProps: spec.SchemaProps{
-							Description: "GracefulTimeout specifies the duration for which the server gracefully wait for existing connections to finish - e.g. 15s or 1m.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"httpAddress": {
-						SchemaProps: spec.SchemaProps{
-							Description: "HttpAddress specifies the HTTP address (as set via default, config file, or environment variable) that the app-server binds to (e.g. \"0.0.0.0:8080\")",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"httpCompressResponses": {
-						SchemaProps: spec.SchemaProps{
-							Description: "HttpCompressResponses when true HTTP responses should be compressed for clients that support it via the 'Accept-Encoding' header",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-					"httpIdleTimeout": {
-						SchemaProps: spec.SchemaProps{
-							Description: "HttpIdleTimeout specifies the duration for the idle timeout.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"httpReadTimeout": {
-						SchemaProps: spec.SchemaProps{
-							Description: "HttpReadTimeout specifies the duration for the read timeout.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"httpWriteTimeout": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Url specifies the duration for the write timeout.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-			},
-		},
 	}
 }
 

@@ -246,10 +246,6 @@ type RegistrationServiceConfig struct {
 	// +optional
 	Auth RegistrationServiceAuthConfig `json:"auth,omitempty"`
 
-	// Keeps parameters necessary for the registration service server config
-	// +optional
-	Server RegistrationServiceServerConfig `json:"server,omitempty"`
-
 	// Keeps parameters necessary for the registration service verification config
 	// +optional
 	Verification RegistrationServiceVerificationConfig `json:"verification,omitempty"`
@@ -287,38 +283,6 @@ type RegistrationServiceAuthConfig struct {
 	// AuthClientPublicKeysURL specifies the public keys URL
 	// +optional
 	AuthClientPublicKeysURL *string `json:"authClientPublicKeysURL,omitempty"`
-}
-
-// RegistrationServiceServerConfig contains the subset of registration service configuration parameters related to the server
-// +k8s:openapi-gen=true
-type RegistrationServiceServerConfig struct {
-
-	// GracefulTimeout specifies the duration for which the server gracefully wait for existing
-	// connections to finish - e.g. 15s or 1m.
-	// +optional
-	GracefulTimeout *string `json:"gracefulTimeout,omitempty"`
-
-	// HttpAddress specifies the HTTP address (as set via default, config file, or
-	// environment variable) that the app-server binds to (e.g. "0.0.0.0:8080")
-	// +optional
-	HttpAddress *string `json:"httpAddress,omitempty"`
-
-	// HttpCompressResponses when true HTTP responses should be compressed
-	// for clients that support it via the 'Accept-Encoding' header
-	// +optional
-	HttpCompressResponses *bool `json:"httpCompressResponses,omitempty"`
-
-	// HttpIdleTimeout specifies the duration for the idle timeout.
-	// +optional
-	HttpIdleTimeout *string `json:"httpIdleTimeout,omitempty"`
-
-	// HttpReadTimeout specifies the duration for the read timeout.
-	// +optional
-	HttpReadTimeout *string `json:"httpReadTimeout,omitempty"`
-
-	// Url specifies the duration for the write timeout.
-	// +optional
-	HttpWriteTimeout *string `json:"httpWriteTimeout,omitempty"`
 }
 
 // RegistrationServiceVerificationConfig contains the subset of registration service configuration parameters related to verification
