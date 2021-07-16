@@ -27,80 +27,93 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig":                          schema_codeready_toolchain_api_api_v1alpha1_AuthConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig":             schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig":                    schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                          schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                      schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequest":                   schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec":               schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus":             schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                           schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                           schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                           schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                       schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                          schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorConfigStatus":            schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                  schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":       schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.Idler":                               schema_codeready_toolchain_api_api_v1alpha1_Idler(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec":                           schema_codeready_toolchain_api_api_v1alpha1_IdlerSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus":                         schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference":                schema_codeready_toolchain_api_api_v1alpha1_LocalSecretReference(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecord":                    schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecord(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordSpec":                schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus":              schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers":                    schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.Member":                              schema_codeready_toolchain_api_api_v1alpha1_Member(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigSpec":            schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigStatus":          schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatus":                        schema_codeready_toolchain_api_api_v1alpha1_MemberStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig":                  schema_codeready_toolchain_api_api_v1alpha1_MemberStatusConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec":                    schema_codeready_toolchain_api_api_v1alpha1_MemberStatusSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus":                  schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.Members":                             schema_codeready_toolchain_api_api_v1alpha1_Members(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSet":                       schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec":                   schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus":                 schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTier":                      schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTier(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpec":                  schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierStatus":                schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.Notification":                        schema_codeready_toolchain_api_api_v1alpha1_Notification(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSecret":                  schema_codeready_toolchain_api_api_v1alpha1_NotificationSecret(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec":                    schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus":                  schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationService":                 schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceDeploymentStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth":           schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceHealth(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus":  schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus":           schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold":           schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage":                       schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.Routes":                              schema_codeready_toolchain_api_api_v1alpha1_Routes(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequest":               schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequest(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec":           schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus":         schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                    schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                    schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition":           schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig":              schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus":              schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigSpec":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigStatus":               schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatus":                     schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus":               schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccount":                         schema_codeready_toolchain_api_api_v1alpha1_UserAccount(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec":                     schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecBase":                 schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecEmbedded":             schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus":                   schema_codeready_toolchain_api_api_v1alpha1_UserAccountStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignup":                          schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec":                      schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus":                    schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig":                       schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig":                            schema_codeready_toolchain_api_api_v1alpha1_AuthConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig":               schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig":                      schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                            schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                        schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequest":                     schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec":                 schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus":               schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                             schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                             schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                            schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorConfigStatus":              schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":         schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Idler":                                 schema_codeready_toolchain_api_api_v1alpha1_Idler(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec":                             schema_codeready_toolchain_api_api_v1alpha1_IdlerSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus":                           schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference":                  schema_codeready_toolchain_api_api_v1alpha1_LocalSecretReference(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecord":                      schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecord(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordSpec":                  schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus":                schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers":                      schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Member":                                schema_codeready_toolchain_api_api_v1alpha1_Member(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigSpec":              schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigStatus":            schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatus":                          schema_codeready_toolchain_api_api_v1alpha1_MemberStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig":                    schema_codeready_toolchain_api_api_v1alpha1_MemberStatusConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec":                      schema_codeready_toolchain_api_api_v1alpha1_MemberStatusSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus":                    schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Members":                               schema_codeready_toolchain_api_api_v1alpha1_Members(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig":                         schema_codeready_toolchain_api_api_v1alpha1_MetricsConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSet":                         schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec":                     schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus":                   schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTier":                        schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTier(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpec":                    schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierStatus":                  schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Notification":                          schema_codeready_toolchain_api_api_v1alpha1_Notification(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSecret":                    schema_codeready_toolchain_api_api_v1alpha1_NotificationSecret(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec":                      schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus":                    schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig":                   schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationService":                   schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig":         schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus":   schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceDeploymentStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceHealth(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceServerConfig":       schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceServerConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec":               schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationSecret(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold":             schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage":                         schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Routes":                                schema_codeready_toolchain_api_api_v1alpha1_Routes(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequest":                 schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequest(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec":             schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus":           schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                      schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                      schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition":             schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec":                  schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigSpec":                   schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigStatus":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainSecret":                       schema_codeready_toolchain_api_api_v1alpha1_ToolchainSecret(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatus":                       schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec":                   schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccount":                           schema_codeready_toolchain_api_api_v1alpha1_UserAccount(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec":                       schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecBase":                   schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecEmbedded":               schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus":                     schema_codeready_toolchain_api_api_v1alpha1_UserAccountStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignup":                            schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec":                        schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus":                      schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_UsersConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig":                         schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref),
 	}
 }
 
@@ -529,6 +542,47 @@ func schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref common.Refere
 							Description: "Defines the console route name",
 							Type:        []string{"string"},
 							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "DeactivationConfig contains all configuration parameters related to deactivation",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"deactivatingNotificationDays": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual deactivation occurs.  If this parameter is set to zero, then there will be no delay",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"deactivationDomainsExcluded": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DeactivationDomainsExcluded is a string of comma-separated domains that should be excluded from automatic user deactivation For example: \"@redhat.com,@ibm.com\"",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"userSignupDeactivatedRetentionDays": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserSignupDeactivatedRetentionDays is used to configure how many days we should keep deactivated UserSignup resources before deleting them.  This parameter value should reflect an extended period of time sufficient for gathering user metrics before removing the resources from the cluster.",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"UserSignupUnverifiedRetentionDays": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserSignupUnverifiedRetentionDays is used to configure how many days we should keep unverified (i.e. the user hasn't completed the user verification process via the registration service) UserSignup resources before deleting them.  It is intended for this parameter to define an aggressive cleanup schedule for unverified user signups, and the default configuration value for this parameter reflects this.",
+							Type:        []string{"integer"},
+							Format:      "int32",
 						},
 					},
 				},
@@ -1424,6 +1478,26 @@ func schema_codeready_toolchain_api_api_v1alpha1_Members(ref common.ReferenceCal
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_MetricsConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "MetricsConfig contains all configuration parameters related to metrics gathering",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"forceSynchronization": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ForceSynchronization is a flag used to trigger synchronization of the metrics based on the resources rather than on the content of `ToolchainStatus.status.metrics`",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -1915,6 +1989,49 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref common.R
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NotificationsConfig contains all configuration parameters related to notifications",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"notificationDeliveryService": {
+						SchemaProps: spec.SchemaProps{
+							Description: "NotificationDeliveryService is notification delivery service to use for notifications",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"durationBeforeNotificationDeletion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DurationBeforeNotificationDeletion is notification delivery service to use for notifications",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"adminEmail": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The administrator email address for system notifications",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"secret": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines all secrets related to notification configuration",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NotificationSecret"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSecret"},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -1959,6 +2076,145 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref common.
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"woopraDomain": {
+						SchemaProps: spec.SchemaProps{
+							Description: "WoopraDomain specifies the woopra domain name",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"segmentWriteKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SegmentWriteKey specifies the segment write key",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceAuthConfig contains the subset of registration service configuration parameters related to authentication",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"authClientLibraryURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AuthClientLibraryURL specifies the auth library location",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"authClientConfigContentType": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AuthClientConfigContentType specifies the auth config config content type",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"authClientConfigRaw": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AuthClientConfigRaw specifies the URL used to a access the registration service",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"authClientPublicKeysURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AuthClientPublicKeysURL specifies the public keys URL",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceConfig contains all configuration parameters related to the registration service",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"environment": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Environment specifies the environment such as prod, stage, unit-tests, e2e-tests, dev, etc",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"logLevel": {
+						SchemaProps: spec.SchemaProps{
+							Description: "LogLevel specifies the logging level",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"namespace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Namespace specifies the namespace in which the registration service and host operator is running",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"registrationServiceURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "RegistrationServiceURL is the URL used to a ccess the registration service",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"analytics": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for the registration service analytics config",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig"),
+						},
+					},
+					"auth": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for the registration service authentication config",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig"),
+						},
+					},
+					"server": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for the registration service server config",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceServerConfig"),
+						},
+					},
+					"verification": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for the registration service verification config",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceServerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig"},
 	}
 }
 
@@ -2124,6 +2380,61 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesSta
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceServerConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceServerConfig contains the subset of registration service configuration parameters related to the server",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"gracefulTimeout": {
+						SchemaProps: spec.SchemaProps{
+							Description: "GracefulTimeout specifies the duration for which the server gracefully wait for existing connections to finish - e.g. 15s or 1m.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"httpAddress": {
+						SchemaProps: spec.SchemaProps{
+							Description: "HttpAddress specifies the HTTP address (as set via default, config file, or environment variable) that the app-server binds to (e.g. \"0.0.0.0:8080\")",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"httpCompressResponses": {
+						SchemaProps: spec.SchemaProps{
+							Description: "HttpCompressResponses when true HTTP responses should be compressed for clients that support it via the 'Accept-Encoding' header",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"httpIdleTimeout": {
+						SchemaProps: spec.SchemaProps{
+							Description: "HttpIdleTimeout specifies the duration for the idle timeout.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"httpReadTimeout": {
+						SchemaProps: spec.SchemaProps{
+							Description: "HttpReadTimeout specifies the duration for the read timeout.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"httpWriteTimeout": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Url specifies the duration for the write timeout.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -2194,6 +2505,111 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref c
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RegistrationServiceVerificationConfig contains the subset of registration service configuration parameters related to verification",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"secret": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines all secrets related to the registration service verification configuration",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret"),
+						},
+					},
+					"verificationEnabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VerificationEnabled specifies whether the phone verification feature is enabled or not",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"verificationDailyLimit": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VerificationDailyLimit specifies the number of times a user may initiate a phone verification request within a 24 hour period",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"verificationAttemptsAllowed": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VerificationAttemptsAllowed specifies the number of times a user may attempt to correctly enter a verification code, if they fail then they must request another code",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"verificationMessageTemplate": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VerificationMessageTemplate specifies the message template used to generate the content sent to users via SMS for phone verification",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"verificationExcludedEmailDomains": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VerificationExcludedEmailDomains specifies the list of email address domains for which phone verification is not required",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"verificationCodeExpiresInMin": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VerificationCodeExpiresInMin specifies an int representing the number of minutes before a verification code should be expired",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Defines all secrets related to registration service verification configuration",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"ref": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Reference is the name of the secret resource to look up",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"twilioAccountSID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TwilioAccountSID specifies the Twilio account identifier, used for sending phone verification messages",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"twilioAuthToken": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TwilioAuthToken specifies the Twilio authentication token, used for sending phone verification messages",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"twilioFromNumber": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TwilioFromNumber specifies the phone number or alphanumeric \"Sender ID\" for sending phone verification messages",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -2519,6 +2935,33 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "TiersConfig contains all configuration parameters related to tiers",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"durationBeforeChangeTierRequestDeletion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"templateUpdateRequestMaxPoolSize": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TemplateUpdateRequestMaxPoolSize specifies the maximum number of concurrent TemplateUpdateRequests when updating MasterUserRecords",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -2835,6 +3278,26 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigStatus(ref commo
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ToolchainSecret defines a reference to a secret, this type should be included inline in any structs that contain secrets eg. NotificationSecret",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"ref": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Reference is the name of the secret resource to look up",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -2879,6 +3342,26 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref common.Refe
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ToolchainStatusConfig contains all configuration parameters related to the toolchain status component",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"toolchainStatusRefreshTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -3360,6 +3843,40 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_UsersConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UsersConfig contains all configuration parameters related to users",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"masterUserRecordUpdateFailureThreshold": {
+						SchemaProps: spec.SchemaProps{
+							Description: "MasterUserRecordUpdateFailureThreshold specifies the number of allowed failures before stopping attempts to update a MasterUserRecord",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"forbiddenUsernamePrefixes": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ForbiddenUsernamePrefixes is a comma-separated string that defines the prefixes that a username may not have when signing up. If a username has a forbidden prefix, then the username compliance prefix is added to the username",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"forbiddenUsernameSuffixes": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ForbiddenUsernameSuffixes is a comma-separated string that defines the suffixes that a username may not have when signing up.  If a username has a forbidden suffix, then the username compliance suffix is added to the username",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 

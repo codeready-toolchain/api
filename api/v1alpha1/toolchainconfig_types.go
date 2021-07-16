@@ -126,6 +126,8 @@ type MaxNumberOfUsers struct {
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
 }
 
+// DeactivationConfig contains all configuration parameters related to deactivation
+// +k8s:openapi-gen=true
 type DeactivationConfig struct {
 
 	// DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual
@@ -152,6 +154,8 @@ type DeactivationConfig struct {
 	UserSignupUnverifiedRetentionDays *int `json:"UserSignupUnverifiedRetentionDays,omitempty"`
 }
 
+// ToolchainSecret defines a reference to a secret, this type should be included inline in any structs that contain secrets eg. NotificationSecret
+// +k8s:openapi-gen=true
 type ToolchainSecret struct {
 
 	// Reference is the name of the secret resource to look up
@@ -159,6 +163,8 @@ type ToolchainSecret struct {
 	Ref *string `json:"ref,omitempty"`
 }
 
+// MetricsConfig contains all configuration parameters related to metrics gathering
+// +k8s:openapi-gen=true
 type MetricsConfig struct {
 
 	// ForceSynchronization is a flag used to trigger synchronization of the metrics
@@ -167,6 +173,8 @@ type MetricsConfig struct {
 	ForceSynchronization *bool `json:"forceSynchronization,omitempty"`
 }
 
+// NotificationsConfig contains all configuration parameters related to notifications
+// +k8s:openapi-gen=true
 type NotificationsConfig struct {
 
 	// NotificationDeliveryService is notification delivery service to use for notifications
@@ -210,13 +218,169 @@ type NotificationSecret struct {
 	MailgunReplyToEmail *string `json:"mailgunReplyToEmail,omitempty"`
 }
 
+// RegistrationServiceConfig contains all configuration parameters related to the registration service
+// +k8s:openapi-gen=true
 type RegistrationServiceConfig struct {
+
+	// Environment specifies the environment such as prod, stage, unit-tests, e2e-tests, dev, etc
+	// +optional
+	Environment *string `json:"environment,omitempty"`
+
+	// LogLevel specifies the logging level
+	// +optional
+	LogLevel *string `json:"logLevel,omitempty"`
+
+	// Namespace specifies the namespace in which the registration service and host operator is running
+	// +optional
+	Namespace *string `json:"namespace,omitempty"`
 
 	// RegistrationServiceURL is the URL used to a ccess the registration service
 	// +optional
 	RegistrationServiceURL *string `json:"registrationServiceURL,omitempty"`
+
+	// Keeps parameters necessary for the registration service analytics config
+	// +optional
+	Analytics RegistrationServiceAnalyticsConfig `json:"analytics,omitempty"`
+
+	// Keeps parameters necessary for the registration service authentication config
+	// +optional
+	Auth RegistrationServiceAuthConfig `json:"auth,omitempty"`
+
+	// Keeps parameters necessary for the registration service server config
+	// +optional
+	Server RegistrationServiceServerConfig `json:"server,omitempty"`
+
+	// Keeps parameters necessary for the registration service verification config
+	// +optional
+	Verification RegistrationServiceVerificationConfig `json:"verification,omitempty"`
 }
 
+// RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
+// +k8s:openapi-gen=true
+type RegistrationServiceAnalyticsConfig struct {
+
+	// WoopraDomain specifies the woopra domain name
+	// +optional
+	WoopraDomain *string `json:"woopraDomain,omitempty"`
+
+	// SegmentWriteKey specifies the segment write key
+	// +optional
+	SegmentWriteKey *string `json:"segmentWriteKey,omitempty"`
+}
+
+// RegistrationServiceAuthConfig contains the subset of registration service configuration parameters related to authentication
+// +k8s:openapi-gen=true
+type RegistrationServiceAuthConfig struct {
+
+	// AuthClientLibraryURL specifies the auth library location
+	// +optional
+	AuthClientLibraryURL *string `json:"authClientLibraryURL,omitempty"`
+
+	// AuthClientConfigContentType specifies the auth config config content type
+	// +optional
+	AuthClientConfigContentType *string `json:"authClientConfigContentType,omitempty"`
+
+	// AuthClientConfigRaw specifies the URL used to a access the registration service
+	// +optional
+	AuthClientConfigRaw *string `json:"authClientConfigRaw,omitempty"`
+
+	// AuthClientPublicKeysURL specifies the public keys URL
+	// +optional
+	AuthClientPublicKeysURL *string `json:"authClientPublicKeysURL,omitempty"`
+}
+
+// RegistrationServiceServerConfig contains the subset of registration service configuration parameters related to the server
+// +k8s:openapi-gen=true
+type RegistrationServiceServerConfig struct {
+
+	// GracefulTimeout specifies the duration for which the server gracefully wait for existing
+	// connections to finish - e.g. 15s or 1m.
+	// +optional
+	GracefulTimeout *string `json:"gracefulTimeout,omitempty"`
+
+	// HttpAddress specifies the HTTP address (as set via default, config file, or
+	// environment variable) that the app-server binds to (e.g. "0.0.0.0:8080")
+	// +optional
+	HttpAddress *string `json:"httpAddress,omitempty"`
+
+	// HttpCompressResponses when true HTTP responses should be compressed
+	// for clients that support it via the 'Accept-Encoding' header
+	// +optional
+	HttpCompressResponses *bool `json:"httpCompressResponses,omitempty"`
+
+	// HttpIdleTimeout specifies the duration for the idle timeout.
+	// +optional
+	HttpIdleTimeout *string `json:"httpIdleTimeout,omitempty"`
+
+	// HttpReadTimeout specifies the duration for the read timeout.
+	// +optional
+	HttpReadTimeout *string `json:"httpReadTimeout,omitempty"`
+
+	// Url specifies the duration for the write timeout.
+	// +optional
+	HttpWriteTimeout *string `json:"httpWriteTimeout,omitempty"`
+}
+
+// RegistrationServiceVerificationConfig contains the subset of registration service configuration parameters related to verification
+// +k8s:openapi-gen=true
+type RegistrationServiceVerificationConfig struct {
+
+	// Defines all secrets related to the registration service verification configuration
+	// +optional
+	Secret RegistrationServiceVerificationSecret `json:"secret,omitempty"`
+
+	// VerificationEnabled specifies whether the phone verification feature is enabled or not
+	// +optional
+	VerificationEnabled *bool `json:"verificationEnabled,omitempty"`
+
+	// VerificationDailyLimit specifies the number of times a user may initiate a phone verification request within a
+	// 24 hour period
+	// +optional
+	VerificationDailyLimit *int `json:"verificationDailyLimit,omitempty"`
+
+	// VerificationAttemptsAllowed specifies the number of times a user may attempt to correctly enter a verification code,
+	// if they fail then they must request another code
+	// +optional
+	VerificationAttemptsAllowed *int `json:"verificationAttemptsAllowed,omitempty"`
+
+	// VerificationMessageTemplate specifies the message template used to generate the content sent to users via SMS for
+	// phone verification
+	// +optional
+	VerificationMessageTemplate *string `json:"verificationMessageTemplate,omitempty"`
+
+	// VerificationExcludedEmailDomains specifies the list of email address domains for which phone verification
+	// is not required
+	// +optional
+	VerificationExcludedEmailDomains *string `json:"verificationExcludedEmailDomains,omitempty"`
+
+	// VerificationCodeExpiresInMin specifies an int representing the number of minutes before a verification code should
+	// be expired
+	// +optional
+	VerificationCodeExpiresInMin *int `json:"verificationCodeExpiresInMin,omitempty"`
+}
+
+// Defines all secrets related to registration service verification configuration
+// +k8s:openapi-gen=true
+type RegistrationServiceVerificationSecret struct {
+	// The reference to the secret that is expected to contain the keys below
+	// +optional
+	ToolchainSecret `json:",inline"`
+
+	// TwilioAccountSID specifies the Twilio account identifier, used for sending phone verification messages
+	// +optional
+	TwilioAccountSID *string `json:"twilioAccountSID,omitempty"`
+
+	// TwilioAuthToken specifies the Twilio authentication token, used for sending phone verification messages
+	// +optional
+	TwilioAuthToken *string `json:"twilioAuthToken,omitempty"`
+
+	// TwilioFromNumber specifies the phone number or alphanumeric "Sender ID" for sending phone verification messages
+	// +optional
+	TwilioFromNumber *string `json:"twilioFromNumber,omitempty"`
+}
+
+// ToolchainStatusConfig contains all configuration parameters related to the toolchain status component
+// +k8s:openapi-gen=true
 type ToolchainStatusConfig struct {
 
 	// ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status
@@ -224,6 +388,8 @@ type ToolchainStatusConfig struct {
 	ToolchainStatusRefreshTime *string `json:"toolchainStatusRefreshTime,omitempty"`
 }
 
+// TiersConfig contains all configuration parameters related to tiers
+// +k8s:openapi-gen=true
 type TiersConfig struct {
 
 	// DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted
@@ -236,6 +402,8 @@ type TiersConfig struct {
 	TemplateUpdateRequestMaxPoolSize *int `json:"templateUpdateRequestMaxPoolSize,omitempty"`
 }
 
+// UsersConfig contains all configuration parameters related to users
+// +k8s:openapi-gen=true
 type UsersConfig struct {
 
 	// MasterUserRecordUpdateFailureThreshold specifies the number of allowed failures before stopping attempts to update a MasterUserRecord
