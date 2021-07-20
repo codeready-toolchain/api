@@ -1957,33 +1957,33 @@ func (in *RegistrationServiceStatus) DeepCopy() *RegistrationServiceStatus {
 func (in *RegistrationServiceVerificationConfig) DeepCopyInto(out *RegistrationServiceVerificationConfig) {
 	*out = *in
 	in.Secret.DeepCopyInto(&out.Secret)
-	if in.VerificationEnabled != nil {
-		in, out := &in.VerificationEnabled, &out.VerificationEnabled
+	if in.Enabled != nil {
+		in, out := &in.Enabled, &out.Enabled
 		*out = new(bool)
 		**out = **in
 	}
-	if in.VerificationDailyLimit != nil {
-		in, out := &in.VerificationDailyLimit, &out.VerificationDailyLimit
+	if in.DailyLimit != nil {
+		in, out := &in.DailyLimit, &out.DailyLimit
 		*out = new(int)
 		**out = **in
 	}
-	if in.VerificationAttemptsAllowed != nil {
-		in, out := &in.VerificationAttemptsAllowed, &out.VerificationAttemptsAllowed
+	if in.AttemptsAllowed != nil {
+		in, out := &in.AttemptsAllowed, &out.AttemptsAllowed
 		*out = new(int)
 		**out = **in
 	}
-	if in.VerificationMessageTemplate != nil {
-		in, out := &in.VerificationMessageTemplate, &out.VerificationMessageTemplate
+	if in.MessageTemplate != nil {
+		in, out := &in.MessageTemplate, &out.MessageTemplate
 		*out = new(string)
 		**out = **in
 	}
-	if in.VerificationExcludedEmailDomains != nil {
-		in, out := &in.VerificationExcludedEmailDomains, &out.VerificationExcludedEmailDomains
+	if in.ExcludedEmailDomains != nil {
+		in, out := &in.ExcludedEmailDomains, &out.ExcludedEmailDomains
 		*out = new(string)
 		**out = **in
 	}
-	if in.VerificationCodeExpiresInMin != nil {
-		in, out := &in.VerificationCodeExpiresInMin, &out.VerificationCodeExpiresInMin
+	if in.CodeExpiresInMin != nil {
+		in, out := &in.CodeExpiresInMin, &out.CodeExpiresInMin
 		*out = new(int)
 		**out = **in
 	}

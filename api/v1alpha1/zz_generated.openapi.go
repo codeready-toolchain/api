@@ -2459,42 +2459,42 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret"),
 						},
 					},
-					"verificationEnabled": {
+					"enabled": {
 						SchemaProps: spec.SchemaProps{
 							Description: "VerificationEnabled specifies whether the phone verification feature is enabled or not",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
 					},
-					"verificationDailyLimit": {
+					"dailyLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "VerificationDailyLimit specifies the number of times a user may initiate a phone verification request within a 24 hour period",
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
 					},
-					"verificationAttemptsAllowed": {
+					"attemptsAllowed": {
 						SchemaProps: spec.SchemaProps{
 							Description: "VerificationAttemptsAllowed specifies the number of times a user may attempt to correctly enter a verification code, if they fail then they must request another code",
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
 					},
-					"verificationMessageTemplate": {
+					"messageTemplate": {
 						SchemaProps: spec.SchemaProps{
 							Description: "VerificationMessageTemplate specifies the message template used to generate the content sent to users via SMS for phone verification",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
-					"verificationExcludedEmailDomains": {
+					"excludedEmailDomains": {
 						SchemaProps: spec.SchemaProps{
 							Description: "VerificationExcludedEmailDomains specifies the list of email address domains for which phone verification is not required",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
-					"verificationCodeExpiresInMin": {
+					"codeExpiresInMin": {
 						SchemaProps: spec.SchemaProps{
 							Description: "VerificationCodeExpiresInMin specifies an int representing the number of minutes before a verification code should be expired",
 							Type:        []string{"integer"},

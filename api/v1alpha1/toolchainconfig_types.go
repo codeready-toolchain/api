@@ -295,32 +295,32 @@ type RegistrationServiceVerificationConfig struct {
 
 	// VerificationEnabled specifies whether the phone verification feature is enabled or not
 	// +optional
-	VerificationEnabled *bool `json:"verificationEnabled,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
 
 	// VerificationDailyLimit specifies the number of times a user may initiate a phone verification request within a
 	// 24 hour period
 	// +optional
-	VerificationDailyLimit *int `json:"verificationDailyLimit,omitempty"`
+	DailyLimit *int `json:"dailyLimit,omitempty"`
 
 	// VerificationAttemptsAllowed specifies the number of times a user may attempt to correctly enter a verification code,
 	// if they fail then they must request another code
 	// +optional
-	VerificationAttemptsAllowed *int `json:"verificationAttemptsAllowed,omitempty"`
+	AttemptsAllowed *int `json:"attemptsAllowed,omitempty"`
 
 	// VerificationMessageTemplate specifies the message template used to generate the content sent to users via SMS for
 	// phone verification
 	// +optional
-	VerificationMessageTemplate *string `json:"verificationMessageTemplate,omitempty"`
+	MessageTemplate *string `json:"messageTemplate,omitempty"`
 
 	// VerificationExcludedEmailDomains specifies the list of email address domains for which phone verification
 	// is not required
 	// +optional
-	VerificationExcludedEmailDomains *string `json:"verificationExcludedEmailDomains,omitempty"`
+	ExcludedEmailDomains *string `json:"excludedEmailDomains,omitempty"`
 
 	// VerificationCodeExpiresInMin specifies an int representing the number of minutes before a verification code should
 	// be expired
 	// +optional
-	VerificationCodeExpiresInMin *int `json:"verificationCodeExpiresInMin,omitempty"`
+	CodeExpiresInMin *int `json:"codeExpiresInMin,omitempty"`
 }
 
 // Defines all secrets related to registration service verification configuration
