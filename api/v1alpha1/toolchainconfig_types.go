@@ -356,6 +356,10 @@ type ToolchainStatusConfig struct {
 // +k8s:openapi-gen=true
 type TiersConfig struct {
 
+	// DefaultTier specifies the default tier to assign for new users
+	// +optional
+	DefaultTier *string `json:"defaultTier,omitempty"`
+
 	// DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted
 	// +optional
 	DurationBeforeChangeTierRequestDeletion *string `json:"durationBeforeChangeTierRequestDeletion,omitempty"`
