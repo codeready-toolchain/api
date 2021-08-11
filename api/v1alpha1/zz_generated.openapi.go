@@ -2153,11 +2153,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 				Description: "RegistrationServiceConfig contains all configuration parameters related to the registration service",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"replicas": {
+					"analytics": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Replicas specifies the number of replicas to use for the registration service deployment",
-							Type:        []string{"string"},
-							Format:      "",
+							Description: "Keeps parameters necessary for the registration service analytics config",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig"),
+						},
+					},
+					"auth": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for the registration service authentication config",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig"),
 						},
 					},
 					"environment": {
@@ -2188,18 +2195,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							Format:      "",
 						},
 					},
-					"analytics": {
+					"replicas": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for the registration service analytics config",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig"),
-						},
-					},
-					"auth": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for the registration service authentication config",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig"),
+							Description: "Replicas specifies the number of replicas to use for the registration service deployment",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 					"verification": {

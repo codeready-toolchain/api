@@ -222,9 +222,13 @@ type NotificationSecret struct {
 // +k8s:openapi-gen=true
 type RegistrationServiceConfig struct {
 
-	// Replicas specifies the number of replicas to use for the registration service deployment
+	// Keeps parameters necessary for the registration service analytics config
 	// +optional
-	Replicas *string `json:"replicas,omitempty"`
+	Analytics RegistrationServiceAnalyticsConfig `json:"analytics,omitempty"`
+
+	// Keeps parameters necessary for the registration service authentication config
+	// +optional
+	Auth RegistrationServiceAuthConfig `json:"auth,omitempty"`
 
 	// Environment specifies the environment such as prod, stage, unit-tests, e2e-tests, dev, etc
 	// +optional
@@ -243,13 +247,9 @@ type RegistrationServiceConfig struct {
 	// +optional
 	RegistrationServiceURL *string `json:"registrationServiceURL,omitempty"`
 
-	// Keeps parameters necessary for the registration service analytics config
+	// Replicas specifies the number of replicas to use for the registration service deployment
 	// +optional
-	Analytics RegistrationServiceAnalyticsConfig `json:"analytics,omitempty"`
-
-	// Keeps parameters necessary for the registration service authentication config
-	// +optional
-	Auth RegistrationServiceAuthConfig `json:"auth,omitempty"`
+	Replicas *string `json:"replicas,omitempty"`
 
 	// Keeps parameters necessary for the registration service verification config
 	// +optional
