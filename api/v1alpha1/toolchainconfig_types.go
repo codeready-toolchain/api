@@ -151,7 +151,7 @@ type DeactivationConfig struct {
 	// them.  It is intended for this parameter to define an aggressive cleanup schedule for unverified user signups,
 	// and the default configuration value for this parameter reflects this.
 	// +optional
-	UserSignupUnverifiedRetentionDays *int `json:"UserSignupUnverifiedRetentionDays,omitempty"`
+	UserSignupUnverifiedRetentionDays *int `json:"userSignupUnverifiedRetentionDays,omitempty"`
 }
 
 // ToolchainSecret defines a reference to a secret, this type should be included inline in any structs that contain secrets eg. NotificationSecret
@@ -222,6 +222,14 @@ type NotificationSecret struct {
 // +k8s:openapi-gen=true
 type RegistrationServiceConfig struct {
 
+	// Keeps parameters necessary for the registration service analytics config
+	// +optional
+	Analytics RegistrationServiceAnalyticsConfig `json:"analytics,omitempty"`
+
+	// Keeps parameters necessary for the registration service authentication config
+	// +optional
+	Auth RegistrationServiceAuthConfig `json:"auth,omitempty"`
+
 	// Environment specifies the environment such as prod, stage, unit-tests, e2e-tests, dev, etc
 	// +optional
 	Environment *string `json:"environment,omitempty"`
@@ -231,6 +239,7 @@ type RegistrationServiceConfig struct {
 	LogLevel *string `json:"logLevel,omitempty"`
 
 	// Namespace specifies the namespace in which the registration service and host operator is running
+	// Consumed by host operator and set as env var on registration-service deployment
 	// +optional
 	Namespace *string `json:"namespace,omitempty"`
 
@@ -238,13 +247,9 @@ type RegistrationServiceConfig struct {
 	// +optional
 	RegistrationServiceURL *string `json:"registrationServiceURL,omitempty"`
 
-	// Keeps parameters necessary for the registration service analytics config
+	// Replicas specifies the number of replicas to use for the registration service deployment
 	// +optional
-	Analytics RegistrationServiceAnalyticsConfig `json:"analytics,omitempty"`
-
-	// Keeps parameters necessary for the registration service authentication config
-	// +optional
-	Auth RegistrationServiceAuthConfig `json:"auth,omitempty"`
+	Replicas *int32 `json:"replicas,omitempty"`
 
 	// Keeps parameters necessary for the registration service verification config
 	// +optional

@@ -577,7 +577,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref common.R
 							Format:      "int32",
 						},
 					},
-					"UserSignupUnverifiedRetentionDays": {
+					"userSignupUnverifiedRetentionDays": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserSignupUnverifiedRetentionDays is used to configure how many days we should keep unverified (i.e. the user hasn't completed the user verification process via the registration service) UserSignup resources before deleting them.  It is intended for this parameter to define an aggressive cleanup schedule for unverified user signups, and the default configuration value for this parameter reflects this.",
 							Type:        []string{"integer"},
@@ -2153,6 +2153,20 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 				Description: "RegistrationServiceConfig contains all configuration parameters related to the registration service",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"analytics": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for the registration service analytics config",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig"),
+						},
+					},
+					"auth": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for the registration service authentication config",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig"),
+						},
+					},
 					"environment": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Environment specifies the environment such as prod, stage, unit-tests, e2e-tests, dev, etc",
@@ -2169,7 +2183,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 					},
 					"namespace": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Namespace specifies the namespace in which the registration service and host operator is running",
+							Description: "Namespace specifies the namespace in which the registration service and host operator is running Consumed by host operator and set as env var on registration-service deployment",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2181,18 +2195,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							Format:      "",
 						},
 					},
-					"analytics": {
+					"replicas": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for the registration service analytics config",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig"),
-						},
-					},
-					"auth": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for the registration service authentication config",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig"),
+							Description: "Replicas specifies the number of replicas to use for the registration service deployment",
+							Type:        []string{"integer"},
+							Format:      "int32",
 						},
 					},
 					"verification": {
