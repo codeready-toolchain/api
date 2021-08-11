@@ -249,7 +249,7 @@ type RegistrationServiceConfig struct {
 
 	// Replicas specifies the number of replicas to use for the registration service deployment
 	// +optional
-	Replicas *string `json:"replicas,omitempty"`
+	Replicas *int32 `json:"replicas,omitempty"`
 
 	// Keeps parameters necessary for the registration service verification config
 	// +optional
