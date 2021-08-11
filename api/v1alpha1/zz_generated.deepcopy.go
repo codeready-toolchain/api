@@ -1800,7 +1800,7 @@ func (in *RegistrationServiceConfig) DeepCopyInto(out *RegistrationServiceConfig
 	}
 	if in.Replicas != nil {
 		in, out := &in.Replicas, &out.Replicas
-		*out = new(string)
+		*out = new(int32)
 		**out = **in
 	}
 	in.Verification.DeepCopyInto(&out.Verification)

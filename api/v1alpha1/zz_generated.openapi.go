@@ -2198,8 +2198,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 					"replicas": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Replicas specifies the number of replicas to use for the registration service deployment",
-							Type:        []string{"string"},
-							Format:      "",
+							Type:        []string{"integer"},
+							Format:      "int32",
 						},
 					},
 					"verification": {
