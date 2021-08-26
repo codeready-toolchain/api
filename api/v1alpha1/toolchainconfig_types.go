@@ -6,13 +6,18 @@ import (
 
 // These are valid conditions of a ToolchainConfig
 const (
-	ToolchainConfigSyncComplete ConditionType = "SyncComplete"
+	ToolchainConfigSyncComplete     ConditionType = "SyncComplete"
+	ToolchainConfigRegServiceDeploy ConditionType = "RegServiceDeploy"
 
 	// Status condition reasons
 	// ToolchainConfigSyncedReason when the MemberOperatorConfigs were successfully synced to the member clusters
 	ToolchainConfigSyncedReason = "Synced"
 	// ToolchainConfigSyncFailedReason when there were failures while syncing MemberOperatorConfigs to the member clusters
 	ToolchainConfigSyncFailedReason = "SyncFailed"
+	// ToolchainConfigRegServiceDeployedReason when the registration service is deployed successfully
+	ToolchainConfigRegServiceDeployedReason = "Deployed"
+	// ToolchainConfigRegServiceDeployFailedReason when there were failures while deploying the registration service
+	ToolchainConfigRegServiceDeployFailedReason = "DeployFailed"
 )
 
 // ToolchainConfigSpec contains all configuration for host and member operators
