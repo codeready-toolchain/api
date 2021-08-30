@@ -35,9 +35,8 @@ const (
 	ToolchainStatusClusterConnectionLastProbeTimeExceededReason = "ToolchainClusterLastProbeTimeExceeded"
 
 	// registration service reasons
-	ToolchainStatusRegServiceReadyReason            = "RegServiceReady"
-	ToolchainStatusRegServiceNotReadyReason         = "RegServiceNotReady"
-	ToolchainStatusRegServiceResourceNotFoundReason = "RegServiceResourceNotFound"
+	ToolchainStatusRegServiceReadyReason    = "RegServiceReady"
+	ToolchainStatusRegServiceNotReadyReason = "RegServiceNotReady"
 
 	// member status reasons
 	ToolchainStatusMemberStatusNotFoundReason                  = "MemberStatusNotFound"
