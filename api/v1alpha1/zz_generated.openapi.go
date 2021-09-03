@@ -72,15 +72,12 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec":                      schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus":                    schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig":                   schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationService":                   schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig":         schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus":   schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceDeploymentStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceHealth(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec":               schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold":             schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref),
@@ -2031,53 +2028,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref common.
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_RegistrationService(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "RegistrationService configures the registration service deployment",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
-						},
-					},
-					"spec": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec"),
-						},
-					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceSpec", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
-	}
-}
-
 func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -2360,79 +2310,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesSta
 						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Conditions is an array of current registration service resource status conditions Supported condition types: Deployed, Deploying, DeployingFailed",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "RegistrationServiceSpec defines the desired state of RegistrationService",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"environmentVariables": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "The environment variables are supposed to be set to registration service deployment template",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "RegistrationServiceStatus defines the observed state of RegistrationService",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"conditions": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"type",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "type",
-								"x-kubernetes-patch-strategy":  "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current Registration Service deployment conditions Supported condition reasons: Deploying, and Deployed",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
