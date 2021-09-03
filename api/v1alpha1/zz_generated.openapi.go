@@ -41,7 +41,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                            schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorConfigStatus":              schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":         schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Idler":                                 schema_codeready_toolchain_api_api_v1alpha1_Idler(ref),
@@ -662,17 +661,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorConfigStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "HostOperatorConfigStatus defines the observed state of HostOperatorConfig",
-				Type:        []string{"object"},
-			},
-		},
 	}
 }
 
