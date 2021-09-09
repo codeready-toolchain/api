@@ -14,7 +14,9 @@ const (
 	ToolchainConfigSyncedReason = "Synced"
 	// ToolchainConfigSyncFailedReason when there were failures while syncing MemberOperatorConfigs to the member clusters
 	ToolchainConfigSyncFailedReason = "SyncFailed"
-	// ToolchainConfigRegServiceDeployedReason when the registration service is deployed successfully
+	// ToolchainConfigRegServiceDeployingReason when the registration service is being deployed
+	ToolchainConfigRegServiceDeployingReason = "Deploying"
+	// ToolchainConfigRegServiceDeployedReason when the registration service has deployed successfully
 	ToolchainConfigRegServiceDeployedReason = "Deployed"
 	// ToolchainConfigRegServiceDeployFailedReason when there were failures while deploying the registration service
 	ToolchainConfigRegServiceDeployFailedReason = "DeployFailed"
