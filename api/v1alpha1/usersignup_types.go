@@ -36,6 +36,10 @@ const (
 	// Activations are counted after phone verification succeeded
 	UserSignupActivationCounterAnnotationKey = LabelKeyPrefix + "activation-counter"
 
+	// UserSignupOriginalSubAnnotationKey is used to set a temporary annotation value in order to migrate users
+	// to an SSO provider with the user's original UserID value as the sub claim
+	UserSignupOriginalSubAnnotationKey = LabelKeyPrefix + "original-sub"
+
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
