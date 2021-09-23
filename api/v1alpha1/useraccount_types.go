@@ -21,7 +21,7 @@ const (
 
 	// UserAccountOriginalSubAnnotationKey is used to set a temporary annotation value in order to migrate users
 	// to an SSO provider with the user's original UserID value as the sub claim
-	UserAccountOriginalSubAnnotationKey = LabelKeyPrefix + "original-sub"
+	UserAccountOriginalSubAnnotationKey = UserSignupOriginalSubAnnotationKey
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
