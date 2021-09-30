@@ -1032,6 +1032,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 							},
 						},
 					},
+					"originalSub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"userID"},
 			},
@@ -3381,6 +3388,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
+					"originalSub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"userID", "nsLimit", "nsTemplateSet"},
 			},
@@ -3607,6 +3621,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 									},
 								},
 							},
+						},
+					},
+					"originalSub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 				},
