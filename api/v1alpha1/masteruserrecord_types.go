@@ -80,6 +80,7 @@ type MasterUserRecordSpec struct {
 
 	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
 	// a new IdP provider client, and contains the user's "original-sub" claim
+	// +optional
 	OriginalSub string `json:"originalSub,omitempty"`
 }
 
