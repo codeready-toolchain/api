@@ -77,6 +77,10 @@ type MasterUserRecordSpec struct {
 	// +listType=map
 	// +listMapKey=targetCluster
 	UserAccounts []UserAccountEmbedded `json:"userAccounts,omitempty"`
+
+	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
+	// a new IdP provider client, and contains the user's "original-sub" claim
+	OriginalSub string `json:"originalSub,omitempty"`
 }
 
 type UserAccountEmbedded struct {
