@@ -17,6 +17,8 @@ const (
 	// UserSignupUserDeactivatedNotificationCreated means that the Notification CR was created so the user should be notified about their deactivated account
 	UserSignupUserDeactivatedNotificationCreated ConditionType = "UserDeactivatedNotificationCreated"
 
+	// UserSignupLastTargetClusterAnnotationKey is used for tracking the cluster for returning users
+	UserSignupLastTargetClusterAnnotationKey = LabelKeyPrefix + "last-target-cluster"
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
 	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
 	// UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
