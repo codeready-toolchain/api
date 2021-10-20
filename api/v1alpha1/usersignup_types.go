@@ -66,6 +66,7 @@ const (
 	UserSignupNoTemplateTierAvailableReason        = "NoTemplateTierAvailable"
 	UserSignupFailedToReadUserApprovalPolicyReason = "FailedToReadUserApprovalPolicy"
 	UserSignupUnableToCreateMURReason              = "UnableToCreateMUR"
+	UserSignupUnableToUpdateAnnotationReason       = "UnableToUpdateAnnotation"
 	UserSignupUnableToUpdateStateLabelReason       = "UnableToUpdateStateLabel"
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
 
