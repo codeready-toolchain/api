@@ -94,6 +94,9 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigSpec":                   schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainConfigStatus":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainEvent":                        schema_codeready_toolchain_api_api_v1alpha1_ToolchainEvent(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainEventSpec":                    schema_codeready_toolchain_api_api_v1alpha1_ToolchainEventSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainEventStatus":                  schema_codeready_toolchain_api_api_v1alpha1_ToolchainEventStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainSecret":                       schema_codeready_toolchain_api_api_v1alpha1_ToolchainSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatus":                       schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusConfig(ref),
@@ -3094,6 +3097,168 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigStatus(ref commo
 						},
 					},
 				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainEvent(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ToolchainEvent registers a toolchain event in the CodeReady Toolchain",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainEventSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainEventStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainEventSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainEventStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainEventSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ToolchainEventSpec defines the parameters for a Toolchain event, such as a training session or workshop. Users may register for the event by using the event's unique activation code",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"startTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The timestamp from which users may register via this event's activation code",
+							Default:     map[string]interface{}{},
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
+					"endTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The timestamp after which users may no longer register via this event's activation code",
+							Default:     map[string]interface{}{},
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
+					"description": {
+						SchemaProps: spec.SchemaProps{
+							Description: "An optional description that may be provided describing the purpose of the event",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"maxAttendees": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The maximum number of attendees",
+							Default:     0,
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"tier": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The tier to assign to users registering for the event.  This must be the valid name of an nstemplatetier resource.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"activationCode": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The unique activation code for the event",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"preferSameCluster": {
+						SchemaProps: spec.SchemaProps{
+							Description: "If true, best effort is made to provision all attendees of the event on the same cluster",
+							Default:     false,
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"startTime", "endTime", "maxAttendees", "activationCode"},
+			},
+		},
+		Dependencies: []string{
+			"k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainEventStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ToolchainEventStatus defines the observed state of ToolchainEvent",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current ToolchainEventStatus conditions Supported condition types: Complete",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+					"activationCount": {
+						SchemaProps: spec.SchemaProps{
+							Default: 0,
+							Type:    []string{"integer"},
+							Format:  "int32",
+						},
+					},
+				},
+				Required: []string{"activationCount"},
 			},
 		},
 		Dependencies: []string{
