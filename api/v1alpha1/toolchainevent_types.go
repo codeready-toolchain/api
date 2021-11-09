@@ -2,6 +2,14 @@ package v1alpha1
 
 import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
+const (
+	// ToolchainEventReady means the event has been setup successfully and passes validation requirements
+	ToolchainEventReady ConditionType = "Ready"
+
+	// Status condition reasons
+	ToolchainEventInvalidTierReason = "InvalidTier"
+)
+
 // ToolchainEventSpec defines the parameters for a Toolchain event, such as a training session or workshop. Users
 // may register for the event by using the event's unique activation code
 //
@@ -32,7 +40,11 @@ type ToolchainEventSpec struct {
 
 	// If true, best effort is made to provision all attendees of the event on the same cluster
 	// +optional
-	PreferSameCluster bool `json:"preferSameCluster"`
+	PreferSameCluster bool `json:"preferSameCluster,omitempty"`
+
+	// If true, the user will also be required to complete standard phone verification
+	// +optional
+	VerificationRequired bool `json:"verificationRequired,omitempty"`
 }
 
 // ToolchainEventStatus defines the observed state of ToolchainEvent
@@ -43,7 +55,7 @@ type ToolchainEventStatus struct {
 
 	// Conditions is an array of current ToolchainEventStatus conditions
 	// Supported condition types:
-	// Complete
+	// Ready
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge

@@ -3205,7 +3205,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainEventSpec(ref common.R
 					"preferSameCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "If true, best effort is made to provision all attendees of the event on the same cluster",
-							Default:     false,
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"verificationRequired": {
+						SchemaProps: spec.SchemaProps{
+							Description: "If true, the user will also be required to complete standard phone verification",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
@@ -3238,7 +3244,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainEventStatus(ref common
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current ToolchainEventStatus conditions Supported condition types: Complete",
+							Description: "Conditions is an array of current ToolchainEventStatus conditions Supported condition types: Ready",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
