@@ -3555,7 +3555,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
@@ -3567,7 +3566,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 						},
 					},
 				},
-				Required: []string{"userID", "nsLimit", "nsTemplateSet"},
+				Required: []string{"userID", "nsLimit"},
 			},
 		},
 		Dependencies: []string{
@@ -3593,12 +3592,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref common.
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 				},
-				Required: []string{"nsLimit", "nsTemplateSet"},
+				Required: []string{"nsLimit"},
 			},
 		},
 		Dependencies: []string{
@@ -3624,12 +3622,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref com
 					"nsTemplateSet": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Namespace template set",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
 						},
 					},
 				},
-				Required: []string{"nsLimit", "nsTemplateSet"},
+				Required: []string{"nsLimit"},
 			},
 		},
 		Dependencies: []string{

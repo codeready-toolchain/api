@@ -54,7 +54,8 @@ type UserAccountSpecBase struct {
 	NSLimit string `json:"nsLimit"`
 
 	// Namespace template set
-	NSTemplateSet NSTemplateSetSpec `json:"nsTemplateSet"`
+	// +optional
+	NSTemplateSet *NSTemplateSetSpec `json:"nsTemplateSet,omitempty"`
 }
 
 // UserAccountStatus defines the observed state of UserAccount
