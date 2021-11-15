@@ -82,6 +82,13 @@ type MasterUserRecordSpec struct {
 	// a new IdP provider client, and contains the user's "original-sub" claim
 	// +optional
 	OriginalSub string `json:"originalSub,omitempty"`
+
+	// TierName is an optional property introduced to retain the name of the tier
+	// for which the Dev Sandbox user is provisioned, so we can still deal with deactivation
+	// once the NSTemplateSet field has been removed from `[]spec.UserAccounts`
+	// temporarily marked as optional until the migration took place (CRT-1321)
+	// +optional
+	TierName string `json:"tierName,omitempty"`
 }
 
 type UserAccountEmbedded struct {
