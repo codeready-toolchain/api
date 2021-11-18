@@ -8,6 +8,17 @@ const (
 
 	// Status condition reasons
 	ToolchainEventInvalidTierReason = "InvalidTier"
+
+	ToolchainEventStateLabelKey = LabelKeyPrefix + "state"
+	// ToolchainEventStateLabelValueInactive is used for identifying that the ToolchainEvent is not yet ready for user activations
+	ToolchainEventStateLabelValueInactive = "inactive"
+
+	// ToolchainEventStateLabelValueActive is used to indicate that the ToolchainEvent is now active
+	ToolchainEventStateLabelValueActive = "active"
+
+	// ToolchainEventStateLabelValueExpired is used to indicate that the event has concluded and users may no longer
+	// sign up using its activation code
+	ToolchainEventStateLabelValueExpired = "expired"
 )
 
 // ToolchainEventSpec defines the parameters for a Toolchain event, such as a training session or workshop. Users
