@@ -3194,14 +3194,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainEventSpec(ref common.R
 							Format:      "",
 						},
 					},
-					"activationCode": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The unique activation code for the event",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"preferSameCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "If true, best effort is made to provision all attendees of the event on the same cluster",
@@ -3217,7 +3209,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainEventSpec(ref common.R
 						},
 					},
 				},
-				Required: []string{"startTime", "endTime", "maxAttendees", "activationCode"},
+				Required: []string{"startTime", "endTime", "maxAttendees"},
 			},
 		},
 		Dependencies: []string{
