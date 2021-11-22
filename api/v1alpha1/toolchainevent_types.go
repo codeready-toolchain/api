@@ -8,6 +8,8 @@ const (
 
 	// Status condition reasons
 	ToolchainEventInvalidTierReason = "InvalidTier"
+
+	ToolchainEventActivationCodeLabelKey = LabelKeyPrefix + "activation-code"
 )
 
 // ToolchainEventSpec defines the parameters for a Toolchain event, such as a training session or workshop. Users
@@ -34,9 +36,6 @@ type ToolchainEventSpec struct {
 	// The tier to assign to users registering for the event.  This must be the valid name of an nstemplatetier resource.
 	// +optional
 	Tier string `json:"tier,omitempty"`
-
-	// The unique activation code for the event
-	ActivationCode string `json:"activationCode"`
 
 	// If true, best effort is made to provision all attendees of the event on the same cluster
 	// +optional
