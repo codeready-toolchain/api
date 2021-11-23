@@ -1042,6 +1042,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 							Format:      "",
 						},
 					},
+					"tierName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TierName is an optional property introduced to retain the name of the tier for which the Dev Sandbox user is provisioned, so we can still deal with deactivation once the NSTemplateSet field has been removed from `[]spec.UserAccounts` temporarily marked as optional until the migration took place (CRT-1321)",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"userID"},
 			},

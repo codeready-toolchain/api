@@ -82,6 +82,13 @@ type MasterUserRecordSpec struct {
 	// a new IdP provider client, and contains the user's "original-sub" claim
 	// +optional
 	OriginalSub string `json:"originalSub,omitempty"`
+
+	// TierName is an optional property introduced to retain the name of the tier
+	// for which the Dev Sandbox user is provisioned, so we can still deal with deactivation
+	// once the NSTemplateSet field has been removed from `[]spec.UserAccounts`
+	// temporarily marked as optional until the migration took place (CRT-1321)
+	// +optional
+	TierName string `json:"tierName,omitempty"`
 }
 
 type UserAccountEmbedded struct {
@@ -171,7 +178,7 @@ type Cluster struct {
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.userAccounts[].targetCluster`
-// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.userAccounts[].spec.nsTemplateSet.tierName`
+// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
 // +kubebuilder:printcolumn:name="Banned",type="string",JSONPath=`.spec.banned`,priority=1
 // +kubebuilder:printcolumn:name="Disabled",type="string",JSONPath=`.spec.disabled`,priority=1
 // +kubebuilder:validation:XPreserveUnknownFields
