@@ -30,7 +30,7 @@ type SpaceSpec struct {
 // SpaceStatus defines the observed state of Space
 type SpaceStatus struct {
 
-	// Conditions is an array of current User Account conditions
+	// Conditions is an array of current Space conditions
 	// Supported condition types: ConditionReady
 	// +optional
 	// +patchMergeKey=type
