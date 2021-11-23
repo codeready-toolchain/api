@@ -178,7 +178,7 @@ type Cluster struct {
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.userAccounts[].targetCluster`
-// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.userAccounts[].spec.nsTemplateSet.tierName`
+// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
 // +kubebuilder:printcolumn:name="Banned",type="string",JSONPath=`.spec.banned`,priority=1
 // +kubebuilder:printcolumn:name="Disabled",type="string",JSONPath=`.spec.disabled`,priority=1
 // +kubebuilder:validation:XPreserveUnknownFields
