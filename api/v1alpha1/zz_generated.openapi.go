@@ -82,6 +82,9 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold":             schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage":                         schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Routes":                                schema_codeready_toolchain_api_api_v1alpha1_Routes(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Space":                                 schema_codeready_toolchain_api_api_v1alpha1_Space(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceSpec":                             schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceStatus":                           schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequest":                 schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequest(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec":             schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus":           schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref),
@@ -2543,6 +2546,121 @@ func schema_codeready_toolchain_api_api_v1alpha1_Routes(ref common.ReferenceCall
 						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Conditions is an array of current member operator status conditions Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_Space(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Space is the Schema for the spaces API",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceSpec", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceSpec defines the desired state of Space",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"targetCluster": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TargetCluster The cluster in which this Space is provisioned If not set then the target cluster will be picked automatically",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"tierName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TierName is a required property introduced to retain the name of the tier for which this Space is provisioned",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"tierName"},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceStatus defines the observed state of Space",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current Space conditions Supported condition types: ConditionReady",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{

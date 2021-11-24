@@ -86,7 +86,7 @@ type NSTemplateSetStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
-// +kubebuilder:printcolumn:name="Tier Name",type="string",JSONPath=`.spec.tierName`
+// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:validation:XPreserveUnknownFields

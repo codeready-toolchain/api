@@ -24,6 +24,8 @@ const (
 )
 
 // SpaceSpec defines the desired state of Space
+// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.targetCluster`
+// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
 // +k8s:openapi-gen=true
 type SpaceSpec struct {
 
