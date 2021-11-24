@@ -2124,6 +2124,11 @@ func (in *TiersConfig) DeepCopyInto(out *TiersConfig) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DefaultSpaceTier != nil {
+		in, out := &in.DefaultSpaceTier, &out.DefaultSpaceTier
+		*out = new(string)
+		**out = **in
+	}
 	if in.DurationBeforeChangeTierRequestDeletion != nil {
 		in, out := &in.DurationBeforeChangeTierRequestDeletion, &out.DurationBeforeChangeTierRequestDeletion
 		*out = new(string)
