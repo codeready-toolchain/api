@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	// SpaceCreatorLabelKey is used to label the Space with the ID of its creator (Dev Sandbox MasterUserRecord or AppStudio Workspace)
+	// SpaceCreatorLabelKey is used to label the Space with the ID of its creator (Dev Sandbox UserSignup or AppStudio Workspace)
 	SpaceCreatorLabelKey = LabelKeyPrefix + "creator"
 
 	// WorkspaceLabelKey is used to label the Space with the name of the associated AppStudio Workspace
