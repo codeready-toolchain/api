@@ -29,6 +29,7 @@ type SpaceSpec struct {
 }
 
 // SpaceStatus defines the observed state of Space
+// +k8s:openapi-gen=true
 type SpaceStatus struct {
 
 	// Conditions is an array of current Space conditions
