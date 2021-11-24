@@ -15,6 +15,7 @@ const (
 )
 
 // SpaceSpec defines the desired state of Space
+// +k8s:openapi-gen=true
 type SpaceSpec struct {
 
 	// TargetCluster The cluster in which this Space is provisioned
