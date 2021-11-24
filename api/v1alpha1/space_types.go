@@ -47,6 +47,8 @@ type SpaceStatus struct {
 
 // Space is the Schema for the spaces API
 // +k8s:openapi-gen=true
+// +kubebuilder:validation:XPreserveUnknownFields
+// +operator-sdk:gen-csv:customresourcedefinitions.displayName="Space"
 type Space struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
