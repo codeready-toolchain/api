@@ -4,7 +4,15 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// These are valid status condition reasons of a UserAccount
+const (
+	// SpaceCreatorLabelKey is used to label the Space with the ID of its creator (Dev Sandbox MasterUserRecord or AppStudio Workspace)
+	SpaceCreatorLabelKey = LabelKeyPrefix + "creator"
+
+	// WorkspaceLabelKey is used to label the Space with the name of the associated AppStudio Workspace
+	WorkspaceLabelKey = LabelKeyPrefix + "workspace"
+)
+
+// These are valid status condition reasons of a Space
 const (
 	// Status condition reasons
 	SpaceUnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
