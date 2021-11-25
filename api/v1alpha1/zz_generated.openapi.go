@@ -2775,6 +2775,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.Referenc
 							Format:      "",
 						},
 					},
+					"defaultSpaceTier": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DefaultSpaceTier specifies the default tier to assign for new spaces",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"durationBeforeChangeTierRequestDeletion": {
 						SchemaProps: spec.SchemaProps{
 							Description: "DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted",
