@@ -24,8 +24,6 @@ const (
 )
 
 // SpaceSpec defines the desired state of Space
-// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.targetCluster`
-// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
 // +k8s:openapi-gen=true
 type SpaceSpec struct {
 
@@ -55,9 +53,12 @@ type SpaceStatus struct {
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
-
 // Space is the Schema for the spaces API
 // +k8s:openapi-gen=true
+// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.targetCluster`
+// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
+// +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
+// +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Space"
 type Space struct {
