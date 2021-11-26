@@ -372,6 +372,10 @@ type TiersConfig struct {
 	// +optional
 	DefaultTier *string `json:"defaultTier,omitempty"`
 
+	// DefaultSpaceTier specifies the default tier to assign for new spaces
+	// +optional
+	DefaultSpaceTier *string `json:"defaultSpaceTier,omitempty"`
+
 	// DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted
 	// +optional
 	DurationBeforeChangeTierRequestDeletion *string `json:"durationBeforeChangeTierRequestDeletion,omitempty"`
