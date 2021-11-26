@@ -55,6 +55,7 @@ type SpaceStatus struct {
 //+kubebuilder:subresource:status
 // Space is the Schema for the spaces API
 // +k8s:openapi-gen=true
+// +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.targetCluster`
 // +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
