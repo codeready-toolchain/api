@@ -66,9 +66,9 @@ type ChangeTierRequestStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
-// +kubebuilder:printcolumn:name="MurName",type="string",JSONPath=`.spec.murName`
-// +kubebuilder:printcolumn:name="TierName",type="string",JSONPath=`.spec.tierName`
-// +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=`.spec.targetCluster`,priority=1
+// +kubebuilder:printcolumn:name="MasterUserRecord",type="string",JSONPath=`.spec.murName`
+// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
+// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.targetCluster`,priority=1
 // +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
 // +kubebuilder:validation:XPreserveUnknownFields
