@@ -43,6 +43,10 @@ const (
 	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
 	UserSignupUserPhoneHashLabelKey = LabelKeyPrefix + "phone-hash"
 
+	// UserSignupToolchainEventLabelKey is used to indicate that the user registered via an activation code, and contains
+	// the name of the ToolchainEvent that they signed up for
+	UserSignupToolchainEventLabelKey = LabelKeyPrefix + "toolchain-event"
+
 	// UserSignupStateLabelKey is used for setting the required/expected state of UserSignups (not-ready, pending, approved, banned, deactivated).
 	// The main purpose of the label is easy selecting the UserSignups based on the state - eg. get all UserSignup on the waiting list (state=pending).
 	// Another usage of the label is counting the UserSingups for and exposing it through metrics or ToolchainStatus CR.
