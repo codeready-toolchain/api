@@ -14,11 +14,12 @@ const (
 	ConditionReady ConditionType = "Ready"
 
 	// Status reasons
-	provisioningReason = "Provisioning"
-	provisionedReason  = "Provisioned"
-	disabledReason     = "Disabled"
-	terminatingReason  = "Terminating"
-	updatingReason     = "Updating"
+	provisioningReason      = "Provisioning"
+	provisionedReason       = "Provisioned"
+	disabledReason          = "Disabled"
+	terminatingReason       = "Terminating"
+	terminatingFailedReason = "UnableToTerminate"
+	updatingReason          = "Updating"
 
 	// Condition types
 	deletionError = "DeletionError"
