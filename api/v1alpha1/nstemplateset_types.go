@@ -21,7 +21,7 @@ const (
 	NSTemplateSetUnableToProvisionNamespaceReason        = "UnableToProvisionNamespace"
 	NSTemplateSetUnableToProvisionClusterResourcesReason = "UnableToProvisionClusteResources"
 	NSTemplateSetTerminatingReason                       = terminatingReason
-	NSTemplateSetTerminatingFailedReason                 = "UnableToTerminate"
+	NSTemplateSetTerminatingFailedReason                 = terminatingFailedReason
 	NSTemplateSetUpdatingReason                          = updatingReason
 	NSTemplateSetUpdateFailedReason                      = "UpdateFailed"
 )

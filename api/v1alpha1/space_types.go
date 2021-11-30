@@ -19,6 +19,7 @@ const (
 	SpaceProvisioningReason                = provisioningReason
 	SpaceProvisionedReason                 = provisionedReason
 	SpaceTerminatingReason                 = terminatingReason
+	SpaceTerminatingFailedReason           = terminatingFailedReason
 	SpaceUpdatingReason                    = updatingReason
 	SpaceNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
 )
