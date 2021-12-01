@@ -2621,7 +2621,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 				Properties: map[string]spec.Schema{
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
-							Description: "TargetCluster The cluster in which this Space is provisioned If not set then the target cluster will be picked automatically",
+							Description: "TargetCluster The cluster in which this Space is going to be provisioned If not set then the target cluster will be picked automatically",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2648,6 +2648,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 				Description: "SpaceStatus defines the observed state of Space",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"targetCluster": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TargetCluster The cluster in which this Space is actually provisioned Can be empty if provisioning did not start or failed To be used to de-provision the NSTemplateSet if the Spec.TargetCluster changes",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{

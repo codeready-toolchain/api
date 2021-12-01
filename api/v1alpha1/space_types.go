@@ -29,7 +29,7 @@ const (
 // +k8s:openapi-gen=true
 type SpaceSpec struct {
 
-	// TargetCluster The cluster in which this Space is provisioned
+	// TargetCluster The cluster in which this Space is going to be provisioned
 	// If not set then the target cluster will be picked automatically
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
@@ -42,6 +42,12 @@ type SpaceSpec struct {
 // SpaceStatus defines the observed state of Space
 // +k8s:openapi-gen=true
 type SpaceStatus struct {
+
+	// TargetCluster The cluster in which this Space is currently provisioned
+	// Can be empty if provisioning did not start or failed
+	// To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed
+	// +optional
+	TargetCluster string `json:"targetCluster,omitempty"`
 
 	// Conditions is an array of current Space conditions
 	// Supported condition types: ConditionReady
