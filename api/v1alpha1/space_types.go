@@ -43,9 +43,9 @@ type SpaceSpec struct {
 // +k8s:openapi-gen=true
 type SpaceStatus struct {
 
-	// TargetCluster The cluster in which this Space is actually provisioned
+	// TargetCluster The cluster in which this Space is currently provisioned
 	// Can be empty if provisioning did not start or failed
-	// To be used to de-provision the NSTemplateSet if the Spec.TargetCluster changes
+	// To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
 
