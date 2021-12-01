@@ -2650,7 +2650,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 				Properties: map[string]spec.Schema{
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
-							Description: "TargetCluster The cluster in which this Space is actually provisioned Can be empty if provisioning did not start or failed To be used to de-provision the NSTemplateSet if the Spec.TargetCluster changes",
+							Description: "TargetCluster The cluster in which this Space is currently provisioned Can be empty if provisioning did not start or failed To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed",
 							Type:        []string{"string"},
 							Format:      "",
 						},
