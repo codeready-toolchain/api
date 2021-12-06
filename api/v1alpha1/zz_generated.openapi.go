@@ -43,6 +43,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                            schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":         schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.HostRoutes":                            schema_codeready_toolchain_api_api_v1alpha1_HostRoutes(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Idler":                                 schema_codeready_toolchain_api_api_v1alpha1_Idler(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec":                             schema_codeready_toolchain_api_api_v1alpha1_IdlerSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus":                           schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref),
@@ -776,6 +777,52 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(r
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_HostRoutes(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "HostRoutes contains information about the public routes available to the user in the host cluster",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"proxyURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ProxyURL is the Proxy URL of the cluster",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current member operator status conditions Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
@@ -2621,7 +2668,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 				Properties: map[string]spec.Schema{
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
-							Description: "TargetCluster The cluster in which this Space is provisioned If not set then the target cluster will be picked automatically",
+							Description: "TargetCluster The cluster in which this Space is going to be provisioned If not set then the target cluster will be picked automatically",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2648,6 +2695,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 				Description: "SpaceStatus defines the observed state of Space",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"targetCluster": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TargetCluster The cluster in which this Space is currently provisioned Can be empty if provisioning did not start or failed To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -3567,6 +3621,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref commo
 							},
 						},
 					},
+					"hostRoutes": {
+						SchemaProps: spec.SchemaProps{
+							Description: "HostRoutes/URLs of the host cluster, such as Proxy URL",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.HostRoutes"),
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -3595,7 +3656,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref commo
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus", "github.com/codeready-toolchain/api/api/v1alpha1.Member"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus", "github.com/codeready-toolchain/api/api/v1alpha1.HostRoutes", "github.com/codeready-toolchain/api/api/v1alpha1.Member"},
 	}
 }
 

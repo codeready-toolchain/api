@@ -38,6 +38,10 @@ const (
 	ToolchainStatusRegServiceReadyReason    = "RegServiceReady"
 	ToolchainStatusRegServiceNotReadyReason = "RegServiceNotReady"
 
+	// Host routes reasons
+	ToolchainStatusProxyRouteUnavailableReason = "ProxyRouteUnavailable"
+	ToolchainStatusHostRoutesAvailableReason   = "HostRoutesAvailable"
+
 	// member status reasons
 	ToolchainStatusMemberStatusNotFoundReason                  = "MemberStatusNotFound"
 	ToolchainStatusMemberToolchainClusterMissingReason         = "MemberToolchainClusterMissing"
@@ -96,7 +100,28 @@ type ToolchainStatusStatus struct {
 	// +patchStrategy=merge
 	Metrics map[string]Metric `json:"metrics,omitempty" patchStrategy:"merge"`
 
+	// HostRoutes/URLs of the host cluster, such as Proxy URL
+	// +optional
+	HostRoutes HostRoutes `json:"hostRoutes,omitempty"`
+
 	// Conditions is an array of the current overall toolchain status conditions
+	// Supported condition types: ConditionReady
+	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=type
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+}
+
+// HostRoutes contains information about the public routes available to the user in the host cluster
+// +k8s:openapi-gen=true
+type HostRoutes struct {
+	// ProxyURL is the Proxy URL of the cluster
+	// +optional
+	ProxyURL string `json:"proxyURL,omitempty"`
+
+	// Conditions is an array of current member operator status conditions
 	// Supported condition types: ConditionReady
 	// +optional
 	// +patchMergeKey=type
