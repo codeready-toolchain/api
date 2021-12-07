@@ -6,7 +6,7 @@ A few sentences describing the overall goals of the pull request's commits.
 
 2. Did `make generate` change anything in other projects (host-operator, member-operator)? **[yes/no]**
 
-3. In case of **new** CRD, did you also update `resources/setup/roles/host.yaml` ?
+3. In case of **new** CRD, did you also update make/generate.mk in this repository and `resources/setup/roles/host.yaml` in the sandbox-sre repository?
 
 4. In case other projects are changed, please provides PR links.
     - host-operator: https://github.com/codeready-toolchain/host-operator/pull/#
