@@ -27,15 +27,21 @@ const (
 // +k8s:openapi-gen=true
 type TemplateUpdateRequestSpec struct {
 	// The name of the tier to be updated
-	TierName string `json:"tierName"`
+	// +optional
+	TierName string `json:"tierName,omitempty"`
 
 	// The namespace templates
+	// +optional
 	// +listType=atomic
 	Namespaces []NSTemplateTierNamespace `json:"namespaces"`
 
 	// the cluster resources template (for cluster-wide quotas, etc.)
 	// +optional
 	ClusterResources *NSTemplateTierClusterResources `json:"clusterResources,omitempty"`
+
+	// Holds the value from “toolchain.dev.openshift.com/<tiername>-tier-hash” label of the associated Space CR at the time when TemplateUpdateRequest CR is created
+	// +optional
+	CurrentHash string `json:"currentHash,omitempty"`
 }
 
 // TemplateUpdateRequestStatus defines the observed state of TemplateUpdateRequest
