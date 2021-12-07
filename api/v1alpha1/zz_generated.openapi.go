@@ -2820,7 +2820,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref c
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources"),
 						},
 					},
-					"currentHash": {
+					"currentTierHash": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Holds the value from “toolchain.dev.openshift.com/<tiername>-tier-hash” label of the associated Space CR at the time when TemplateUpdateRequest CR is created",
 							Type:        []string{"string"},

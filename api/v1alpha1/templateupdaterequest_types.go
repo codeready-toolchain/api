@@ -41,7 +41,7 @@ type TemplateUpdateRequestSpec struct {
 
 	// Holds the value from “toolchain.dev.openshift.com/<tiername>-tier-hash” label of the associated Space CR at the time when TemplateUpdateRequest CR is created
 	// +optional
-	CurrentHash string `json:"currentHash,omitempty"`
+	CurrentTierHash string `json:"currentTierHash,omitempty"`
 }
 
 // TemplateUpdateRequestStatus defines the observed state of TemplateUpdateRequest
