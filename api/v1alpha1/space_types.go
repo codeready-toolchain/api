@@ -17,6 +17,7 @@ const (
 	// Status condition reasons
 	SpaceUnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
 	SpaceProvisioningReason                = provisioningReason
+	SpaceProvisioningPendingReason         = "ProvisioningPending"
 	SpaceProvisioningFailedReason          = "UnableToProvision"
 	SpaceProvisionedReason                 = provisionedReason
 	SpaceTerminatingReason                 = terminatingReason
