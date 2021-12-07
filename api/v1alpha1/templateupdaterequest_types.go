@@ -33,7 +33,7 @@ type TemplateUpdateRequestSpec struct {
 	// The namespace templates
 	// +optional
 	// +listType=atomic
-	Namespaces []NSTemplateTierNamespace `json:"namespaces"`
+	Namespaces []NSTemplateTierNamespace `json:"namespaces,omitempty"`
 
 	// the cluster resources template (for cluster-wide quotas, etc.)
 	// +optional
