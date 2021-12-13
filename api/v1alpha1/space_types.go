@@ -24,6 +24,7 @@ const (
 	SpaceTerminatingFailedReason           = terminatingFailedReason
 	SpaceUpdatingReason                    = updatingReason
 	SpaceNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
+	SpaceStatusUpdateFailedReason = "UnableToUpsateStatus"
 )
 
 // SpaceSpec defines the desired state of Space
