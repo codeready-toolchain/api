@@ -18,7 +18,7 @@ const (
 
 	// Status condition reasons
 	ChangeTierRequestChangedReason       = "Changed"
-	ChangeTierRequestChangeFiledReason   = "ChangeFailed"
+	ChangeTierRequestChangeFailedReason  = "ChangeFailed"
 	ChangeTierRequestDeletionErrorReason = "UnableToDeleteChangeTierRequest"
 )
 
