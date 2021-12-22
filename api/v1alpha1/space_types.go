@@ -24,6 +24,8 @@ const (
 	SpaceTerminatingFailedReason           = terminatingFailedReason
 	SpaceUpdatingReason                    = updatingReason
 	SpaceNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
+	SpaceRetargetingReason                 = "Retargeting"
+	SpaceRetargetingFailedReason           = "UnableToRetarget"
 )
 
 // SpaceSpec defines the desired state of Space
