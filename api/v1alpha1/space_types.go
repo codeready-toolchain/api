@@ -16,6 +16,7 @@ const (
 const (
 	// Status condition reasons
 	SpaceUnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
+	SpaceUnableToUpdateNSTemplateSetReason = "UnableToUpdateNSTemplateSet"
 	SpaceProvisioningReason                = provisioningReason
 	SpaceProvisioningPendingReason         = "ProvisioningPending"
 	SpaceProvisioningFailedReason          = "UnableToProvision"
@@ -23,7 +24,6 @@ const (
 	SpaceTerminatingReason                 = terminatingReason
 	SpaceTerminatingFailedReason           = terminatingFailedReason
 	SpaceUpdatingReason                    = updatingReason
-	SpaceNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
 	SpaceRetargetingReason                 = "Retargeting"
 	SpaceRetargetingFailedReason           = "UnableToRetarget"
 )
