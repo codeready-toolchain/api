@@ -62,6 +62,8 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.Members":                               schema_codeready_toolchain_api_api_v1alpha1_Members(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig":                         schema_codeready_toolchain_api_api_v1alpha1_MetricsConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSet":                         schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources":         schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetClusterResources(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace":                schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetNamespace(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec":                     schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus":                   schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTier":                        schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTier(ref),
@@ -1593,6 +1595,50 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref common.Refere
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetClusterResources(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NSTemplateSetClusterResources defines the cluster-scoped resources associated with a given user",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"templateRef": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"templateRef"},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetNamespace(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"templateRef": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"templateRef"},
+			},
+		},
 	}
 }
 

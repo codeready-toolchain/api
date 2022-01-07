@@ -47,6 +47,7 @@ type NSTemplateSetSpec struct {
 }
 
 // NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
+// +k8s:openapi-gen=true
 type NSTemplateSetNamespace struct {
 
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
@@ -54,6 +55,7 @@ type NSTemplateSetNamespace struct {
 }
 
 // NSTemplateSetClusterResources defines the cluster-scoped resources associated with a given user
+// +k8s:openapi-gen=true
 type NSTemplateSetClusterResources struct {
 
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
