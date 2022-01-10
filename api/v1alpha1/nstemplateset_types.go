@@ -47,20 +47,16 @@ type NSTemplateSetSpec struct {
 }
 
 // NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
+// +k8s:openapi-gen=true
 type NSTemplateSetNamespace struct {
-	// Optional field. Used to specify a custom template
-	// +optional
-	Template string `json:"template,omitempty"`
 
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
 	TemplateRef string `json:"templateRef"`
 }
 
 // NSTemplateSetClusterResources defines the cluster-scoped resources associated with a given user
+// +k8s:openapi-gen=true
 type NSTemplateSetClusterResources struct {
-	// Template contains an OpenShift Template to be used for provisioning of cluster-scoped resources
-	// +optional
-	Template string `json:"template,omitempty"`
 
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
 	TemplateRef string `json:"templateRef"`
