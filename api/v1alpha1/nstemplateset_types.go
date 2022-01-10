@@ -44,6 +44,11 @@ type NSTemplateSetSpec struct {
 	// the cluster resources template (for cluster-wide quotas, etc.)
 	// +optional
 	ClusterResources *NSTemplateSetClusterResources `json:"clusterResources,omitempty"`
+
+	// the role template and the users to whom the templates should be applied to
+	// +optional
+	// +listType=atomic
+	SpaceRoles []NSTemplateSetSpaceRole `json:"spaceRoles,omitempty"`
 }
 
 // NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
@@ -60,6 +65,18 @@ type NSTemplateSetClusterResources struct {
 
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
 	TemplateRef string `json:"templateRef"`
+}
+
+// NSTemplateSetSpaceRole the role template and the users to whom the templates should be applied to
+// +k8s:openapi-gen=true
+type NSTemplateSetSpaceRole struct {
+
+	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
+	TemplateRef string `json:"templateRef"`
+
+	// Usernames the usernames to which the template applies
+	// +optional
+	Usernames []string `json:"usernames,omitempty"`
 }
 
 // NSTemplateSetStatus defines the observed state of NSTemplateSet

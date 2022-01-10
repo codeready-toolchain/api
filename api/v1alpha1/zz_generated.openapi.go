@@ -64,6 +64,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSet":                         schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources":         schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetClusterResources(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace":                schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetNamespace(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole":                schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpaceRole(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec":                     schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetStatus":                   schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTier":                        schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTier(ref),
@@ -1642,6 +1643,43 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetNamespace(ref comm
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpaceRole(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NSTemplateSetSpaceRole the role template and the users to whom the templates should be applied to",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"templateRef": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"usernames": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Usernames the usernames to which the template applies",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"templateRef"},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -1682,12 +1720,31 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpec(ref common.Re
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources"),
 						},
 					},
+					"spaceRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "the role template and the users to whom the templates should be applied to",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole"),
+									},
+								},
+							},
+						},
+					},
 				},
 				Required: []string{"tierName", "namespaces"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole"},
 	}
 }
 
