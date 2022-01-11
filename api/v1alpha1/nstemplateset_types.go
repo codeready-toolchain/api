@@ -75,8 +75,7 @@ type NSTemplateSetSpaceRole struct {
 	TemplateRef string `json:"templateRef"`
 
 	// Usernames the usernames to which the template applies
-	// +optional
-	Usernames []string `json:"usernames,omitempty"`
+	Usernames []string `json:"usernames"`
 }
 
 // NSTemplateSetStatus defines the observed state of NSTemplateSet

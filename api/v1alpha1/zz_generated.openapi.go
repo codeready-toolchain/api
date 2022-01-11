@@ -1674,7 +1674,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpaceRole(ref comm
 						},
 					},
 				},
-				Required: []string{"templateRef"},
+				Required: []string{"templateRef", "usernames"},
 			},
 		},
 	}
