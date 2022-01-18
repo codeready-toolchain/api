@@ -2869,17 +2869,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingSpec(ref common.Ref
 				Description: "SpaceBindingSpec defines the desired state of SpaceBinding",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"murName": {
+					"masterUserRecord": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The MurName is a name of the MasterUserRecord this SpaceBinding belongs to.",
+							Description: "The MasterUserRecord is a name of the MasterUserRecord this SpaceBinding belongs to.",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
-					"spaceName": {
+					"space": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The SpaceName is a name of the Space this SpaceBinding is bound to.",
+							Description: "The Space is a name of the Space this SpaceBinding is bound to.",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -2894,7 +2894,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingSpec(ref common.Ref
 						},
 					},
 				},
-				Required: []string{"murName", "spaceName", "spaceRole"},
+				Required: []string{"masterUserRecord", "space", "spaceRole"},
 			},
 		},
 	}
