@@ -5,11 +5,11 @@ import (
 )
 
 const (
-	// SpaceLabelKey is used to label the SpaceBinding with the name of the Space it is bound to
-	SpaceLabelKey = LabelKeyPrefix + "space"
+	// SpaceBindingSpaceLabelKey is used to label the SpaceBinding with the name of the Space it is bound to
+	SpaceBindingSpaceLabelKey = LabelKeyPrefix + "space"
 
-	// MasterUserRecordLabelKey is used to label the SpaceBinding with the name of the MasterUserRecord it belongs to
-	MasterUserRecordLabelKey = LabelKeyPrefix + "masteruserrecord"
+	// SpaceBindingMasterUserRecordLabelKey is used to label the SpaceBinding with the name of the MasterUserRecord it belongs to
+	SpaceBindingMasterUserRecordLabelKey = LabelKeyPrefix + "masteruserrecord"
 )
 
 // SpaceBindingSpec defines the desired state of SpaceBinding
