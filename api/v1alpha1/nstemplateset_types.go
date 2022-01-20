@@ -5,13 +5,14 @@ import (
 )
 
 const (
-	OwnerLabelKey               = LabelKeyPrefix + "owner"
-	TypeLabelKey                = LabelKeyPrefix + "type"
-	TemplateRefLabelKey         = LabelKeyPrefix + "templateref"
-	LastSpaceRolesAnnotationKey = LabelKeyPrefix + "last-space-roles"
-	TierLabelKey                = LabelKeyPrefix + "tier"
-	ProviderLabelKey            = LabelKeyPrefix + "provider"
-	ProviderLabelValue          = "codeready-toolchain"
+	OwnerLabelKey       = LabelKeyPrefix + "owner"
+	TypeLabelKey        = LabelKeyPrefix + "type"
+	TemplateRefLabelKey = LabelKeyPrefix + "templateref"
+	TierLabelKey        = LabelKeyPrefix + "tier"
+	ProviderLabelKey    = LabelKeyPrefix + "provider"
+	ProviderLabelValue  = "codeready-toolchain"
+
+	LastAppliedSpaceRolesAnnotationKey = LabelKeyPrefix + "last-applied-space-roles"
 )
 
 // These are valid status condition reasons of a NSTemplateSet
