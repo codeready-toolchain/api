@@ -26,6 +26,14 @@ const (
 	SpaceUpdatingReason                    = updatingReason
 	SpaceRetargetingReason                 = "Retargeting"
 	SpaceRetargetingFailedReason           = "UnableToRetarget"
+
+	// SpaceStateLabelKey is used for setting the actual/expected state of Spaces (pending, or empty).
+	// The main purpose of the label is easy selecting the Spaces based on the state - eg. get all Spaces on the waiting list (state=pending).
+	SpaceStateLabelKey = StateLabelKey
+	// SpaceStateLabelValuePending is used for identifying that the Space is waiting for assigning an available cluster
+	SpaceStateLabelValuePending = StateLabelValuePending
+	// SpaceStateLabelValueClusterAssigned is used for identifying that the Space has an assigned cluster
+	SpaceStateLabelValueClusterAssigned = "cluster-assigned"
 )
 
 // SpaceSpec defines the desired state of Space
@@ -39,7 +47,9 @@ type SpaceSpec struct {
 
 	// TierName is a required property introduced to retain the name of the tier
 	// for which this Space is provisioned
-	TierName string `json:"tierName"`
+	// If not set then the tier name will be set automatically
+	// +optional
+	TierName string `json:"tierName,omitempty"`
 }
 
 // SpaceStatus defines the observed state of Space
