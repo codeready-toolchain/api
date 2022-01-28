@@ -2927,14 +2927,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 					},
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
-							Description: "TierName is a required property introduced to retain the name of the tier for which this Space is provisioned",
-							Default:     "",
+							Description: "TierName is a required property introduced to retain the name of the tier for which this Space is provisioned If not set then the tier name will be set automatically",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 				},
-				Required: []string{"tierName"},
 			},
 		},
 	}
