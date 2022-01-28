@@ -1,7 +1,7 @@
 package v1alpha1
 
 import (
-	apiv1 "k8s.io/api/core/v1"
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -29,7 +29,7 @@ type Condition struct {
 	// Type of condition
 	Type ConditionType `json:"type"`
 	// Status of the condition, one of True, False, Unknown.
-	Status apiv1.ConditionStatus `json:"status"`
+	Status corev1.ConditionStatus `json:"status"`
 	// Last time the condition transit from one status to another.
 	// +optional
 	LastTransitionTime metav1.Time `json:"lastTransitionTime,omitempty"`

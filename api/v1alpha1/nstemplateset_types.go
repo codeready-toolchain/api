@@ -11,6 +11,8 @@ const (
 	TierLabelKey        = LabelKeyPrefix + "tier"
 	ProviderLabelKey    = LabelKeyPrefix + "provider"
 	ProviderLabelValue  = "codeready-toolchain"
+
+	LastAppliedSpaceRolesAnnotationKey = LabelKeyPrefix + "last-applied-space-roles"
 )
 
 // These are valid status condition reasons of a NSTemplateSet
@@ -20,6 +22,7 @@ const (
 	NSTemplateSetUnableToProvisionReason                 = "UnableToProvision"
 	NSTemplateSetUnableToProvisionNamespaceReason        = "UnableToProvisionNamespace"
 	NSTemplateSetUnableToProvisionClusterResourcesReason = "UnableToProvisionClusteResources"
+	NSTemplateSetUnableToProvisionSpaceRolesReason       = "UnableToProvisionSpaceRoles"
 	NSTemplateSetTerminatingReason                       = terminatingReason
 	NSTemplateSetTerminatingFailedReason                 = terminatingFailedReason
 	NSTemplateSetUpdatingReason                          = updatingReason
