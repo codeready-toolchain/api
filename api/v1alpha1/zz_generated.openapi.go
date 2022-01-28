@@ -1229,7 +1229,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCall
 				Properties: map[string]spec.Schema{
 					"apiEndpoint": {
 						SchemaProps: spec.SchemaProps{
-							Description: "ApiEndpoint is the server API URL of the cluster",
+							Description: "APIEndpoint is the server API URL of the cluster",
 							Type:        []string{"string"},
 							Format:      "",
 						},

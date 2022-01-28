@@ -3,7 +3,7 @@ package v1alpha1
 // Most of the code was copied from the KubeFedCluster CRD of the KubeFed project https://github.com/kubernetes-sigs/kubefed
 
 import (
-	apiv1 "k8s.io/api/core/v1"
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -102,7 +102,7 @@ type ToolchainClusterCondition struct {
 	// Type of cluster condition, Ready or Offline.
 	Type ToolchainClusterConditionType `json:"type"`
 	// Status of the condition, one of True, False, Unknown.
-	Status apiv1.ConditionStatus `json:"status"`
+	Status corev1.ConditionStatus `json:"status"`
 	// Last time the condition was checked.
 	LastProbeTime metav1.Time `json:"lastProbeTime"`
 	// Last time the condition transit from one status to another.
