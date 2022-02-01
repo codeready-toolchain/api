@@ -33,6 +33,8 @@ const (
 	UserVerificationAttemptsAnnotationKey = LabelKeyPrefix + "verification-attempts"
 	// UserVerificationExpiryAnnotationKey is used for the usersignup verification expiry annotation key
 	UserVerificationExpiryAnnotationKey = LabelKeyPrefix + "verification-expiry"
+	// SkipAutoCreateSpaceAnnotationKey when true signals the usersignup controller to skip Space creation, otherwise a Space will be created by default
+	SkipAutoCreateSpaceAnnotationKey = LabelKeyPrefix + "skip-auto-create-space"
 
 	// UserSignupActivationCounterAnnotationKey is used for the usersignup activation counter annotation key
 	// Activations are counted after phone verification succeeded
@@ -72,6 +74,8 @@ const (
 	UserSignupUnableToUpdateAnnotationReason       = "UnableToUpdateAnnotation"
 	UserSignupUnableToUpdateStateLabelReason       = "UnableToUpdateStateLabel"
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
+	UserSignupUnableToCreateSpaceReason            = "UnableToCreateSpace"
+	UserSignupUnableToDeleteSpaceReason            = "UnableToDeleteSpace"
 
 	// The UserSignupUserDeactivatingReason constant will be replaced with UserSignupDeactivationInProgressReason
 	// in order to reduce ambiguity.  The "Deactivating" state should only refer to the period of time before the
