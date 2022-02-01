@@ -33,7 +33,7 @@ const (
 	UserVerificationAttemptsAnnotationKey = LabelKeyPrefix + "verification-attempts"
 	// UserVerificationExpiryAnnotationKey is used for the usersignup verification expiry annotation key
 	UserVerificationExpiryAnnotationKey = LabelKeyPrefix + "verification-expiry"
-	// SkipAutoCreateSpaceAnnotationKey when true signals the usersignup controller to skip Space creation, otherwise a Space will be created
+	// SkipAutoCreateSpaceAnnotationKey when true signals the usersignup controller to skip Space creation, otherwise a Space will be created by default
 	SkipAutoCreateSpaceAnnotationKey = LabelKeyPrefix + "skip-auto-create-space"
 
 	// UserSignupActivationCounterAnnotationKey is used for the usersignup activation counter annotation key
