@@ -1884,7 +1884,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRoles"),
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRole"),
 									},
 								},
 							},
@@ -1902,7 +1902,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRoles"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRole"},
 	}
 }
 
