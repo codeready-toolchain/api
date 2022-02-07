@@ -1870,6 +1870,27 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources"),
 						},
 					},
+					"spaceRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-map-type":       "atomic",
+								"x-kubernetes-patch-strategy": "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "the templates to set the spaces roles, indexed by role",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRoles"),
+									},
+								},
+							},
+						},
+					},
 					"deactivationTimeoutDays": {
 						SchemaProps: spec.SchemaProps{
 							Description: "the period (in days) after which users within the tier will be deactivated",
@@ -1882,7 +1903,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRoles"},
 	}
 }
 
