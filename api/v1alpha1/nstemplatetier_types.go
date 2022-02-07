@@ -27,7 +27,7 @@ type NSTemplateTierSpec struct {
 	// the cluster resources template (for cluster-wide quotas, etc.)
 	// +optional
 	ClusterResources *NSTemplateTierClusterResources `json:"clusterResources,omitempty"`
-	
+
 	// the templates to set the spaces roles, indexed by role
 	// +optional
 	// +mapType=atomic
