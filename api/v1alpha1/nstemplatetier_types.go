@@ -27,11 +27,11 @@ type NSTemplateTierSpec struct {
 	// the cluster resources template (for cluster-wide quotas, etc.)
 	// +optional
 	ClusterResources *NSTemplateTierClusterResources `json:"clusterResources,omitempty"`
-
+	
 	// the templates to set the spaces roles, indexed by role
-	// +patchStrategy=merge
+	// +optional
 	// +mapType=atomic
-	SpaceRoles map[string]NSTemplateTierSpaceRoles `json:"spaceRoles,omitempty" patchStrategy:"merge"`
+	SpaceRoles map[string]NSTemplateTierSpaceRoles `json:"spaceRoles,omitempty"`
 
 	// the period (in days) after which users within the tier will be deactivated
 	// +optional

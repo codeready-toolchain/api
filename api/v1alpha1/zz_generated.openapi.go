@@ -1873,8 +1873,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 					"spaceRoles": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
-								"x-kubernetes-map-type":       "atomic",
-								"x-kubernetes-patch-strategy": "merge",
+								"x-kubernetes-map-type": "atomic",
 							},
 						},
 						SchemaProps: spec.SchemaProps{
