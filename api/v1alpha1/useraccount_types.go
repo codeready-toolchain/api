@@ -18,6 +18,11 @@ const (
 	UserAccountTerminatingReason                 = terminatingReason
 	UserAccountUpdatingReason                    = updatingReason
 	UserAccountNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
+
+	// #### ANNOTATIONS ####
+	// UserEmailAnnotationKey is used to store the user's email in an annotation of UserAccount and User CRs
+	// (Note: key is the same as for the MasterUserRecord email annotation)
+	UserEmailAnnotationKey = MasterUserRecordEmailAnnotationKey
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
