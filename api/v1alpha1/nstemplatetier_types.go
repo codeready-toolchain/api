@@ -28,6 +28,11 @@ type NSTemplateTierSpec struct {
 	// +optional
 	ClusterResources *NSTemplateTierClusterResources `json:"clusterResources,omitempty"`
 
+	// the templates to set the spaces roles, indexed by role
+	// +optional
+	// +mapType=atomic
+	SpaceRoles map[string]NSTemplateTierSpaceRole `json:"spaceRoles,omitempty"`
+
 	// the period (in days) after which users within the tier will be deactivated
 	// +optional
 	DeactivationTimeoutDays int `json:"deactivationTimeoutDays,omitempty"`
@@ -41,6 +46,12 @@ type NSTemplateTierNamespace struct {
 
 // NSTemplateTierClusterResources defines the cluster-scoped resources associated with a given user
 type NSTemplateTierClusterResources struct {
+	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
+	TemplateRef string `json:"templateRef"`
+}
+
+// NSTemplateTierSpaceRole the space roles definition in an NSTemplateTier resource
+type NSTemplateTierSpaceRole struct {
 	// TemplateRef The name of the TierTemplate resource which exists in the host cluster and which contains the template to use
 	TemplateRef string `json:"templateRef"`
 }
