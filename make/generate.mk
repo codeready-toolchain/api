@@ -17,7 +17,7 @@ generate: generate-deepcopy-and-crds generate-openapi dispatch-crds copy-reg-ser
 .PHONY: generate-deepcopy-and-crds
 generate-deepcopy-and-crds: remove-config controller-gen
 	@echo "Re-generating the deepcopy go file & the Toolchain CRD files... "
-	$(Q)$(CONTROLLER_GEN) crd:trivialVersions=true,preserveUnknownFields=false \
+	$(Q)$(CONTROLLER_GEN) crd \
 	object paths="./..." output:crd:artifacts:config=config/crd/bases
 	
 .PHONY: generate-openapi
