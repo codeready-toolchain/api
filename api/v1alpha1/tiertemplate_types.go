@@ -5,8 +5,14 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// ClusterResourcesType contains a type name of the template containing cluster-scoped resources
-const ClusterResourcesTemplateType = "clusterresources"
+const (
+	// ClusterResourcesType contains a type name of the template containing cluster-scoped resources
+	ClusterResourcesTemplateType = "clusterresources"
+
+	// TierTemplateObjectOptionalResourceAnnotation is annotation to be used to mark a TierTemplate object as optional.
+	// That means that it won't be applied if the corresponding API group is not present in the cluster.
+	TierTemplateObjectOptionalResourceAnnotation = LabelKeyPrefix + "optional-resource"
+)
 
 // TierTemplateSpec defines the desired state of TierTemplate
 // +k8s:openapi-gen=true
