@@ -64,15 +64,6 @@ type MasterUserRecordSpec struct {
 	// +optional
 	Disabled bool `json:"disabled,omitempty"`
 
-	// If set to true then the corresponding user has been banned from logging in and accessing their resources
-	// +optional
-	Banned bool `json:"banned,omitempty"`
-
-	// If set to true then the corresponding UserAccount should be deleted
-	// "false" is assumed by default
-	// +optional
-	Deprovisioned bool `json:"deprovisioned,omitempty"`
-
 	// The list of user accounts in the member clusters which belong to this MasterUserRecord
 	// +listType=map
 	// +listMapKey=targetCluster
