@@ -3,20 +3,20 @@ package v1alpha1
 import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
 const (
-	// ToolchainEventReady means the event has been setup successfully and passes validation requirements
-	ToolchainEventReady ConditionType = "Ready"
+	// SocialEventReady means the event has been setup successfully and passes validation requirements
+	SocialEventReady ConditionType = "Ready"
 
 	// Status condition reasons
-	ToolchainEventInvalidTierReason = "InvalidTier"
+	SocialEventInvalidTierReason = "InvalidTier"
 
-	ToolchainEventActivationCodeLabelKey = LabelKeyPrefix + "activation-code"
+	SocialEventActivationCodeLabelKey = LabelKeyPrefix + "activation-code"
 )
 
-// ToolchainEventSpec defines the parameters for a Toolchain event, such as a training session or workshop. Users
+// SocialEventSpec defines the parameters for a Toolchain event, such as a training session or workshop. Users
 // may register for the event by using the event's unique activation code
 //
 // +k8s:openapi-gen=true
-type ToolchainEventSpec struct {
+type SocialEventSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
@@ -46,13 +46,13 @@ type ToolchainEventSpec struct {
 	VerificationRequired bool `json:"verificationRequired,omitempty"`
 }
 
-// ToolchainEventStatus defines the observed state of ToolchainEvent
+// SocialEventStatus defines the observed state of SocialEvent
 // +k8s:openapi-gen=true
-type ToolchainEventStatus struct {
+type SocialEventStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Conditions is an array of current ToolchainEventStatus conditions
+	// Conditions is an array of current SocialEventStatus conditions
 	// Supported condition types:
 	// Ready
 	// +optional
@@ -68,7 +68,7 @@ type ToolchainEventStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// ToolchainEvent registers a toolchain event in the CodeReady Toolchain
+// SocialEvent registers a toolchain event in the CodeReady Toolchain
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
@@ -77,23 +77,23 @@ type ToolchainEventStatus struct {
 // +kubebuilder:printcolumn:name="Description",type="string",JSONPath=`.spec.description`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Toolchain Event"
-type ToolchainEvent struct {
+type SocialEvent struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   ToolchainEventSpec   `json:"spec,omitempty"`
-	Status ToolchainEventStatus `json:"status,omitempty"`
+	Spec   SocialEventSpec   `json:"spec,omitempty"`
+	Status SocialEventStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// ToolchainEventList contains a list of ToolchainEvent
-type ToolchainEventList struct {
+// SocialEventList contains a list of SocialEvent
+type SocialEventList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ToolchainEvent `json:"items"`
+	Items           []SocialEvent `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&ToolchainEvent{}, &ToolchainEventList{})
+	SchemeBuilder.Register(&SocialEvent{}, &SocialEventList{})
 }
