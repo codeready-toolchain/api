@@ -1056,20 +1056,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 							Format:      "",
 						},
 					},
-					"banned": {
-						SchemaProps: spec.SchemaProps{
-							Description: "If set to true then the corresponding user has been banned from logging in and accessing their resources",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-					"deprovisioned": {
-						SchemaProps: spec.SchemaProps{
-							Description: "If set to true then the corresponding UserAccount should be deleted \"false\" is assumed by default",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
 					"userAccounts": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
