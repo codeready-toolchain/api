@@ -99,9 +99,6 @@ type UserAccountEmbedded struct {
 	// SyncIndex is to be updated by UserAccount Controller
 	// when the member needs to trigger MasterUserRecord <-> UserAccount synchronization
 	SyncIndex string `json:"syncIndex"`
-
-	// The spec of the corresponding UserAccount
-	Spec UserAccountSpecEmbedded `json:"spec"`
 }
 
 // MasterUserRecordStatus defines the observed state of MasterUserRecord
