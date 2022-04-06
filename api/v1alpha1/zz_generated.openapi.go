@@ -116,7 +116,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccount":                           schema_codeready_toolchain_api_api_v1alpha1_UserAccount(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec":                       schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecBase":                   schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecEmbedded":               schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus":                     schema_codeready_toolchain_api_api_v1alpha1_UserAccountStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignup":                            schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec":                        schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref),
@@ -4025,36 +4024,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref common.
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "UserAccountSpecBase defines the common fields between UserAccountSpec and UserAccountSpecEmbedded",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"nsLimit": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The namespace limit name",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"nsTemplateSet": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Namespace template set",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
-						},
-					},
-				},
-				Required: []string{"nsLimit"},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecEmbedded(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "UserAccountSpecEmbedded defines the desired state of UserAccount",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"nsLimit": {

@@ -117,16 +117,6 @@ type MasterUserRecordStatus struct {
 	ProvisionedTime *metav1.Time `json:"provisionedTime,omitempty"`
 }
 
-// UserAccountSpecEmbedded defines the desired state of UserAccount
-// +k8s:openapi-gen=true
-type UserAccountSpecEmbedded struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
-	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
-
-	// Inherits the base spec fields from the corresponding UserAccount
-	UserAccountSpecBase `json:",inline"`
-}
-
 type UserAccountStatusEmbedded struct {
 
 	// Cluster is the cluster in which the user exists
