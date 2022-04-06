@@ -1056,20 +1056,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 							Format:      "",
 						},
 					},
-					"banned": {
-						SchemaProps: spec.SchemaProps{
-							Description: "If set to true then the corresponding user has been banned from logging in and accessing their resources",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-					"deprovisioned": {
-						SchemaProps: spec.SchemaProps{
-							Description: "If set to true then the corresponding UserAccount should be deleted \"false\" is assumed by default",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
 					"userAccounts": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -2743,7 +2729,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SocialEvent(ref common.Referenc
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SocialEvent registers a toolchain event in the CodeReady Toolchain",
+				Description: "SocialEvent registers a social event in Dev Sandbox",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -2790,7 +2776,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SocialEventSpec(ref common.Refe
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SocialEventSpec defines the parameters for a Toolchain event, such as a training session or workshop. Users may register for the event by using the event's unique activation code",
+				Description: "SocialEventSpec defines the parameters for a Social event, such as a training session or workshop. Users may register for the event by using the event's unique activation code",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"startTime": {
