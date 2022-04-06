@@ -12,7 +12,7 @@ const (
 	SocialEventActivationCodeLabelKey = LabelKeyPrefix + "activation-code"
 )
 
-// SocialEventSpec defines the parameters for a Toolchain event, such as a training session or workshop. Users
+// SocialEventSpec defines the parameters for a Social event, such as a training session or workshop. Users
 // may register for the event by using the event's unique activation code
 //
 // +k8s:openapi-gen=true
