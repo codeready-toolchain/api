@@ -7,17 +7,15 @@ import (
 // These are valid status condition reasons of a UserAccount
 const (
 	// Status condition reasons
-	UserAccountUnableToCreateUserReason          = "UnableToCreateUser"
-	UserAccountUnableToCreateIdentityReason      = "UnableToCreateIdentity"
-	UserAccountUnableToCreateMappingReason       = "UnableToCreateMapping"
-	UserAccountUnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
-	UserAccountProvisioningReason                = provisioningReason
-	UserAccountProvisionedReason                 = provisionedReason
-	UserAccountDisabledReason                    = disabledReason
-	UserAccountDisablingReason                   = "Disabling"
-	UserAccountTerminatingReason                 = terminatingReason
-	UserAccountUpdatingReason                    = updatingReason
-	UserAccountNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
+	UserAccountUnableToCreateUserReason     = "UnableToCreateUser"
+	UserAccountUnableToCreateIdentityReason = "UnableToCreateIdentity"
+	UserAccountUnableToCreateMappingReason  = "UnableToCreateMapping"
+	UserAccountProvisioningReason           = provisioningReason
+	UserAccountProvisionedReason            = provisionedReason
+	UserAccountDisabledReason               = disabledReason
+	UserAccountDisablingReason              = "Disabling"
+	UserAccountTerminatingReason            = terminatingReason
+	UserAccountUpdatingReason               = updatingReason
 
 	// #### ANNOTATIONS ####
 	// UserEmailAnnotationKey is used to store the user's email in an annotation of UserAccount and User CRs
