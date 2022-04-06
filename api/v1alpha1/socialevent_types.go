@@ -68,7 +68,7 @@ type SocialEventStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// SocialEvent registers a toolchain event in the CodeReady Toolchain
+// SocialEvent registers a social event in Dev Sandbox
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
