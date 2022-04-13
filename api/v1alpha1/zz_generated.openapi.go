@@ -115,7 +115,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccount":                           schema_codeready_toolchain_api_api_v1alpha1_UserAccount(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec":                       schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpecBase":                   schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus":                     schema_codeready_toolchain_api_api_v1alpha1_UserAccountStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignup":                            schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec":                        schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref),
@@ -3989,20 +3988,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 							Format:      "",
 						},
 					},
-					"nsLimit": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The namespace limit name",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"nsTemplateSet": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Namespace template set",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
-						},
-					},
 					"originalSub": {
 						SchemaProps: spec.SchemaProps{
 							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
@@ -4011,41 +3996,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 						},
 					},
 				},
-				Required: []string{"userID", "nsLimit"},
+				Required: []string{"userID"},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpecBase(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "UserAccountSpecBase defines the common fields between UserAccountSpec and UserAccountSpecEmbedded",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"nsLimit": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The namespace limit name",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"nsTemplateSet": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Namespace template set",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"),
-						},
-					},
-				},
-				Required: []string{"nsLimit"},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpec"},
 	}
 }
 
