@@ -120,6 +120,9 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignup":                            schema_codeready_toolchain_api_api_v1alpha1_UserSignup(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupSpec":                        schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus":                      schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserTier":                              schema_codeready_toolchain_api_api_v1alpha1_UserTier(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec":                          schema_codeready_toolchain_api_api_v1alpha1_UserTierSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.UserTierStatus":                        schema_codeready_toolchain_api_api_v1alpha1_UserTierStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_UsersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig":                         schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref),
 	}
@@ -4263,6 +4266,136 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_UserTier(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserTier contains user-specific configuration",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserTierStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec", "github.com/codeready-toolchain/api/api/v1alpha1.UserTierStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_UserTierSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserTierSpec defines the desired state of UserTier",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"deactivationTimeoutDays": {
+						SchemaProps: spec.SchemaProps{
+							Description: "the period (in days) after which users within the tier will be deactivated",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_UserTierStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "UserTierStatus defines the observed state of UserTier",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current UserTier conditions Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+					"updates": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"startTime",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "startTime",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Updates is an array of all UserTier updates",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserTierHistory"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.UserTierHistory"},
 	}
 }
 
