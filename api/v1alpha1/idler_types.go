@@ -6,9 +6,14 @@ import (
 
 // These are valid conditions of an Idler
 const (
+	// IdlerActivatedNotificationCreated is used to track the status of the notification send to a user
+	// when the idler is active for the very first time in user's namespace
+	IdlerActivatedNotificationCreated ConditionType = "IdlerActivatedNotificationCreated"
+
 	// Status condition reasons
 	IdlerUnableToEnsureIdlingReason = "UnableToEnsureIdling"
 	IdlerRunningReason              = "Running"
+	IdlerActivated                  = "IdlerRunningFirstTime"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.

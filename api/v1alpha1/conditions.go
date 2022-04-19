@@ -12,9 +12,6 @@ type ConditionType string
 const (
 	// ConditionReady specifies that the resource is ready
 	ConditionReady ConditionType = "Ready"
-	// IdlerActivatedNotificationCreated is used to track the status of the notification send to a user
-	// when the idler is active for the very first time in user's namespace
-	IdlerActivatedNotificationCreated ConditionType = "IdlerActivatedNotificationCreated"
 
 	// Status reasons
 	provisioningReason      = "Provisioning"
