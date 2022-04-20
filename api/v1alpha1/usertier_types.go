@@ -5,11 +5,9 @@ import (
 )
 
 //+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
 
 // UserTier contains user-specific configuration
 // +k8s:openapi-gen=true
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="User Tier"
