@@ -14,6 +14,7 @@ const (
 	IdlerUnableToEnsureIdlingReason = "UnableToEnsureIdling"
 	IdlerRunningReason              = "Running"
 	IdlerActivated                  = "IdlerRunningFirstTime"
+	IdlerActivatedNotificationCreationFailed = "UnableToCreateIdlerNotification"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
