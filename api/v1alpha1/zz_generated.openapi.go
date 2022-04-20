@@ -121,7 +121,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserSignupStatus":                      schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserTier":                              schema_codeready_toolchain_api_api_v1alpha1_UserTier(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec":                          schema_codeready_toolchain_api_api_v1alpha1_UserTierSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.UserTierStatus":                        schema_codeready_toolchain_api_api_v1alpha1_UserTierStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_UsersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig":                         schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref),
 	}
@@ -4255,17 +4254,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserTier(ref common.ReferenceCa
 							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec"),
 						},
 					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.UserTierStatus"),
-						},
-					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec", "github.com/codeready-toolchain/api/api/v1alpha1.UserTierStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -4286,45 +4279,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserTierSpec(ref common.Referen
 				},
 			},
 		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_UserTierStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "UserTierStatus defines the observed state of UserTier",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"conditions": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"type",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "type",
-								"x-kubernetes-patch-strategy":  "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current UserTier conditions Supported condition types: ConditionReady",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
