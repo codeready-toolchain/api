@@ -46,14 +46,6 @@ type UserTierStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
-
-	// Updates is an array of all UserTier updates
-	// +optional
-	// +patchMergeKey=startTime
-	// +patchStrategy=merge
-	// +listType=map
-	// +listMapKey=startTime
-	Updates []UserTierHistory `json:"updates,omitempty" patchStrategy:"merge" patchMergeKey:"startTime"`
 }
 
 // UserTierHistory a track record of an update
