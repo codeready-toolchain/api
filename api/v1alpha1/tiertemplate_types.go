@@ -28,6 +28,7 @@ type TierTemplateSpec struct {
 	Revision string `json:"revision"`
 
 	// Template contains an OpenShift Template to be used to provision either a user's namespace or cluster-wide resources
+	// +kubebuilder:validation:XEmbeddedResource
 	Template templatev1.Template `json:"template"`
 }
 
