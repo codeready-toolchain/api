@@ -7,17 +7,15 @@ import (
 // These are valid status condition reasons of a UserAccount
 const (
 	// Status condition reasons
-	UserAccountUnableToCreateUserReason          = "UnableToCreateUser"
-	UserAccountUnableToCreateIdentityReason      = "UnableToCreateIdentity"
-	UserAccountUnableToCreateMappingReason       = "UnableToCreateMapping"
-	UserAccountUnableToCreateNSTemplateSetReason = "UnableToCreateNSTemplateSet"
-	UserAccountProvisioningReason                = provisioningReason
-	UserAccountProvisionedReason                 = provisionedReason
-	UserAccountDisabledReason                    = disabledReason
-	UserAccountDisablingReason                   = "Disabling"
-	UserAccountTerminatingReason                 = terminatingReason
-	UserAccountUpdatingReason                    = updatingReason
-	UserAccountNSTemplateSetUpdateFailedReason   = "NSTemplateSetUpdateFailed"
+	UserAccountUnableToCreateUserReason     = "UnableToCreateUser"
+	UserAccountUnableToCreateIdentityReason = "UnableToCreateIdentity"
+	UserAccountUnableToCreateMappingReason  = "UnableToCreateMapping"
+	UserAccountProvisioningReason           = provisioningReason
+	UserAccountProvisionedReason            = provisionedReason
+	UserAccountDisabledReason               = disabledReason
+	UserAccountDisablingReason              = "Disabling"
+	UserAccountTerminatingReason            = terminatingReason
+	UserAccountUpdatingReason               = updatingReason
 
 	// #### ANNOTATIONS ####
 	// UserEmailAnnotationKey is used to store the user's email in an annotation of UserAccount and User CRs
@@ -42,25 +40,10 @@ type UserAccountSpec struct {
 	// +optional
 	Disabled bool `json:"disabled,omitempty"`
 
-	// UserAccountBase contains all base spec fields
-	UserAccountSpecBase `json:",inline"`
-
 	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
 	// a new IdP provider client, and contains the user's "original-sub" claim
 	// +optional
 	OriginalSub string `json:"originalSub,omitempty"`
-}
-
-// UserAccountSpecBase defines the common fields between UserAccountSpec
-// and UserAccountSpecEmbedded
-// +k8s:openapi-gen=true
-type UserAccountSpecBase struct {
-	// The namespace limit name
-	NSLimit string `json:"nsLimit"`
-
-	// Namespace template set
-	// +optional
-	NSTemplateSet *NSTemplateSetSpec `json:"nsTemplateSet,omitempty"`
 }
 
 // UserAccountStatus defines the observed state of UserAccount
