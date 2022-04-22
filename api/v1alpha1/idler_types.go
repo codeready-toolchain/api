@@ -11,9 +11,9 @@ const (
 	IdlerActivatedNotificationCreated ConditionType = "IdlerActivatedNotificationCreated"
 
 	// Status condition reasons
-	IdlerUnableToEnsureIdlingReason = "UnableToEnsureIdling"
-	IdlerRunningReason              = "Running"
-	IdlerActivated                  = "IdlerRunningFirstTime"
+	IdlerUnableToEnsureIdlingReason          = "UnableToEnsureIdling"
+	IdlerRunningReason                       = "Running"
+	IdlerActivated                           = "IdlerRunningFirstTime"
 	IdlerActivatedNotificationCreationFailed = "UnableToCreateIdlerNotification"
 )
 
