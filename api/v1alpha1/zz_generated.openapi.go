@@ -3368,6 +3368,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.Referenc
 							Format:      "",
 						},
 					},
+					"defaultUserTier": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DefaultUserTier specifies the default tier to assign for new users",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"defaultSpaceTier": {
 						SchemaProps: spec.SchemaProps{
 							Description: "DefaultSpaceTier specifies the default tier to assign for new spaces",

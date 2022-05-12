@@ -68,6 +68,7 @@ const (
 
 	// Status condition reasons
 	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
+	UserSignupNoUserTierAvailableReason            = "NoUserTierAvailable"
 	UserSignupNoTemplateTierAvailableReason        = "NoTemplateTierAvailable"
 	UserSignupFailedToReadUserApprovalPolicyReason = "FailedToReadUserApprovalPolicy"
 	UserSignupUnableToCreateMURReason              = "UnableToCreateMUR"
