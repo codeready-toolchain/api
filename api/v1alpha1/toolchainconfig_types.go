@@ -372,6 +372,10 @@ type TiersConfig struct {
 	// +optional
 	DefaultTier *string `json:"defaultTier,omitempty"`
 
+	// DefaultUserTier specifies the default tier to assign for new users
+	// +optional
+	DefaultUserTier *string `json:"defaultUserTier,omitempty"`
+
 	// DefaultSpaceTier specifies the default tier to assign for new spaces
 	// +optional
 	DefaultSpaceTier *string `json:"defaultSpaceTier,omitempty"`
