@@ -11,10 +11,10 @@ const (
 	IdlerActivatedNotificationCreated ConditionType = "IdlerActivatedNotificationCreated"
 
 	// Status condition reasons
-	IdlerUnableToEnsureIdlingReason          = "UnableToEnsureIdling"
-	IdlerRunningReason                       = "Running"
-	IdlerActivated                           = "IdlerRunningFirstTime"
-	IdlerActivatedNotificationCreationFailed = "UnableToCreateIdlerNotification"
+	IdlerUnableToEnsureIdlingReason                = "UnableToEnsureIdling"
+	IdlerRunningReason                             = "Running"
+	IdlerTriggeredReason                           = "IdlerRunningFirstTime"
+	IdlerTriggeredNotificationCreationFailedReason = "UnableToCreateIdlerNotification"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
