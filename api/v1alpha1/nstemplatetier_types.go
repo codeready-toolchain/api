@@ -63,7 +63,7 @@ type NSTemplateTierStatus struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current NSTemplateTier conditions
-	// Supported condition types: ConditionReady NSTemplateTierSuccessfulUpdatesCount NSTemplateTierFailedUpdatesCount
+	// Supported condition types: ConditionReady
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
