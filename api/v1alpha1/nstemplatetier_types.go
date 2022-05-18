@@ -4,16 +4,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-const (
-	// NSTemplateTierSuccessfulUpdatesCount specifies that number of MasterUserRecords that were successfully updated
-	// after the NSTemplateTier was updated
-	NSTemplateTierSuccessfulUpdatesCount ConditionType = "SucessfulUpdates"
-
-	// NSTemplateTierFailedUpdatesCount specifies that number of MasterUserRecords that failed to update
-	// after the NSTemplateTier was updated
-	NSTemplateTierFailedUpdatesCount ConditionType = "FailedUpdates"
-)
-
 // NSTemplateTierSpec defines the desired state of NSTemplateTier
 // +k8s:openapi-gen=true
 type NSTemplateTierSpec struct {
