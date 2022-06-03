@@ -32,9 +32,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig":                      schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                            schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                        schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequest":                     schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec":                 schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus":               schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                             schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                             schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
@@ -273,129 +270,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref common.Refer
 				Required: []string{"email"},
 			},
 		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "ChangeTierRequest is used as a trigger for a tier change in MasterUserRecord/UserAccount",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
-						},
-					},
-					"spec": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec"),
-						},
-					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ChangeTierRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "ChangeTierRequestSpec defines the desired state of ChangeTierRequest",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"targetCluster": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The cluster to define UserAccount whose tier should be changed. Optional. If not set then update all the UserAccounts in the MasterUserRecord.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"murName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The murName is a name of MUR/UserAccount whose tier should be changed.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"tierName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The tier name the tier should be changed to.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"murName", "tierName"},
-			},
-		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_ChangeTierRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "ChangeTierRequestStatus defines the observed state of ChangeTierRequest",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"conditions": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"type",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "type",
-								"x-kubernetes-patch-strategy":  "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current ChangeTierRequest conditions Supported condition types: Complete",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
