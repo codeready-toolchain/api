@@ -34,9 +34,17 @@ type SocialEventSpec struct {
 	// The maximum number of attendees
 	MaxAttendees int `json:"maxAttendees"`
 
-	// The tier to assign to users registering for the event.  This must be the valid name of an nstemplatetier resource.
+	// The tier to assign to users registering for the event.
+	// This must be the valid name of an nstemplatetier resource.
+	// If not specified, will use the `ToolchainConfig.spec.host.tiers.defaultUserTier`
 	// +optional
-	Tier string `json:"tier,omitempty"`
+	UserTier string `json:"userTier,omitempty"`
+
+	// The tier to assign to spaces created for users who registered for the event.
+	// This must be the valid name of an nstemplatetier resource.
+	// If not specified, will use the `ToolchainConfig.spec.host.tiers.defaultSpaceTier`
+	// +optional
+	SpaceTier string `json:"spaceTier,omitempty"`
 
 	// If true, best effort is made to provision all attendees of the event on the same cluster
 	// +optional

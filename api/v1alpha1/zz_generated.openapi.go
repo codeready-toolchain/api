@@ -2808,9 +2808,16 @@ func schema_codeready_toolchain_api_api_v1alpha1_SocialEventSpec(ref common.Refe
 							Format:      "int32",
 						},
 					},
-					"tier": {
+					"userTier": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The tier to assign to users registering for the event.  This must be the valid name of an nstemplatetier resource.",
+							Description: "The tier to assign to users registering for the event. This must be the valid name of an nstemplatetier resource. If not specified, will use the `ToolchainConfig.spec.host.tiers.defaultUserTier`",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"spaceTier": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The tier to assign to spaces created for users who registered for the event. This must be the valid name of an nstemplatetier resource. If not specified, will use the `ToolchainConfig.spec.host.tiers.defaultSpaceTier`",
 							Type:        []string{"string"},
 							Format:      "",
 						},
