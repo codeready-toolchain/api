@@ -7,8 +7,9 @@ const (
 	SocialEventReady ConditionType = "Ready"
 
 	// Status condition reasons
-	SocialEventInvalidTierReason     = "InvalidTier"
-	SocialEventUnableToGetTierReason = "UnableToGetTier"
+	SocialEventInvalidUserTierReason  = "InvalidUserTier"
+	SocialEventInvalidSpaceTierReason = "InvalidSpaceTier"
+	SocialEventUnableToGetTierReason  = "UnableToGetTier"
 
 	SocialEventActivationCodeLabelKey = LabelKeyPrefix + "activation-code"
 )
