@@ -23,6 +23,10 @@ type MemberOperatorConfigSpec struct {
 	// +optional
 	Console ConsoleConfig `json:"console,omitempty"`
 
+	// Defines the flag that determines whether User and Identity resources should be created for a UserAccount
+	// +optional
+	SkipUserCreation *bool `json:"skipUserCreation,omitempty"`
+
 	// Keeps parameters concerned with member status
 	// +optional
 	MemberStatus MemberStatusConfig `json:"memberStatus,omitempty"`
