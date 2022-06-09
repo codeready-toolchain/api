@@ -96,9 +96,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceSpec":                             schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceStatus":                           schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequest":                 schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequest(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec":             schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus":           schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                      schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                      schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
@@ -1286,6 +1283,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig"),
 						},
 					},
+					"skipUserCreation": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the flag that determines whether User and Identity resources should be created for a UserAccount",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 					"memberStatus": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with member status",
@@ -1911,7 +1915,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref common
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current NSTemplateTier conditions Supported condition types: ConditionReady NSTemplateTierSuccessfulUpdatesCount NSTemplateTierFailedUpdatesCount",
+							Description: "Conditions is an array of current NSTemplateTier conditions Supported condition types: ConditionReady",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -3144,163 +3148,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
 										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "TemplateUpdateRequest is the Schema for the templateupdaterequests API",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
-						},
-					},
-					"spec": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec"),
-						},
-					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestSpec", "github.com/codeready-toolchain/api/api/v1alpha1.TemplateUpdateRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "TemplateUpdateRequestSpec defines the desired state of TemplateUpdateRequest It contains the new TemplateRefs to use in the MasterUserRecords",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"tierName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The name of the tier to be updated",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"namespaces": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "atomic",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "The namespace templates",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"),
-									},
-								},
-							},
-						},
-					},
-					"clusterResources": {
-						SchemaProps: spec.SchemaProps{
-							Description: "the cluster resources template (for cluster-wide quotas, etc.)",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources"),
-						},
-					},
-					"currentTierHash": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Holds the value from “toolchain.dev.openshift.com/<tiername>-tier-hash” label of the associated Space CR at the time when TemplateUpdateRequest CR is created",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_TemplateUpdateRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "TemplateUpdateRequestStatus defines the observed state of TemplateUpdateRequest",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"conditions": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "atomic",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current TemplateUpdateRequest conditions Supported condition types: TemplateUpdateRequestComplete",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-					"syncIndexes": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type":       "atomic",
-								"x-kubernetes-patch-strategy": "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "SyncIndexes contains the `syncIndex` for each cluster in the MasterUserRecord. The values here are \"captured\" before the MasterUserRecord is updated, so we can track the update progress on the member clusters.",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
 									},
 								},
 							},
