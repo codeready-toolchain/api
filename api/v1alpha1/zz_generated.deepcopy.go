@@ -788,6 +788,11 @@ func (in *MemberOperatorConfigSpec) DeepCopyInto(out *MemberOperatorConfigSpec) 
 	in.Autoscaler.DeepCopyInto(&out.Autoscaler)
 	in.Che.DeepCopyInto(&out.Che)
 	in.Console.DeepCopyInto(&out.Console)
+	if in.SkipUserCreation != nil {
+		in, out := &in.SkipUserCreation, &out.SkipUserCreation
+		*out = new(bool)
+		**out = **in
+	}
 	in.MemberStatus.DeepCopyInto(&out.MemberStatus)
 	in.ToolchainCluster.DeepCopyInto(&out.ToolchainCluster)
 	in.Webhook.DeepCopyInto(&out.Webhook)

@@ -1157,6 +1157,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig"),
 						},
 					},
+					"skipUserCreation": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines the flag that determines whether User and Identity resources should be created for a UserAccount",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 					"memberStatus": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with member status",
