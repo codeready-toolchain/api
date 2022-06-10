@@ -38,15 +38,11 @@ type SocialEventSpec struct {
 
 	// The tier to assign to users registering for the event.
 	// This must be the valid name of an nstemplatetier resource.
-	// If not specified, will use the `ToolchainConfig.spec.host.tiers.defaultUserTier`
-	// +optional
-	UserTier string `json:"userTier,omitempty"`
+	UserTier string `json:"userTier"`
 
 	// The tier to assign to spaces created for users who registered for the event.
 	// This must be the valid name of an nstemplatetier resource.
-	// If not specified, will use the `ToolchainConfig.spec.host.tiers.defaultSpaceTier`
-	// +optional
-	SpaceTier string `json:"spaceTier,omitempty"`
+	SpaceTier string `json:"spaceTier"`
 
 	// If true, best effort is made to provision all attendees of the event on the same cluster
 	// +optional

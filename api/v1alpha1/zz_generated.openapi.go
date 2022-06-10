@@ -2814,14 +2814,16 @@ func schema_codeready_toolchain_api_api_v1alpha1_SocialEventSpec(ref common.Refe
 					},
 					"userTier": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The tier to assign to users registering for the event. This must be the valid name of an nstemplatetier resource. If not specified, will use the `ToolchainConfig.spec.host.tiers.defaultUserTier`",
+							Description: "The tier to assign to users registering for the event. This must be the valid name of an nstemplatetier resource.",
+							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"spaceTier": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The tier to assign to spaces created for users who registered for the event. This must be the valid name of an nstemplatetier resource. If not specified, will use the `ToolchainConfig.spec.host.tiers.defaultSpaceTier`",
+							Description: "The tier to assign to spaces created for users who registered for the event. This must be the valid name of an nstemplatetier resource.",
+							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2841,7 +2843,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SocialEventSpec(ref common.Refe
 						},
 					},
 				},
-				Required: []string{"startTime", "endTime", "maxAttendees"},
+				Required: []string{"startTime", "endTime", "maxAttendees", "userTier", "spaceTier"},
 			},
 		},
 		Dependencies: []string{
