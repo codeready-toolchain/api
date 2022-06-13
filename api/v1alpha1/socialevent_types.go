@@ -12,7 +12,9 @@ const (
 	SocialEventInvalidSpaceTierReason     = "InvalidSpaceTier"
 	SocialEventUnableToGetSpaceTierReason = "UnableToGetSpaceTier"
 
-	SocialEventActivationCodeLabelKey = LabelKeyPrefix + "activation-code"
+	// SocialEventUserSignupLabelKey the key of the label set on the UserSignups who registered with an activation code.
+	// The label value is the name of the SocialEvent resource
+	SocialEventUserSignupLabelKey = LabelKeyPrefix + "social-event"
 )
 
 // SocialEventSpec defines the parameters for a Social event, such as a training session or workshop. Users
