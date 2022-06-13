@@ -7,8 +7,10 @@ const (
 	SocialEventReady ConditionType = "Ready"
 
 	// Status condition reasons
-	SocialEventInvalidTierReason     = "InvalidTier"
-	SocialEventUnableToGetTierReason = "UnableToGetTier"
+	SocialEventInvalidUserTierReason      = "InvalidUserTier"
+	SocialEventUnableToGetUserTierReason  = "UnableToGetUserTier"
+	SocialEventInvalidSpaceTierReason     = "InvalidSpaceTier"
+	SocialEventUnableToGetSpaceTierReason = "UnableToGetSpaceTier"
 
 	SocialEventActivationCodeLabelKey = LabelKeyPrefix + "activation-code"
 )
@@ -34,9 +36,13 @@ type SocialEventSpec struct {
 	// The maximum number of attendees
 	MaxAttendees int `json:"maxAttendees"`
 
-	// The tier to assign to users registering for the event.  This must be the valid name of an nstemplatetier resource.
-	// +optional
-	Tier string `json:"tier,omitempty"`
+	// The tier to assign to users registering for the event.
+	// This must be the valid name of an nstemplatetier resource.
+	UserTier string `json:"userTier"`
+
+	// The tier to assign to spaces created for users who registered for the event.
+	// This must be the valid name of an nstemplatetier resource.
+	SpaceTier string `json:"spaceTier"`
 
 	// If true, best effort is made to provision all attendees of the event on the same cluster
 	// +optional
