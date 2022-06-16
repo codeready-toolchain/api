@@ -368,10 +368,6 @@ type ToolchainStatusConfig struct {
 // +k8s:openapi-gen=true
 type TiersConfig struct {
 
-	// DefaultTier specifies the default tier to assign for new users
-	// +optional
-	DefaultTier *string `json:"defaultTier,omitempty"`
-
 	// DefaultUserTier specifies the default tier to assign for new users
 	// +optional
 	DefaultUserTier *string `json:"defaultUserTier,omitempty"`
