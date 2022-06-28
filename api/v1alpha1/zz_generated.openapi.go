@@ -3091,13 +3091,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.Referenc
 				Description: "TiersConfig contains all configuration parameters related to tiers",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"defaultTier": {
-						SchemaProps: spec.SchemaProps{
-							Description: "DefaultTier specifies the default tier to assign for new users",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"defaultUserTier": {
 						SchemaProps: spec.SchemaProps{
 							Description: "DefaultUserTier specifies the default tier to assign for new users",
