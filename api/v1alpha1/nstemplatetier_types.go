@@ -22,10 +22,6 @@ type NSTemplateTierSpec struct {
 	// +optional
 	// +mapType=atomic
 	SpaceRoles map[string]NSTemplateTierSpaceRole `json:"spaceRoles,omitempty"`
-
-	// the period (in days) after which users within the tier will be deactivated
-	// +optional
-	DeactivationTimeoutDays int `json:"deactivationTimeoutDays,omitempty"`
 }
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource
