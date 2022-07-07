@@ -84,6 +84,8 @@ type SocialEventStatus struct {
 // +kubebuilder:printcolumn:name="StartTime",type="string",JSONPath=`.spec.startTime`
 // +kubebuilder:printcolumn:name="EndTime",type="string",JSONPath=`.spec.endTime`
 // +kubebuilder:printcolumn:name="Description",type="string",JSONPath=`.spec.description`
+// +kubebuilder:printcolumn:name="MaxAttendees",type="string",JSONPath=`.spec.maxAttendees`
+// +kubebuilder:printcolumn:name="CurrentAttendees",type="string",JSONPath=`.status.activationCount`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="Toolchain Event"
 type SocialEvent struct {
