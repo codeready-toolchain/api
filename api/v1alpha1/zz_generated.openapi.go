@@ -1754,13 +1754,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 							},
 						},
 					},
-					"deactivationTimeoutDays": {
-						SchemaProps: spec.SchemaProps{
-							Description: "the period (in days) after which users within the tier will be deactivated",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
 				},
 				Required: []string{"namespaces"},
 			},
