@@ -79,6 +79,7 @@ const (
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
 	UserSignupUnableToCreateSpaceReason            = "UnableToCreateSpace"
 	UserSignupUnableToCreateSpaceBindingReason     = "UnableToCreateSpaceBinding"
+	UserSignupProvisioningSpace                    = "ProvisioningSpace"
 
 	// The UserSignupUserDeactivatingReason constant will be replaced with UserSignupDeactivationInProgressReason
 	// in order to reduce ambiguity.  The "Deactivating" state should only refer to the period of time before the
