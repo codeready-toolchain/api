@@ -11,8 +11,6 @@ const (
 	UserSignupApproved ConditionType = "Approved"
 	// UserSignupComplete means provisioning is complete
 	UserSignupComplete ConditionType = "Complete"
-	//UserSignupProvisioning means provisioning is in progress
-	UserSignupProvisioning ConditionType = "Provisioning"
 	// UserSignupUserDeactivatingNotificationCreated is used to track the status of the notification send to a user
 	// shortly before their account is due for deactivation
 	UserSignupUserDeactivatingNotificationCreated ConditionType = "UserDeactivatingNotificationCreated"
