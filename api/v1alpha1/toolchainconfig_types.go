@@ -367,11 +367,11 @@ type RegistrationServiceVerificationSecret struct {
 	// +optional
 	TwilioFromNumber *string `json:"twilioFromNumber,omitempty"`
 
-	// AWSAccessKeyId
+	// AWSAccessKeyId is the AWS Access Key used to authenticate in order to access AWS services
 	// +optional
 	AWSAccessKeyID *string `json:"awsAccessKeyID,omitempty"`
 
-	// AWSSecretAccessKey
+	// AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services
 	// +optional
 	AWSSecretAccessKey *string `json:"awsSecretAccessKey,omitempty"`
 }
