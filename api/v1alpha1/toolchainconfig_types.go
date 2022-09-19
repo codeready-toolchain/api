@@ -333,6 +333,19 @@ type RegistrationServiceVerificationConfig struct {
 	// be expired
 	// +optional
 	CodeExpiresInMin *int `json:"codeExpiresInMin,omitempty"`
+
+	// AWSRegion to use when sending notification SMS
+	// +optional
+	AWSRegion *string `json:"awsRegion,omitempty"`
+
+	// AWSSenderID the Alphanumeric Sender ID to use, e.g. "DevSandbox"
+	// +optional
+	AWSSenderID *string `json:"awsSenderId,omitempty"`
+
+	// AWSSMSType is the type of SMS message to send, either `Promotional` or `Transactional`
+	// See https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html for details
+	// +optional
+	AWSSMSType *string `json:"awsSMSType,omitempty"`
 }
 
 // Defines all secrets related to registration service verification configuration
@@ -353,6 +366,14 @@ type RegistrationServiceVerificationSecret struct {
 	// TwilioFromNumber specifies the phone number or alphanumeric "Sender ID" for sending phone verification messages
 	// +optional
 	TwilioFromNumber *string `json:"twilioFromNumber,omitempty"`
+
+	// AWSAccessKeyId
+	// +optional
+	AWSAccessKeyID *string `json:"awsAccessKeyID,omitempty"`
+
+	// AWSSecretAccessKey
+	// +optional
+	AWSSecretAccessKey *string `json:"awsSecretAccessKey,omitempty"`
 }
 
 // ToolchainStatusConfig contains all configuration parameters related to the toolchain status component
