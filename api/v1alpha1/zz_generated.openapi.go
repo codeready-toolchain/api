@@ -2424,6 +2424,27 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 							Format:      "int32",
 						},
 					},
+					"awsRegion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AWSRegion to use when sending notification SMS",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"awsSenderId": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AWSSenderID the Alphanumeric Sender ID to use, e.g. \"DevSandbox\"",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"awsSMSType": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AWSSMSType is the type of SMS message to send, either `Promotional` or `Transactional` See https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html for details",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},
@@ -2463,6 +2484,20 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 					"twilioFromNumber": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TwilioFromNumber specifies the phone number or alphanumeric \"Sender ID\" for sending phone verification messages",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"awsAccessKeyID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AWSAccessKeyId",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"awsSecretAccessKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AWSSecretAccessKey",
 							Type:        []string{"string"},
 							Format:      "",
 						},
