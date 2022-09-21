@@ -334,6 +334,11 @@ type RegistrationServiceVerificationConfig struct {
 	// +optional
 	CodeExpiresInMin *int `json:"codeExpiresInMin,omitempty"`
 
+	// NotificationSender is used to specify which service should be used to send verification notifications. Allowed
+	// values are "twilio", "aws".  If not specified, the Twilio sender will be used.
+	// +optional
+	NotificationSender *string `json:"notificationSender,omitempty"`
+
 	// AWSRegion to use when sending notification SMS
 	// +optional
 	AWSRegion *string `json:"awsRegion,omitempty"`
