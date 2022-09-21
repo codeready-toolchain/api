@@ -1793,6 +1793,11 @@ func (in *RegistrationServiceVerificationConfig) DeepCopyInto(out *RegistrationS
 		*out = new(int)
 		**out = **in
 	}
+	if in.NotificationSender != nil {
+		in, out := &in.NotificationSender, &out.NotificationSender
+		*out = new(string)
+		**out = **in
+	}
 	if in.AWSRegion != nil {
 		in, out := &in.AWSRegion, &out.AWSRegion
 		*out = new(string)

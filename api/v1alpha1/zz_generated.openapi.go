@@ -2424,6 +2424,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 							Format:      "int32",
 						},
 					},
+					"notificationSender": {
+						SchemaProps: spec.SchemaProps{
+							Description: "NotificationSender is used to specify which service should be used to send verification notifications. Allowed values are \"twilio\", \"aws\".  If not specified, the Twilio sender will be used.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"awsRegion": {
 						SchemaProps: spec.SchemaProps{
 							Description: "AWSRegion to use when sending notification SMS",
@@ -2490,14 +2497,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 					},
 					"awsAccessKeyID": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AWSAccessKeyId",
+							Description: "AWSAccessKeyId is the AWS Access Key used to authenticate in order to access AWS services",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"awsSecretAccessKey": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AWSSecretAccessKey",
+							Description: "AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services",
 							Type:        []string{"string"},
 							Format:      "",
 						},
