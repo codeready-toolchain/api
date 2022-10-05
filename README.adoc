@@ -6,13 +6,10 @@ image:https://codecov.io/gh/codeready-toolchain/api/branch/master/graph/badge.sv
 == Building
 Requires:
 
-* Go version 1.14 - download for your development environment https://golang.org/dl/[here].
+* Go version 1.17.x (1.17.9 or higher) - download for your development environment https://golang.org/dl/[here].
+* Operator SDK v1.21.0 - download for your development environment https://v1-21-x.sdk.operatorframework.io/docs/installation/#install-from-github-release[here]
 
-CodeReady ToolChain API is built using https://github.com/golang/go/wiki/Modules[Go modules].  Set the following environment variable in your CLI before building:
-
-```sh
-export GO111MODULE=on
-```
+CodeReady ToolChain API is built using https://github.com/golang/go/wiki/Modules[Go modules].
 
 To re-generate the `zz_generated.deepcopy.go` and `zz_generated.openapi.go` files as well as the CRD files, run the following command:
 
