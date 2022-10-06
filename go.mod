@@ -4,15 +4,15 @@ go 1.17
 
 require (
 	github.com/go-bindata/go-bindata v3.1.2+incompatible
-	// using latest commit from 'github.com/openshift/api branch release-4.10'
-	github.com/openshift/api v0.0.0-20220912162045-8cfbc78b21bd
-	k8s.io/api v0.23.5
-	k8s.io/apimachinery v0.23.5
-	k8s.io/code-generator v0.23.5
-	k8s.io/gengo v0.0.0-20210813121822-485abfe95c7c
-	k8s.io/kube-openapi v0.0.0-20211115234752-e816edb12b65
-	sigs.k8s.io/controller-runtime v0.11.2
-	sigs.k8s.io/controller-tools v0.8.0
+	// using latest commit from 'github.com/openshift/api branch release-4.11'
+	github.com/openshift/api v0.0.0-20220912161038-458ad9ca9ca5
+	k8s.io/api v0.24.0
+	k8s.io/apimachinery v0.24.0
+	k8s.io/code-generator v0.24.0
+	k8s.io/gengo v0.0.0-20211129171323-c02415ce4185
+	k8s.io/kube-openapi v0.0.0-20220328201542-3ee0da9b0b42
+	sigs.k8s.io/controller-runtime v0.12.0
+	sigs.k8s.io/controller-tools v0.9.0
 )
 
 require (
@@ -26,7 +26,6 @@ require (
 	github.com/go-openapi/swag v0.19.14 // indirect
 	github.com/gobuffalo/flect v0.2.5 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/google/go-cmp v0.5.6 // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
@@ -47,7 +46,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
-	k8s.io/apiextensions-apiserver v0.23.5 // indirect
+	k8s.io/apiextensions-apiserver v0.24.0 // indirect
 	k8s.io/klog/v2 v2.60.1 // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
 	sigs.k8s.io/json v0.0.0-20211208200746-9f7c6b3444d2 // indirect
