@@ -59,6 +59,8 @@ const (
 	MasterUserRecordsPerDomainMetricKey = "masterUserRecordsPerDomain"
 	// UserSignupsPerActivationAndDomainMetricKey the key to store the metric for the number of UserSignups per activations and per email address domain
 	UserSignupsPerActivationAndDomainMetricKey = "userSignupsPerActivationAndDomain"
+	// SpacesPerClusterMetricKey the key to store the metric for the number of Spaces per cluster
+	SpacesPerClusterMetricKey = "spacesPerCluster"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -225,6 +227,10 @@ type Member struct {
 	// Number of UserAccounts created within the member cluster
 	// +optional
 	UserAccountCount int `json:"userAccountCount,omitempty"`
+
+	// Number of Spaces created within the member cluster
+	// +optional
+	SpaceCount int `json:"spaceCount,omitempty"`
 
 	// The array of member status objects
 	MemberStatus MemberStatusStatus `json:"memberStatus"`
