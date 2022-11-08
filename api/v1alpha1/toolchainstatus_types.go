@@ -59,8 +59,6 @@ const (
 	MasterUserRecordsPerDomainMetricKey = "masterUserRecordsPerDomain"
 	// UserSignupsPerActivationAndDomainMetricKey the key to store the metric for the number of UserSignups per activations and per email address domain
 	UserSignupsPerActivationAndDomainMetricKey = "userSignupsPerActivationAndDomain"
-	// SpacesPerClusterMetricKey the key to store the metric for the number of Spaces per cluster
-	SpacesPerClusterMetricKey = "spacesPerCluster"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
