@@ -73,6 +73,10 @@ type HostConfig struct {
 	// Keeps parameters concerned with user management
 	// +optional
 	Users UsersConfig `json:"users,omitempty"`
+
+	// Keeps parameters necessary for configuring capacity limits
+	// +optional
+	CapacityThresholds CapacityThresholds `json:"capacityThresholds,omitempty"`
 }
 
 // Members contains all configuration for member operators
@@ -131,6 +135,20 @@ type MaxNumberOfUsers struct {
 	// +optional
 	// +mapType=atomic
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
+}
+
+// CapacityThresholds allows to configure the capacity limits in the clusters
+// +k8s:openapi-gen=true
+type CapacityThresholds struct {
+
+	// Contains capacity threshold configuration
+	// +optional
+	ResourceCapacityThreshold ResourceCapacityThreshold `json:"resourceCapacityThreshold,omitempty"`
+
+	// Contains a map of maximal number of spaces that can be provisioned per member cluster mapped by the cluster name
+	// +optional
+	// +mapType=atomic
+	MaxNumberOfSpacesPerMemberCluster map[string]int `json:"maxNumberOfSpacesPerMemberCluster,omitempty"`
 }
 
 // DeactivationConfig contains all configuration parameters related to deactivation
