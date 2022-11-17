@@ -1107,6 +1107,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCall
 							Format:      "int32",
 						},
 					},
+					"spaceCount": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Number of Spaces created within the member cluster",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
 					"memberStatus": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The array of member status objects",
