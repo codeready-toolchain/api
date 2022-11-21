@@ -1,6 +1,6 @@
 # see go.mod
-CONTROLLER_GEN_VERSION=v0.8.0
-OPENAPI_GEN_VERSION=e816edb12b65
+CONTROLLER_GEN_VERSION=v0.9.2
+OPENAPI_GEN_VERSION=172d655c2280
 
 CONTROLLER_GEN = $(shell pwd)/bin/controller-gen
 controller-gen: ## Download controller-gen locally if necessary.
