@@ -33,6 +33,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig":                      schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                            schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                        schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds":                    schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                             schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                             schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
@@ -271,6 +272,49 @@ func schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref common.Refer
 				Required: []string{"email"},
 			},
 		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "CapacityThresholds allows to configure the capacity limits in the clusters",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"resourceCapacityThreshold": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Contains capacity threshold configuration",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"),
+						},
+					},
+					"maxNumberOfSpacesPerMemberCluster": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-map-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Contains a map of maximal number of spaces that can be provisioned per member cluster mapped by the cluster name",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: 0,
+										Type:    []string{"integer"},
+										Format:  "int32",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"},
 	}
 }
 
@@ -542,11 +586,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"),
 						},
 					},
+					"capacityThresholds": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for configuring capacity limits",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
 	}
 }
 
@@ -1103,6 +1154,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCall
 					"userAccountCount": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Number of UserAccounts created within the member cluster",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"spaceCount": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Number of Spaces created within the member cluster",
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},

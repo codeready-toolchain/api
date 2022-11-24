@@ -226,6 +226,10 @@ type Member struct {
 	// +optional
 	UserAccountCount int `json:"userAccountCount,omitempty"`
 
+	// Number of Spaces created within the member cluster
+	// +optional
+	SpaceCount int `json:"spaceCount,omitempty"`
+
 	// The array of member status objects
 	MemberStatus MemberStatusStatus `json:"memberStatus"`
 }
