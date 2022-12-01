@@ -156,25 +156,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref com
 							Format:      "",
 						},
 					},
-					"resourceCapacityThreshold": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"),
-						},
-					},
-					"maxNumberOfUsers": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines the maximal number of users to be allowed for automatic approval. When the number is reached, then the automatic approval is stopped.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers"),
-						},
-					},
 				},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"},
 	}
 }
 

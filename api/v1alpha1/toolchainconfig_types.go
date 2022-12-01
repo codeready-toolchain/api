@@ -98,15 +98,6 @@ type AutomaticApprovalConfig struct {
 	// Defines if the automatic approval is enabled or not
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
-
-	// Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped
-	// +optional
-	ResourceCapacityThreshold ResourceCapacityThreshold `json:"resourceCapacityThreshold,omitempty"`
-
-	// Defines the maximal number of users to be allowed for automatic approval.
-	// When the number is reached, then the automatic approval is stopped.
-	// +optional
-	MaxNumberOfUsers MaxNumberOfUsers `json:"maxNumberOfUsers,omitempty"`
 }
 
 // Contains default capacity threshold as well as specific ones for particular member clusters
