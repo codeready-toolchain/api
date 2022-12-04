@@ -113,21 +113,6 @@ type ResourceCapacityThreshold struct {
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
 }
 
-// Contains maximal number of users to be provisioned automatically in the system overall as well as
-// max number of users automatically provisioned per member cluster
-// +k8s:openapi-gen=true
-type MaxNumberOfUsers struct {
-	// It is the maximal number of users provisioned in the system overall - equals to max number of MasterUserRecords in host cluster
-	// +optional
-	Overall *int `json:"overall,omitempty"`
-
-	// Contains a map of maximal number of users provisioned per member cluster mapped by the cluster name
-	// - equals to max number of UserAccounts in member cluster
-	// +optional
-	// +mapType=atomic
-	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
-}
-
 // CapacityThresholds allows to configure the capacity limits in the clusters
 // +k8s:openapi-gen=true
 type CapacityThresholds struct {
