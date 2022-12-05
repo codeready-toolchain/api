@@ -1586,6 +1586,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetSpaceRole(ref comm
 						},
 					},
 					"usernames": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
 						SchemaProps: spec.SchemaProps{
 							Description: "Usernames the usernames to which the template applies",
 							Type:        []string{"array"},

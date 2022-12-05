@@ -1,6 +1,6 @@
 // Package v1alpha1 contains API Schema definitions for the toolchain.dev.openshift.com v1alpha1 API group
-//+kubebuilder:object:generate=true
-//+groupName=toolchain.dev.openshift.com
+// +kubebuilder:object:generate=true
+// +groupName=toolchain.dev.openshift.com
 package v1alpha1
 
 import (

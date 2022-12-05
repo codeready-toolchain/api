@@ -72,8 +72,8 @@ type SpaceStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
+// +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
 // Space is the Schema for the spaces API
 // +k8s:openapi-gen=true
 // +kubebuilder:resource:scope=Namespaced
