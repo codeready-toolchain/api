@@ -78,6 +78,7 @@ type NSTemplateSetSpaceRole struct {
 	TemplateRef string `json:"templateRef"`
 
 	// Usernames the usernames to which the template applies
+	// +listType=atomic
 	Usernames []string `json:"usernames"`
 }
 

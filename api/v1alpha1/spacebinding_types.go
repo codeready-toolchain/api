@@ -31,8 +31,8 @@ type SpaceBindingSpec struct {
 type SpaceBindingStatus struct {
 }
 
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
+// +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
 // SpaceBinding is the Schema for the spacebindings API which defines relationship between Spaces and MasterUserRecords
 // +k8s:openapi-gen=true
 // +kubebuilder:resource:scope=Namespaced

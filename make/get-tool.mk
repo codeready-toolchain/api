@@ -1,6 +1,6 @@
 # see go.mod
-CONTROLLER_GEN_VERSION=v0.8.0
-OPENAPI_GEN_VERSION=e816edb12b65
+CONTROLLER_GEN_VERSION=v0.9.2
+OPENAPI_GEN_VERSION=3ee0da9b0b42
 
 CONTROLLER_GEN = $(shell pwd)/bin/controller-gen
 controller-gen: ## Download controller-gen locally if necessary.
@@ -21,7 +21,7 @@ define go-get-tool
 	cd $${TMP_DIR} ;\
 	go mod init tmp ;\
 	echo "Downloading ${2}" ;\
-	GOBIN=$(PROJECT_DIR)/bin go get ${2}@${3} ;\
+	GOBIN=$(PROJECT_DIR)/bin go install ${2}@${3} ;\
 	touch ${VERSIONS_FILE} ;\
 	sed '\|${2}|d' ${VERSIONS_FILE} > $${TMP_DIR}/versions ;\
 	mv $${TMP_DIR}/versions ${VERSIONS_FILE} ;\
