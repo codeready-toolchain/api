@@ -50,7 +50,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecord":                      schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecord(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordSpec":                  schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MasterUserRecordStatus":                schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers":                      schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Member":                                schema_codeready_toolchain_api_api_v1alpha1_Member(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigSpec":              schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigStatus":            schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigStatus(ref),
@@ -156,25 +155,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref com
 							Format:      "",
 						},
 					},
-					"resourceCapacityThreshold": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"),
-						},
-					},
-					"maxNumberOfUsers": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines the maximal number of users to be allowed for automatic approval. When the number is reached, then the automatic approval is stopped.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers"),
-						},
-					},
 				},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.MaxNumberOfUsers", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"},
 	}
 }
 
@@ -1088,47 +1071,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordStatus(ref comm
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_MaxNumberOfUsers(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Contains maximal number of users to be provisioned automatically in the system overall as well as max number of users automatically provisioned per member cluster",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"overall": {
-						SchemaProps: spec.SchemaProps{
-							Description: "It is the maximal number of users provisioned in the system overall - equals to max number of MasterUserRecords in host cluster",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
-					"specificPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains a map of maximal number of users provisioned per member cluster mapped by the cluster name - equals to max number of UserAccounts in member cluster",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: 0,
-										Type:    []string{"integer"},
-										Format:  "int32",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
 func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -1149,13 +1091,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCall
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
-						},
-					},
-					"userAccountCount": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Number of UserAccounts created within the member cluster",
-							Type:        []string{"integer"},
-							Format:      "int32",
 						},
 					},
 					"spaceCount": {

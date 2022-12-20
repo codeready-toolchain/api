@@ -222,10 +222,6 @@ type Member struct {
 	// The cluster identifier
 	ClusterName string `json:"clusterName"`
 
-	// Number of UserAccounts created within the member cluster
-	// +optional
-	UserAccountCount int `json:"userAccountCount,omitempty"`
-
 	// Number of Spaces created within the member cluster
 	// +optional
 	SpaceCount int `json:"spaceCount,omitempty"`
