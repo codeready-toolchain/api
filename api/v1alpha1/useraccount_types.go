@@ -31,8 +31,11 @@ type UserAccountSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
-	// Is to be used to create Identity and UserIdentityMapping resources
+	// The user's ID, obtained from the identity provider in the `sub` (subject) claim
+	Subject string `json:"subject"`
+
+	// The user ID, obtained from the identity provider in the `userID` claim.
+	// Note: most of the time, it will be the same as `Subject`
 	UserID string `json:"userID"`
 
 	// If set to true then the corresponding user should not be able to login

@@ -947,9 +947,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 				Description: "MasterUserRecordSpec defines the desired state of MasterUserRecord",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"subject": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The user's ID, obtained from the identity provider in the `sub` (subject) claim",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"userID": {
 						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
+							Description: "The user ID, obtained from the identity provider in the `userID` claim. Note: most of the time, it will be the same as `Subject`",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -999,7 +1007,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 						},
 					},
 				},
-				Required: []string{"userID"},
+				Required: []string{"subject", "userID"},
 			},
 		},
 		Dependencies: []string{
@@ -3739,9 +3747,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 				Description: "UserAccountSpec defines the desired state of UserAccount",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"subject": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The user's ID, obtained from the identity provider in the `sub` (subject) claim",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"userID": {
 						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim) Is to be used to create Identity and UserIdentityMapping resources",
+							Description: "The user ID, obtained from the identity provider in the `userID` claim. Note: most of the time, it will be the same as `Subject`",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -3762,7 +3778,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 						},
 					},
 				},
-				Required: []string{"userID"},
+				Required: []string{"subject", "userID"},
 			},
 		},
 	}
@@ -3868,9 +3884,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 							Format:      "",
 						},
 					},
+					"subject": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The user's ID, obtained from the identity provider in the `sub` (subject) claim",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"userid": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The user's user ID, obtained from the identity provider from the 'sub' (subject) claim",
+							Description: "The user ID, obtained from the identity provider in the `userID` claim. Note: most of the time, it will be the same as `Subject`",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -3933,7 +3957,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 						},
 					},
 				},
-				Required: []string{"userid", "username"},
+				Required: []string{"subject", "userid", "username"},
 			},
 		},
 	}

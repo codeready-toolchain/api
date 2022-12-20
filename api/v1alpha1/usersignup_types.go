@@ -167,7 +167,11 @@ type UserSignupSpec struct {
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
 
-	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
+	// The user's ID, obtained from the identity provider in the `sub` (subject) claim
+	Subject string `json:"subject"`
+
+	// The user ID, obtained from the identity provider in the `userID` claim.
+	// Note: most of the time, it will be the same as `Subject`
 	Userid string `json:"userid"`
 
 	// The user's username, obtained from the identity provider.
