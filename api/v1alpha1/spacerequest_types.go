@@ -10,8 +10,7 @@ type SpaceRequestSpec struct {
 	// TierName is a required property introduced to retain the name of the tier
 	// for which this Space is provisioned
 	// If not set then the tier name will be set automatically
-	// +optional
-	TierName string `json:"tierName,omitempty"`
+	TierName string `json:"tierName"`
 
 	// TargetClusterLabels one or more labels that define a set of clusters
 	// where the Space can be provisioned.
@@ -25,17 +24,18 @@ type SpaceRequestStatus struct {
 
 	// TargetClusterURL The API URL of the cluster where Space is currently provisioned
 	// Can be empty if provisioning did not start or failed
-	// To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed
+	// The URL is just for informative purposes for developers and controllers that are placed in member clusters.
 	// +optional
 	TargetClusterURL string `json:"targetClusterURL,omitempty"`
 
-	// The status of user accounts in the member clusters which belong to this MasterUserRecord
+	// NamespaceAccess is the list with the provisioned namespace and secret to access it
 	// +listType=atomic
+	// +optional
 	NamespaceAccess []NamespaceAccess `json:"namespaceAccess,omitempty"`
 
-	// Conditions is an array of current Master User Record conditions
+	// Conditions is an array of SpaceRequest conditions
 	// Supported condition types:
-	// Provisioning, UserAccountNotReady and Ready
+	// Provisioning, SpaceNotReady and Ready
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
@@ -60,6 +60,7 @@ type NamespaceAccess struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
+// +kubebuilder:printcolumn:name="TargetClusterURL",type="string",JSONPath=`.status.targetClusterURL`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:validation:XPreserveUnknownFields
