@@ -98,15 +98,6 @@ type AutomaticApprovalConfig struct {
 	// Defines if the automatic approval is enabled or not
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
-
-	// Contains threshold (in percentage of usage) that defines when the automatic approval should be stopped
-	// +optional
-	ResourceCapacityThreshold ResourceCapacityThreshold `json:"resourceCapacityThreshold,omitempty"`
-
-	// Defines the maximal number of users to be allowed for automatic approval.
-	// When the number is reached, then the automatic approval is stopped.
-	// +optional
-	MaxNumberOfUsers MaxNumberOfUsers `json:"maxNumberOfUsers,omitempty"`
 }
 
 // Contains default capacity threshold as well as specific ones for particular member clusters
@@ -117,21 +108,6 @@ type ResourceCapacityThreshold struct {
 	DefaultThreshold *int `json:"defaultThreshold,omitempty"`
 
 	// Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names
-	// +optional
-	// +mapType=atomic
-	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
-}
-
-// Contains maximal number of users to be provisioned automatically in the system overall as well as
-// max number of users automatically provisioned per member cluster
-// +k8s:openapi-gen=true
-type MaxNumberOfUsers struct {
-	// It is the maximal number of users provisioned in the system overall - equals to max number of MasterUserRecords in host cluster
-	// +optional
-	Overall *int `json:"overall,omitempty"`
-
-	// Contains a map of maximal number of users provisioned per member cluster mapped by the cluster name
-	// - equals to max number of UserAccounts in member cluster
 	// +optional
 	// +mapType=atomic
 	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
