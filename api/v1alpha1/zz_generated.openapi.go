@@ -3057,14 +3057,15 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref common.Ref
 				Properties: map[string]spec.Schema{
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
-							Description: "TierName is a required property introduced to retain the name of the tier for which this Space is provisioned If not set then the tier name will be set automatically",
+							Description: "TierName is a required property introduced to retain the name of the tier for which this Space is provisioned.",
+							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
-					"targetClusterLabels": {
+					"targetClusterLabelKeys": {
 						SchemaProps: spec.SchemaProps{
-							Description: "TargetClusterLabels one or more labels that define a set of clusters where the Space can be provisioned.",
+							Description: "TargetClusterLabelKeys one or more label keys that define a set of clusters where the Space can be provisioned.",
 							Type:        []string{"object"},
 							AdditionalProperties: &spec.SchemaOrBool{
 								Allows: true,
@@ -3079,6 +3080,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref common.Ref
 						},
 					},
 				},
+				Required: []string{"tierName"},
 			},
 		},
 	}
@@ -3093,7 +3095,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestStatus(ref common.R
 				Properties: map[string]spec.Schema{
 					"targetClusterURL": {
 						SchemaProps: spec.SchemaProps{
-							Description: "TargetClusterURL The API URL of the cluster where Space is currently provisioned Can be empty if provisioning did not start or failed To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed",
+							Description: "TargetClusterURL The API URL of the cluster where Space is currently provisioned Can be empty if provisioning did not start or failed The URL is just for informative purposes for developers and controllers that are placed in member clusters.",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -3105,7 +3107,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestStatus(ref common.R
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "The status of user accounts in the member clusters which belong to this MasterUserRecord",
+							Description: "NamespaceAccess is the list with the provisioned namespace and secret to access it",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -3129,7 +3131,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestStatus(ref common.R
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current Master User Record conditions Supported condition types: Provisioning, UserAccountNotReady and Ready",
+							Description: "Conditions is an array of SpaceRequest conditions Supported condition types: Provisioning, SpaceNotReady and Ready",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{

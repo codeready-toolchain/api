@@ -8,14 +8,13 @@ import (
 // +k8s:openapi-gen=true
 type SpaceRequestSpec struct {
 	// TierName is a required property introduced to retain the name of the tier
-	// for which this Space is provisioned
-	// If not set then the tier name will be set automatically
+	// for which this Space is provisioned.
 	TierName string `json:"tierName"`
 
-	// TargetClusterLabels one or more labels that define a set of clusters
+	// TargetClusterLabelKeys one or more label keys that define a set of clusters
 	// where the Space can be provisioned.
 	// +optional
-	TargetClusterLabels map[string]string `json:"targetClusterLabels,omitempty"`
+	TargetClusterLabelKeys []string `json:"targetClusterLabelKeys,omitempty"`
 }
 
 // SpaceRequestStatus defines the observed state of Space
