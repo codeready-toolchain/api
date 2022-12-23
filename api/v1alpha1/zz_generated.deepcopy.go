@@ -2258,10 +2258,8 @@ func (in *SpaceRequestSpec) DeepCopyInto(out *SpaceRequestSpec) {
 	*out = *in
 	if in.TargetClusterLabelKeys != nil {
 		in, out := &in.TargetClusterLabelKeys, &out.TargetClusterLabelKeys
-		*out = make(map[string]string, len(*in))
-		for key, val := range *in {
-			(*out)[key] = val
-		}
+		*out = make([]string, len(*in))
+		copy(*out, *in)
 	}
 }
 

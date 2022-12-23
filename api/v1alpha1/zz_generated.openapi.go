@@ -3066,9 +3066,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref common.Ref
 					"targetClusterLabelKeys": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TargetClusterLabelKeys one or more label keys that define a set of clusters where the Space can be provisioned.",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: "",
