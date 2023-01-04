@@ -14,6 +14,7 @@ type SpaceRequestSpec struct {
 	// TargetClusterLabelKeys one or more label keys that define a set of clusters
 	// where the Space can be provisioned.
 	// +optional
+	// +listType=atomic
 	TargetClusterLabelKeys []string `json:"targetClusterLabelKeys,omitempty"`
 }
 
