@@ -3063,9 +3063,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref common.Ref
 							Format:      "",
 						},
 					},
-					"targetClusterLabelKeys": {
+					"targetClusterRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
 						SchemaProps: spec.SchemaProps{
-							Description: "TargetClusterLabelKeys one or more label keys that define a set of clusters where the Space can be provisioned.",
+							Description: "TargetClusterRoles one or more label keys that define a set of clusters where the Space can be provisioned. The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there.",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
