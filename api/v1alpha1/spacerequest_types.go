@@ -11,11 +11,12 @@ type SpaceRequestSpec struct {
 	// for which this Space is provisioned.
 	TierName string `json:"tierName"`
 
-	// TargetClusterLabelKeys one or more label keys that define a set of clusters
+	// TargetClusterRoles one or more label keys that define a set of clusters
 	// where the Space can be provisioned.
+	// The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there.
 	// +optional
 	// +listType=atomic
-	TargetClusterLabelKeys []string `json:"targetClusterLabelKeys,omitempty"`
+	TargetClusterRoles []string `json:"targetClusterRoles,omitempty"`
 }
 
 // SpaceRequestStatus defines the observed state of Space
