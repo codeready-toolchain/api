@@ -3171,7 +3171,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 					},
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
-							Description: "TierName is a required property introduced to retain the name of the tier for which this Space is provisioned If not set then the tier name will be set automatically",
+							Description: "TierName is introduced to retain the name of the tier for which this Space is provisioned If not set then the tier name will be set automatically",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"parentSpace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ParentSpace holds the name of the context (Space) from which this space was created (requested) using the SpaceRequest mechanism. Keeping this association brings two main benefits: 1. SpaceBindings are inherited from the parent Space 2. Ability to easily monitor quota for the requested sub-spaces",
 							Type:        []string{"string"},
 							Format:      "",
 						},
