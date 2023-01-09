@@ -51,8 +51,9 @@ type SpaceSpec struct {
 	// +optional
 	TierName string `json:"tierName,omitempty"`
 
-	// ParentSpace holds the name of the context (Space) from which this space was created (requested)
-	// using the SpaceRequest mechanism.
+	// ParentSpace holds the name of the context (Space) from which this space was created (requested),
+	// enabling hierarchy relationships between different Spaces.
+	//
 	// Keeping this association brings two main benefits:
 	// 1. SpaceBindings are inherited from the parent Space
 	// 2. Ability to easily monitor quota for the requested sub-spaces
