@@ -10,6 +10,10 @@ const (
 
 	// WorkspaceLabelKey is used to label the Space with the name of the associated AppStudio Workspace
 	WorkspaceLabelKey = LabelKeyPrefix + "workspace"
+
+	// ParentSpaceLabelKey is used to label the Space with the name of the parent space
+	// from which the creation was requested
+	ParentSpaceLabelKey = LabelKeyPrefix + "parent-space"
 )
 
 // These are valid status condition reasons of a Space
@@ -45,11 +49,20 @@ type SpaceSpec struct {
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
 
-	// TierName is a required property introduced to retain the name of the tier
+	// TierName is introduced to retain the name of the tier
 	// for which this Space is provisioned
 	// If not set then the tier name will be set automatically
 	// +optional
 	TierName string `json:"tierName,omitempty"`
+
+	// ParentSpace holds the name of the context (Space) from which this space was created (requested),
+	// enabling hierarchy relationships between different Spaces.
+	//
+	// Keeping this association brings two main benefits:
+	// 1. SpaceBindings are inherited from the parent Space
+	// 2. Ability to easily monitor quota for the requested sub-spaces
+	// +optional
+	ParentSpace string `json:"parentSpace,omitempty"`
 }
 
 // SpaceStatus defines the observed state of Space
