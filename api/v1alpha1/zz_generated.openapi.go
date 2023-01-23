@@ -3165,8 +3165,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TargetCluster The cluster in which this Space is going to be provisioned If not set then the target cluster will be picked automatically",
-							Type:        []string{"string"},
-							Format:      "",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.TargetCluster"),
 						},
 					},
 					"tierName": {
@@ -3186,6 +3186,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 				},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.TargetCluster"},
 	}
 }
 
@@ -3199,8 +3201,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TargetCluster The cluster in which this Space is currently provisioned Can be empty if provisioning did not start or failed To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed",
-							Type:        []string{"string"},
-							Format:      "",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.TargetCluster"),
 						},
 					},
 					"conditions": {
@@ -3231,7 +3233,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.TargetCluster"},
 	}
 }
 

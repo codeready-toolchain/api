@@ -47,7 +47,7 @@ type SpaceSpec struct {
 	// TargetCluster The cluster in which this Space is going to be provisioned
 	// If not set then the target cluster will be picked automatically
 	// +optional
-	TargetCluster string `json:"targetCluster,omitempty"`
+	TargetCluster TargetCluster `json:"targetCluster,omitempty"`
 
 	// TierName is introduced to retain the name of the tier
 	// for which this Space is provisioned
@@ -73,7 +73,7 @@ type SpaceStatus struct {
 	// Can be empty if provisioning did not start or failed
 	// To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed
 	// +optional
-	TargetCluster string `json:"targetCluster,omitempty"`
+	TargetCluster TargetCluster `json:"targetCluster,omitempty"`
 
 	// Conditions is an array of current Space conditions
 	// Supported condition types: ConditionReady
@@ -83,6 +83,18 @@ type SpaceStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+}
+
+// TargetCluster allows to select a cluster in which the Space will be provisioned.
+// A specific name can be provided or a list of cluster-role labels,
+// and the capacity manager will select a target cluster accordingly.
+// If no role nor name is provided then a "default" cluster will be selected.
+type TargetCluster struct {
+	// Name allows to select a specific target cluster for the Space to be provisioned.
+	Name string `json:"name,omitempty"`
+	// Roles allows to specify a list of cluster-roles,
+	// the capacity manager will use those labels to select the target cluster for the Space.
+	Roles []string `json:"roles,omitempty"`
 }
 
 // +kubebuilder:object:root=true
