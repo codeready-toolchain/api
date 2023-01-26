@@ -3165,8 +3165,28 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TargetCluster The cluster in which this Space is going to be provisioned If not set then the target cluster will be picked automatically",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.TargetCluster"),
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"targetClusterRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "TargetClusterRoles one or more label keys that define a set of clusters where the Space can be provisioned. The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there. It can be used as an alternative to targetCluster field, which has precedence in case both roles and name are provided.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
 						},
 					},
 					"tierName": {
@@ -3186,8 +3206,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 				},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.TargetCluster"},
 	}
 }
 
@@ -3201,8 +3219,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TargetCluster The cluster in which this Space is currently provisioned Can be empty if provisioning did not start or failed To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.TargetCluster"),
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 					"conditions": {
@@ -3233,7 +3251,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.TargetCluster"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
