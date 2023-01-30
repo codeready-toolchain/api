@@ -37,7 +37,7 @@ type WorkspaceNamespace struct {
 // no actual Workspace CRs in the host/member clusters. The CRD will be installed in member clusters
 // for API discovery purposes only. The schema will be used by the proxy's workspace lister API.
 // +k8s:openapi-gen=true
-// +kubebuilder:resource:scope=Namespaced
+// +kubebuilder:resource:scope=Cluster
 // +kubebuilder:printcolumn:name="Owner",type="string",JSONPath=`.status.owner`
 // +kubebuilder:printcolumn:name="Role",type="string",JSONPath=`.status.role`
 // +kubebuilder:validation:XPreserveUnknownFields
