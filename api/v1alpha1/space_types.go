@@ -83,6 +83,14 @@ type SpaceStatus struct {
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
 
+	// ProvisionedNamespaces is a list of Namespaces that were provisioned for the Space.
+	// +optional
+	// +patchMergeKey=name
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=name
+	ProvisionedNamespaces []Namespace `json:"provisionedNamespaces,omitempty" patchStrategy:"merge" patchMergeKey:"name"`
+
 	// Conditions is an array of current Space conditions
 	// Supported condition types: ConditionReady
 	// +optional

@@ -85,6 +85,14 @@ type NSTemplateSetSpaceRole struct {
 // NSTemplateSetStatus defines the observed state of NSTemplateSet
 // +k8s:openapi-gen=true
 type NSTemplateSetStatus struct {
+	// ProvisionedNamespaces is a list of Namespaces that were provisioned by the NSTemplateSet.
+	// +optional
+	// +patchMergeKey=name
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=name
+	ProvisionedNamespaces []Namespace `json:"provisionedNamespaces,omitempty" patchStrategy:"merge" patchMergeKey:"name"`
+
 	// Conditions is an array of current NSTemplateSet conditions
 	// Supported condition types: ConditionReady
 	// +optional
