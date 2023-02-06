@@ -8,6 +8,7 @@ import (
 // +k8s:openapi-gen=true
 type WorkspaceStatus struct {
 	// The list of namespaces belonging to the Workspace.
+	// +optional
 	// +listType=atomic
 	Namespaces []WorkspaceNamespace `json:"namespaces,omitempty"`
 
