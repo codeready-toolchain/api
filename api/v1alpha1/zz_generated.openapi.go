@@ -4318,13 +4318,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceNamespace(ref common.R
 					"name": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Name the name of the namespace.",
-							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"type": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Name the name of the namespace.",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 				},
-				Required: []string{"name"},
 			},
 		},
 	}

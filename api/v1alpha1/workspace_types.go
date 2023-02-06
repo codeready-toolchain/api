@@ -29,7 +29,12 @@ type WorkspaceStatus struct {
 type WorkspaceNamespace struct {
 
 	// Name the name of the namespace.
-	Name string `json:"name"`
+	// +optional
+	Name string `json:"name,omitempty"`
+
+	// Type the type of the namespace. eg. default
+	// +optional
+	Type string `json:"type,omitempty"`
 }
 
 // +kubebuilder:object:root=true
