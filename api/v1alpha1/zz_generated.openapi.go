@@ -92,6 +92,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingList":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingList(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingSpec":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace":                        schema_codeready_toolchain_api_api_v1alpha1_SpaceNamespace(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequest":                          schema_codeready_toolchain_api_api_v1alpha1_SpaceRequest(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestSpec":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestStatus(ref),
@@ -122,7 +123,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_UsersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig":                         schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Workspace":                             schema_codeready_toolchain_api_api_v1alpha1_Workspace(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.WorkspaceNamespace":                    schema_codeready_toolchain_api_api_v1alpha1_WorkspaceNamespace(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.WorkspaceStatus":                       schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref),
 	}
 }
@@ -3004,6 +3004,33 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingStatus(ref common.R
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceNamespace(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceNamespace is a common type to define the information about a namespace within a Space Used in NSTemplateSet status and Workspace status",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Name the name of the namespace.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"type": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Type the type of the namespace. eg. default",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -4308,33 +4335,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_Workspace(ref common.ReferenceC
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceNamespace(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "WorkspaceNamespace the information about a namespace within a Workspace",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"name": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Name the name of the namespace.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"type": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Name the name of the namespace.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
 func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -4355,7 +4355,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.Refe
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.WorkspaceNamespace"),
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"),
 									},
 								},
 							},
@@ -4379,6 +4379,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.Refe
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.WorkspaceNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
 	}
 }

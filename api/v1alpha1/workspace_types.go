@@ -10,7 +10,7 @@ type WorkspaceStatus struct {
 	// The list of namespaces belonging to the Workspace.
 	// +optional
 	// +listType=atomic
-	Namespaces []WorkspaceNamespace `json:"namespaces,omitempty"`
+	Namespaces []SpaceNamespace `json:"namespaces,omitempty"`
 
 	// Owner the name of the UserSignup that owns the workspace. It’s the user who is being charged
 	// for the usage and whose quota is used for the workspace. There is only one user for this kind
@@ -22,19 +22,6 @@ type WorkspaceStatus struct {
 	// Role defines what kind of permissions the user has in the given workspace.
 	// +optional
 	Role string `json:"role,omitempty"`
-}
-
-// WorkspaceNamespace the information about a namespace within a Workspace
-// +k8s:openapi-gen=true
-type WorkspaceNamespace struct {
-
-	// Name the name of the namespace.
-	// +optional
-	Name string `json:"name,omitempty"`
-
-	// Type the type of the namespace. eg. default
-	// +optional
-	Type string `json:"type,omitempty"`
 }
 
 // +kubebuilder:object:root=true
