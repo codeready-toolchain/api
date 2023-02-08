@@ -121,6 +121,8 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec":                          schema_codeready_toolchain_api_api_v1alpha1_UserTierSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_UsersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig":                         schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Workspace":                             schema_codeready_toolchain_api_api_v1alpha1_Workspace(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.WorkspaceStatus":                       schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref),
 	}
 }
 
@@ -4261,5 +4263,94 @@ func schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref common.Refere
 				},
 			},
 		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_Workspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Workspace is the Schema for the workspaces API but it is only for use by the Proxy. There will be no actual Workspace CRs in the host/member clusters. The CRD will be installed in member clusters for API discovery purposes only. The schema will be used by the proxy's workspace lister API.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.WorkspaceStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.WorkspaceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "WorkspaceStatus defines the observed state of a Workspace",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"namespaces": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "The list of namespaces belonging to the Workspace.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"),
+									},
+								},
+							},
+						},
+					},
+					"owner": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Owner the name of the UserSignup that owns the workspace. It’s the user who is being charged for the usage and whose quota is used for the workspace. There is only one user for this kind of relationship and it can be transferred to someone else during the lifetime of the workspace. By default, it’s the creator who becomes the owner as well.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"role": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Role defines what kind of permissions the user has in the given workspace.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
 	}
 }
