@@ -1630,12 +1630,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 					"provisionedNamespaces": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"name",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "name",
-								"x-kubernetes-patch-strategy":  "merge",
+								"x-kubernetes-list-type": "atomic",
 							},
 						},
 						SchemaProps: spec.SchemaProps{
@@ -1645,7 +1640,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Namespace"),
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"),
 									},
 								},
 							},
@@ -1679,7 +1674,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.Namespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
 	}
 }
 
@@ -3249,30 +3244,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 							Format:      "",
 						},
 					},
-					"provisionedNamespaces": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"name",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "name",
-								"x-kubernetes-patch-strategy":  "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "ProvisionedNamespaces is a list of Namespaces that were provisioned for the Space.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Namespace"),
-									},
-								},
-							},
-						},
-					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -3301,7 +3272,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.Namespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
