@@ -4347,6 +4347,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.Refe
 							Format:      "",
 						},
 					},
+					"type": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Type defines the type of workspace. For example, \"home\" for a user's given workspace upon first signing up. It is currently valid for this value to be empty.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},
