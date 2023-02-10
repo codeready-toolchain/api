@@ -22,6 +22,11 @@ type WorkspaceStatus struct {
 	// Role defines what kind of permissions the user has in the given workspace.
 	// +optional
 	Role string `json:"role,omitempty"`
+
+	// Type defines the type of workspace. For example, "home" for a user's given workspace upon first
+	// signing up. It is currently valid for this value to be empty.
+	// +optional
+	Type string `json:"type,omitempty"`
 }
 
 // +kubebuilder:object:root=true
