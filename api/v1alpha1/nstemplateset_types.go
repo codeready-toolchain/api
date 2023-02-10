@@ -87,7 +87,6 @@ type NSTemplateSetSpaceRole struct {
 type NSTemplateSetStatus struct {
 	// ProvisionedNamespaces is a list of Namespaces that were provisioned by the NSTemplateSet.
 	// +optional
-	// +optional
 	// +listType=atomic
 	ProvisionedNamespaces []SpaceNamespace `json:"provisionedNamespaces,omitempty"`
 
