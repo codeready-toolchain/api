@@ -49,6 +49,14 @@ type SpaceSpec struct {
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
 
+	// TargetClusterRoles one or more label keys that define a set of clusters
+	// where the Space can be provisioned.
+	// The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there.
+	// It can be used as an alternative to targetCluster field, which has precedence in case both roles and name are provided.
+	// +optional
+	// +listType=atomic
+	TargetClusterRoles []string `json:"targetClusterRoles,omitempty"`
+
 	// TierName is introduced to retain the name of the tier
 	// for which this Space is provisioned
 	// If not set then the tier name will be set automatically

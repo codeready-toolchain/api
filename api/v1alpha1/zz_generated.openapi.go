@@ -3171,6 +3171,26 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 							Format:      "",
 						},
 					},
+					"targetClusterRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "TargetClusterRoles one or more label keys that define a set of clusters where the Space can be provisioned. The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there. It can be used as an alternative to targetCluster field, which has precedence in case both roles and name are provided.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TierName is introduced to retain the name of the tier for which this Space is provisioned If not set then the tier name will be set automatically",
