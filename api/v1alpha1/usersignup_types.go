@@ -17,10 +17,6 @@ const (
 	// UserSignupUserDeactivatedNotificationCreated means that the Notification CR was created so the user should be notified about their deactivated account
 	UserSignupUserDeactivatedNotificationCreated ConditionType = "UserDeactivatedNotificationCreated"
 
-	// UserSignupSSOUserIDAnnotationKey is used to store the user's user_id claim value issued by the SSO provider
-	UserSignupSSOUserIDAnnotationKey = LabelKeyPrefix + "sso-user-id"
-	// UserSignupSSOAccountIDAnnotationKey is used to store the user's account_id claim value issued by the SSO provider
-	UserSignupSSOAccountIDAnnotationKey = LabelKeyPrefix + "sso-account-id"
 	// UserSignupLastTargetClusterAnnotationKey is used for tracking the cluster for returning users
 	UserSignupLastTargetClusterAnnotationKey = LabelKeyPrefix + "last-target-cluster"
 	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
