@@ -7,6 +7,6 @@ const (
 	// SSOUserIDAnnotationKey is used to store the user's user_id claim value issued by the SSO provider
 	SSOUserIDAnnotationKey = AnnotationKeyPrefix + "sso-user-id"
 
-	// UserSignupSSOAccountIDAnnotationKey is used to store the user's account_id claim value issued by the SSO provider
+	// SSOAccountIDAnnotationKey is used to store the user's account_id claim value issued by the SSO provider
 	SSOAccountIDAnnotationKey = AnnotationKeyPrefix + "sso-account-id"
 )
