@@ -1577,6 +1577,11 @@ func (in *NotificationsConfig) DeepCopyInto(out *NotificationsConfig) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.NotificationEnvironment != nil {
+		in, out := &in.NotificationEnvironment, &out.NotificationEnvironment
+		*out = new(string)
+		**out = **in
+	}
 	in.Secret.DeepCopyInto(&out.Secret)
 }
 

@@ -2075,6 +2075,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref common.
 							Format:      "",
 						},
 					},
+					"notificationEnvironment": {
+						SchemaProps: spec.SchemaProps{
+							Description: "NotificationEnvironment is to distinguish the cluster environment being run in, eg: whether it is for sandbox or stonesoup",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"secret": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines all secrets related to notification configuration",

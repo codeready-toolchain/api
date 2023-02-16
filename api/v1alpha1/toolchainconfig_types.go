@@ -190,6 +190,10 @@ type NotificationsConfig struct {
 	// +optional
 	AdminEmail *string `json:"adminEmail,omitempty"`
 
+	// NotificationEnvironment is to distinguish the cluster environment being run in, eg: whether it is for sandbox or stonesoup
+	// +optional
+	NotificationEnvironment *string `json:"notificationEnvironment,omitempty"`
+
 	// Defines all secrets related to notification configuration
 	// +optional
 	Secret NotificationSecret `json:"secret,omitempty"`
