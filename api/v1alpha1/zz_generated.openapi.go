@@ -93,6 +93,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingSpec":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequest":                          schema_codeready_toolchain_api_api_v1alpha1_SpaceRequest(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestSpec":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceSpec":                             schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref),
@@ -581,11 +582,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds"),
 						},
 					},
+					"spaceRequest": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Keeps parameters necessary for configuring SpaceRequest functionality",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
 	}
 }
 
@@ -3066,6 +3074,26 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequest(ref common.Referen
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestSpec", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceRequestConfig allows to configure , enable and disable the Space Request controller, which is in charge of provisioning Spaces on demand.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"enabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Enabled specifies whether the SpaceRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
