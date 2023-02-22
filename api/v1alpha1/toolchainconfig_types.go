@@ -78,9 +78,9 @@ type HostConfig struct {
 	// +optional
 	CapacityThresholds CapacityThresholds `json:"capacityThresholds,omitempty"`
 
-	// Keeps parameters necessary for configuring SpaceRequest functionality
+	// Keeps parameters necessary for configuring Space provisioning functionality
 	// +optional
-	SpaceRequest SpaceRequestConfig `json:"spaceRequest,omitempty"`
+	SpaceConfig SpaceConfig `json:"spaceConfig,omitempty"`
 }
 
 // Members contains all configuration for member operators
@@ -449,14 +449,14 @@ type ToolchainConfigStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-// SpaceRequestConfig allows to configure , enable and disable the Space Request controller, which is in charge of provisioning Spaces on demand.
+// SpaceConfig allows to configure Space provisioning related functionality.
 // +k8s:openapi-gen=true
-type SpaceRequestConfig struct {
+type SpaceConfig struct {
 
-	// Enabled specifies whether the SpaceRequest controller should start or not.
+	// SpaceRequestEnabled specifies whether the SpaceRequest controller should start or not.
 	// This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).
 	// +optional
-	Enabled *bool `json:"enabled,omitempty"`
+	SpaceRequestEnabled *bool `json:"enabled,omitempty"`
 }
 
 //+kubebuilder:object:root=true
