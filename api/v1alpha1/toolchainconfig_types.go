@@ -456,7 +456,7 @@ type SpaceConfig struct {
 	// SpaceRequestEnabled specifies whether the SpaceRequest controller should start or not.
 	// This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).
 	// +optional
-	SpaceRequestEnabled *bool `json:"enabled,omitempty"`
+	SpaceRequestEnabled *bool `json:"spaceRequestEnabled,omitempty"`
 }
 
 //+kubebuilder:object:root=true
