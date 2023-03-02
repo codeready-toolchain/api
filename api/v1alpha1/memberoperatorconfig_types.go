@@ -153,9 +153,9 @@ type WebConsolePlugin struct {
 	// +optional
 	PendoKey *string `json:"pendoKey,omitempty"`
 
-	// PendoProxy allows a proxy URL to be configured instead of communicating directly with the Pendo domain
+	// PendoHost allows a host URL to be configured instead of communicating directly with the Pendo domain
 	// +optional
-	PendoProxy *string `json:"pendoProxy,omitempty"`
+	PendoHost *string `json:"pendoHost,omitempty"`
 }
 
 // Defines all parameters concerned with member status

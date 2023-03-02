@@ -3266,8 +3266,8 @@ func (in *WebConsolePlugin) DeepCopyInto(out *WebConsolePlugin) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.PendoProxy != nil {
-		in, out := &in.PendoProxy, &out.PendoProxy
+	if in.PendoHost != nil {
+		in, out := &in.PendoHost, &out.PendoHost
 		*out = new(string)
 		**out = **in
 	}
