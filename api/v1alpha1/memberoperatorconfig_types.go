@@ -38,6 +38,10 @@ type MemberOperatorConfigSpec struct {
 	// Keeps parameters concerned with the webhook
 	// +optional
 	Webhook WebhookConfig `json:"webhook,omitempty"`
+
+	// WebConsolePlugin is used to configure the Web Console Plugin parameters
+	// +optional
+	WebConsolePlugin WebConsolePlugin `json:"webConsolePlugin,omitempty"`
 }
 
 // Defines all parameters concerned with the autoscaler
@@ -138,6 +142,20 @@ type WebhookConfig struct {
 	// Defines the flag that determines whether to deploy the Webhook
 	// +optional
 	Deploy *bool `json:"deploy,omitempty"`
+}
+
+// WebConsolePlugin defines the configuration parameters relating to the Web Console Plugin
+type WebConsolePlugin struct {
+	// Deploy determines whether the plugin will be deployed or not
+	Deploy *bool `json:"deploy,omitempty"`
+
+	// PendoKey is the key value used to interact with the Pendo API
+	// +optional
+	PendoKey *string `json:"pendoKey,omitempty"`
+
+	// PendoProxy allows a proxy URL to be configured instead of communicating directly with the Pendo domain
+	// +optional
+	PendoProxy *string `json:"pendoProxy,omitempty"`
 }
 
 // Defines all parameters concerned with member status
