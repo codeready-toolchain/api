@@ -1577,8 +1577,8 @@ func (in *NotificationsConfig) DeepCopyInto(out *NotificationsConfig) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.NotificationEnvironment != nil {
-		in, out := &in.NotificationEnvironment, &out.NotificationEnvironment
+	if in.NotificationTemplateSetName != nil {
+		in, out := &in.NotificationTemplateSetName, &out.NotificationTemplateSetName
 		*out = new(string)
 		**out = **in
 	}

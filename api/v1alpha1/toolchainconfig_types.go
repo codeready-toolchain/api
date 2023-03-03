@@ -190,9 +190,9 @@ type NotificationsConfig struct {
 	// +optional
 	AdminEmail *string `json:"adminEmail,omitempty"`
 
-	// NotificationEnvironment is to distinguish the cluster environment being run in, eg: whether it is for sandbox or stonesoup
+	// NotificationTemplateSetName defines the set of notification templates. Different Sandbox instances can use different notification templates. For example Dev Sandbox and AppStudio instances use different templates. By default, the "sandbox" template set name is used.
 	// +optional
-	NotificationEnvironment *string `json:"notificationEnvironment,omitempty"`
+	NotificationTemplateSetName *string `json:"notificationTemplateSetName,omitempty"`
 
 	// Defines all secrets related to notification configuration
 	// +optional

@@ -2075,9 +2075,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref common.
 							Format:      "",
 						},
 					},
-					"notificationEnvironment": {
+					"notificationTemplateSetName": {
 						SchemaProps: spec.SchemaProps{
-							Description: "NotificationEnvironment is to distinguish the cluster environment being run in, eg: whether it is for sandbox or stonesoup",
+							Description: "NotificationTemplateSetName defines the set of notification templates. Different Sandbox instances can use different notification templates. For example Dev Sandbox and AppStudio instances use different templates. By default, the \"sandbox\" template set name is used.",
 							Type:        []string{"string"},
 							Format:      "",
 						},
