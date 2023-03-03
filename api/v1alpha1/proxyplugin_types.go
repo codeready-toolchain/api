@@ -18,6 +18,7 @@ type ProxyPluginSpec struct {
 	// as the endpoint for the registration service to proxy requests to that have the https://<proxy-host>/plugins/<ProxyPlugin.ObjectMeta.Name>
 	// in its incoming URL.  As we add more types besides OpenShift Routes, we will add more optional fields to this spec
 	// object
+	// +optional
 	OpenShiftRouteTargetEndpoint *OpenShiftRouteTarget `json:"openShiftRouteTargetEndpoint,omitempty"`
 }
 
