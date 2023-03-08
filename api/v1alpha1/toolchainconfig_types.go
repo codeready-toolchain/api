@@ -194,6 +194,10 @@ type NotificationsConfig struct {
 	// +optional
 	AdminEmail *string `json:"adminEmail,omitempty"`
 
+	// TemplateSetName defines the set of notification templates. Different Sandbox instances can use different notification templates. For example Dev Sandbox and AppStudio instances use different templates. By default, the "sandbox" template set name is used.
+	// +optional
+	TemplateSetName *string `json:"templateSetName,omitempty"`
+
 	// Defines all secrets related to notification configuration
 	// +optional
 	Secret NotificationSecret `json:"secret,omitempty"`
