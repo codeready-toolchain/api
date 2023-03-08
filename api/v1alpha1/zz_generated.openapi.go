@@ -2083,9 +2083,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref common.
 							Format:      "",
 						},
 					},
-					"notificationTemplateSetName": {
+					"templateSetName": {
 						SchemaProps: spec.SchemaProps{
-							Description: "NotificationTemplateSetName defines the set of notification templates. Different Sandbox instances can use different notification templates. For example Dev Sandbox and AppStudio instances use different templates. By default, the \"sandbox\" template set name is used.",
+							Description: "TemplateSetName defines the set of notification templates. Different Sandbox instances can use different notification templates. For example Dev Sandbox and AppStudio instances use different templates. By default, the \"sandbox\" template set name is used.",
 							Type:        []string{"string"},
 							Format:      "",
 						},
