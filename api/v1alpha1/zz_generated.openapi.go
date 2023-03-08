@@ -73,6 +73,9 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec":                      schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus":                    schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig":                   schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPlugin":                           schema_codeready_toolchain_api_api_v1alpha1_ProxyPlugin(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginSpec":                       schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginStatus":                     schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig":         schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref),
@@ -1192,11 +1195,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"),
 						},
 					},
+					"webConsolePlugin": {
+						SchemaProps: spec.SchemaProps{
+							Description: "WebConsolePlugin is used to configure the Web Console Plugin parameters",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.WebConsolePlugin"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CheConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CheConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebConsolePlugin", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
 	}
 }
 
@@ -2102,6 +2112,113 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref common.
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSecret"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ProxyPlugin(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ProxyPlugin represents the configuration to handle GET's to k8s services in member clusters that first route through the registration service running in the sandbox host cluster.  Two forms of URL are supported: https://<proxy-host>/plugins/<ProxyPlugin.ObjectMeta.Name>/v1alpha2/<namespace-name>/ https://<proxy-host>/plugins/<ProxyPlugin.ObjectMeta.Name>/workspaces/<workspace-name>/v1alpha2/<namespace-name>",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ProxyPluginSpec defines the desired state of ProxyPlugin",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"openShiftRouteTargetEndpoint": {
+						SchemaProps: spec.SchemaProps{
+							Description: "OpenShiftRouteTargetEndpoint is an optional field that represents the look up information for an OpenShift Route as the endpoint for the registration service to proxy requests to that have the https://<proxy-host>/plugins/<ProxyPlugin.ObjectMeta.Name> in its incoming URL.  As we add more types besides OpenShift Routes, we will add more optional fields to this spec object",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.OpenShiftRouteTarget"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.OpenShiftRouteTarget"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ProxyPluginStatus defines the observed state of ProxyPlugin",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of current Proxy Plugin conditions Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
