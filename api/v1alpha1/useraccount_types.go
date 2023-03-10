@@ -70,8 +70,8 @@ type UserAccountStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
 // +kubebuilder:printcolumn:name="User ID",type="string",JSONPath=`.spec.userID`,priority=1
-// +kubebuilder:printcolumn:name="NS Limit",type="string",JSONPath=`.spec.nsLimit`
-// +kubebuilder:printcolumn:name="Tier Name",type="string",JSONPath=`.spec.nsTemplateSet.tierName`
+// +kubebuilder:printcolumn:name="Created_at",type="string",JSONPath=`.metadata.creationTimestamp`
+// +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.metadata.labels.toolchain\.dev\.openshift\.com/tier`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
 // +kubebuilder:printcolumn:name="Disabled",type="boolean",JSONPath=`.spec.disabled`,priority=1
