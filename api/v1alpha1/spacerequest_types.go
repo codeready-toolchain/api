@@ -4,6 +4,11 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+const (
+	// SpaceRequestLabelKey is a label on the subSpace, and will hold the name of the SpaceRequest that created the subSpace resource.
+	SpaceRequestLabelKey = LabelKeyPrefix + "spaceRequest"
+)
+
 // SpaceRequestSpec defines the desired state of Space
 // +k8s:openapi-gen=true
 type SpaceRequestSpec struct {
