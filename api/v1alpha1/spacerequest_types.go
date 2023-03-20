@@ -6,9 +6,9 @@ import (
 
 const (
 	// SpaceRequestLabelKey is a label on the subSpace, and will hold the name of the SpaceRequest that created the subSpace resource.
-	SpaceRequestLabelKey = LabelKeyPrefix + "spaceRequest"
+	SpaceRequestLabelKey = LabelKeyPrefix + "spacerequest"
 	// SpaceRequestNamespaceLabelKey is a label on the subSpace, and will hold the namespace of the SpaceRequest that created the subSpace resource.
-	SpaceRequestNamespaceLabelKey = LabelKeyPrefix + "spaceRequestNamespace"
+	SpaceRequestNamespaceLabelKey = LabelKeyPrefix + "spacerequest-namespace"
 )
 
 // SpaceRequestSpec defines the desired state of Space
