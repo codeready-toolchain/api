@@ -34,6 +34,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                            schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                        schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds":                    schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig":                         schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                             schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                             schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
@@ -307,6 +308,33 @@ func schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref common.R
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "CaptchaConfig defines any configuration related to captcha verification",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"enabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Enabled specifies whether the captcha verification feature is enabled or not",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"score": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ScoreThreshold defines the captcha assessment score threshold. A score equal to or above the threshold means the user is most likely human and can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -2544,6 +2572,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 							Format:      "",
 						},
 					},
+					"captcha": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Captcha defines any configuration related to captcha verification",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig"),
+						},
+					},
 					"dailyLimit": {
 						SchemaProps: spec.SchemaProps{
 							Description: "VerificationDailyLimit specifies the number of times a user may initiate a phone verification request within a 24 hour period",
@@ -2611,7 +2646,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret"},
 	}
 }
 

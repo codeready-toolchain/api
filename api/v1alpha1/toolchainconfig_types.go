@@ -311,6 +311,10 @@ type RegistrationServiceVerificationConfig struct {
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
 
+	// Captcha defines any configuration related to captcha verification
+	// +optional
+	Captcha CaptchaConfig `json:"captcha,omitempty"`
+
 	// VerificationDailyLimit specifies the number of times a user may initiate a phone verification request within a
 	// 24 hour period
 	// +optional
@@ -381,6 +385,19 @@ type RegistrationServiceVerificationSecret struct {
 	// AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services
 	// +optional
 	AWSSecretAccessKey *string `json:"awsSecretAccessKey,omitempty"`
+}
+
+// CaptchaConfig defines any configuration related to captcha verification
+// +k8s:openapi-gen=true
+type CaptchaConfig struct {
+	// Enabled specifies whether the captcha verification feature is enabled or not
+	// +optional
+	Enabled *bool `json:"enabled,omitempty"`
+
+	// ScoreThreshold defines the captcha assessment score threshold. A score equal to or above the threshold means the user is most likely human and
+	// can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required.
+	// +optional
+	ScoreThreshold *string `json:"score,omitempty"`
 }
 
 // ToolchainStatusConfig contains all configuration parameters related to the toolchain status component

@@ -45,6 +45,9 @@ const (
 	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
 	UserSignupUserPhoneHashLabelKey = LabelKeyPrefix + "phone-hash"
 
+	// UserSignupCaptchaScoreLabelKey is set if captcha verification was used, and contains the last captcha assessment score for the user
+	UserSignupCaptchaScoreLabelKey = LabelKeyPrefix + "captcha-score"
+
 	// UserSignupSocialEventLabelKey is used to indicate that the user registered via an activation code, and contains
 	// the name of the SocialEvent that they signed up for
 	UserSignupSocialEventLabelKey = LabelKeyPrefix + "social-event"
