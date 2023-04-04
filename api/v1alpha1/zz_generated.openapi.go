@@ -2567,7 +2567,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 					},
 					"enabled": {
 						SchemaProps: spec.SchemaProps{
-							Description: "VerificationEnabled specifies whether the phone verification feature is enabled or not",
+							Description: "VerificationEnabled specifies whether verification is enabled or not Verification enablement works in the following way:\n  1. verification.enabled == false\n     No verification during the signup process at all. (no phone, no captcha)\n  2. verification.enabled == true && verification.captcha.enabled == true\n     Captcha is enabled and will bypass phone verification if the score is above the threshold but if the score is\n     below the threshold then phone verification kicks in.\n  3. verification.enabled == true && verification.captcha.enabled == false\n     Only phone verification is effect.",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},

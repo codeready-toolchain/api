@@ -307,7 +307,15 @@ type RegistrationServiceVerificationConfig struct {
 	// +optional
 	Secret RegistrationServiceVerificationSecret `json:"secret,omitempty"`
 
-	// VerificationEnabled specifies whether the phone verification feature is enabled or not
+	// VerificationEnabled specifies whether verification is enabled or not
+	// Verification enablement works in the following way:
+	//   1. verification.enabled == false
+	//      No verification during the signup process at all. (no phone, no captcha)
+	//   2. verification.enabled == true && verification.captcha.enabled == true
+	//      Captcha is enabled and will bypass phone verification if the score is above the threshold but if the score is
+	//      below the threshold then phone verification kicks in.
+	//   3. verification.enabled == true && verification.captcha.enabled == false
+	//      Only phone verification is effect.
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
 
