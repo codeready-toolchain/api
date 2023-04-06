@@ -35,10 +35,11 @@ const (
 	UserVerificationExpiryAnnotationKey = LabelKeyPrefix + "verification-expiry"
 	// SkipAutoCreateSpaceAnnotationKey when true signals the usersignup controller to skip Space creation, otherwise a Space will be created by default
 	SkipAutoCreateSpaceAnnotationKey = LabelKeyPrefix + "skip-auto-create-space"
-
 	// UserSignupActivationCounterAnnotationKey is used for the usersignup activation counter annotation key
 	// Activations are counted after phone verification succeeded
 	UserSignupActivationCounterAnnotationKey = LabelKeyPrefix + "activation-counter"
+	// UserSignupCaptchaScoreAnnotationKey is set if captcha verification was used, and contains the last captcha assessment score for the user
+	UserSignupCaptchaScoreAnnotationKey = LabelKeyPrefix + "captcha-score"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
