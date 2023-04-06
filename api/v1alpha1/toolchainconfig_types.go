@@ -307,9 +307,21 @@ type RegistrationServiceVerificationConfig struct {
 	// +optional
 	Secret RegistrationServiceVerificationSecret `json:"secret,omitempty"`
 
-	// VerificationEnabled specifies whether the phone verification feature is enabled or not
+	// VerificationEnabled specifies whether verification is enabled or not
+	// Verification enablement works in the following way:
+	//   1. verification.enabled == false
+	//      No verification during the signup process at all. (no phone, no captcha)
+	//   2. verification.enabled == true && verification.captcha.enabled == true
+	//      Captcha is enabled and will bypass phone verification if the score is above the threshold but if the score is
+	//      below the threshold then phone verification kicks in.
+	//   3. verification.enabled == true && verification.captcha.enabled == false
+	//      Only phone verification is effect.
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
+
+	// Captcha defines any configuration related to captcha verification
+	// +optional
+	Captcha CaptchaConfig `json:"captcha,omitempty"`
 
 	// VerificationDailyLimit specifies the number of times a user may initiate a phone verification request within a
 	// 24 hour period
@@ -381,6 +393,19 @@ type RegistrationServiceVerificationSecret struct {
 	// AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services
 	// +optional
 	AWSSecretAccessKey *string `json:"awsSecretAccessKey,omitempty"`
+}
+
+// CaptchaConfig defines any configuration related to captcha verification
+// +k8s:openapi-gen=true
+type CaptchaConfig struct {
+	// Enabled specifies whether the captcha verification feature is enabled or not
+	// +optional
+	Enabled *bool `json:"enabled,omitempty"`
+
+	// ScoreThreshold defines the captcha assessment score threshold. A score equal to or above the threshold means the user is most likely human and
+	// can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required.
+	// +optional
+	ScoreThreshold *string `json:"score,omitempty"`
 }
 
 // ToolchainStatusConfig contains all configuration parameters related to the toolchain status component
