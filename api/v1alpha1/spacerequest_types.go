@@ -9,6 +9,8 @@ const (
 	SpaceRequestLabelKey = LabelKeyPrefix + "spacerequest"
 	// SpaceRequestNamespaceLabelKey is a label on the subSpace, and will hold the namespace of the SpaceRequest that created the subSpace resource.
 	SpaceRequestNamespaceLabelKey = LabelKeyPrefix + "spacerequest-namespace"
+	// SpaceRequestProvisionedNamespaceLabelKey is a label on the secret that was created to provide access to a specific namespace provisioned by the SpaceRequest.
+	SpaceRequestProvisionedNamespaceLabelKey = LabelKeyPrefix + "spacerequest-provisioned-namespace"
 )
 
 // SpaceRequestSpec defines the desired state of Space
