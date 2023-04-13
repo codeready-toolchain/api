@@ -11,6 +11,9 @@ const (
 	SpaceRequestNamespaceLabelKey = LabelKeyPrefix + "spacerequest-namespace"
 	// SpaceRequestProvisionedNamespaceLabelKey is a label on the secret that was created to provide access to a specific namespace provisioned by the SpaceRequest.
 	SpaceRequestProvisionedNamespaceLabelKey = LabelKeyPrefix + "spacerequest-provisioned-namespace"
+
+	// AdminServiceAccountName is the service account holding the token that grants admin permissions for the namespace provisioned by the SpaceRequest.
+	AdminServiceAccountName = "namespace-manager"
 )
 
 // SpaceRequestSpec defines the desired state of Space
