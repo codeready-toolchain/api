@@ -393,6 +393,11 @@ type RegistrationServiceVerificationSecret struct {
 	// AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services
 	// +optional
 	AWSSecretAccessKey *string `json:"awsSecretAccessKey,omitempty"`
+
+	// RecaptchaServiceAccountFile is the GCP service account file contents encoded in base64, it is
+	// to be used with the recaptcha client for authentication
+	// +optional
+	RecaptchaServiceAccountFile *string `json:"recaptchaServiceAccountFile,omitempty"`
 }
 
 // CaptchaConfig defines any configuration related to captcha verification
