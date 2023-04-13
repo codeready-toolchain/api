@@ -332,6 +332,20 @@ func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.Refere
 							Format:      "",
 						},
 					},
+					"siteKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"projectID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ProjectID defines the GCP project ID that has the recaptcha service enabled.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},
