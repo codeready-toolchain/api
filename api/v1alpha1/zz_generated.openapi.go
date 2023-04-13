@@ -325,7 +325,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.Refere
 							Format:      "",
 						},
 					},
-					"score": {
+					"scoreThreshold": {
 						SchemaProps: spec.SchemaProps{
 							Description: "ScoreThreshold defines the captcha assessment score threshold. A score equal to or above the threshold means the user is most likely human and can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required.",
 							Type:        []string{"string"},
@@ -2709,6 +2709,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 					"awsSecretAccessKey": {
 						SchemaProps: spec.SchemaProps{
 							Description: "AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"recaptchaServiceAccountFile": {
+						SchemaProps: spec.SchemaProps{
+							Description: "RecaptchaServiceAccountFile is the GCP service account file contents encoded in base64, it is to be used with the recaptcha client for authentication",
 							Type:        []string{"string"},
 							Format:      "",
 						},

@@ -410,7 +410,7 @@ type CaptchaConfig struct {
 	// ScoreThreshold defines the captcha assessment score threshold. A score equal to or above the threshold means the user is most likely human and
 	// can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required.
 	// +optional
-	ScoreThreshold *string `json:"score,omitempty"`
+	ScoreThreshold *string `json:"scoreThreshold,omitempty"`
 
 	// SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod
 	// +optional
