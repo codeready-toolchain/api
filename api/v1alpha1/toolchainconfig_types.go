@@ -406,6 +406,14 @@ type CaptchaConfig struct {
 	// can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required.
 	// +optional
 	ScoreThreshold *string `json:"score,omitempty"`
+
+	// SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod
+	// +optional
+	SiteKey *string `json:"siteKey,omitempty"`
+
+	// ProjectID defines the GCP project ID that has the recaptcha service enabled.
+	// +optional
+	ProjectID *string `json:"projectID,omitempty"`
 }
 
 // ToolchainStatusConfig contains all configuration parameters related to the toolchain status component
