@@ -393,6 +393,11 @@ type RegistrationServiceVerificationSecret struct {
 	// AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services
 	// +optional
 	AWSSecretAccessKey *string `json:"awsSecretAccessKey,omitempty"`
+
+	// RecaptchaServiceAccountFile is the GCP service account file contents encoded in base64, it is
+	// to be used with the recaptcha client for authentication
+	// +optional
+	RecaptchaServiceAccountFile *string `json:"recaptchaServiceAccountFile,omitempty"`
 }
 
 // CaptchaConfig defines any configuration related to captcha verification
@@ -405,7 +410,15 @@ type CaptchaConfig struct {
 	// ScoreThreshold defines the captcha assessment score threshold. A score equal to or above the threshold means the user is most likely human and
 	// can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required.
 	// +optional
-	ScoreThreshold *string `json:"score,omitempty"`
+	ScoreThreshold *string `json:"scoreThreshold,omitempty"`
+
+	// SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod
+	// +optional
+	SiteKey *string `json:"siteKey,omitempty"`
+
+	// ProjectID defines the GCP project ID that has the recaptcha service enabled.
+	// +optional
+	ProjectID *string `json:"projectID,omitempty"`
 }
 
 // ToolchainStatusConfig contains all configuration parameters related to the toolchain status component
