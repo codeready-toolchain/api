@@ -28,6 +28,7 @@ jobs:
         uses: redhat-actions/crda@v1
         with:
           crda_key: ${{ secrets.CRDA_KEY }}
+          upload_sarif: false
       - name: Print Report Link
         run: echo ${{ steps.crda_scan.outputs.report_link }}
       - name: Print Sarif Report
