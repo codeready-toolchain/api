@@ -1,18 +1,34 @@
-name: Code Analysis
+name: Code Analysis CRDA
 on:
   push:
     branches:
       - master
+      - add-sonar
+    tags-ignore:
+      - '*.*'
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  crdascan:
+    name: CRDA
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Install Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19.x
+      - name: Install CRDA
+        uses: redhat-actions/openshift-tools-installer@v1
+        with:
+          source: github
+          crda: latest
+      - name: CRDA Scan
+        id: crda_scan
+        uses: redhat-actions/crda@v1
+        with:
+          crda_key: ${{ secrets.CRDA_KEY }}
+      - name: Print Report Link
+        run: echo ${{ steps.crda_scan.outputs.report_link }}
+      - name: Print Sarif Report
+        run: echo ${{ steps.crda_scan.outputs.crda_report_sarif }}
