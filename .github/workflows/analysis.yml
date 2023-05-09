@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - add-sonar
     tags-ignore:
       - '*.*'
 jobs:
@@ -33,9 +32,3 @@ jobs:
           crda_key: ${{ secrets.CRDA_KEY }}
       - name: Print Report Link
         run: echo ${{ steps.crda_scan.outputs.report_link }}
-      # - name: Print Sarif Report
-      #   run: echo ${{ steps.crda_scan.outputs.crda_report_sarif }}
-      # - name: Upload result to GitHub Code Scanning
-      #   uses: github/codeql-action/upload-sarif@v2
-      #   with:
-      #     sarif_file: ${{ steps.crda_scan.outputs.crda_report_sarif }}
