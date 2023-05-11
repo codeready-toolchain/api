@@ -268,7 +268,15 @@ type RegistrationServiceConfig struct {
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
 // +k8s:openapi-gen=true
 type RegistrationServiceAnalyticsConfig struct {
+	// DevSpaceAnalytics contains the configuration parameters for DevSpaces
+	DevSpacesAnalytics DevSpacesAnalyticsConfig `json:"devSpacesAnalytics,omitempty"`
 
+	// SegmentWriteKey specifies the segment write key for sandbox
+	// +optional
+	SegmentWriteKey *string `json:"segmentWriteKey,omitempty"`
+}
+
+type DevSpacesAnalyticsConfig struct {
 	// WoopraDomain specifies the woopra domain name
 	// +optional
 	WoopraDomain *string `json:"woopraDomain,omitempty"`

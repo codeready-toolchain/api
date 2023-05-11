@@ -2271,16 +2271,16 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsCon
 				Description: "RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"woopraDomain": {
+					"devSpacesAnalytics": {
 						SchemaProps: spec.SchemaProps{
-							Description: "WoopraDomain specifies the woopra domain name",
-							Type:        []string{"string"},
-							Format:      "",
+							Description: "DevSpaceAnalytics contains the configuration parameters for DevSpaces",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.DevSpacesAnalyticsConfig"),
 						},
 					},
 					"segmentWriteKey": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SegmentWriteKey specifies the segment write key",
+							Description: "SegmentWriteKey specifies the segment write key for sandbox",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2288,6 +2288,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsCon
 				},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.DevSpacesAnalyticsConfig"},
 	}
 }
 
