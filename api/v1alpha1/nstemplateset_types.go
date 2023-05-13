@@ -6,7 +6,7 @@ import (
 
 const (
 	OwnerLabelKey       = LabelKeyPrefix + "owner"
-	SpaceLabelKey       = SpaceBindingSpaceLabelKey
+	SpaceLabelKey       = LabelKeyPrefix + "space"
 	TypeLabelKey        = LabelKeyPrefix + "type"
 	TemplateRefLabelKey = LabelKeyPrefix + "templateref"
 	TierLabelKey        = LabelKeyPrefix + "tier"
