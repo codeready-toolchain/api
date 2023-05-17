@@ -268,7 +268,7 @@ type RegistrationServiceConfig struct {
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
 // +k8s:openapi-gen=true
 type RegistrationServiceAnalyticsConfig struct {
-	// DevSpaceAnalytics contains the configuration parameters for DevSpaces
+	// DevSpaces contains the analytics configuration parameters for devspaces
 	// +optional
 	DevSpaces DevSpaces `json:"devSpaces,omitempty"`
 

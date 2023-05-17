@@ -2273,7 +2273,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsCon
 				Properties: map[string]spec.Schema{
 					"devSpaces": {
 						SchemaProps: spec.SchemaProps{
-							Description: "DevSpaceAnalytics contains the configuration parameters for DevSpaces",
+							Description: "DevSpaces contains the analytics configuration parameters for devspaces",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.DevSpaces"),
 						},
