@@ -2271,7 +2271,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsCon
 				Description: "RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"devSpacesAnalytics": {
+					"devSpaces": {
 						SchemaProps: spec.SchemaProps{
 							Description: "DevSpaceAnalytics contains the configuration parameters for DevSpaces",
 							Default:     map[string]interface{}{},

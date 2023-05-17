@@ -270,7 +270,7 @@ type RegistrationServiceConfig struct {
 type RegistrationServiceAnalyticsConfig struct {
 	// DevSpaceAnalytics contains the configuration parameters for DevSpaces
 	// +optional
-	DevSpaces DevSpaces `json:"devSpacesAnalytics,omitempty"`
+	DevSpaces DevSpaces `json:"devSpaces,omitempty"`
 
 	// WoopraDomain specifies the woopra domain name TODO remove once config updated to have woopra in devspaces
 	// +optional
