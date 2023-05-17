@@ -269,6 +269,7 @@ type RegistrationServiceConfig struct {
 // +k8s:openapi-gen=true
 type RegistrationServiceAnalyticsConfig struct {
 	// DevSpaceAnalytics contains the configuration parameters for DevSpaces
+	// +optional
 	DevSpaces DevSpaces `json:"devSpacesAnalytics,omitempty"`
 
 	// WoopraDomain specifies the woopra domain name TODO remove once config updated to have woopra in devspaces
