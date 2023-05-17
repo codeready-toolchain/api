@@ -2275,7 +2275,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsCon
 						SchemaProps: spec.SchemaProps{
 							Description: "DevSpaceAnalytics contains the configuration parameters for DevSpaces",
 							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.DevSpacesAnalyticsConfig"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.DevSpaces"),
+						},
+					},
+					"woopraDomain": {
+						SchemaProps: spec.SchemaProps{
+							Description: "WoopraDomain specifies the woopra domain name TODO remove once config updated to have woopra in devspaces",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 					"segmentWriteKey": {
@@ -2289,7 +2296,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsCon
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.DevSpacesAnalyticsConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.DevSpaces"},
 	}
 }
 
