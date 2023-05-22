@@ -24,9 +24,11 @@ const (
 	ToolchainStatusComponentsNotReadyReason = "ComponentsNotReady"
 
 	// deployment reasons
-	ToolchainStatusDeploymentReadyReason    = "DeploymentReady"
-	ToolchainStatusDeploymentNotReadyReason = "DeploymentNotReady"
-	ToolchainStatusDeploymentNotFoundReason = "DeploymentNotFound"
+	ToolchainStatusDeploymentReadyReason       = "DeploymentReady"
+	ToolchainStatusDeploymentNotReadyReason    = "DeploymentNotReady"
+	ToolchainStatusDeploymentNotFoundReason    = "DeploymentNotFound"
+	ToolchainStatusDeploymentNotUpToDateReason = "DeploymentNotUpToDate"
+	ToolchainStatusDeploymentUpToDateReason    = "DeploymentIsUpToDate"
 
 	// host connection reasons
 	ToolchainStatusClusterConnectionReadyReason                 = "HostConnectionReady"
