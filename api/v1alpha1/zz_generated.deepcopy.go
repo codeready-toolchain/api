@@ -845,6 +845,11 @@ func (in *MemberOperatorConfigSpec) DeepCopyInto(out *MemberOperatorConfigSpec) 
 	in.Autoscaler.DeepCopyInto(&out.Autoscaler)
 	in.Che.DeepCopyInto(&out.Che)
 	in.Console.DeepCopyInto(&out.Console)
+	if in.Environment != nil {
+		in, out := &in.Environment, &out.Environment
+		*out = new(string)
+		**out = **in
+	}
 	if in.SkipUserCreation != nil {
 		in, out := &in.SkipUserCreation, &out.SkipUserCreation
 		*out = new(bool)

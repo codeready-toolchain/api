@@ -23,6 +23,10 @@ type MemberOperatorConfigSpec struct {
 	// +optional
 	Console ConsoleConfig `json:"console,omitempty"`
 
+	// Environment specifies the member-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc
+	// +optional
+	Environment *string `json:"environment,omitempty"`
+
 	// Defines the flag that determines whether User and Identity resources should be created for a UserAccount
 	// +optional
 	SkipUserCreation *bool `json:"skipUserCreation,omitempty"`
