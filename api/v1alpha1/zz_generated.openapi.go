@@ -1209,6 +1209,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig"),
 						},
 					},
+					"environment": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Environment specifies the member-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"skipUserCreation": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines the flag that determines whether User and Identity resources should be created for a UserAccount",
