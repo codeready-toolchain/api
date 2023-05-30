@@ -6,7 +6,7 @@ import (
 
 const (
 	// SpaceBindingSpaceLabelKey is used to label the SpaceBinding with the name of the Space it is bound to
-	SpaceBindingSpaceLabelKey = LabelKeyPrefix + "space"
+	SpaceBindingSpaceLabelKey = SpaceLabelKey
 
 	// SpaceBindingMasterUserRecordLabelKey is used to label the SpaceBinding with the name of the MasterUserRecord it belongs to
 	SpaceBindingMasterUserRecordLabelKey = LabelKeyPrefix + "masteruserrecord"
