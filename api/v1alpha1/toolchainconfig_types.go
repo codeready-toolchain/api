@@ -50,6 +50,10 @@ type HostConfig struct {
 	// +optional
 	Deactivation DeactivationConfig `json:"deactivation,omitempty"`
 
+	// Keeps parameters concerned with GitHub
+	// +optional
+	GitHub GitHubConfig `json:"gitHub,omitempty"`
+
 	// Keeps parameters concerned with metrics
 	// +optional
 	Metrics MetricsConfig `json:"metrics,omitempty"`

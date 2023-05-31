@@ -27,6 +27,10 @@ type MemberOperatorConfigSpec struct {
 	// +optional
 	Environment *string `json:"environment,omitempty"`
 
+	// Keeps parameters concerned with GitHub
+	// +optional
+	GitHub GitHubConfig `json:"gitHub,omitempty"`
+
 	// Defines the flag that determines whether User and Identity resources should be created for a UserAccount
 	// +optional
 	SkipUserCreation *bool `json:"skipUserCreation,omitempty"`
@@ -126,6 +130,26 @@ type ConsoleConfig struct {
 	// Defines the console route name
 	// +optional
 	RouteName *string `json:"routeName,omitempty"`
+}
+
+// GitHubConfig defines all parameters concerned with GitHub
+// +k8s:openapi-gen=true
+type GitHubConfig struct {
+	// Defines all secrets related to GitHub authentication/integration
+	// +optional
+	Secret GitHubSecret `json:"secret,omitempty"`
+}
+
+// GitHubSecret defines all secrets related to Che configuration
+// +k8s:openapi-gen=true
+type GitHubSecret struct {
+	// The reference to the secret that is expected to contain the keys below
+	// +optional
+	ToolchainSecret `json:",inline"`
+
+	// The key for the GitHub Access token in the secret values map
+	// +optional
+	AccessTokenKey *string `json:"accessTokenKey,omitempty"`
 }
 
 // Defines all parameters concerned with the toolchaincluster resource
