@@ -2285,13 +2285,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsCon
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.DevSpaces"),
 						},
 					},
-					"woopraDomain": {
-						SchemaProps: spec.SchemaProps{
-							Description: "WoopraDomain specifies the woopra domain name TODO remove once config updated to have woopra in devspaces",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"segmentWriteKey": {
 						SchemaProps: spec.SchemaProps{
 							Description: "SegmentWriteKey specifies the segment write key for sandbox",

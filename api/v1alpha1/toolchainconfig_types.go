@@ -272,20 +272,12 @@ type RegistrationServiceAnalyticsConfig struct {
 	// +optional
 	DevSpaces DevSpaces `json:"devSpaces,omitempty"`
 
-	// WoopraDomain specifies the woopra domain name TODO remove once config updated to have woopra in devspaces
-	// +optional
-	WoopraDomain *string `json:"woopraDomain,omitempty"`
-
 	// SegmentWriteKey specifies the segment write key for sandbox
 	// +optional
 	SegmentWriteKey *string `json:"segmentWriteKey,omitempty"`
 }
 
 type DevSpaces struct {
-	// WoopraDomain specifies the woopra domain name
-	// +optional
-	WoopraDomain *string `json:"woopraDomain,omitempty"`
-
 	// SegmentWriteKey specifies the segment write key
 	// +optional
 	SegmentWriteKey *string `json:"segmentWriteKey,omitempty"`
