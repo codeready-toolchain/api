@@ -50,9 +50,9 @@ type HostConfig struct {
 	// +optional
 	Deactivation DeactivationConfig `json:"deactivation,omitempty"`
 
-	// Keeps parameters concerned with GitHub
+	// Defines all secrets related to GitHub authentication/integration
 	// +optional
-	GitHub GitHubConfig `json:"gitHub,omitempty"`
+	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
 
 	// Keeps parameters concerned with metrics
 	// +optional

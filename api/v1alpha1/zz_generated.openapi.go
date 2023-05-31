@@ -40,7 +40,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.GitHubConfig":                          schema_codeready_toolchain_api_api_v1alpha1_GitHubConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret":                          schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                            schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
@@ -552,28 +551,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref common.R
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_GitHubConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "GitHubConfig defines all parameters concerned with GitHub",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"secret": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines all secrets related to GitHub authentication/integration",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"},
-	}
-}
-
 func schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -629,11 +606,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig"),
 						},
 					},
-					"gitHub": {
+					"gitHubSecret": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters concerned with GitHub",
+							Description: "Defines all secrets related to GitHub authentication/integration",
 							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubConfig"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"),
 						},
 					},
 					"metrics": {
@@ -696,7 +673,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.GitHubConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
 	}
 }
 
@@ -1274,11 +1251,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Format:      "",
 						},
 					},
-					"gitHub": {
+					"gitHubSecret": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters concerned with GitHub",
+							Description: "Defines all secrets related to GitHub authentication/integration",
 							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubConfig"),
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"),
 						},
 					},
 					"skipUserCreation": {
@@ -1320,7 +1297,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CheConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.GitHubConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebConsolePlugin", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CheConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebConsolePlugin", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
 	}
 }
 

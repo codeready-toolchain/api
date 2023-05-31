@@ -27,9 +27,9 @@ type MemberOperatorConfigSpec struct {
 	// +optional
 	Environment *string `json:"environment,omitempty"`
 
-	// Keeps parameters concerned with GitHub
+	// Defines all secrets related to GitHub authentication/integration
 	// +optional
-	GitHub GitHubConfig `json:"gitHub,omitempty"`
+	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
 
 	// Defines the flag that determines whether User and Identity resources should be created for a UserAccount
 	// +optional
@@ -130,14 +130,6 @@ type ConsoleConfig struct {
 	// Defines the console route name
 	// +optional
 	RouteName *string `json:"routeName,omitempty"`
-}
-
-// GitHubConfig defines all parameters concerned with GitHub
-// +k8s:openapi-gen=true
-type GitHubConfig struct {
-	// Defines all secrets related to GitHub authentication/integration
-	// +optional
-	Secret GitHubSecret `json:"secret,omitempty"`
 }
 
 // GitHubSecret defines all secrets related to Che configuration
