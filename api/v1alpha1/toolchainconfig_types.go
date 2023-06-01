@@ -437,6 +437,10 @@ type ToolchainStatusConfig struct {
 	// ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status
 	// +optional
 	ToolchainStatusRefreshTime *string `json:"toolchainStatusRefreshTime,omitempty"`
+
+	// Defines all secrets related to GitHub authentication/integration
+	// +optional
+	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
 }
 
 // TiersConfig contains all configuration parameters related to tiers

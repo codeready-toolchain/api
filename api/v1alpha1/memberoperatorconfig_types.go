@@ -23,6 +23,10 @@ type MemberOperatorConfigSpec struct {
 	// +optional
 	Console ConsoleConfig `json:"console,omitempty"`
 
+	// Environment specifies the member-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc
+	// +optional
+	Environment *string `json:"environment,omitempty"`
+
 	// Defines the flag that determines whether User and Identity resources should be created for a UserAccount
 	// +optional
 	SkipUserCreation *bool `json:"skipUserCreation,omitempty"`
@@ -124,6 +128,18 @@ type ConsoleConfig struct {
 	RouteName *string `json:"routeName,omitempty"`
 }
 
+// GitHubSecret defines all secrets related to Che configuration
+// +k8s:openapi-gen=true
+type GitHubSecret struct {
+	// The reference to the secret that is expected to contain the keys below
+	// +optional
+	ToolchainSecret `json:",inline"`
+
+	// The key for the GitHub Access token in the secret values map
+	// +optional
+	AccessTokenKey *string `json:"accessTokenKey,omitempty"`
+}
+
 // Defines all parameters concerned with the toolchaincluster resource
 // +k8s:openapi-gen=true
 type ToolchainClusterConfig struct {
@@ -164,6 +180,10 @@ type MemberStatusConfig struct {
 	// Defines the period between refreshes of the member status
 	// +optional
 	RefreshPeriod *string `json:"refreshPeriod,omitempty"`
+
+	// Defines all secrets related to GitHub authentication/integration
+	// +optional
+	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
 }
 
 // MemberOperatorConfigStatus defines the observed state of MemberOperatorConfig
