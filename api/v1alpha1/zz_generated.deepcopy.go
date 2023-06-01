@@ -1822,7 +1822,6 @@ func (in *RegistrationServiceAnalyticsConfig) DeepCopyInto(out *RegistrationServ
 	}
 	if in.PendoTrackEventKey != nil {
 		in, out := &in.PendoTrackEventKey, &out.PendoTrackEventKey
-
 		*out = new(string)
 		**out = **in
 	}
