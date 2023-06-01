@@ -40,6 +40,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret":                          schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                            schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":         schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
@@ -542,6 +543,33 @@ func schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref common.R
 							Description: "UserSignupUnverifiedRetentionDays is used to configure how many days we should keep unverified (i.e. the user hasn't completed the user verification process via the registration service) UserSignup resources before deleting them.  It is intended for this parameter to define an aggressive cleanup schedule for unverified user signups, and the default configuration value for this parameter reflects this.",
 							Type:        []string{"integer"},
 							Format:      "int32",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "GitHubSecret defines all secrets related to Che configuration",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"ref": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Reference is the name of the secret resource to look up",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"accessTokenKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The key for the GitHub Access token in the secret values map",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 				},
@@ -1209,6 +1237,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig"),
 						},
 					},
+					"environment": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Environment specifies the member-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"skipUserCreation": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines the flag that determines whether User and Identity resources should be created for a UserAccount",
@@ -1324,9 +1359,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusConfig(ref common.R
 							Format:      "",
 						},
 					},
+					"gitHubSecret": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines all secrets related to GitHub authentication/integration",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"),
+						},
+					},
 				},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"},
 	}
 }
 
@@ -3990,9 +4034,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusConfig(ref commo
 							Format:      "",
 						},
 					},
+					"gitHubSecret": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines all secrets related to GitHub authentication/integration",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"),
+						},
+					},
 				},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"},
 	}
 }
 
