@@ -27,10 +27,6 @@ type MemberOperatorConfigSpec struct {
 	// +optional
 	Environment *string `json:"environment,omitempty"`
 
-	// Defines all secrets related to GitHub authentication/integration
-	// +optional
-	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
-
 	// Defines the flag that determines whether User and Identity resources should be created for a UserAccount
 	// +optional
 	SkipUserCreation *bool `json:"skipUserCreation,omitempty"`
@@ -184,6 +180,10 @@ type MemberStatusConfig struct {
 	// Defines the period between refreshes of the member status
 	// +optional
 	RefreshPeriod *string `json:"refreshPeriod,omitempty"`
+
+	// Defines all secrets related to GitHub authentication/integration
+	// +optional
+	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
 }
 
 // MemberOperatorConfigStatus defines the observed state of MemberOperatorConfig

@@ -50,10 +50,6 @@ type HostConfig struct {
 	// +optional
 	Deactivation DeactivationConfig `json:"deactivation,omitempty"`
 
-	// Defines all secrets related to GitHub authentication/integration
-	// +optional
-	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
-
 	// Keeps parameters concerned with metrics
 	// +optional
 	Metrics MetricsConfig `json:"metrics,omitempty"`
@@ -437,6 +433,10 @@ type ToolchainStatusConfig struct {
 	// ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status
 	// +optional
 	ToolchainStatusRefreshTime *string `json:"toolchainStatusRefreshTime,omitempty"`
+
+	// Defines all secrets related to GitHub authentication/integration
+	// +optional
+	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
 }
 
 // TiersConfig contains all configuration parameters related to tiers
