@@ -275,6 +275,10 @@ type RegistrationServiceAnalyticsConfig struct {
 	// SegmentWriteKey specifies the segment write key for sandbox
 	// +optional
 	SegmentWriteKey *string `json:"segmentWriteKey,omitempty"`
+
+	//PendoTrackEventKey specifies the pendo track event key for tracking events
+	// +optional
+	PendoTrackEventKey *string `json:"pendoTrackEventKey,omitempty"`
 }
 
 type DevSpaces struct {

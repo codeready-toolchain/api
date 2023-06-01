@@ -2285,6 +2285,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsCon
 							Format:      "",
 						},
 					},
+					"pendoTrackEventKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "PendoTrackEventKey specifies the pendo track event key for tracking events",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},
