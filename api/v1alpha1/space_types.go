@@ -8,9 +8,6 @@ const (
 	// SpaceCreatorLabelKey is used to label the Space with the ID of its creator (Dev Sandbox UserSignup or AppStudio Workspace)
 	SpaceCreatorLabelKey = LabelKeyPrefix + "creator"
 
-	// WorkspaceLabelKey is used to label the Space with the name of the associated AppStudio Workspace
-	WorkspaceLabelKey = LabelKeyPrefix + "workspace"
-
 	// ParentSpaceLabelKey is used to label the Space with the name of the parent space
 	// from which the creation was requested
 	ParentSpaceLabelKey = LabelKeyPrefix + "parent-space"
