@@ -13,9 +13,6 @@ const (
 	// ConditionReady specifies that the resource is ready
 	ConditionReady ConditionType = "Ready"
 
-	// ConditionDeploymentVersionUpToDate specifies if the deployment is up-to-date
-	ConditionDeploymentVersionUpToDate ConditionType = "DeploymentVersionUpToDate"
-
 	// Status reasons
 	provisioningReason      = "Provisioning"
 	provisionedReason       = "Provisioned"
