@@ -742,7 +742,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 						},
 					},
 				},
-				Required: []string{"version", "revision", "buildTimestamp", "deploymentName", "revisionCheck"},
+				Required: []string{"version", "revision", "buildTimestamp", "deploymentName"},
 			},
 		},
 		Dependencies: []string{
@@ -786,7 +786,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(r
 						},
 					},
 				},
-				Required: []string{"deployment", "registrationServiceResources", "health", "revisionCheck"},
+				Required: []string{"deployment", "registrationServiceResources", "health"},
 			},
 		},
 		Dependencies: []string{
@@ -2861,7 +2861,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RevisionCheck(ref common.Refere
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "RevisionCheck contains status of revision check of the component, it highlights if the component is up-to-date and the deployed version matches the latest one in the GitHub repository.",
+				Description: "RevisionCheck contains status of revision check for the component, it highlights if the component is up-to-date and the deployed version matches the latest one in the GitHub repository.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"conditions": {

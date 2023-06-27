@@ -139,6 +139,7 @@ type MemberOperatorStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
 	// The status of the revision check for member operator's deployment
+	// +optional
 	RevisionCheck RevisionCheck `json:"revisionCheck"`
 }
 

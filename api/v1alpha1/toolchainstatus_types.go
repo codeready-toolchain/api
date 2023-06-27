@@ -166,6 +166,7 @@ type HostOperatorStatus struct {
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
 	// The status of the revision check for host operator's deployment
+	// +optional
 	RevisionCheck RevisionCheck `json:"revisionCheck"`
 }
 
@@ -185,6 +186,7 @@ type HostRegistrationServiceStatus struct {
 	Health RegistrationServiceHealth `json:"health"`
 
 	// The status of the revision check for registration service
+	// +optional
 	RevisionCheck RevisionCheck `json:"revisionCheck"`
 }
 
