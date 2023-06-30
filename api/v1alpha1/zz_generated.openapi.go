@@ -88,6 +88,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold":             schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage":                         schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck":                         schema_codeready_toolchain_api_api_v1alpha1_RevisionCheck(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Routes":                                schema_codeready_toolchain_api_api_v1alpha1_Routes(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SocialEvent":                           schema_codeready_toolchain_api_api_v1alpha1_SocialEvent(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SocialEventSpec":                       schema_codeready_toolchain_api_api_v1alpha1_SocialEventSpec(ref),
@@ -733,12 +734,19 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 							},
 						},
 					},
+					"revisionCheck": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The status of the revision check for host operator's deployment",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck"),
+						},
+					},
 				},
 				Required: []string{"version", "revision", "buildTimestamp", "deploymentName"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck"},
 	}
 }
 
@@ -770,12 +778,19 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(r
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth"),
 						},
 					},
+					"revisionCheck": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The status of the revision check for registration service",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck"),
+						},
+					},
 				},
 				Required: []string{"deployment", "registrationServiceResources", "health"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus", "github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck"},
 	}
 }
 
@@ -2839,6 +2854,45 @@ func schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref common.Refere
 				},
 			},
 		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_RevisionCheck(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "RevisionCheck contains status of revision check for the component, it highlights if the component is up-to-date and the deployed version matches the latest one in the GitHub repository.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of status conditions for the health of the registration service Supported condition types: ConditionReady",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
