@@ -1,5 +1,7 @@
 package v1alpha1
 
+const NamespaceTypeDefault = "default"
+
 // SpaceNamespace is a common type to define the information about a namespace within a Space
 // Used in NSTemplateSet, Space and Workspace status
 type SpaceNamespace struct {
