@@ -96,6 +96,9 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.Space":                                 schema_codeready_toolchain_api_api_v1alpha1_Space(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBinding":                          schema_codeready_toolchain_api_api_v1alpha1_SpaceBinding(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingList":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingList(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingRequest":                   schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingRequest(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingRequestSpec":               schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingRequestSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingRequestStatus":             schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingSpec":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig":                           schema_codeready_toolchain_api_api_v1alpha1_SpaceConfig(ref),
@@ -3258,6 +3261,122 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingList(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBinding", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceBindingRequest is the Schema for the SpaceBindingRequest API",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingRequestSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingRequestStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingRequestSpec", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingRequestSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceBindingRequestSpec defines the desired state of SpaceBindingRequest",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"masterUserRecord": {
+						SchemaProps: spec.SchemaProps{
+							Description: "MasterUserRecord is a required property introduced to retain the name of the MUR for which this SpaceBinding is provisioned.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"spaceRole": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SpaceRole is a required property which defines the role that will be granted to the MUR in the current Space by the SpaceBinding resource.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"masterUserRecord", "spaceRole"},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingRequestStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceBindingRequestStatus defines the observed state of SpaceBinding",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions is an array of SpaceBindingRequest conditions Supported condition types: Provisioning, SpaceBindingNotReady and Ready",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
