@@ -508,6 +508,11 @@ type SpaceConfig struct {
 	// This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).
 	// +optional
 	SpaceRequestEnabled *bool `json:"spaceRequestEnabled,omitempty"`
+
+	// SpaceBindingRequestEnabled specifies whether the SpaceBindingRequest controller should start or not.
+	// This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).
+	// +optional
+	SpaceBindingRequestEnabled *bool `json:"spaceBindingRequestEnabled,omitempty"`
 }
 
 //+kubebuilder:object:root=true
