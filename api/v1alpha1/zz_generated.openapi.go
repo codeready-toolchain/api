@@ -3443,6 +3443,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceConfig(ref common.Referenc
 							Format:      "",
 						},
 					},
+					"spaceBindingRequestEnabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SpaceBindingRequestEnabled specifies whether the SpaceBindingRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},
