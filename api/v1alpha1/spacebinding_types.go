@@ -10,6 +10,13 @@ const (
 
 	// SpaceBindingMasterUserRecordLabelKey is used to label the SpaceBinding with the name of the MasterUserRecord it belongs to
 	SpaceBindingMasterUserRecordLabelKey = LabelKeyPrefix + "masteruserrecord"
+
+	// status condition reason
+	SpaceBindingTerminatingReason        = terminatingReason
+	SpaceBindingTerminatingFailedReason  = terminatingFailedReason
+	SpaceBindingProvisioningFailedReason = "UnableToProvision"
+	SpaceBindingProvisioningReason       = provisioningReason
+	SpaceBindingProvisionedReason        = provisionedReason
 )
 
 // SpaceBindingSpec defines the desired state of SpaceBinding
