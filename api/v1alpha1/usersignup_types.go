@@ -195,6 +195,31 @@ type UserSignupSpec struct {
 	// a new IdP provider client, and contains the user's "original-sub" claim
 	// +optional
 	OriginalSub string `json:"originalSub,omitempty"`
+
+	// IdentityClaims contains as-is claim values extracted from the user's access token
+	IdentityClaims IdentityClaimsEmbedded `json:"identitytokenClaims,omitempty"`
+}
+
+// IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing
+// +k8s:openapi-gen=true
+type IdentityClaimsEmbedded struct {
+	// Sub contains the value of the 'sub' claim
+	Sub string `json:"sub,omitempty"`
+
+	// UserID contains the value of the 'user_id' claim
+	UserID string `json:"userID,omitempty"`
+
+	// AccountID contains the value of the 'account_id' claim
+	AccountID string `json:"accountID,omitempty"`
+
+	// GivenName contains the value of the 'given_name' claim
+	GivenName string `json:"givenName,omitempty"`
+
+	// FamilyName contains the value of the 'family_name' claim
+	FamilyName string `json:"familyName,omitempty"`
+
+	// Company contains the value of the 'company' claim
+	Company string `json:"company,omitempty"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup

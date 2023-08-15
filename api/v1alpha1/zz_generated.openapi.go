@@ -45,6 +45,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":         schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostRoutes":                            schema_codeready_toolchain_api_api_v1alpha1_HostRoutes(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.IdentityClaimsEmbedded":                schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Idler":                                 schema_codeready_toolchain_api_api_v1alpha1_Idler(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerSpec":                             schema_codeready_toolchain_api_api_v1alpha1_IdlerSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.IdlerStatus":                           schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref),
@@ -840,6 +841,61 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostRoutes(ref common.Reference
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"sub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Sub contains the value of the 'sub' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"userID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserID contains the value of the 'user_id' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"accountID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AccountID contains the value of the 'account_id' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"givenName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "GivenName contains the value of the 'given_name' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"familyName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "FamilyName contains the value of the 'family_name' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"company": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Company contains the value of the 'company' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -3438,14 +3494,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceConfig(ref common.Referenc
 				Properties: map[string]spec.Schema{
 					"spaceRequestEnabled": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SpaceRequestEnabled specifies whether the SpaceRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).",
+							Description: "SpaceRequestEnabled specifies whether the SpaceRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...).",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
 					},
 					"spaceBindingRequestEnabled": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SpaceBindingRequestEnabled specifies whether the SpaceBindingRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).",
+							Description: "SpaceBindingRequestEnabled specifies whether the SpaceBindingRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...).",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
@@ -4599,10 +4655,19 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 							Format:      "",
 						},
 					},
+					"identitytokenClaims": {
+						SchemaProps: spec.SchemaProps{
+							Description: "IdentityClaims contains as-is claim values extracted from the user's access token",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.IdentityClaimsEmbedded"),
+						},
+					},
 				},
 				Required: []string{"userid", "username"},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.IdentityClaimsEmbedded"},
 	}
 }
 
