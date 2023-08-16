@@ -364,7 +364,7 @@ type RegistrationServiceVerificationConfig struct {
 
 	// AWSSenderID the Alphanumeric Sender ID to use, e.g. "DevSandbox"
 	// +optional
-	AWSSenderID *string `json:"awsSenderId,omitempty"`
+	AWSSenderID *string `json:"awsSenderID,omitempty"`
 
 	// AWSSMSType is the type of SMS message to send, either `Promotional` or `Transactional`
 	// See https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html for details
@@ -372,6 +372,8 @@ type RegistrationServiceVerificationConfig struct {
 	AWSSMSType *string `json:"awsSMSType,omitempty"`
 
 	// TwilioSenderConfigs is an array of TwilioSenderConfig objects
+	// +optional
+	// +listType=atomic
 	TwilioSenderConfigs []TwilioSenderConfig `json:"twilioSenderConfigs,omitempty"`
 }
 
@@ -390,6 +392,7 @@ type TwilioSenderConfig struct {
 
 	// CountryCodes
 	// +optional
+	// +listType=set
 	CountryCodes []string `json:"countryCodes,omitempty"`
 }
 
