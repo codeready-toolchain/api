@@ -364,12 +364,36 @@ type RegistrationServiceVerificationConfig struct {
 
 	// AWSSenderID the Alphanumeric Sender ID to use, e.g. "DevSandbox"
 	// +optional
-	AWSSenderID *string `json:"awsSenderId,omitempty"`
+	AWSSenderID *string `json:"awsSenderID,omitempty"`
 
 	// AWSSMSType is the type of SMS message to send, either `Promotional` or `Transactional`
 	// See https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html for details
 	// +optional
 	AWSSMSType *string `json:"awsSMSType,omitempty"`
+
+	// TwilioSenderConfigs is an array of TwilioSenderConfig objects
+	// +optional
+	// +listType=atomic
+	TwilioSenderConfigs []TwilioSenderConfig `json:"twilioSenderConfigs,omitempty"`
+}
+
+// TwilioSenderConfig is used to associate a particular sender ID (a sender ID is a text value that appears instead of
+// a phone number when receiving an SMS message), for example "RED HAT", with an array of country
+// code values for which the Sender ID value will be set via the Twilio API when sending a verification code to a user in
+// any of the country codes specified.
+//
+// Since some countries are starting to block long form phone numbers (i.e. SMS messages from international phone numbers)
+// the Sender ID may be an acceptable alternative to requiring the verification message to be sent from a local phone number.
+//
+// +k8s:openapi-gen=true
+type TwilioSenderConfig struct {
+	// SenderID
+	SenderID string `json:"senderID"`
+
+	// CountryCodes
+	// +optional
+	// +listType=set
+	CountryCodes []string `json:"countryCodes,omitempty"`
 }
 
 // Defines all secrets related to registration service verification configuration
