@@ -213,13 +213,21 @@ type IdentityClaimsEmbedded struct {
 	AccountID string `json:"accountID,omitempty"`
 
 	// GivenName contains the value of the 'given_name' claim
+	// +optional
 	GivenName string `json:"givenName,omitempty"`
 
 	// FamilyName contains the value of the 'family_name' claim
+	// +optional
 	FamilyName string `json:"familyName,omitempty"`
 
 	// Company contains the value of the 'company' claim
+	// +optional
 	Company string `json:"company,omitempty"`
+
+	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
+	// a new IdP provider client, and contains the user's "original-sub" claim
+	// +optional
+	OriginalSub string `json:"originalSub,omitempty"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup
