@@ -9,6 +9,23 @@ const (
 	SpaceBindingRequestLabelKey = LabelKeyPrefix + "spacebindingrequest"
 	// SpaceBindingRequestNamespaceLabelKey is a label on the SpaceBinding, and will hold the namespace of the SpaceBindingRequest that created the SpaceBinding resource.
 	SpaceBindingRequestNamespaceLabelKey = LabelKeyPrefix + "spacebindingrequest-namespace"
+
+	// --- Status condition reasons ---
+
+	// SpaceBindingRequestTerminatingReason represents the reason for space binding request termination.
+	SpaceBindingRequestTerminatingReason = terminatingReason
+
+	// SpaceBindingRequestTerminatingFailedReason represents the reason for a failed space binding request termination.
+	SpaceBindingRequestTerminatingFailedReason = terminatingFailedReason
+
+	// SpaceBindingRequestUnableToCreateSpaceBindingReason represents the reason for a failed space binding creation.
+	SpaceBindingRequestUnableToCreateSpaceBindingReason = UnableToCreateSpaceBinding
+
+	// SpaceBindingRequestProvisioningReason represents the reason for space binding request provisioning.
+	SpaceBindingRequestProvisioningReason = provisioningReason
+
+	// SpaceBindingRequestProvisionedReason represents the reason for a successfully provisioned space binding request.
+	SpaceBindingRequestProvisionedReason = provisionedReason
 )
 
 // SpaceBindingRequestSpec defines the desired state of SpaceBindingRequest
