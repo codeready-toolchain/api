@@ -121,6 +121,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusSpec":                   schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusStatus":                 schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TwilioSenderConfig":                    schema_codeready_toolchain_api_api_v1alpha1_TwilioSenderConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccount":                           schema_codeready_toolchain_api_api_v1alpha1_UserAccount(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountSpec":                       schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountStatus":                     schema_codeready_toolchain_api_api_v1alpha1_UserAccountStatus(ref),
@@ -2706,7 +2707,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 							Format:      "",
 						},
 					},
-					"awsSenderId": {
+					"awsSenderID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "AWSSenderID the Alphanumeric Sender ID to use, e.g. \"DevSandbox\"",
 							Type:        []string{"string"},
@@ -2720,11 +2721,30 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 							Format:      "",
 						},
 					},
+					"twilioSenderConfigs": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "TwilioSenderConfigs is an array of TwilioSenderConfig objects",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.TwilioSenderConfig"),
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret", "github.com/codeready-toolchain/api/api/v1alpha1.TwilioSenderConfig"},
 	}
 }
 
@@ -4349,6 +4369,48 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref commo
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus", "github.com/codeready-toolchain/api/api/v1alpha1.HostRoutes", "github.com/codeready-toolchain/api/api/v1alpha1.Member"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_TwilioSenderConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "TwilioSenderConfig is used to associate a particular sender ID (a sender ID is a text value that appears instead of a phone number when receiving an SMS message), for example \"RED HAT\", with an array of country code values for which the Sender ID value will be set via the Twilio API when sending a verification code to a user in any of the country codes specified.\n\nSince some countries are starting to block long form phone numbers (i.e. SMS messages from international phone numbers) the Sender ID may be an acceptable alternative to requiring the verification message to be sent from a local phone number.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"senderID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SenderID",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"countryCodes": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "set",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "CountryCodes",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"senderID"},
+			},
+		},
 	}
 }
 
