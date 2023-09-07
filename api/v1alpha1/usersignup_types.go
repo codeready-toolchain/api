@@ -198,6 +198,7 @@ type UserSignupSpec struct {
 	OriginalSub string `json:"originalSub,omitempty"`
 
 	// IdentityClaims contains as-is claim values extracted from the user's access token
+	// +optional
 	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`
 }
 
@@ -229,9 +230,11 @@ type IdentityClaimsEmbedded struct {
 
 type PropagatedClaims struct {
 	// UserID contains the value of the 'user_id' claim
+	// +optional
 	UserID string `json:"userID,omitempty"`
 
 	// AccountID contains the value of the 'account_id' claim
+	// +optional
 	AccountID string `json:"accountID,omitempty"`
 
 	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
