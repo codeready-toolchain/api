@@ -197,20 +197,21 @@ type UserSignupSpec struct {
 	OriginalSub string `json:"originalSub,omitempty"`
 
 	// IdentityClaims contains as-is claim values extracted from the user's access token
-	IdentityClaims IdentityClaimsEmbedded `json:"identitytokenClaims,omitempty"`
+	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`
 }
 
 // IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing
 // +k8s:openapi-gen=true
 type IdentityClaimsEmbedded struct {
+
+	// PropagatedClaims
+	PropagatedClaims PropagatedClaims `json:",inline"`
+
 	// Sub contains the value of the 'sub' claim
 	Sub string `json:"sub,omitempty"`
 
-	// UserID contains the value of the 'user_id' claim
-	UserID string `json:"userID,omitempty"`
-
-	// AccountID contains the value of the 'account_id' claim
-	AccountID string `json:"accountID,omitempty"`
+	// Email contains the user's email address
+	Email string `json:"email,omitempty"`
 
 	// GivenName contains the value of the 'given_name' claim
 	// +optional
@@ -223,6 +224,14 @@ type IdentityClaimsEmbedded struct {
 	// Company contains the value of the 'company' claim
 	// +optional
 	Company string `json:"company,omitempty"`
+}
+
+type PropagatedClaims struct {
+	// UserID contains the value of the 'user_id' claim
+	UserID string `json:"userID,omitempty"`
+
+	// AccountID contains the value of the 'account_id' claim
+	AccountID string `json:"accountID,omitempty"`
 
 	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
 	// a new IdP provider client, and contains the user's "original-sub" claim

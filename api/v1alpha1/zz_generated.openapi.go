@@ -852,13 +852,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 				Description: "IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"sub": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Sub contains the value of the 'sub' claim",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserID contains the value of the 'user_id' claim",
@@ -869,6 +862,27 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 					"accountID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "AccountID contains the value of the 'account_id' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"originalSub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"sub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Sub contains the value of the 'sub' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"email": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Email contains the user's email address",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -890,13 +904,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 					"company": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Company contains the value of the 'company' claim",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"originalSub": {
-						SchemaProps: spec.SchemaProps{
-							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -1166,12 +1173,19 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 							Format:      "",
 						},
 					},
+					"propagatedClaims": {
+						SchemaProps: spec.SchemaProps{
+							Description: "PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to be \"propagated\" down the resource dependency chain",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.PropagatedClaims"),
+						},
+					},
 				},
 				Required: []string{"userID"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.UserAccountEmbedded"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.PropagatedClaims", "github.com/codeready-toolchain/api/api/v1alpha1.UserAccountEmbedded"},
 	}
 }
 
@@ -4553,10 +4567,19 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 							Format:      "",
 						},
 					},
+					"propagatedClaims": {
+						SchemaProps: spec.SchemaProps{
+							Description: "PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to be \"propagated\" down the resource dependency chain",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.PropagatedClaims"),
+						},
+					},
 				},
 				Required: []string{"userID"},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.PropagatedClaims"},
 	}
 }
 
@@ -4724,7 +4747,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 							Format:      "",
 						},
 					},
-					"identitytokenClaims": {
+					"identityClaims": {
 						SchemaProps: spec.SchemaProps{
 							Description: "IdentityClaims contains as-is claim values extracted from the user's access token",
 							Default:     map[string]interface{}{},

@@ -44,6 +44,10 @@ type UserAccountSpec struct {
 	// a new IdP provider client, and contains the user's "original-sub" claim
 	// +optional
 	OriginalSub string `json:"originalSub,omitempty"`
+
+	// PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to
+	// be "propagated" down the resource dependency chain
+	PropagatedClaims PropagatedClaims `json:"propagatedClaims,omitempty"`
 }
 
 // UserAccountStatus defines the observed state of UserAccount
