@@ -83,6 +83,7 @@ type MasterUserRecordSpec struct {
 
 	// PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to
 	// be "propagated" down the resource dependency chain
+	// +optional
 	PropagatedClaims PropagatedClaims `json:"propagatedClaims,omitempty"`
 }
 
