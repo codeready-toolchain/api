@@ -68,6 +68,7 @@ const (
 	UserSignupStateLabelValueBanned = "banned"
 
 	// Status condition reasons
+	UnableToCreateSpaceBinding                     = "UnableToCreateSpaceBinding"
 	UserSignupNoClusterAvailableReason             = "NoClusterAvailable"
 	UserSignupNoUserTierAvailableReason            = "NoUserTierAvailable"
 	UserSignupNoTemplateTierAvailableReason        = "NoTemplateTierAvailable"
@@ -77,7 +78,7 @@ const (
 	UserSignupUnableToUpdateStateLabelReason       = "UnableToUpdateStateLabel"
 	UserSignupUnableToDeleteMURReason              = "UnableToDeleteMUR"
 	UserSignupUnableToCreateSpaceReason            = "UnableToCreateSpace"
-	UserSignupUnableToCreateSpaceBindingReason     = "UnableToCreateSpaceBinding"
+	UserSignupUnableToCreateSpaceBindingReason     = UnableToCreateSpaceBinding
 	UserSignupProvisioningSpaceReason              = "ProvisioningSpace"
 
 	// The UserSignupUserDeactivatingReason constant will be replaced with UserSignupDeactivationInProgressReason
