@@ -207,7 +207,7 @@ type UserSignupSpec struct {
 type IdentityClaimsEmbedded struct {
 
 	// PropagatedClaims
-	PropagatedClaims PropagatedClaims `json:",inline"`
+	PropagatedClaims `json:",inline"`
 
 	// Sub contains the value of the 'sub' claim
 	Sub string `json:"sub,omitempty"`
