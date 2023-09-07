@@ -880,6 +880,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 							Format:      "",
 						},
 					},
+					"preferredUsername": {
+						SchemaProps: spec.SchemaProps{
+							Description: "PreferredUsername contains the user's username",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"email": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Email contains the user's email address",
