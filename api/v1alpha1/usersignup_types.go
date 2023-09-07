@@ -213,7 +213,7 @@ type IdentityClaimsEmbedded struct {
 	Sub string `json:"sub,omitempty"`
 
 	// PreferredUsername contains the user's username
-	PreferredUsername string `json:"preferredUsername,omitempty"`
+	PreferredUsername string `json:"preferredUsername"`
 
 	// Email contains the user's email address
 	Email string `json:"email"`

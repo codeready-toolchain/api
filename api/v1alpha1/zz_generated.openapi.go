@@ -883,6 +883,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 					"preferredUsername": {
 						SchemaProps: spec.SchemaProps{
 							Description: "PreferredUsername contains the user's username",
+							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -917,7 +918,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 						},
 					},
 				},
-				Required: []string{"email"},
+				Required: []string{"preferredUsername", "email"},
 			},
 		},
 	}
