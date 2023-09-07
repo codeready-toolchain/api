@@ -213,7 +213,7 @@ type IdentityClaimsEmbedded struct {
 	Sub string `json:"sub,omitempty"`
 
 	// Email contains the user's email address
-	Email string `json:"email,omitempty"`
+	Email string `json:"email"`
 
 	// GivenName contains the value of the 'given_name' claim
 	// +optional

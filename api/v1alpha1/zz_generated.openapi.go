@@ -883,6 +883,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 					"email": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Email contains the user's email address",
+							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -909,6 +910,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 						},
 					},
 				},
+				Required: []string{"email"},
 			},
 		},
 	}
