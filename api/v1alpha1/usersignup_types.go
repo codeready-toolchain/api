@@ -209,9 +209,6 @@ type IdentityClaimsEmbedded struct {
 	// PropagatedClaims
 	PropagatedClaims `json:",inline"`
 
-	// Sub contains the value of the 'sub' claim
-	Sub string `json:"sub,omitempty"`
-
 	// PreferredUsername contains the user's username
 	PreferredUsername string `json:"preferredUsername"`
 
@@ -232,6 +229,9 @@ type IdentityClaimsEmbedded struct {
 }
 
 type PropagatedClaims struct {
+	// Sub contains the value of the 'sub' claim
+	Sub string `json:"sub"`
+
 	// UserID contains the value of the 'user_id' claim
 	// +optional
 	UserID string `json:"userID,omitempty"`

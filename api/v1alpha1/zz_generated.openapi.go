@@ -852,6 +852,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 				Description: "IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"sub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Sub contains the value of the 'sub' claim",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserID contains the value of the 'user_id' claim",
@@ -869,13 +877,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 					"originalSub": {
 						SchemaProps: spec.SchemaProps{
 							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"sub": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Sub contains the value of the 'sub' claim",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -918,7 +919,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 						},
 					},
 				},
-				Required: []string{"preferredUsername", "email"},
+				Required: []string{"sub", "preferredUsername", "email"},
 			},
 		},
 	}
