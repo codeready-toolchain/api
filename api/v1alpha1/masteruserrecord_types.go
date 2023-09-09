@@ -80,6 +80,11 @@ type MasterUserRecordSpec struct {
 	// temporarily marked as optional until the migration took place (CRT-1321)
 	// +optional
 	TierName string `json:"tierName,omitempty"`
+
+	// PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to
+	// be "propagated" down the resource dependency chain
+	// +optional
+	PropagatedClaims PropagatedClaims `json:"propagatedClaims,omitempty"`
 }
 
 type UserAccountEmbedded struct {
