@@ -212,9 +212,6 @@ type IdentityClaimsEmbedded struct {
 	// PreferredUsername contains the user's username
 	PreferredUsername string `json:"preferredUsername"`
 
-	// Email contains the user's email address
-	Email string `json:"email"`
-
 	// GivenName contains the value of the 'given_name' claim
 	// +optional
 	GivenName string `json:"givenName,omitempty"`
@@ -244,6 +241,9 @@ type PropagatedClaims struct {
 	// a new IdP provider client, and contains the user's "original-sub" claim
 	// +optional
 	OriginalSub string `json:"originalSub,omitempty"`
+
+	// Email contains the user's email address
+	Email string `json:"email"`
 }
 
 // UserSignupStatus defines the observed state of UserSignup
