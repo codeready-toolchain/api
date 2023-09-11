@@ -27,6 +27,30 @@ type WorkspaceStatus struct {
 	// signing up. It is currently valid for this value to be empty.
 	// +optional
 	Type string `json:"type,omitempty"`
+
+	// AvailableRoles contains the roles for this tier. For example, "admin|contributor|maintainer".
+	// +optional
+	AvailableRoles []string `json:"availableRoles,omitempty"`
+
+	// Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that workspace admin users can apply to those permissions.
+	// +optional
+	Bindings []Binding `json:"bindings,omitempty"`
+}
+
+type Binding struct {
+	// MasterUserRecord is the name of the user that has access to the workspace.
+	MasterUserRecord string `json:"masterUserRecord,omitempty"`
+
+	// Role is the role of the user in the current workspace. For example "admin" for the user that has all permissions on the current workspace.
+	Role string `json:"role,omitempty"`
+
+	// AvailableActions is a list of actions that can be performed on the binding.
+	// Available values:
+	// - "update" when the role in the current binding can be changed
+	// - "delete" when the current binding can be deleted
+	// - "override" when the current binding can be overwritten by a new binding containing same MasterUserRecord but different role
+	// +optional
+	AvailableActions []string `json:"availableActions,omitempty"`
 }
 
 // +kubebuilder:object:root=true

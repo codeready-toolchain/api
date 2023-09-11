@@ -3458,14 +3458,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceConfig(ref common.Referenc
 				Properties: map[string]spec.Schema{
 					"spaceRequestEnabled": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SpaceRequestEnabled specifies whether the SpaceRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).",
+							Description: "SpaceRequestEnabled specifies whether the SpaceRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...).",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
 					},
 					"spaceBindingRequestEnabled": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SpaceBindingRequestEnabled specifies whether the SpaceBindingRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for StoneSoup stage/prod ...).",
+							Description: "SpaceBindingRequestEnabled specifies whether the SpaceBindingRequest controller should start or not. This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...).",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},
@@ -4917,10 +4917,39 @@ func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.Refe
 							Format:      "",
 						},
 					},
+					"availableRoles": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AvailableRoles contains the roles for this tier. For example, \"admin|contributor|maintainer\".",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+					"bindings": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that workspace admin users can apply to those permissions.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Binding"),
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Binding", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
 	}
 }
