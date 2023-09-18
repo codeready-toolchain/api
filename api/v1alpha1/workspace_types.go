@@ -29,6 +29,7 @@ type WorkspaceStatus struct {
 	Type string `json:"type,omitempty"`
 
 	// AvailableRoles contains the roles for this tier. For example, "admin|contributor|maintainer".
+	// +listType=atomic
 	// +optional
 	AvailableRoles []string `json:"availableRoles,omitempty"`
 
