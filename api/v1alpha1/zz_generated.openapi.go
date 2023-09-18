@@ -881,17 +881,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 							Format:      "",
 						},
 					},
-					"preferredUsername": {
+					"email": {
 						SchemaProps: spec.SchemaProps{
-							Description: "PreferredUsername contains the user's username",
+							Description: "Email contains the user's email address",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
-					"email": {
+					"preferredUsername": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Email contains the user's email address",
+							Description: "PreferredUsername contains the user's username",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -919,7 +919,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 						},
 					},
 				},
-				Required: []string{"sub", "preferredUsername", "email"},
+				Required: []string{"sub", "email", "preferredUsername"},
 			},
 		},
 	}
