@@ -50,7 +50,8 @@ type Binding struct {
 	// Available values:
 	// - "update" when the role in the current binding can be changed
 	// - "delete" when the current binding can be deleted
-	// - "override" when the current binding can be overwritten by a new binding containing same MasterUserRecord but different role
+	// - "override" when the current binding can be overwritten by a new binding containing the same MasterUserRecord but a different role
+	// +listType=atomic
 	// +optional
 	AvailableActions []string `json:"availableActions,omitempty"`
 }
