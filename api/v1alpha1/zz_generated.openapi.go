@@ -5023,10 +5023,49 @@ func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.Refe
 							Format:      "",
 						},
 					},
+					"availableRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "AvailableRoles contains the roles for this tier. For example, \"admin|contributor|maintainer\".",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+					"bindings": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that can be applied to those permissions.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Binding"),
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Binding", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
 	}
 }
