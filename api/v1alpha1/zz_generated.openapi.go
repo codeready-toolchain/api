@@ -5024,6 +5024,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.Refe
 						},
 					},
 					"availableRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
 						SchemaProps: spec.SchemaProps{
 							Description: "AvailableRoles contains the roles for this tier. For example, \"admin|contributor|maintainer\".",
 							Type:        []string{"array"},
@@ -5039,8 +5044,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref common.Refe
 						},
 					},
 					"bindings": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that workspace admin users can apply to those permissions.",
+							Description: "Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that can be applied to those permissions.",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{

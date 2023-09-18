@@ -41,6 +41,7 @@ type WorkspaceStatus struct {
 
 type Binding struct {
 	// MasterUserRecord is the name of the user that has access to the workspace.
+	// This field is immutable via a validating webhook.
 	MasterUserRecord string `json:"masterUserRecord,omitempty"`
 
 	// Role is the role of the user in the current workspace. For example "admin" for the user that has all permissions on the current workspace.
@@ -50,7 +51,7 @@ type Binding struct {
 	// Available values:
 	// - "update" when the role in the current binding can be changed
 	// - "delete" when the current binding can be deleted
-	// - "override" when the current binding can be overwritten by a new binding containing the same MasterUserRecord but a different role
+	// - "override" when the current binding is inherited from a parent workspace, it cannot be updated, but it can be overridden by creating a new binding containing the same MasterUserRecord but different role in the subworkspace.
 	// +listType=atomic
 	// +optional
 	AvailableActions []string `json:"availableActions,omitempty"`
