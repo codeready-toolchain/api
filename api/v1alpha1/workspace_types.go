@@ -33,7 +33,7 @@ type WorkspaceStatus struct {
 	// +optional
 	AvailableRoles []string `json:"availableRoles,omitempty"`
 
-	// Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that workspace admin users can apply to those permissions.
+	// Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that can be applied to those permissions.
 	// +listType=atomic
 	// +optional
 	Bindings []Binding `json:"bindings,omitempty"`
