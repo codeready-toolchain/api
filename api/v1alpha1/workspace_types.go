@@ -55,6 +55,18 @@ type Binding struct {
 	// +listType=atomic
 	// +optional
 	AvailableActions []string `json:"availableActions,omitempty"`
+
+	// BindingRequest provides the name and namespace of the SpaceBindingRequest that generated the SpaceBinding resource.
+	// It's available only if the binding was generated using the SpaceBindingRequest mechanism.
+	// +optional
+	BindingRequest BindingRequest `json:"bindingRequest,omitempty"`
+}
+
+type BindingRequest struct {
+	// Name of the SpaceBindingRequest that generated the SpaceBinding resource.
+	Name string `json:"name,omitempty"`
+	// Namespace of the SpaceBindingRequest that generated the SpaceBinding resource.
+	Namespace string `json:"namespace,omitempty"`
 }
 
 // +kubebuilder:object:root=true
