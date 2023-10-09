@@ -64,9 +64,9 @@ type Binding struct {
 
 type BindingRequest struct {
 	// Name of the SpaceBindingRequest that generated the SpaceBinding resource.
-	Name string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Namespace of the SpaceBindingRequest that generated the SpaceBinding resource.
-	Namespace string `json:"namespace,omitempty"`
+	Namespace string `json:"namespace"`
 }
 
 // +kubebuilder:object:root=true
