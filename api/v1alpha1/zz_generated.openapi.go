@@ -321,7 +321,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_Binding(ref common.ReferenceCal
 					"bindingRequest": {
 						SchemaProps: spec.SchemaProps{
 							Description: "BindingRequest provides the name and namespace of the SpaceBindingRequest that generated the SpaceBinding resource. It's available only if the binding was generated using the SpaceBindingRequest mechanism.",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.BindingRequest"),
 						},
 					},
