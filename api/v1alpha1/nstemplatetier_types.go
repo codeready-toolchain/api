@@ -22,6 +22,10 @@ type NSTemplateTierSpec struct {
 	// +optional
 	// +mapType=atomic
 	SpaceRoles map[string]NSTemplateTierSpaceRole `json:"spaceRoles,omitempty"`
+
+	// flag to signigy whether to copy SA token or not
+	// +optional
+	CopySaToken bool `json:"copySaToken,omitempty"`
 }
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource
