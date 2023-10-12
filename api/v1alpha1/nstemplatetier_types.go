@@ -23,7 +23,7 @@ type NSTemplateTierSpec struct {
 	// +mapType=atomic
 	SpaceRoles map[string]NSTemplateTierSpaceRole `json:"spaceRoles,omitempty"`
 
-	// flag to signigy whether to copy SA token or not
+	// flag to signify whether to copy SA token or not
 	// +optional
 	CopySaToken bool `json:"copySaToken,omitempty"`
 }
