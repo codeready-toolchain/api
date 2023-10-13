@@ -39,6 +39,9 @@ type WorkspaceStatus struct {
 	Bindings []Binding `json:"bindings,omitempty"`
 }
 
+// Binding defines a user role in a given workspace,
+// and available actions that can be performed on the role
+// +k8s:openapi-gen=true
 type Binding struct {
 	// MasterUserRecord is the name of the user that has access to the workspace.
 	// This field is immutable via a validating webhook.
@@ -62,6 +65,8 @@ type Binding struct {
 	BindingRequest BindingRequest `json:"bindingRequest,omitempty"`
 }
 
+// BindingRequest contains the name and the namespace where of the associated SpaceBindingRequest.
+// +k8s:openapi-gen=true
 type BindingRequest struct {
 	// Name of the SpaceBindingRequest that generated the SpaceBinding resource.
 	Name string `json:"name"`

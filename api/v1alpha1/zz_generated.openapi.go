@@ -33,6 +33,8 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig":                      schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUser":                            schema_codeready_toolchain_api_api_v1alpha1_BannedUser(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                        schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.Binding":                               schema_codeready_toolchain_api_api_v1alpha1_Binding(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.BindingRequest":                        schema_codeready_toolchain_api_api_v1alpha1_BindingRequest(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds":                    schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig":                         schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                             schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
@@ -270,6 +272,92 @@ func schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref common.Refer
 					},
 				},
 				Required: []string{"email"},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_Binding(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Binding defines a user role in a given workspace, and available actions that can be performed on the role",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"masterUserRecord": {
+						SchemaProps: spec.SchemaProps{
+							Description: "MasterUserRecord is the name of the user that has access to the workspace. This field is immutable via a validating webhook.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"role": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Role is the role of the user in the current workspace. For example \"admin\" for the user that has all permissions on the current workspace.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"availableActions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "AvailableActions is a list of actions that can be performed on the binding. Available values: - \"update\" when the role in the current binding can be changed - \"delete\" when the current binding can be deleted - \"override\" when the current binding is inherited from a parent workspace, it cannot be updated, but it can be overridden by creating a new binding containing the same MasterUserRecord but different role in the subworkspace.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+					"bindingRequest": {
+						SchemaProps: spec.SchemaProps{
+							Description: "BindingRequest provides the name and namespace of the SpaceBindingRequest that generated the SpaceBinding resource. It's available only if the binding was generated using the SpaceBindingRequest mechanism.",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.BindingRequest"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.BindingRequest"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_BindingRequest(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "BindingRequest contains the name and the namespace where of the associated SpaceBindingRequest.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Name of the SpaceBindingRequest that generated the SpaceBinding resource.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"namespace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Namespace of the SpaceBindingRequest that generated the SpaceBinding resource.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"name", "namespace"},
 			},
 		},
 	}
