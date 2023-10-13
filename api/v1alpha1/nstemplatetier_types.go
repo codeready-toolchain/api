@@ -28,6 +28,8 @@ type NSTemplateTierSpec struct {
 	SpaceRequestConfigName SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
 }
 
+// SpaceRequestConfig provides the name of the Service Account whose token is to be copied
+// +k8s:openapi-gen=true
 type SpaceRequestConfig struct {
 	// +optional
 	SaTokenToCopy string `json:"saTokenToCopy,omitempty"`
