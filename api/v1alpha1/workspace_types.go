@@ -62,7 +62,7 @@ type Binding struct {
 	// BindingRequest provides the name and namespace of the SpaceBindingRequest that generated the SpaceBinding resource.
 	// It's available only if the binding was generated using the SpaceBindingRequest mechanism.
 	// +optional
-	BindingRequest BindingRequest `json:"bindingRequest,omitempty"`
+	BindingRequest *BindingRequest `json:"bindingRequest,omitempty"`
 }
 
 // BindingRequest contains the name and the namespace where of the associated SpaceBindingRequest.
