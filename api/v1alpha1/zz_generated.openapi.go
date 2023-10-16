@@ -2078,7 +2078,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 					},
 					"spaceRequestConfig": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Provides the name of the Service Account whose token is to be copied",
+							Description: "SpaceRequestConfigName stores all the configuration related to the Space Request feature",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"),
 						},
 					},
@@ -3709,13 +3709,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestConfig(ref common.R
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SpaceRequestConfig provides the name of the Service Account whose token is to be copied",
+				Description: "SpaceRequestConfig contains all the configuration related to the Space Request feature",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"saTokenToCopy": {
 						SchemaProps: spec.SchemaProps{
-							Type:   []string{"string"},
-							Format: "",
+							Description: "Provides the name of the Service Account whose token is to be copied",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 				},

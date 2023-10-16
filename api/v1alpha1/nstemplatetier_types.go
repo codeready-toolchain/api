@@ -23,14 +23,15 @@ type NSTemplateTierSpec struct {
 	// +mapType=atomic
 	SpaceRoles map[string]NSTemplateTierSpaceRole `json:"spaceRoles,omitempty"`
 
-	// Provides the name of the Service Account whose token is to be copied
+	// SpaceRequestConfigName stores all the configuration related to the Space Request feature
 	// +optional
 	SpaceRequestConfigName *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
 }
 
-// SpaceRequestConfig provides the name of the Service Account whose token is to be copied
+// SpaceRequestConfig contains all the configuration related to the Space Request feature
 // +k8s:openapi-gen=true
 type SpaceRequestConfig struct {
+	// Provides the name of the Service Account whose token is to be copied
 	// +optional
 	SaTokenToCopy string `json:"saTokenToCopy,omitempty"`
 }
