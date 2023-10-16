@@ -2079,7 +2079,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 					"spaceRequestConfig": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Provides the name of the Service Account whose token is to be copied",
-							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"),
 						},
 					},

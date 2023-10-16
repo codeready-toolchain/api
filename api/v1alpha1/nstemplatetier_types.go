@@ -25,7 +25,7 @@ type NSTemplateTierSpec struct {
 
 	// Provides the name of the Service Account whose token is to be copied
 	// +optional
-	SpaceRequestConfigName SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
+	SpaceRequestConfigName *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
 }
 
 // SpaceRequestConfig provides the name of the Service Account whose token is to be copied
