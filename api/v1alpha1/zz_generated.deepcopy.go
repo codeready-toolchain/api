@@ -1508,8 +1508,8 @@ func (in *NSTemplateTierSpec) DeepCopyInto(out *NSTemplateTierSpec) {
 			(*out)[key] = val
 		}
 	}
-	if in.SpaceRequestConfigName != nil {
-		in, out := &in.SpaceRequestConfigName, &out.SpaceRequestConfigName
+	if in.SpaceRequestConfig != nil {
+		in, out := &in.SpaceRequestConfig, &out.SpaceRequestConfig
 		*out = new(SpaceRequestConfig)
 		**out = **in
 	}

@@ -23,9 +23,9 @@ type NSTemplateTierSpec struct {
 	// +mapType=atomic
 	SpaceRoles map[string]NSTemplateTierSpaceRole `json:"spaceRoles,omitempty"`
 
-	// SpaceRequestConfigName stores all the configuration related to the Space Request feature
+	// SpaceRequestConfig stores all the configuration related to the Space Request feature
 	// +optional
-	SpaceRequestConfigName *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
+	SpaceRequestConfig *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
 }
 
 // SpaceRequestConfig contains all the configuration related to the Space Request feature

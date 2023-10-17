@@ -2078,7 +2078,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 					},
 					"spaceRequestConfig": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SpaceRequestConfigName stores all the configuration related to the Space Request feature",
+							Description: "SpaceRequestConfig stores all the configuration related to the Space Request feature",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"),
 						},
 					},
