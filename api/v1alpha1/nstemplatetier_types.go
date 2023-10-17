@@ -22,6 +22,18 @@ type NSTemplateTierSpec struct {
 	// +optional
 	// +mapType=atomic
 	SpaceRoles map[string]NSTemplateTierSpaceRole `json:"spaceRoles,omitempty"`
+
+	// SpaceRequestConfig stores all the configuration related to the Space Request feature
+	// +optional
+	SpaceRequestConfig *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
+}
+
+// SpaceRequestConfig contains all the configuration related to the Space Request feature
+// +k8s:openapi-gen=true
+type SpaceRequestConfig struct {
+	// Provides the name of the Service Account whose token is to be copied
+	// +optional
+	ServiceAccountName string `json:"serviceAccountName,omitempty"`
 }
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource

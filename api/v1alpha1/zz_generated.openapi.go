@@ -106,6 +106,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig":                           schema_codeready_toolchain_api_api_v1alpha1_SpaceConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequest":                          schema_codeready_toolchain_api_api_v1alpha1_SpaceRequest(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestSpec":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceSpec":                             schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref),
@@ -2075,12 +2076,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 							},
 						},
 					},
+					"spaceRequestConfig": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SpaceRequestConfig stores all the configuration related to the Space Request feature",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"),
+						},
+					},
 				},
 				Required: []string{"namespaces"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRole"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRole", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"},
 	}
 }
 
@@ -3695,6 +3702,26 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequest(ref common.Referen
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestSpec", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceRequestConfig contains all the configuration related to the Space Request feature",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"serviceAccountName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Provides the name of the Service Account whose token is to be copied",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
