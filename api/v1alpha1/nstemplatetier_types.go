@@ -33,7 +33,7 @@ type NSTemplateTierSpec struct {
 type SpaceRequestConfig struct {
 	// Provides the name of the Service Account whose token is to be copied
 	// +optional
-	SaTokenToCopy string `json:"saTokenToCopy,omitempty"`
+	ServiceAccountName string `json:"serviceAccountName,omitempty"`
 }
 
 // NSTemplateTierNamespace the namespace definition in an NSTemplateTier resource

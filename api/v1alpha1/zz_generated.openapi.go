@@ -3712,7 +3712,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestConfig(ref common.R
 				Description: "SpaceRequestConfig contains all the configuration related to the Space Request feature",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"saTokenToCopy": {
+					"serviceAccountName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Provides the name of the Service Account whose token is to be copied",
 							Type:        []string{"string"},
