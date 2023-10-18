@@ -265,6 +265,12 @@ type UserSignupStatus struct {
 	// CompliantUsername is used to store the transformed, DNS-1123 compliant username
 	// +optional
 	CompliantUsername string `json:"compliantUsername,omitempty"`
+
+	// HomeSpace is the name of the Space that is created for the user
+	// immediately after their account is approved.
+	// This is used by the proxy when no workspace context is provided.
+	// +optional
+	HomeSpace string `json:"homeSpace,omitempty"`
 }
 
 //+kubebuilder:object:root=true
