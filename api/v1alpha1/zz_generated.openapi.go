@@ -4926,6 +4926,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref common.Ref
 							Format:      "",
 						},
 					},
+					"homeSpace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "HomeSpace represents the default home space for the user. This is used by the proxy when no workspace context is provided.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},
