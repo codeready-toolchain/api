@@ -266,7 +266,8 @@ type UserSignupStatus struct {
 	// +optional
 	CompliantUsername string `json:"compliantUsername,omitempty"`
 
-	// HomeSpace represents the default home space for the user.
+	// HomeSpace is the name of the Space that is created for the user
+	// immediately after their account is approved.
 	// This is used by the proxy when no workspace context is provided.
 	// +optional
 	HomeSpace string `json:"homeSpace,omitempty"`
