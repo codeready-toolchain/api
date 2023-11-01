@@ -159,7 +159,7 @@ type WebhookConfig struct {
 	// +optional
 	Deploy *bool `json:"deploy,omitempty"`
 
-	// Keeps parameters concerned with VMs
+	// Defines all secrets related to webhook configuration
 	// +optional
 	WebhookSecret WebhookSecret `json:"webhookSecret,omitempty"`
 }

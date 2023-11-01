@@ -5053,7 +5053,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref common.Refere
 					},
 					"webhookSecret": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters concerned with VMs",
+							Description: "Defines all secrets related to webhook configuration",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.WebhookSecret"),
 						},
