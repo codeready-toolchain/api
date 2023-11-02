@@ -5051,7 +5051,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref common.Refere
 							Format:      "",
 						},
 					},
-					"webhookSecret": {
+					"secret": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines all secrets related to webhook configuration",
 							Default:     map[string]interface{}{},
@@ -5080,9 +5080,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_WebhookSecret(ref common.Refere
 							Format:      "",
 						},
 					},
-					"virtualMachineSSHKey": {
+					"virtualMachineAccessKey": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The key for the VM SSH key in the secret values map",
+							Description: "The key in the secret values map that contains a comma-separated list of SSH keys",
 							Type:        []string{"string"},
 							Format:      "",
 						},

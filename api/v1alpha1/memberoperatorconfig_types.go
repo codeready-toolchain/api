@@ -161,7 +161,7 @@ type WebhookConfig struct {
 
 	// Defines all secrets related to webhook configuration
 	// +optional
-	WebhookSecret WebhookSecret `json:"webhookSecret,omitempty"`
+	Secret WebhookSecret `json:"secret,omitempty"`
 }
 
 // WebhookSecret defines all secrets related to webhook configuration
@@ -171,9 +171,9 @@ type WebhookSecret struct {
 	// +optional
 	ToolchainSecret `json:",inline"`
 
-	// The key for the VM SSH key in the secret values map
+	// The key in the secret values map that contains a comma-separated list of SSH keys
 	// +optional
-	VirtualMachineSSHKey *string `json:"virtualMachineSSHKey,omitempty"`
+	VirtualMachineAccessKey *string `json:"virtualMachineAccessKey,omitempty"`
 }
 
 // WebConsolePlugin defines the configuration parameters relating to the Web Console Plugin
