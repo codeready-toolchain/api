@@ -161,7 +161,7 @@ type WebhookConfig struct {
 
 	// Defines all secrets related to webhook configuration
 	// +optional
-	Secret WebhookSecret `json:"secret,omitempty"`
+	Secret *WebhookSecret `json:"secret,omitempty"`
 }
 
 // WebhookSecret defines all secrets related to webhook configuration
