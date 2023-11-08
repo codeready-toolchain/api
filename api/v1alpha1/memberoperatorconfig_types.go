@@ -128,7 +128,7 @@ type ConsoleConfig struct {
 	RouteName *string `json:"routeName,omitempty"`
 }
 
-// GitHubSecret defines all secrets related to Che configuration
+// GitHubSecret defines all secrets related to GitHub authentication/integration
 // +k8s:openapi-gen=true
 type GitHubSecret struct {
 	// The reference to the secret that is expected to contain the keys below
@@ -158,6 +158,22 @@ type WebhookConfig struct {
 	// Defines the flag that determines whether to deploy the Webhook
 	// +optional
 	Deploy *bool `json:"deploy,omitempty"`
+
+	// Defines all secrets related to webhook configuration
+	// +optional
+	Secret *WebhookSecret `json:"secret,omitempty"`
+}
+
+// WebhookSecret defines all secrets related to webhook configuration
+// +k8s:openapi-gen=true
+type WebhookSecret struct {
+	// The reference to the secret that is expected to contain the keys below
+	// +optional
+	ToolchainSecret `json:",inline"`
+
+	// The key in the secret values map that contains a comma-separated list of SSH keys
+	// +optional
+	VirtualMachineAccessKey *string `json:"virtualMachineAccessKey,omitempty"`
 }
 
 // WebConsolePlugin defines the configuration parameters relating to the Web Console Plugin
