@@ -76,7 +76,6 @@ type SpaceSpec struct {
 	// Default is False.
 	// +optional
 	DisableInheritance bool `json:"disableInheritance,omitempty"`
-
 }
 
 // SpaceStatus defines the observed state of Space
