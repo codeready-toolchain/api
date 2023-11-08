@@ -130,16 +130,6 @@ type UserAccountStatusEmbedded struct {
 type Cluster struct {
 	// Name is the name of the corresponding ToolchainCluster resource
 	Name string `json:"name"`
-
-	// APIEndpoint is the API Endpoint of the cluster
-	APIEndpoint string `json:"apiEndpoint"`
-
-	// ConsoleURL is the web console URL of the cluster
-	ConsoleURL string `json:"consoleURL"`
-
-	// CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed
-	// +optional
-	CheDashboardURL string `json:"cheDashboardURL,omitempty"`
 }
 
 //+kubebuilder:object:root=true
