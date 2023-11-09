@@ -3761,6 +3761,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref common.Ref
 							},
 						},
 					},
+					"disableInheritance": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are automatically inherited to all sub-spaces in the tree.\n\nSet to True to disable SpaceBinding inheritance from the parent-spaces. Default is False.",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"tierName"},
 			},
@@ -3878,6 +3885,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 						SchemaProps: spec.SchemaProps{
 							Description: "ParentSpace holds the name of the context (Space) from which this space was created (requested), enabling hierarchy relationships between different Spaces.\n\nKeeping this association brings two main benefits: 1. SpaceBindings are inherited from the parent Space 2. Ability to easily monitor quota for the requested sub-spaces",
 							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"disableInheritance": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are automatically inherited to all sub-spaces in the tree.\n\nSet to True to disable SpaceBinding inheritance from the parent-spaces. Default is False.",
+							Type:        []string{"boolean"},
 							Format:      "",
 						},
 					},
