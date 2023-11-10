@@ -29,6 +29,14 @@ type SpaceRequestSpec struct {
 	// +optional
 	// +listType=atomic
 	TargetClusterRoles []string `json:"targetClusterRoles,omitempty"`
+
+	// DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are
+	// automatically inherited to all sub-spaces in the tree.
+	//
+	// Set to True to disable SpaceBinding inheritance from the parent-spaces.
+	// Default is False.
+	// +optional
+	DisableInheritance bool `json:"disableInheritance,omitempty"`
 }
 
 // SpaceRequestStatus defines the observed state of Space
