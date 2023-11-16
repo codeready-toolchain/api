@@ -136,6 +136,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.UserTierSpec":                          schema_codeready_toolchain_api_api_v1alpha1_UserTierSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_UsersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig":                         schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.WebhookSecret":                         schema_codeready_toolchain_api_api_v1alpha1_WebhookSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Workspace":                             schema_codeready_toolchain_api_api_v1alpha1_Workspace(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.WorkspaceStatus":                       schema_codeready_toolchain_api_api_v1alpha1_WorkspaceStatus(ref),
 	}
@@ -649,7 +650,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref common.Referen
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "GitHubSecret defines all secrets related to Che configuration",
+				Description: "GitHubSecret defines all secrets related to GitHub authentication/integration",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"ref": {
@@ -3760,6 +3761,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref common.Ref
 							},
 						},
 					},
+					"disableInheritance": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are automatically inherited to all sub-spaces in the tree.\n\nSet to True to disable SpaceBinding inheritance from the parent-spaces. Default is False.",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"tierName"},
 			},
@@ -3877,6 +3885,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref common.ReferenceC
 						SchemaProps: spec.SchemaProps{
 							Description: "ParentSpace holds the name of the context (Space) from which this space was created (requested), enabling hierarchy relationships between different Spaces.\n\nKeeping this association brings two main benefits: 1. SpaceBindings are inherited from the parent Space 2. Ability to easily monitor quota for the requested sub-spaces",
 							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"disableInheritance": {
+						SchemaProps: spec.SchemaProps{
+							Description: "DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are automatically inherited to all sub-spaces in the tree.\n\nSet to True to disable SpaceBinding inheritance from the parent-spaces. Default is False.",
+							Type:        []string{"boolean"},
 							Format:      "",
 						},
 					},
@@ -5047,6 +5062,41 @@ func schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref common.Refere
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines the flag that determines whether to deploy the Webhook",
 							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"secret": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines all secrets related to webhook configuration",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.WebhookSecret"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.WebhookSecret"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_WebhookSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "WebhookSecret defines all secrets related to webhook configuration",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"ref": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Reference is the name of the secret resource to look up",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"virtualMachineAccessKey": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The key in the secret values map that contains a comma-separated list of SSH keys",
+							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
