@@ -441,6 +441,11 @@ type CaptchaConfig struct {
 	// +optional
 	ScoreThreshold *string `json:"scoreThreshold,omitempty"`
 
+	// AutomaticVerificationThreshold defines the lowest captcha score for automatic approval to be enabled.
+	// If the captcha score is below this threshold then manual approval is required in order for the user to be provisioned.
+	// +optional
+	AutomaticVerificationThreshold *string `json:"automaticVerificationThreshold,omitempty"`
+
 	// SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod
 	// +optional
 	SiteKey *string `json:"siteKey,omitempty"`

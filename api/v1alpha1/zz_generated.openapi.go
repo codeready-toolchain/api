@@ -428,6 +428,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.Refere
 							Format:      "",
 						},
 					},
+					"automaticVerificationThreshold": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AutomaticVerificationThreshold defines the lowest captcha score for automatic approval to be enabled. If the captcha score is below this threshold then manual approval is required in order for the user to be provisioned.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"siteKey": {
 						SchemaProps: spec.SchemaProps{
 							Description: "SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod",

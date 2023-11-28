@@ -228,6 +228,11 @@ func (in *CaptchaConfig) DeepCopyInto(out *CaptchaConfig) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AutomaticVerificationThreshold != nil {
+		in, out := &in.AutomaticVerificationThreshold, &out.AutomaticVerificationThreshold
+		*out = new(string)
+		**out = **in
+	}
 	if in.SiteKey != nil {
 		in, out := &in.SiteKey, &out.SiteKey
 		*out = new(string)
