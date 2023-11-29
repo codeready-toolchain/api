@@ -428,16 +428,16 @@ func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.Refere
 							Format:      "",
 						},
 					},
-					"automaticVerificationThreshold": {
+					"requiredScore": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AutomaticVerificationThreshold defines the lowest captcha score for automatic approval to be enabled. If the captcha score is below this threshold then manual approval is required in order for the user to be provisioned.",
+							Description: "RequiredScore defines the lowest captcha score, below this score the user cannot proceed with the signup process at all. Users with captcha score lower than the required one can still be approved manually.",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"allowLowScoreReactivation": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below AutomaticVerificationThreshold) is enabled without the need for manual approval.",
+							Description: "AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below the RequiredScore) is enabled without the need for manual approval.",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},

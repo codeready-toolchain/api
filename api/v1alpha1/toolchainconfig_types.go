@@ -441,12 +441,12 @@ type CaptchaConfig struct {
 	// +optional
 	ScoreThreshold *string `json:"scoreThreshold,omitempty"`
 
-	// AutomaticVerificationThreshold defines the lowest captcha score for automatic approval to be enabled.
-	// If the captcha score is below this threshold then manual approval is required in order for the user to be provisioned.
+	// RequiredScore defines the lowest captcha score, below this score the user cannot proceed with the signup process at all.
+	// Users with captcha score lower than the required one can still be approved manually.
 	// +optional
-	AutomaticVerificationThreshold *string `json:"automaticVerificationThreshold,omitempty"`
+	RequiredScore *string `json:"requiredScore,omitempty"`
 
-	// AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below AutomaticVerificationThreshold) is enabled without the need for manual approval.
+	// AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below the RequiredScore) is enabled without the need for manual approval.
 	// +optional
 	AllowLowScoreReactivation *bool `json:"allowLowScoreReactivation,omitempty"`
 

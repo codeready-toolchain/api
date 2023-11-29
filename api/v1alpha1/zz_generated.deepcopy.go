@@ -228,8 +228,8 @@ func (in *CaptchaConfig) DeepCopyInto(out *CaptchaConfig) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.AutomaticVerificationThreshold != nil {
-		in, out := &in.AutomaticVerificationThreshold, &out.AutomaticVerificationThreshold
+	if in.RequiredScore != nil {
+		in, out := &in.RequiredScore, &out.RequiredScore
 		*out = new(string)
 		**out = **in
 	}
