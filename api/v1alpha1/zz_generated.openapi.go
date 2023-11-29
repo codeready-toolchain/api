@@ -435,6 +435,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.Refere
 							Format:      "",
 						},
 					},
+					"allowLowScoreReactivation": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below AutomaticVerificationThreshold) is enabled without the need for manual approval.",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 					"siteKey": {
 						SchemaProps: spec.SchemaProps{
 							Description: "SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod",

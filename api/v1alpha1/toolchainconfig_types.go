@@ -446,6 +446,10 @@ type CaptchaConfig struct {
 	// +optional
 	AutomaticVerificationThreshold *string `json:"automaticVerificationThreshold,omitempty"`
 
+	// AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below AutomaticVerificationThreshold) is enabled without the need for manual approval.
+	// +optional
+	AllowLowScoreReactivation *bool `json:"allowLowScoreReactivation,omitempty"`
+
 	// SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod
 	// +optional
 	SiteKey *string `json:"siteKey,omitempty"`
