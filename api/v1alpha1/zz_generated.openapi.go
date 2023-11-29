@@ -428,6 +428,20 @@ func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.Refere
 							Format:      "",
 						},
 					},
+					"requiredScore": {
+						SchemaProps: spec.SchemaProps{
+							Description: "RequiredScore defines the lowest captcha score, below this score the user cannot proceed with the signup process at all. Users with captcha score lower than the required one can still be approved manually.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"allowLowScoreReactivation": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below the RequiredScore) is enabled without the need for manual approval.",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 					"siteKey": {
 						SchemaProps: spec.SchemaProps{
 							Description: "SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod",

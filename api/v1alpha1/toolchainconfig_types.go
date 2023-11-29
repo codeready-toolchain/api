@@ -441,6 +441,15 @@ type CaptchaConfig struct {
 	// +optional
 	ScoreThreshold *string `json:"scoreThreshold,omitempty"`
 
+	// RequiredScore defines the lowest captcha score, below this score the user cannot proceed with the signup process at all.
+	// Users with captcha score lower than the required one can still be approved manually.
+	// +optional
+	RequiredScore *string `json:"requiredScore,omitempty"`
+
+	// AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below the RequiredScore) is enabled without the need for manual approval.
+	// +optional
+	AllowLowScoreReactivation *bool `json:"allowLowScoreReactivation,omitempty"`
+
 	// SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod
 	// +optional
 	SiteKey *string `json:"siteKey,omitempty"`

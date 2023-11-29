@@ -228,6 +228,16 @@ func (in *CaptchaConfig) DeepCopyInto(out *CaptchaConfig) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.RequiredScore != nil {
+		in, out := &in.RequiredScore, &out.RequiredScore
+		*out = new(string)
+		**out = **in
+	}
+	if in.AllowLowScoreReactivation != nil {
+		in, out := &in.AllowLowScoreReactivation, &out.AllowLowScoreReactivation
+		*out = new(bool)
+		**out = **in
+	}
 	if in.SiteKey != nil {
 		in, out := &in.SiteKey, &out.SiteKey
 		*out = new(string)
