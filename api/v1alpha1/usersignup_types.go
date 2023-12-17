@@ -95,6 +95,7 @@ const (
 	UserSignupUserBanningReason                = "Banning"
 	UserSignupUserBannedReason                 = "Banned"
 	UserSignupFailedToReadBannedUsersReason    = "FailedToReadBannedUsers"
+	UserSignupMissingUserEmailReason           = "MissingUserEmail"
 	UserSignupMissingUserEmailAnnotationReason = "MissingUserEmailAnnotation"
 	UserSignupMissingEmailHashLabelReason      = "MissingEmailHashLabel"
 	UserSignupInvalidEmailHashLabelReason      = "InvalidEmailHashLabel"
