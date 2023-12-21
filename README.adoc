@@ -6,8 +6,8 @@ image:https://codecov.io/gh/codeready-toolchain/api/branch/master/graph/badge.sv
 == Building
 Requires:
 
-* Go version 1.18.x (1.18.8 or higher) - download for your development environment https://golang.org/dl/[here].
-* Operator SDK v1.23.0 - download for your development environment https://v1-23-x.sdk.operatorframework.io/docs/installation/#install-from-github-release[here]
+* Go version 1.20.x (1.20.11 or higher) - download for your development environment https://golang.org/dl/[here].
+* Operator SDK v1.25.0 - download for your development environment https://v1-25-x.sdk.operatorframework.io/docs/installation/#install-from-github-release[here]
 
 CodeReady ToolChain API is built using https://github.com/golang/go/wiki/Modules[Go modules].
 
