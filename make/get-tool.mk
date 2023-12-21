@@ -1,5 +1,5 @@
 # see go.mod
-CONTROLLER_GEN_VERSION=v0.12.0
+CONTROLLER_GEN_VERSION=v0.10.0
 OPENAPI_GEN_VERSION=8b0f38b5fd1f
 
 CONTROLLER_GEN = $(shell pwd)/bin/controller-gen
