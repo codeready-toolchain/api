@@ -1236,14 +1236,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 				Description: "MasterUserRecordSpec defines the desired state of MasterUserRecord",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"userID": {
-						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"disabled": {
 						SchemaProps: spec.SchemaProps{
 							Description: "If set to true then the corresponding user should not be able to login (but the underlying UserAccounts still exists) \"false\" is assumed by default",
@@ -1273,13 +1265,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 							},
 						},
 					},
-					"originalSub": {
-						SchemaProps: spec.SchemaProps{
-							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"tierName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TierName is an optional property introduced to retain the name of the tier for which the Dev Sandbox user is provisioned, so we can still deal with deactivation once the NSTemplateSet field has been removed from `[]spec.UserAccounts` temporarily marked as optional until the migration took place (CRT-1321)",
@@ -1295,7 +1280,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 						},
 					},
 				},
-				Required: []string{"userID"},
 			},
 		},
 		Dependencies: []string{
@@ -4699,25 +4683,10 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 				Description: "UserAccountSpec defines the desired state of UserAccount",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"userID": {
-						SchemaProps: spec.SchemaProps{
-							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim) Is to be used to create Identity and UserIdentityMapping resources",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"disabled": {
 						SchemaProps: spec.SchemaProps{
 							Description: "If set to true then the corresponding user should not be able to login \"false\" is assumed by default",
 							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-					"originalSub": {
-						SchemaProps: spec.SchemaProps{
-							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
-							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
@@ -4729,7 +4698,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 						},
 					},
 				},
-				Required: []string{"userID"},
 			},
 		},
 		Dependencies: []string{
@@ -4837,43 +4805,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 							Format:      "",
 						},
 					},
-					"userid": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The user's user ID, obtained from the identity provider from the 'sub' (subject) claim",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"username": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The user's username, obtained from the identity provider.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"givenName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The user's first name, obtained from the identity provider.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"familyName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The user's last name, obtained from the identity provider.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"company": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The user's company name, obtained from the identity provider.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"states": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -4909,7 +4840,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 						},
 					},
 				},
-				Required: []string{"userid", "username"},
 			},
 		},
 		Dependencies: []string{

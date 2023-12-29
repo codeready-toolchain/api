@@ -19,8 +19,6 @@ const (
 
 	// UserSignupLastTargetClusterAnnotationKey is used for tracking the cluster for returning users
 	UserSignupLastTargetClusterAnnotationKey = LabelKeyPrefix + "last-target-cluster"
-	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
-	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
 	// UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
 	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
 	// UserSignupVerificationTimestampAnnotationKey is used for the usersignup verification timestamp annotation key
@@ -169,24 +167,6 @@ type UserSignupSpec struct {
 	// If not set then the target cluster will be picked automatically
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
-
-	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
-	Userid string `json:"userid"`
-
-	// The user's username, obtained from the identity provider.
-	Username string `json:"username"`
-
-	// The user's first name, obtained from the identity provider.
-	// +optional
-	GivenName string `json:"givenName,omitempty"`
-
-	// The user's last name, obtained from the identity provider.
-	// +optional
-	FamilyName string `json:"familyName,omitempty"`
-
-	// The user's company name, obtained from the identity provider.
-	// +optional
-	Company string `json:"company,omitempty"`
 
 	// States contains a number of values that reflect the desired state of the UserSignup.
 	// +optional
