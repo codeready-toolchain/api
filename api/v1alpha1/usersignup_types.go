@@ -173,11 +173,6 @@ type UserSignupSpec struct {
 	// +listType=atomic
 	States []UserSignupState `json:"states,omitempty"`
 
-	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
-	// a new IdP provider client, and contains the user's "original-sub" claim
-	// +optional
-	OriginalSub string `json:"originalSub,omitempty"`
-
 	// IdentityClaims contains as-is claim values extracted from the user's access token
 	// +optional
 	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`

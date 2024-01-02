@@ -4825,13 +4825,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 							},
 						},
 					},
-					"originalSub": {
-						SchemaProps: spec.SchemaProps{
-							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"identityClaims": {
 						SchemaProps: spec.SchemaProps{
 							Description: "IdentityClaims contains as-is claim values extracted from the user's access token",
