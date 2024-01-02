@@ -142,7 +142,7 @@ type Cluster struct {
 // +kubebuilder:resource:shortName=mur
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
-// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.spec.userAccounts[].targetCluster`
+// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=`.status.userAccounts[].cluster.name`
 // +kubebuilder:printcolumn:name="Tier",type="string",JSONPath=`.spec.tierName`
 // +kubebuilder:printcolumn:name="Banned",type="string",JSONPath=`.spec.banned`,priority=1
 // +kubebuilder:printcolumn:name="Disabled",type="string",JSONPath=`.spec.disabled`,priority=1
