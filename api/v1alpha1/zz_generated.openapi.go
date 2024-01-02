@@ -2590,14 +2590,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(r
 					},
 					"ssoBaseURL": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SsoBaseURL specifies the SSO base URL such as https://sso.redhat.com",
+							Description: "SSOBaseURL specifies the SSO base URL such as https://sso.redhat.com",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"ssoRealm": {
 						SchemaProps: spec.SchemaProps{
-							Description: "SsoRealm specifies the SSO realm name",
+							Description: "SSORealm specifies the SSO realm name",
 							Type:        []string{"string"},
 							Format:      "",
 						},

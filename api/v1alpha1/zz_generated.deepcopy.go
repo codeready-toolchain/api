@@ -1945,13 +1945,13 @@ func (in *RegistrationServiceAuthConfig) DeepCopyInto(out *RegistrationServiceAu
 		*out = new(string)
 		**out = **in
 	}
-	if in.SsoBaseURL != nil {
-		in, out := &in.SsoBaseURL, &out.SsoBaseURL
+	if in.SSOBaseURL != nil {
+		in, out := &in.SSOBaseURL, &out.SSOBaseURL
 		*out = new(string)
 		**out = **in
 	}
-	if in.SsoRealm != nil {
-		in, out := &in.SsoRealm, &out.SsoRealm
+	if in.SSORealm != nil {
+		in, out := &in.SSORealm, &out.SSORealm
 		*out = new(string)
 		**out = **in
 	}
