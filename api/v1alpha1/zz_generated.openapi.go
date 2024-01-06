@@ -2553,14 +2553,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(r
 					},
 					"authClientConfigContentType": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AuthClientConfigContentType specifies the auth config config content type",
+							Description: "AuthClientConfigContentType specifies the auth config content type",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"authClientConfigRaw": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AuthClientConfigRaw specifies the URL used to a access the registration service",
+							Description: "AuthClientConfigRaw specifies the URL used to access the registration service",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2568,6 +2568,20 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(r
 					"authClientPublicKeysURL": {
 						SchemaProps: spec.SchemaProps{
 							Description: "AuthClientPublicKeysURL specifies the public keys URL",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"ssoBaseURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SSOBaseURL specifies the SSO base URL such as https://sso.redhat.com",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"ssoRealm": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SSORealm specifies the SSO realm name",
 							Type:        []string{"string"},
 							Format:      "",
 						},

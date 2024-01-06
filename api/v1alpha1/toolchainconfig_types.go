@@ -291,17 +291,25 @@ type RegistrationServiceAuthConfig struct {
 	// +optional
 	AuthClientLibraryURL *string `json:"authClientLibraryURL,omitempty"`
 
-	// AuthClientConfigContentType specifies the auth config config content type
+	// AuthClientConfigContentType specifies the auth config content type
 	// +optional
 	AuthClientConfigContentType *string `json:"authClientConfigContentType,omitempty"`
 
-	// AuthClientConfigRaw specifies the URL used to a access the registration service
+	// AuthClientConfigRaw specifies the URL used to access the registration service
 	// +optional
 	AuthClientConfigRaw *string `json:"authClientConfigRaw,omitempty"`
 
 	// AuthClientPublicKeysURL specifies the public keys URL
 	// +optional
 	AuthClientPublicKeysURL *string `json:"authClientPublicKeysURL,omitempty"`
+
+	// SSOBaseURL specifies the SSO base URL such as https://sso.redhat.com
+	// +optional
+	SSOBaseURL *string `json:"ssoBaseURL,omitempty"`
+
+	// SSORealm specifies the SSO realm name
+	// +optional
+	SSORealm *string `json:"ssoRealm,omitempty"`
 }
 
 // RegistrationServiceVerificationConfig contains the subset of registration service configuration parameters related to verification
