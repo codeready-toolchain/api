@@ -23,26 +23,26 @@ generate-deepcopy-and-crds: remove-config controller-gen
 .PHONY: generate-openapi
 generate-openapi: openapi-gen
 	@echo "re-generating the openapi go file..."
-	@# openapi-gen requires the GOPATH env var be set and the codebase be present within it.
-	@# Let's not require $GOPATH be set up in the user's environment and the checkout be
-	@# placed in it.
-	@# Instead, fake it locally.
+	@## openapi-gen requires the GOPATH env var be set and the codebase be present within it.
+	@## Let's not require $GOPATH be set up in the user's environment and the checkout be
+	@## placed in it.
+	@## Instead, fake it locally.
 	mkdir -p $(PROJECT_DIR)/.fake-gopath
 	@mkdir -p $(PROJECT_DIR)/.fake-gopath/src/github.com/codeready-toolchain
-	@# link the packages from the real GOPATH
-	@# ("go env GOPATH" returns the correct value even if the env var is not set)
+	@## link the packages from the real GOPATH
+	@## ("go env GOPATH" returns the correct value even if the env var is not set)
 	@cd $(PROJECT_DIR)/.fake-gopath && ln -s `go env GOPATH`/pkg || true
-	@# link our codebase to the appropriate place in the fake GOPATH
+	@## link our codebase to the appropriate place in the fake GOPATH
 	@cd $(PROJECT_DIR)/.fake-gopath/src/github.com/codeready-toolchain && ln -s ../../../.. api
-	@# run openapi-gen from within the fake GOPATH (otherwise the package paths would be relative
-	@# and function names would be different)
+	@## run openapi-gen from within the fake GOPATH (otherwise the package paths would be relative
+	@#e and function names would be different)
 	export GOPATH=$(PROJECT_DIR)/.fake-gopath \
 	&& cd $(PROJECT_DIR)/.fake-gopath/src/github.com/codeready-toolchain/api \
 	&& $(Q)$(OPENAPI_GEN) --input-dirs ./api/$(API_VERSION)/ \
 	--output-package github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file-base zz_generated.openapi \
 	--go-header-file=make/go-header.txt
-	@# clean up the mess
+	@## clean up the mess
 	rm -Rf $(PROJECT_DIR)/.fake-gopath
 
 # make sure that that the `host-operator` and `member-operator` repositories exist locally 
