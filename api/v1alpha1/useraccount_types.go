@@ -34,7 +34,7 @@ type UserAccountSpec struct {
 	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
 	// Is to be used to create Identity and UserIdentityMapping resources
 	// +optional
-	UserID string `json:"userID"`
+	UserID string `json:"userID,omitempty"`
 
 	// If set to true then the corresponding user should not be able to login
 	// "false" is assumed by default
@@ -48,8 +48,7 @@ type UserAccountSpec struct {
 
 	// PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to
 	// be "propagated" down the resource dependency chain
-	// +optional
-	PropagatedClaims PropagatedClaims `json:"propagatedClaims,omitempty"`
+	PropagatedClaims PropagatedClaims `json:"propagatedClaims"`
 }
 
 // UserAccountStatus defines the observed state of UserAccount

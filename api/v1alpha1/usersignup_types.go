@@ -172,11 +172,11 @@ type UserSignupSpec struct {
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
 	// +optional
-	Userid string `json:"userid"`
+	Userid string `json:"userid,omitempty"`
 
 	// The user's username, obtained from the identity provider.
 	// +optional
-	Username string `json:"username"`
+	Username string `json:"username,omitempty"`
 
 	// The user's first name, obtained from the identity provider.
 	// +optional
@@ -201,7 +201,7 @@ type UserSignupSpec struct {
 	OriginalSub string `json:"originalSub,omitempty"`
 
 	// IdentityClaims contains as-is claim values extracted from the user's access token
-	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`
+	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims"`
 }
 
 // IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing
@@ -232,7 +232,7 @@ type PropagatedClaims struct {
 	Sub string `json:"sub"`
 
 	// UserID contains the value of the 'user_id' claim
-	UserID string `json:"userID,omitempty"`
+	UserID string `json:"userID"`
 
 	// AccountID contains the value of the 'account_id' claim
 	// +optional
