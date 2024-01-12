@@ -4743,7 +4743,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 						},
 					},
 				},
-				Required: []string{"userID"},
 			},
 		},
 		Dependencies: []string{
@@ -4923,7 +4922,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 						},
 					},
 				},
-				Required: []string{"userid", "username"},
 			},
 		},
 		Dependencies: []string{

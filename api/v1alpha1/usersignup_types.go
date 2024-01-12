@@ -171,9 +171,11 @@ type UserSignupSpec struct {
 	TargetCluster string `json:"targetCluster,omitempty"`
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
+	// +optional
 	Userid string `json:"userid"`
 
 	// The user's username, obtained from the identity provider.
+	// +optional
 	Username string `json:"username"`
 
 	// The user's first name, obtained from the identity provider.
@@ -199,7 +201,6 @@ type UserSignupSpec struct {
 	OriginalSub string `json:"originalSub,omitempty"`
 
 	// IdentityClaims contains as-is claim values extracted from the user's access token
-	// +optional
 	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`
 }
 
@@ -231,7 +232,6 @@ type PropagatedClaims struct {
 	Sub string `json:"sub"`
 
 	// UserID contains the value of the 'user_id' claim
-	// +optional
 	UserID string `json:"userID,omitempty"`
 
 	// AccountID contains the value of the 'account_id' claim
