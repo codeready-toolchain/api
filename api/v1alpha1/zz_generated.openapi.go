@@ -2574,14 +2574,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(r
 					},
 					"authClientConfigContentType": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AuthClientConfigContentType specifies the auth config config content type",
+							Description: "AuthClientConfigContentType specifies the auth config content type",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"authClientConfigRaw": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AuthClientConfigRaw specifies the URL used to a access the registration service",
+							Description: "AuthClientConfigRaw specifies the URL used to access the registration service",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -2589,6 +2589,20 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(r
 					"authClientPublicKeysURL": {
 						SchemaProps: spec.SchemaProps{
 							Description: "AuthClientPublicKeysURL specifies the public keys URL",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"ssoBaseURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SSOBaseURL specifies the SSO base URL such as https://sso.redhat.com",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"ssoRealm": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SSORealm specifies the SSO realm name",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -3687,20 +3701,19 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerCapacityThresho
 				Properties: map[string]spec.Schema{
 					"maxNumberOfSpaces": {
 						SchemaProps: spec.SchemaProps{
-							Default: 0,
-							Type:    []string{"integer"},
-							Format:  "int32",
+							Description: "MaxNumberOfSpaces is the maximum number of spaces that can be provisioned to the referenced cluster.\n\n0 or undefined value means no limit.",
+							Type:        []string{"integer"},
+							Format:      "int32",
 						},
 					},
 					"maxMemoryUtilizationPercent": {
 						SchemaProps: spec.SchemaProps{
-							Default: 0,
-							Type:    []string{"integer"},
-							Format:  "int32",
+							Description: "MaxMemoryUtilizationPercent is the maximum memory utilization of the cluster to permit provisioning new spaces to it.\n\n0 or undefined value means no limit.",
+							Type:        []string{"integer"},
+							Format:      "int32",
 						},
 					},
 				},
-				Required: []string{"maxNumberOfSpaces", "maxMemoryUtilizationPercent"},
 			},
 		},
 	}
@@ -3808,6 +3821,21 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigSpec(ref 
 			SchemaProps: spec.SchemaProps{
 				Type: []string{"object"},
 				Properties: map[string]spec.Schema{
+					"placementRoles": {
+						SchemaProps: spec.SchemaProps{
+							Description: "PlacementRoles is the list of roles, or flavors, that the provisioner possesses that influence the space scheduling decisions.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
 					"toolchainCluster": {
 						SchemaProps: spec.SchemaProps{
 							Description: "ToolchainCluster is the name of the ToolchainCluster CR of the member cluster that this config is for.",
@@ -3831,23 +3859,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigSpec(ref 
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerCapacityThresholds"),
 						},
 					},
-					"placementRoles": {
-						SchemaProps: spec.SchemaProps{
-							Description: "PlacementRoles is the list of roles, or flavors, that the provisioner possesses that influence the space scheduling decisions.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
 				},
-				Required: []string{"toolchainCluster", "enabled", "capacityThresholds"},
+				Required: []string{"toolchainCluster"},
 			},
 		},
 		Dependencies: []string{
@@ -3871,7 +3884,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions describes the state of the configuration (its validity). The only known condition type is \"Valid\".",
+							Description: "Conditions describes the state of the configuration (its validity). The only known condition type is \"Ready\".",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
