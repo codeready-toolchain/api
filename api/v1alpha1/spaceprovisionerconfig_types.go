@@ -3,7 +3,6 @@ package v1alpha1
 import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
 const (
-	SpaceProvisionerConfigValidConditionType             = "Valid"
 	SpaceProvisionerConfigToolchainClusterNotFoundReason = "ToolchainClusterNotFound"
 	SpaceProvisionerConfigValidReason                    = "AllChecksPassed"
 )
@@ -13,7 +12,7 @@ type SpaceProvisionerConfigSpec struct {
 	// PlacementRoles is the list of roles, or flavors, that the provisioner possesses that influence
 	// the space scheduling decisions.
 	// +optional
-	PlacementRoles *[]string `json:"placementRoles,omitempty"`
+	PlacementRoles []string `json:"placementRoles,omitempty"`
 
 	// ToolchainCluster is the name of the ToolchainCluster CR of the member cluster that this config is for.
 	ToolchainCluster string `json:"toolchainCluster"`
@@ -31,17 +30,28 @@ type SpaceProvisionerConfigSpec struct {
 // SpaceProvisionerCapacityThresholds defines the capacity thresholds of the space provisioner
 // +k8s:openapi-gen=true
 type SpaceProvisionerCapacityThresholds struct {
+	// MaxNumberOfSpaces is the maximum number of spaces that can be provisioned to the referenced cluster.
+	//
+	// 0 or undefined value means no limit.
+	//
 	// +kubebuilder:validation:Minimum=0
-	MaxNumberOfSpaces uint `json:"maxNumberOfSpaces"`
+	// +optional
+	MaxNumberOfSpaces uint `json:"maxNumberOfSpaces,omitempty"`
+	// MaxMemoryUtilizationPercent is the maximum memory utilization of the cluster to permit provisioning
+	// new spaces to it.
+	//
+	// 0 or undefined value means no limit.
+	//
 	// +kubebuilder:validation:Minimum=0
 	// +kubebuilder:validation:Maximum=100
-	MaxMemoryUtilizationPercent uint `json:"maxMemoryUtilizationPercent"`
+	// +optional
+	MaxMemoryUtilizationPercent uint `json:"maxMemoryUtilizationPercent,omitempty"`
 }
 
 // +k8s:openapi-gen=true
 type SpaceProvisionerConfigStatus struct {
 	// Conditions describes the state of the configuration (its validity).
-	// The only known condition type is "Valid".
+	// The only known condition type is "Ready".
 	// +optional
 	// +listType=map
 	// +listMapKey=type
