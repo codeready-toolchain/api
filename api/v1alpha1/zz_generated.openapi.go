@@ -966,7 +966,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserID contains the value of the 'user_id' claim",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -1023,7 +1022,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 						},
 					},
 				},
-				Required: []string{"sub", "userID", "email", "preferredUsername"},
+				Required: []string{"sub", "email", "preferredUsername"},
 			},
 		},
 	}

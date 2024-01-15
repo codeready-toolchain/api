@@ -232,7 +232,8 @@ type PropagatedClaims struct {
 	Sub string `json:"sub"`
 
 	// UserID contains the value of the 'user_id' claim
-	UserID string `json:"userID"`
+	// +optional
+	UserID string `json:"userID,omitempty"`
 
 	// AccountID contains the value of the 'account_id' claim
 	// +optional
