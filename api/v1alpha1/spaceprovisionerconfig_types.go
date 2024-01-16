@@ -12,6 +12,7 @@ type SpaceProvisionerConfigSpec struct {
 	// PlacementRoles is the list of roles, or flavors, that the provisioner possesses that influence
 	// the space scheduling decisions.
 	// +optional
+	// +listType=set
 	PlacementRoles []string `json:"placementRoles,omitempty"`
 
 	// ToolchainCluster is the name of the ToolchainCluster CR of the member cluster that this config is for.
@@ -53,9 +54,11 @@ type SpaceProvisionerConfigStatus struct {
 	// Conditions describes the state of the configuration (its validity).
 	// The only known condition type is "Ready".
 	// +optional
+	// +patchMergeKey=type
+	// +patchStrategy=merge
 	// +listType=map
 	// +listMapKey=type
-	Conditions []metav1.Condition `json:"conditions,omitempty"`
+	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // SpaceProvisionerConfig is the configuration of space provisioning in the member clusters.

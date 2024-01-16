@@ -3822,6 +3822,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigSpec(ref 
 				Type: []string{"object"},
 				Properties: map[string]spec.Schema{
 					"placementRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "set",
+							},
+						},
 						SchemaProps: spec.SchemaProps{
 							Description: "PlacementRoles is the list of roles, or flavors, that the provisioner possesses that influence the space scheduling decisions.",
 							Type:        []string{"array"},
@@ -3880,7 +3885,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 								"x-kubernetes-list-map-keys": []interface{}{
 									"type",
 								},
-								"x-kubernetes-list-type": "map",
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
 							},
 						},
 						SchemaProps: spec.SchemaProps{
@@ -3890,7 +3897,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.Condition"),
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -3900,7 +3907,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 			},
 		},
 		Dependencies: []string{
-			"k8s.io/apimachinery/pkg/apis/meta/v1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
