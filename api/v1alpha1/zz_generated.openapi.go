@@ -3723,7 +3723,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfig(ref comm
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SpaceProvisionerConfig is the configuration of space provisioning in the member clusters.\n\nNote that these objects are currently NOT used anywhere.",
+				Description: "SpaceProvisionerConfig is the configuration of space provisioning in the member clusters.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"spec": {

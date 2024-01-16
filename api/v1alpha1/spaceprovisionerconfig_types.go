@@ -63,8 +63,6 @@ type SpaceProvisionerConfigStatus struct {
 
 // SpaceProvisionerConfig is the configuration of space provisioning in the member clusters.
 //
-// Note that these objects are currently NOT used anywhere.
-//
 // +k8s:openapi-gen=true
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
