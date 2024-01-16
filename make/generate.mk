@@ -10,6 +10,18 @@ MEMBER_CLUSTER_CRDS:=useraccounts nstemplatesets memberstatuses idlers toolchain
 
 PATH_TO_CRD_BASES=config/crd/bases
 
+# openapi-gen requires the GOPATH env var be set and the codebase be present within it.
+# Let's not require $GOPATH be set up in the user's environment and the checkout be
+# placed in it.
+# Instead, fake it locally.
+FAKE_GOPATH=$(PROJECT_DIR)/.fake-gopath
+# The root of all codeready-toolchain repos in the GOPATH
+CRT_IN_GOPATH=$(FAKE_GOPATH)/src/github.com/codeready-toolchain
+# This gives the GOPATH as understood by the go compiler even if the env var is not explicitly set.
+# We use this to find the packages that are already downloaded locally to save on the network traffic
+# when persuading openapi-gen that our codebase is checked out under the GOPATH.
+LOCAL_GOPATH=`go env GOPATH`
+
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
 generate: generate-deepcopy-and-crds generate-openapi dispatch-crds copy-reg-service-template
@@ -23,27 +35,24 @@ generate-deepcopy-and-crds: remove-config controller-gen
 .PHONY: generate-openapi
 generate-openapi: openapi-gen
 	@echo "re-generating the openapi go file..."
-	@## openapi-gen requires the GOPATH env var be set and the codebase be present within it.
-	@## Let's not require $GOPATH be set up in the user's environment and the checkout be
-	@## placed in it.
-	@## Instead, fake it locally.
-	mkdir -p $(PROJECT_DIR)/.fake-gopath
-	@mkdir -p $(PROJECT_DIR)/.fake-gopath/src/github.com/codeready-toolchain
-	@## link the packages from the real GOPATH
-	@## ("go env GOPATH" returns the correct value even if the env var is not set)
-	@cd $(PROJECT_DIR)/.fake-gopath && ln -s `go env GOPATH`/pkg || true
+	@## First, let's clean up anything that might have been left around...
+	@rm -Rf $(FAKE_GOPATH)
+	mkdir -p $(FAKE_GOPATH)
+	@mkdir -p $(CRT_IN_GOPATH)
+	@## link the packages from the local GOPATH to not have to download them again
+	@if [ -d $(LOCAL_GOPATH)/pkg ]; then cd $(FAKE_GOPATH) && ln -s $(LOCAL_GOPATH)/pkg; fi
 	@## link our codebase to the appropriate place in the fake GOPATH
-	@cd $(PROJECT_DIR)/.fake-gopath/src/github.com/codeready-toolchain && ln -s ../../../.. api
+	@cd $(CRT_IN_GOPATH) && ln -s ../../../.. api
 	@## run openapi-gen from within the fake GOPATH (otherwise the package paths would be relative
-	@#e and function names would be different)
-	export GOPATH=$(PROJECT_DIR)/.fake-gopath \
-	&& cd $(PROJECT_DIR)/.fake-gopath/src/github.com/codeready-toolchain/api \
-	&& $(Q)$(OPENAPI_GEN) --input-dirs ./api/$(API_VERSION)/ \
+	@## and function names would be different)
+	GOPATH=$(FAKE_GOPATH) \
+	&& cd $(CRT_IN_GOPATH)/api \
+	&& $(OPENAPI_GEN) --input-dirs ./api/$(API_VERSION)/ \
 	--output-package github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file-base zz_generated.openapi \
 	--go-header-file=make/go-header.txt
 	@## clean up the mess
-	rm -Rf $(PROJECT_DIR)/.fake-gopath
+	rm -Rf $(FAKE_GOPATH)
 
 # make sure that that the `host-operator` and `member-operator` repositories exist locally 
 # and that they don't have any pending changes (except for the CRD files). 
