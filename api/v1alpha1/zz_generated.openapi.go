@@ -1244,7 +1244,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim)",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -1300,7 +1299,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 						},
 					},
 				},
-				Required: []string{"userID"},
+				Required: []string{"propagatedClaims"},
 			},
 		},
 		Dependencies: []string{
@@ -4940,7 +4939,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 					"userID": {
 						SchemaProps: spec.SchemaProps{
 							Description: "UserID is the user ID from RHD Identity Provider token (“sub” claim) Is to be used to create Identity and UserIdentityMapping resources",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -4967,7 +4965,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 						},
 					},
 				},
-				Required: []string{"userID"},
+				Required: []string{"propagatedClaims"},
 			},
 		},
 		Dependencies: []string{
@@ -5078,7 +5076,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 					"userid": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The user's user ID, obtained from the identity provider from the 'sub' (subject) claim",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -5086,7 +5083,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 					"username": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The user's username, obtained from the identity provider.",
-							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -5147,7 +5143,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 						},
 					},
 				},
-				Required: []string{"userid", "username"},
+				Required: []string{"identityClaims"},
 			},
 		},
 		Dependencies: []string{

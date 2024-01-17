@@ -171,10 +171,12 @@ type UserSignupSpec struct {
 	TargetCluster string `json:"targetCluster,omitempty"`
 
 	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
-	Userid string `json:"userid"`
+	// +optional
+	Userid string `json:"userid,omitempty"`
 
 	// The user's username, obtained from the identity provider.
-	Username string `json:"username"`
+	// +optional
+	Username string `json:"username,omitempty"`
 
 	// The user's first name, obtained from the identity provider.
 	// +optional
@@ -199,8 +201,7 @@ type UserSignupSpec struct {
 	OriginalSub string `json:"originalSub,omitempty"`
 
 	// IdentityClaims contains as-is claim values extracted from the user's access token
-	// +optional
-	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`
+	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims"`
 }
 
 // IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing
