@@ -201,7 +201,8 @@ type UserSignupSpec struct {
 	OriginalSub string `json:"originalSub,omitempty"`
 
 	// IdentityClaims contains as-is claim values extracted from the user's access token
-	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims"`
+	// +optional
+	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`
 }
 
 // IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing
