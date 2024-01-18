@@ -1299,7 +1299,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MasterUserRecordSpec(ref common
 						},
 					},
 				},
-				Required: []string{"propagatedClaims"},
 			},
 		},
 		Dependencies: []string{
@@ -4965,7 +4964,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserAccountSpec(ref common.Refe
 						},
 					},
 				},
-				Required: []string{"propagatedClaims"},
 			},
 		},
 		Dependencies: []string{
@@ -5143,7 +5141,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 						},
 					},
 				},
-				Required: []string{"identityClaims"},
 			},
 		},
 		Dependencies: []string{
