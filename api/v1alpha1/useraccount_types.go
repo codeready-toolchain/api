@@ -33,7 +33,8 @@ type UserAccountSpec struct {
 
 	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
 	// Is to be used to create Identity and UserIdentityMapping resources
-	UserID string `json:"userID"`
+	// +optional
+	UserID string `json:"userID,omitempty"`
 
 	// If set to true then the corresponding user should not be able to login
 	// "false" is assumed by default
