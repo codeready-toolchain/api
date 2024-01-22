@@ -105,6 +105,11 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingSpec":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceBindingStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceBindingStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig":                           schema_codeready_toolchain_api_api_v1alpha1_SpaceConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerCapacityThresholds":    schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerCapacityThresholds(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfig":                schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfigList":            schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigList(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfigSpec":            schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigSpec(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfigStatus":          schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequest":                          schema_codeready_toolchain_api_api_v1alpha1_SpaceRequest(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestSpec":                      schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestSpec(ref),
@@ -3668,6 +3673,225 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceConfig(ref common.Referenc
 				},
 			},
 		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerCapacityThresholds(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceProvisionerCapacityThresholds defines the capacity thresholds of the space provisioner",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"maxNumberOfSpaces": {
+						SchemaProps: spec.SchemaProps{
+							Description: "MaxNumberOfSpaces is the maximum number of spaces that can be provisioned to the referenced cluster.\n\n0 or undefined value means no limit.",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+					"maxMemoryUtilizationPercent": {
+						SchemaProps: spec.SchemaProps{
+							Description: "MaxMemoryUtilizationPercent is the maximum memory utilization of the cluster to permit provisioning new spaces to it.\n\n0 or undefined value means no limit.",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceProvisionerConfig is the configuration of space provisioning in the member clusters.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfigSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfigStatus"),
+						},
+					},
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfigSpec", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfigStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SpaceProvisionerConfigList contains a list of SpaceProvisionerConfig",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
+						},
+					},
+					"items": {
+						SchemaProps: spec.SchemaProps{
+							Type: []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfig"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"items"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerConfig", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"placementRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "set",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "PlacementRoles is the list of roles, or flavors, that the provisioner possesses that influence the space scheduling decisions.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+					"toolchainCluster": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ToolchainCluster is the name of the ToolchainCluster CR of the member cluster that this config is for.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"enabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Enabled specifies whether the member cluster is enabled (and therefore can hold spaces) or not.",
+							Default:     false,
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"capacityThresholds": {
+						SchemaProps: spec.SchemaProps{
+							Description: "CapacityThresholds specifies the max capacities allowed in this provisioner",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerCapacityThresholds"),
+						},
+					},
+				},
+				Required: []string{"toolchainCluster"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.SpaceProvisionerCapacityThresholds"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"conditions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"type",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "type",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions describes the state of the configuration (its validity). The only known condition type is \"Ready\".",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
