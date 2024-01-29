@@ -78,6 +78,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSpec":                      schema_codeready_toolchain_api_api_v1alpha1_NotificationSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationStatus":                    schema_codeready_toolchain_api_api_v1alpha1_NotificationStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig":                   schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.PropagatedClaims":                      schema_codeready_toolchain_api_api_v1alpha1_PropagatedClaims(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPlugin":                           schema_codeready_toolchain_api_api_v1alpha1_ProxyPlugin(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginSpec":                       schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginStatus":                     schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginStatus(ref),
@@ -2403,6 +2404,56 @@ func schema_codeready_toolchain_api_api_v1alpha1_NotificationsConfig(ref common.
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.NotificationSecret"},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_PropagatedClaims(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"sub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Sub contains the value of the 'sub' claim",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"userID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UserID contains the value of the 'user_id' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"accountID": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AccountID contains the value of the 'account_id' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"originalSub": {
+						SchemaProps: spec.SchemaProps{
+							Description: "OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to a new IdP provider client, and contains the user's \"original-sub\" claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"email": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Email contains the user's email address",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"sub", "email"},
+			},
+		},
 	}
 }
 

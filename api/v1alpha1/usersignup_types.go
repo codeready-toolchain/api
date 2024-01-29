@@ -201,6 +201,7 @@ type IdentityClaimsEmbedded struct {
 	Company string `json:"company,omitempty"`
 }
 
+// +k8s:openapi-gen=true
 type PropagatedClaims struct {
 	// Sub contains the value of the 'sub' claim
 	Sub string `json:"sub"`
