@@ -30,7 +30,7 @@ const (
 
 	// EmailUserAnnotationKey is used to set an annotation value in the User resource on the member cluster, that
 	// contains the user's Email as set in the user's JWT token.
-	EmailUserAnnotationKey = AnnotationKeyPrefix + "email"
+	EmailUserAnnotationKey = AnnotationKeyPrefix + "user-email"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
