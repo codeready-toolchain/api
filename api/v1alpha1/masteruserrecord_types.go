@@ -57,7 +57,8 @@ type MasterUserRecordSpec struct {
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
-	UserID string `json:"userID"`
+	// +optional
+	UserID string `json:"userID,omitempty"`
 
 	// If set to true then the corresponding user should not be able to login (but the underlying UserAccounts still exists)
 	// "false" is assumed by default

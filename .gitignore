@@ -20,3 +20,8 @@ config
 deploy
 
 /bin
+
+# The openapi-gen tool we use to generate OpenAPI types for the CRDs requires the GOPATH be set.
+# We fake it in this directory so that we don't have to require the local environment to have that environment variable
+# set. Let's ignore it so that it doesn't get accidentally committed.
+/.fake-gopath
