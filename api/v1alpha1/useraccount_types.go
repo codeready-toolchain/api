@@ -17,10 +17,20 @@ const (
 	UserAccountTerminatingReason            = terminatingReason
 	UserAccountUpdatingReason               = updatingReason
 
-	// #### ANNOTATIONS ####
-	// UserEmailAnnotationKey is used to store the user's email in an annotation of UserAccount and User CRs
-	// (Note: key is the same as for the MasterUserRecord email annotation)
-	UserEmailAnnotationKey = MasterUserRecordEmailAnnotationKey
+	// AnnotationKeyPrefix is the prefix used for annotation key values
+	AnnotationKeyPrefix = LabelKeyPrefix
+
+	// UserIDUserAnnotationKey is used to set an annotation value in the User resource on the member cluster, that
+	// contains the user's User ID as set in the user's JWT token.
+	UserIDUserAnnotationKey = AnnotationKeyPrefix + "sso-user-id"
+
+	// AccountIDUserAnnotationKey is used to set an annotation value in the User resource on the member cluster, that
+	// contains the user's Account ID as set in the user's JWT token.
+	AccountIDUserAnnotationKey = AnnotationKeyPrefix + "sso-account-id"
+
+	// EmailUserAnnotationKey is used to set an annotation value in the User resource on the member cluster, that
+	// contains the user's Email as set in the user's JWT token.
+	EmailUserAnnotationKey = AnnotationKeyPrefix + "user-email"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -31,20 +41,10 @@ type UserAccountSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
-	// Is to be used to create Identity and UserIdentityMapping resources
-	// +optional
-	UserID string `json:"userID,omitempty"`
-
 	// If set to true then the corresponding user should not be able to login
 	// "false" is assumed by default
 	// +optional
 	Disabled bool `json:"disabled,omitempty"`
-
-	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
-	// a new IdP provider client, and contains the user's "original-sub" claim
-	// +optional
-	OriginalSub string `json:"originalSub,omitempty"`
 
 	// PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to
 	// be "propagated" down the resource dependency chain
