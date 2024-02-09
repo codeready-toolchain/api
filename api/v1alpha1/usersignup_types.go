@@ -268,7 +268,7 @@ type UserSignupStatus struct {
 // +kubebuilder:printcolumn:name="ApprovedBy",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].reason`,priority=1
 // +kubebuilder:printcolumn:name="States",type="string",JSONPath=`.spec.states`,priority=1
 // +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=`.status.compliantUsername`
-// +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.metadata.annotations.toolchain\.dev\.openshift\.com/user-email`
+// +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.spec.identityClaims.email`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="User Signup"
 type UserSignup struct {
