@@ -174,7 +174,6 @@ type UserSignupSpec struct {
 	States []UserSignupState `json:"states,omitempty"`
 
 	// IdentityClaims contains as-is claim values extracted from the user's access token
-	// +optional
 	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`
 }
 
