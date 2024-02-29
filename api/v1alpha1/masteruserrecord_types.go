@@ -41,11 +41,6 @@ const (
 	// MasterUserRecordOwnerLabelKey indicates the label value that contains the owner reference for this resource,
 	// which will be the UserSignup instance with the corresponding resource name
 	MasterUserRecordOwnerLabelKey = OwnerLabelKey
-
-	// #### ANNOTATIONS ####
-	// MasterUserRecordEmailAnnotationKey is used to store the user's email in an annotation
-	// (Note: key is the same as for the UserSignup annotation)
-	MasterUserRecordEmailAnnotationKey = UserSignupUserEmailAnnotationKey
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -56,10 +51,6 @@ type MasterUserRecordSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// UserID is the user ID from RHD Identity Provider token (“sub” claim)
-	// +optional
-	UserID string `json:"userID,omitempty"`
-
 	// If set to true then the corresponding user should not be able to login (but the underlying UserAccounts still exists)
 	// "false" is assumed by default
 	// +optional
@@ -69,11 +60,6 @@ type MasterUserRecordSpec struct {
 	// +listType=map
 	// +listMapKey=targetCluster
 	UserAccounts []UserAccountEmbedded `json:"userAccounts,omitempty"`
-
-	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
-	// a new IdP provider client, and contains the user's "original-sub" claim
-	// +optional
-	OriginalSub string `json:"originalSub,omitempty"`
 
 	// TierName is an optional property introduced to retain the name of the tier
 	// for which the Dev Sandbox user is provisioned, so we can still deal with deactivation

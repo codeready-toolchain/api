@@ -19,8 +19,6 @@ const (
 
 	// UserSignupLastTargetClusterAnnotationKey is used for tracking the cluster for returning users
 	UserSignupLastTargetClusterAnnotationKey = LabelKeyPrefix + "last-target-cluster"
-	// UserSignupUserEmailAnnotationKey is used for the usersignup email annotations key
-	UserSignupUserEmailAnnotationKey = LabelKeyPrefix + "user-email"
 	// UserSignupVerificationCodeAnnotationKey is used for the usersignup verification code annotation key
 	UserSignupVerificationCodeAnnotationKey = LabelKeyPrefix + "verification-code"
 	// UserSignupVerificationTimestampAnnotationKey is used for the usersignup verification timestamp annotation key
@@ -170,39 +168,13 @@ type UserSignupSpec struct {
 	// +optional
 	TargetCluster string `json:"targetCluster,omitempty"`
 
-	// The user's user ID, obtained from the identity provider from the 'sub' (subject) claim
-	// +optional
-	Userid string `json:"userid,omitempty"`
-
-	// The user's username, obtained from the identity provider.
-	// +optional
-	Username string `json:"username,omitempty"`
-
-	// The user's first name, obtained from the identity provider.
-	// +optional
-	GivenName string `json:"givenName,omitempty"`
-
-	// The user's last name, obtained from the identity provider.
-	// +optional
-	FamilyName string `json:"familyName,omitempty"`
-
-	// The user's company name, obtained from the identity provider.
-	// +optional
-	Company string `json:"company,omitempty"`
-
 	// States contains a number of values that reflect the desired state of the UserSignup.
 	// +optional
 	// +listType=atomic
 	States []UserSignupState `json:"states,omitempty"`
 
-	// OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to
-	// a new IdP provider client, and contains the user's "original-sub" claim
-	// +optional
-	OriginalSub string `json:"originalSub,omitempty"`
-
 	// IdentityClaims contains as-is claim values extracted from the user's access token
-	// +optional
-	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims,omitempty"`
+	IdentityClaims IdentityClaimsEmbedded `json:"identityClaims"`
 }
 
 // IdentityClaimsEmbedded is used to define a set of SSO claim values that we are interested in storing
@@ -228,6 +200,7 @@ type IdentityClaimsEmbedded struct {
 	Company string `json:"company,omitempty"`
 }
 
+// +k8s:openapi-gen=true
 type PropagatedClaims struct {
 	// Sub contains the value of the 'sub' claim
 	Sub string `json:"sub"`
@@ -283,10 +256,10 @@ type UserSignupStatus struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
-// +kubebuilder:printcolumn:name="Username",type="string",JSONPath=`.spec.username`
-// +kubebuilder:printcolumn:name="First Name",type="string",JSONPath=`.spec.givenName`,priority=1
-// +kubebuilder:printcolumn:name="Last Name",type="string",JSONPath=`.spec.familyName`,priority=1
-// +kubebuilder:printcolumn:name="Company",type="string",JSONPath=`.spec.company`,priority=1
+// +kubebuilder:printcolumn:name="Username",type="string",JSONPath=`.spec.identityClaims.preferredUsername`
+// +kubebuilder:printcolumn:name="First Name",type="string",JSONPath=`.spec.identityClaims.givenName`,priority=1
+// +kubebuilder:printcolumn:name="Last Name",type="string",JSONPath=`.spec.identityClaims.familyName`,priority=1
+// +kubebuilder:printcolumn:name="Company",type="string",JSONPath=`.spec.identityClaims.company`,priority=1
 // +kubebuilder:printcolumn:name="TargetCluster",type="string",JSONPath=`.spec.targetCluster`,priority=1
 // +kubebuilder:printcolumn:name="Complete",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].status`
 // +kubebuilder:printcolumn:name="Reason",type="string",JSONPath=`.status.conditions[?(@.type=="Complete")].reason`
@@ -294,7 +267,7 @@ type UserSignupStatus struct {
 // +kubebuilder:printcolumn:name="ApprovedBy",type="string",JSONPath=`.status.conditions[?(@.type=="Approved")].reason`,priority=1
 // +kubebuilder:printcolumn:name="States",type="string",JSONPath=`.spec.states`,priority=1
 // +kubebuilder:printcolumn:name="CompliantUsername",type="string",JSONPath=`.status.compliantUsername`
-// +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.metadata.annotations.toolchain\.dev\.openshift\.com/user-email`
+// +kubebuilder:printcolumn:name="Email",type="string",JSONPath=`.spec.identityClaims.email`
 // +kubebuilder:validation:XPreserveUnknownFields
 // +operator-sdk:gen-csv:customresourcedefinitions.displayName="User Signup"
 type UserSignup struct {
