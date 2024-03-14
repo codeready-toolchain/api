@@ -374,12 +374,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref common.R
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "CapacityThresholds allows to configure the capacity limits in the clusters",
+				Description: "CapacityThresholds allows to configure the capacity limits in the clusters Deprecated: This is no longer used for anything",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"resourceCapacityThreshold": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Contains capacity threshold configuration",
+							Description: "Contains capacity threshold configuration Deprecated: This is no longer used for anything.",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"),
 						},
@@ -391,7 +391,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref common.R
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Contains a map of maximal number of spaces that can be provisioned per member cluster mapped by the cluster name",
+							Description: "Contains a map of maximal number of spaces that can be provisioned per member cluster mapped by the cluster name Deprecated: This is no longer used for anything.",
 							Type:        []string{"object"},
 							AdditionalProperties: &spec.SchemaOrBool{
 								Allows: true,
@@ -765,7 +765,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 					},
 					"capacityThresholds": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for configuring capacity limits",
+							Description: "Keeps parameters necessary for configuring capacity limits Deprecated: This is no longer used for anything.",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds"),
 						},
@@ -3065,7 +3065,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref c
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "Contains default capacity threshold as well as specific ones for particular member clusters",
+				Description: "Contains default capacity threshold as well as specific ones for particular member clusters Deprecated: This is no longer used for anything",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"defaultThreshold": {
