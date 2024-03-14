@@ -5122,6 +5122,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupSpec(ref common.Refer
 						},
 					},
 				},
+				Required: []string{"identityClaims"},
 			},
 		},
 		Dependencies: []string{
