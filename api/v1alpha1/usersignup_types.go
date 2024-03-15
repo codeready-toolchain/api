@@ -247,6 +247,13 @@ type UserSignupStatus struct {
 	// This is used by the proxy when no workspace context is provided.
 	// +optional
 	HomeSpace string `json:"homeSpace,omitempty"`
+
+	// ScheduledDeactivationTimestamp is the calculated timestamp after which the user's account will be deactivated, typically
+	// after the expiry of their trial and based on the term specific by their UserTier.  This property may be used as
+	// a convenience to determine the amount of time an account has left before deactivation, without requiring a separate
+	// lookup for the UserTier and subsequent calculation.  It is managed by the Deactivation controller in the host operator.
+	// +optional
+	ScheduledDeactivationTimestamp metav1.Time `json:"scheduledDeactivationTimestamp,omitempty"`
 }
 
 //+kubebuilder:object:root=true
