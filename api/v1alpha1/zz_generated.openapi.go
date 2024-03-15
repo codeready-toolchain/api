@@ -5175,7 +5175,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref common.Ref
 							Format:      "",
 						},
 					},
-					"deactivationTimestamp": {
+					"scheduledDeactivationTimestamp": {
 						SchemaProps: spec.SchemaProps{
 							Description: "ScheduledDeactivationTimestamp is the calculated timestamp after which the user's account will be deactivated, typically after the expiry of their trial and based on the term specific by their UserTier.  This property may be used as a convenience to determine the amount of time an account has left before deactivation, without requiring a separate lookup for the UserTier and subsequent calculation.  It is managed by the Deactivation controller in the host operator.",
 							Default:     map[string]interface{}{},
