@@ -21,7 +21,7 @@ CRT_IN_GOPATH=$(FAKE_GOPATH)/src/github.com/codeready-toolchain
 # This gives the GOPATH as understood by the go compiler even if the env var is not explicitly set.
 # We use this to find the packages that are already downloaded locally to save on the network traffic
 # when persuading openapi-gen that our codebase is checked out under the GOPATH.
-LOCAL_GOPATH=`go env GOPATH`
+LOCAL_GOPATH=`$(GO) env GOPATH`
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
@@ -119,8 +119,8 @@ copy-reg-service-template:
 
 CONTROLLER_GEN = $(PROJECT_DIR)/bin/controller-gen
 controller-gen: ## Download controller-gen locally if necessary.
-	GOBIN=$(PROJECT_DIR)/bin go install sigs.k8s.io/controller-tools/cmd/controller-gen
+	GOBIN=$(PROJECT_DIR)/bin $(GO) install sigs.k8s.io/controller-tools/cmd/controller-gen
 
 OPENAPI_GEN = $(PROJECT_DIR)/bin/openapi-gen
 openapi-gen: ## Download openapi-gen locally if necessary.
-	GOBIN=$(PROJECT_DIR)/bin go install k8s.io/kube-openapi/cmd/openapi-gen
+	GOBIN=$(PROJECT_DIR)/bin $(GO) install k8s.io/kube-openapi/cmd/openapi-gen
