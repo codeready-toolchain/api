@@ -32,6 +32,30 @@ type ToolchainConfigSpec struct {
 	// Contains all member operator configurations for all member clusters
 	// +optional
 	Members Members `json:"members,omitempty"`
+
+	// Contains all the configuration that applies to both host and member operators
+	// +optional
+	Global GlobalConfig `json:"global,omitempty"`
+}
+
+// GlobalConfig contains all configuration that applies for both host and member operators
+// +k8s:openapi-gen=true
+type GlobalConfig struct {
+	// +optional
+	PublicViewer PublicViewerConfig `json:"publicViewer,omitempty"`
+}
+
+// PublicViewer used to enable public-viewer support
+// +k8s:openapi-gen=true
+type PublicViewerConfig struct {
+	// +kubebuilder:default:=false
+	Enabled bool `json:"enabled"`
+
+	// +kubebuilder:default:=public-viewer
+	// +kubebuilder:validation:MinLength=1
+	// +kubebuilder:validation:MaxLength=253
+	// +kubebuilder:validation:Pattern=`^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`
+	Username string `json:"username,omitempty"`
 }
 
 // HostConfig contains all configuration parameters of the host operator

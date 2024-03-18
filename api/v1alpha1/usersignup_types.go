@@ -92,6 +92,7 @@ const (
 	UserSignupPendingApprovalReason            = "PendingApproval"
 	UserSignupUserBanningReason                = "Banning"
 	UserSignupUserBannedReason                 = "Banned"
+	UserSignupUserReservedReason               = "Reserved"
 	UserSignupFailedToReadBannedUsersReason    = "FailedToReadBannedUsers"
 	UserSignupMissingUserEmailReason           = "MissingUserEmail"
 	UserSignupMissingUserEmailAnnotationReason = "MissingUserEmailAnnotation"
