@@ -10,6 +10,7 @@ MEMBER_CLUSTER_CRDS:=useraccounts nstemplatesets memberstatuses idlers toolchain
 
 PATH_TO_CRD_BASES=config/crd/bases
 
+PROJECT_DIR := $(shell pwd)
 # openapi-gen requires the GOPATH env var be set and the codebase be present within it.
 # Let's not require $GOPATH be set up in the user's environment and the checkout be
 # placed in it.
@@ -20,7 +21,7 @@ CRT_IN_GOPATH=$(FAKE_GOPATH)/src/github.com/codeready-toolchain
 # This gives the GOPATH as understood by the go compiler even if the env var is not explicitly set.
 # We use this to find the packages that are already downloaded locally to save on the network traffic
 # when persuading openapi-gen that our codebase is checked out under the GOPATH.
-LOCAL_GOPATH=`go env GOPATH`
+LOCAL_GOPATH=`$(GO) env GOPATH`
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
@@ -114,3 +115,12 @@ dispatch-crds: prepare-host-operator prepare-member-operator
 .PHONY: copy-reg-service-template
 copy-reg-service-template:
 	cp ../registration-service/deploy/registration-service.yaml ../host-operator/deploy/registration-service/registration-service.yaml
+
+
+CONTROLLER_GEN = $(PROJECT_DIR)/bin/controller-gen
+controller-gen: ## Download controller-gen locally if necessary.
+	GOBIN=$(PROJECT_DIR)/bin $(GO) install sigs.k8s.io/controller-tools/cmd/controller-gen
+
+OPENAPI_GEN = $(PROJECT_DIR)/bin/openapi-gen
+openapi-gen: ## Download openapi-gen locally if necessary.
+	GOBIN=$(PROJECT_DIR)/bin $(GO) install k8s.io/kube-openapi/cmd/openapi-gen
