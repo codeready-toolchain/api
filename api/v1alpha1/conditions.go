@@ -20,6 +20,7 @@ const (
 	terminatingReason       = "Terminating"
 	terminatingFailedReason = "UnableToTerminate"
 	updatingReason          = "Updating"
+	invalidReason           = "Invalid"
 
 	// Condition types
 	deletionError = "DeletionError"

@@ -26,6 +26,9 @@ const (
 
 	// SpaceBindingRequestProvisionedReason represents the reason for a successfully provisioned space binding request.
 	SpaceBindingRequestProvisionedReason = provisionedReason
+
+	// SpaceBindingRequestInvalidReason represents the reason for an invalid space binding request.
+	SpaceBindingRequestInvalidReason = invalidReason
 )
 
 // SpaceBindingRequestSpec defines the desired state of SpaceBindingRequest
