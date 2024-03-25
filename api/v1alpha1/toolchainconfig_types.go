@@ -51,10 +51,10 @@ type PublicViewerConfig struct {
 	// +kubebuilder:default:=false
 	Enabled bool `json:"enabled"`
 
-	// +kubebuilder:default:=public-viewer
+	// +optional
 	// +kubebuilder:validation:MinLength=1
-	// +kubebuilder:validation:MaxLength=253
-	// +kubebuilder:validation:Pattern=`^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`
+	// +kubebuilder:validation:MaxLength=63
+	// +kubebuilder:validation:Pattern=`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`
 	Username string `json:"username,omitempty"`
 }
 
