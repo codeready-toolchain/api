@@ -253,7 +253,7 @@ type UserSignupStatus struct {
 	// a convenience to determine the amount of time an account has left before deactivation, without requiring a separate
 	// lookup for the UserTier and subsequent calculation.  It is managed by the Deactivation controller in the host operator.
 	// +optional
-	ScheduledDeactivationTimestamp metav1.Time `json:"scheduledDeactivationTimestamp,omitempty"`
+	ScheduledDeactivationTimestamp *metav1.Time `json:"scheduledDeactivationTimestamp,omitempty"`
 }
 
 //+kubebuilder:object:root=true
