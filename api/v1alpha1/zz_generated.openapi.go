@@ -180,6 +180,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref com
 							Format:      "",
 						},
 					},
+					"domains": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Comma-separated email domains to consider for auto-approval. For example: \"redhat.com,ibm.com\"",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},

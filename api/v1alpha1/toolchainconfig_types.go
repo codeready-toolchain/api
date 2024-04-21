@@ -97,6 +97,11 @@ type AutomaticApprovalConfig struct {
 	// Defines if the automatic approval is enabled or not
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
+
+	// Comma-separated email domains to consider for auto-approval.
+	// For example: "redhat.com,ibm.com"
+	// +optional
+	Domains *string `json:"domains,omitempty"`
 }
 
 // DeactivationConfig contains all configuration parameters related to deactivation
