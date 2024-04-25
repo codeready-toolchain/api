@@ -180,6 +180,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref com
 							Format:      "",
 						},
 					},
+					"domains": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Comma-separated email domains to consider for auto-approval. For example: \"domain.com,anotherdomain.org\" If domains is not set and enabled is true, it will default to auto approving all authenticated emails. If domains is set and enabled is true, it will allow auto approving only for authenticated emails under the domains entered. If enabled is false domains will be ignored.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},
