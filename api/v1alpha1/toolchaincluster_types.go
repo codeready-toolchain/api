@@ -6,14 +6,12 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-type ToolchainClusterConditionType string
-
 // These are valid conditions of a cluster.
 const (
 	// ToolchainClusterReady means the cluster is ready to accept workloads.
-	ToolchainClusterReady ToolchainClusterConditionType = "Ready"
+	ToolchainClusterReady ConditionType = "Ready"
 	// ToolchainClusterOffline means the cluster is temporarily down or not reachable
-	ToolchainClusterOffline ToolchainClusterConditionType = "Offline"
+	ToolchainClusterOffline ConditionType = "Offline"
 
 	ToolchainClusterClusterReadyReason        = "ClusterReady"
 	ToolchainClusterClusterNotReadyReason     = "ClusterNotReady"
