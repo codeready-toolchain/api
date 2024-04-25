@@ -3,7 +3,6 @@ package v1alpha1
 // Most of the code was copied from the KubeFedCluster CRD of the KubeFed project https://github.com/kubernetes-sigs/kubefed
 
 import (
-	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -69,7 +68,7 @@ type LocalSecretReference struct {
 type ToolchainClusterStatus struct {
 	// Conditions is an array of current cluster conditions.
 	// +listType=atomic
-	Conditions []ToolchainClusterCondition `json:"conditions"`
+	Conditions []Condition `json:"conditions"`
 }
 
 //+kubebuilder:object:root=true
@@ -94,26 +93,6 @@ type ToolchainCluster struct {
 	Spec ToolchainClusterSpec `json:"spec"`
 	// +optional
 	Status ToolchainClusterStatus `json:"status,omitempty"`
-}
-
-// ToolchainClusterCondition describes current state of a cluster.
-// +k8s:openapi-gen=true
-type ToolchainClusterCondition struct {
-	// Type of cluster condition, Ready or Offline.
-	Type ToolchainClusterConditionType `json:"type"`
-	// Status of the condition, one of True, False, Unknown.
-	Status corev1.ConditionStatus `json:"status"`
-	// Last time the condition was checked.
-	LastProbeTime metav1.Time `json:"lastProbeTime"`
-	// Last time the condition transit from one status to another.
-	// +optional
-	LastTransitionTime *metav1.Time `json:"lastTransitionTime,omitempty"`
-	// (brief) reason for the condition's last transition.
-	// +optional
-	Reason string `json:"reason,omitempty"`
-	// Human readable message indicating details about last transition.
-	// +optional
-	Message string `json:"message,omitempty"`
 }
 
 //+kubebuilder:object:root=true
