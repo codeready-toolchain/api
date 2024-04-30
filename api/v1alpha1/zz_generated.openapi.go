@@ -82,6 +82,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPlugin":                           schema_codeready_toolchain_api_api_v1alpha1_ProxyPlugin(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginSpec":                       schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ProxyPluginStatus":                     schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration":             schema_codeready_toolchain_api_api_v1alpha1_PublicViewerConfiguration(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAnalyticsConfig":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceAuthConfig":         schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAuthConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig":             schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref),
@@ -2548,6 +2549,28 @@ func schema_codeready_toolchain_api_api_v1alpha1_ProxyPluginStatus(ref common.Re
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_PublicViewerConfiguration(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Configuration to enable the PublicViewer support",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"enabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Defines whether the PublicViewer support should be enabled or not",
+							Default:     false,
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"enabled"},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceAnalyticsConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -4499,11 +4522,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigSpec(ref common.
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Members"),
 						},
 					},
+					"publicViewerConfig": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Contains the PublicViewer configuration. IMPORTANT: To provide a consistent User-Experience, each user the space has been directly shared with should have at least the same permissions the kubesaw-authenticated user has.",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig", "github.com/codeready-toolchain/api/api/v1alpha1.Members"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig", "github.com/codeready-toolchain/api/api/v1alpha1.Members", "github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration"},
 	}
 }
 

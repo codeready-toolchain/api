@@ -35,6 +35,22 @@ type ToolchainConfigSpec struct {
 	// Contains all member operator configurations for all member clusters
 	// +optional
 	Members Members `json:"members,omitempty"`
+
+	// Contains the PublicViewer configuration.
+	// IMPORTANT: To provide a consistent User-Experience, each user
+	// the space has been directly shared with should have at least
+	// the same permissions the kubesaw-authenticated user has.
+	//+optional
+	PublicViewerConfig *PublicViewerConfiguration `json:"publicViewerConfig,omitempty"`
+}
+
+// Configuration to enable the PublicViewer support
+// +k8s:openapi-gen=true
+type PublicViewerConfiguration struct {
+	// Defines whether the PublicViewer support should be enabled or not
+	//+required
+	//+kubebuilder:default:=false
+	Enabled bool `json:"enabled"`
 }
 
 // HostConfig contains all configuration parameters of the host operator
