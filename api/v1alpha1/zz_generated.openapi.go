@@ -4354,7 +4354,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 						},
 					},
 				},
-				Required: []string{"type", "status", "lastProbeTime"},
+				Required: []string{"type", "status"},
 			},
 		},
 		Dependencies: []string{
