@@ -4302,6 +4302,71 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref common.Ref
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "ToolchainClusterCondition describes current state of a cluster.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"type": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Type of cluster condition, Ready or Offline.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Status of the condition, one of True, False, Unknown.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"lastProbeTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Last time the condition was checked.",
+							Default:     map[string]interface{}{},
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
+					"lastUpdatedTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Last time the condition was updated",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
+					"lastTransitionTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Last time the condition transit from one status to another.",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
+					"reason": {
+						SchemaProps: spec.SchemaProps{
+							Description: "(brief) reason for the condition's last transition.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"message": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Human readable message indicating details about last transition.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"type", "status"},
+			},
+		},
+		Dependencies: []string{
+			"k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
