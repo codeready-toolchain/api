@@ -3050,6 +3050,10 @@ func (in *ToolchainCluster) DeepCopyObject() runtime.Object {
 func (in *ToolchainClusterCondition) DeepCopyInto(out *ToolchainClusterCondition) {
 	*out = *in
 	in.LastProbeTime.DeepCopyInto(&out.LastProbeTime)
+	if in.LastUpdatedTime != nil {
+		in, out := &in.LastUpdatedTime, &out.LastUpdatedTime
+		*out = (*in).DeepCopy()
+	}
 	if in.LastTransitionTime != nil {
 		in, out := &in.LastTransitionTime, &out.LastTransitionTime
 		*out = (*in).DeepCopy()
