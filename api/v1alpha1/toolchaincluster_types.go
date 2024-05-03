@@ -104,7 +104,11 @@ type ToolchainClusterCondition struct {
 	// Status of the condition, one of True, False, Unknown.
 	Status corev1.ConditionStatus `json:"status"`
 	// Last time the condition was checked.
+	// +optional
 	LastProbeTime metav1.Time `json:"lastProbeTime"`
+	// Last time the condition was updated
+	// +optional
+	LastUpdatedTime *metav1.Time `json:"lastUpdatedTime,omitempty"`
 	// Last time the condition transit from one status to another.
 	// +optional
 	LastTransitionTime *metav1.Time `json:"lastTransitionTime,omitempty"`

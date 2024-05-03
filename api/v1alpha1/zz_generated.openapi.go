@@ -4351,6 +4351,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
 						},
 					},
+					"lastUpdatedTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Last time the condition was updated",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
 					"lastTransitionTime": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Last time the condition transit from one status to another.",
@@ -4372,7 +4378,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 						},
 					},
 				},
-				Required: []string{"type", "status", "lastProbeTime"},
+				Required: []string{"type", "status"},
 			},
 		},
 		Dependencies: []string{
