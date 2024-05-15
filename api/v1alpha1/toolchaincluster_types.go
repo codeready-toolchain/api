@@ -17,6 +17,10 @@ const (
 	ToolchainClusterClusterNotReadyReason     = "ClusterNotReady"
 	ToolchainClusterClusterNotReachableReason = "ClusterNotReachable"
 	ToolchainClusterClusterReachableReason    = "ClusterReachable"
+
+	// ToolchainClusterLabel is the label on the Secret containing the credentials to connect
+	// to the cluster represented by the ToolchainCluster object.
+	ToolchainClusterLabel = LabelKeyPrefix + "toolchain-cluster"
 )
 
 type TLSValidation string
