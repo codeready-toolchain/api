@@ -8,8 +8,6 @@ import (
 
 // These are valid conditions of a cluster.
 const (
-	// ToolchainClusterReady means the cluster is ready to accept workloads.
-	ToolchainClusterReady ConditionType = "Ready"
 	// ToolchainClusterOffline means the cluster is temporarily down or not reachable
 	ToolchainClusterOffline ConditionType = "Offline"
 
