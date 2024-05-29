@@ -35,7 +35,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                        schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Binding":                               schema_codeready_toolchain_api_api_v1alpha1_Binding(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BindingRequest":                        schema_codeready_toolchain_api_api_v1alpha1_BindingRequest(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds":                    schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig":                         schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                             schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                             schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
@@ -90,7 +89,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationSecret(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold":             schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage":                         schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck":                         schema_codeready_toolchain_api_api_v1alpha1_RevisionCheck(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Routes":                                schema_codeready_toolchain_api_api_v1alpha1_Routes(ref),
@@ -179,6 +177,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref com
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines if the automatic approval is enabled or not",
 							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"domains": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Comma-separated email domains to consider for auto-approval. For example: \"domain.com,anotherdomain.org\" If domains is not set and enabled is true, it will default to auto approving all authenticated emails. If domains is set and enabled is true, it will allow auto approving only for authenticated emails under the domains entered. If enabled is false domains will be ignored.",
+							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
@@ -367,49 +372,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_BindingRequest(ref common.Refer
 				Required: []string{"name", "namespace"},
 			},
 		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "CapacityThresholds allows to configure the capacity limits in the clusters Deprecated: This is no longer used for anything",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"resourceCapacityThreshold": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains capacity threshold configuration Deprecated: This is no longer used for anything.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"),
-						},
-					},
-					"maxNumberOfSpacesPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains a map of maximal number of spaces that can be provisioned per member cluster mapped by the cluster name Deprecated: This is no longer used for anything.",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: 0,
-										Type:    []string{"integer"},
-										Format:  "int32",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"},
 	}
 }
 
@@ -763,13 +725,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"),
 						},
 					},
-					"capacityThresholds": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for configuring capacity limits Deprecated: This is no longer used for anything.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds"),
-						},
-					},
 					"spaceConfig": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters necessary for configuring Space provisioning functionality",
@@ -781,7 +736,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
 	}
 }
 
@@ -3061,47 +3016,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Contains default capacity threshold as well as specific ones for particular member clusters Deprecated: This is no longer used for anything",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"defaultThreshold": {
-						SchemaProps: spec.SchemaProps{
-							Description: "It is the default capacity threshold (in percentage of usage) to be used for all member clusters if no special threshold is defined",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
-					"specificPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: 0,
-										Type:    []string{"integer"},
-										Format:  "int32",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
 func schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -4419,6 +4333,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
 						},
 					},
+					"lastUpdatedTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Last time the condition was updated",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
 					"lastTransitionTime": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Last time the condition transit from one status to another.",
@@ -4440,7 +4360,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref c
 						},
 					},
 				},
-				Required: []string{"type", "status", "lastProbeTime"},
+				Required: []string{"type", "status"},
 			},
 		},
 		Dependencies: []string{
@@ -5293,7 +5213,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref common.Refere
 				Properties: map[string]spec.Schema{
 					"deploy": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Defines the flag that determines whether to deploy the Webhook",
+							Description: "Defines the flag that determines whether to deploy the Webhook. If the deploy flag is disabled, the Webhook is deployed and deleted immediately after by the memberoperatorconfig controller.",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},

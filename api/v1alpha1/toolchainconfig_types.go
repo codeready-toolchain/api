@@ -73,11 +73,6 @@ type HostConfig struct {
 	// +optional
 	Users UsersConfig `json:"users,omitempty"`
 
-	// Keeps parameters necessary for configuring capacity limits
-	// Deprecated: This is no longer used for anything.
-	// +optional
-	CapacityThresholds CapacityThresholds `json:"capacityThresholds,omitempty"`
-
 	// Keeps parameters necessary for configuring Space provisioning functionality
 	// +optional
 	SpaceConfig SpaceConfig `json:"spaceConfig,omitempty"`
@@ -102,36 +97,14 @@ type AutomaticApprovalConfig struct {
 	// Defines if the automatic approval is enabled or not
 	// +optional
 	Enabled *bool `json:"enabled,omitempty"`
-}
 
-// Contains default capacity threshold as well as specific ones for particular member clusters
-// Deprecated: This is no longer used for anything
-// +k8s:openapi-gen=true
-type ResourceCapacityThreshold struct {
-	// It is the default capacity threshold (in percentage of usage) to be used for all member clusters if no special threshold is defined
+	// Comma-separated email domains to consider for auto-approval.
+	// For example: "domain.com,anotherdomain.org"
+	// If domains is not set and enabled is true, it will default to auto approving all authenticated emails.
+	// If domains is set and enabled is true, it will allow auto approving only for authenticated emails under
+	// the domains entered. If enabled is false domains will be ignored.
 	// +optional
-	DefaultThreshold *int `json:"defaultThreshold,omitempty"`
-
-	// Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names
-	// +optional
-	// +mapType=atomic
-	SpecificPerMemberCluster map[string]int `json:"specificPerMemberCluster,omitempty"`
-}
-
-// CapacityThresholds allows to configure the capacity limits in the clusters
-// Deprecated: This is no longer used for anything
-// +k8s:openapi-gen=true
-type CapacityThresholds struct {
-	// Contains capacity threshold configuration
-	// Deprecated: This is no longer used for anything.
-	// +optional
-	ResourceCapacityThreshold ResourceCapacityThreshold `json:"resourceCapacityThreshold,omitempty"`
-
-	// Contains a map of maximal number of spaces that can be provisioned per member cluster mapped by the cluster name
-	// Deprecated: This is no longer used for anything.
-	// +optional
-	// +mapType=atomic
-	MaxNumberOfSpacesPerMemberCluster map[string]int `json:"maxNumberOfSpacesPerMemberCluster,omitempty"`
+	Domains *string `json:"domains,omitempty"`
 }
 
 // DeactivationConfig contains all configuration parameters related to deactivation

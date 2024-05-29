@@ -20,6 +20,10 @@ const (
 	ToolchainClusterClusterNotReadyReason     = "ClusterNotReady"
 	ToolchainClusterClusterNotReachableReason = "ClusterNotReachable"
 	ToolchainClusterClusterReachableReason    = "ClusterReachable"
+
+	// ToolchainClusterLabel is the label on the Secret containing the credentials to connect
+	// to the cluster represented by the ToolchainCluster object.
+	ToolchainClusterLabel = LabelKeyPrefix + "toolchain-cluster"
 )
 
 type TLSValidation string
@@ -104,7 +108,11 @@ type ToolchainClusterCondition struct {
 	// Status of the condition, one of True, False, Unknown.
 	Status corev1.ConditionStatus `json:"status"`
 	// Last time the condition was checked.
+	// +optional
 	LastProbeTime metav1.Time `json:"lastProbeTime"`
+	// Last time the condition was updated
+	// +optional
+	LastUpdatedTime *metav1.Time `json:"lastUpdatedTime,omitempty"`
 	// Last time the condition transit from one status to another.
 	// +optional
 	LastTransitionTime *metav1.Time `json:"lastTransitionTime,omitempty"`
