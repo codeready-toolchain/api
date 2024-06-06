@@ -34,20 +34,33 @@ const (
 type ToolchainClusterSpec struct {
 	// The API endpoint of the member cluster. This can be a hostname,
 	// hostname:port, IP or IP:port.
+	//
+	// Be aware that this field is going to be replaced with
+	// the Status.APIEndpoint in the future.
 	APIEndpoint string `json:"apiEndpoint"`
 
 	// CABundle contains the certificate authority information.
 	// +optional
+	//
+	// Note that this is going to be deprecated and removed. It will be replaced by a field in
+	// the kubecondig of the connection secret
 	CABundle string `json:"caBundle,omitempty"`
 
 	// Name of the secret containing the token required to access the
 	// member cluster. The secret needs to exist in the same namespace
 	// as the control plane and should have a "token" key.
+	//
+	// In the near future, the secret will contain the whole kubeconfig required to connect
+	// to the cluster.
 	SecretRef LocalSecretReference `json:"secretRef"`
 
 	// DisabledTLSValidations defines a list of checks to ignore when validating
 	// the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod.
 	// If * is specified, it is expected to be the only option in list.
+	//
+	// Note that this is going to be deprecated and removed. It will be replaced by
+	// the kubeconfig stored in the connection secret.
+	//
 	// +optional
 	// +listType=set
 	DisabledTLSValidations []TLSValidation `json:"disabledTLSValidations,omitempty"`
@@ -66,6 +79,13 @@ type LocalSecretReference struct {
 // cluster updated periodically by cluster controller.
 // +k8s:openapi-gen=true
 type ToolchainClusterStatus struct {
+	// APIEndpoint is the API endpoint of the remote cluster. This can be a hostname,
+	// hostname:port, IP or IP:port.
+	APIEndpoint string `json:"apiEndpoint,omitempty"`
+
+	// OperatorNamespace is the namespace in which the operator runs in the remote cluster
+	OperatorNamespace string `json:"operatorNamespace,omitempty"`
+
 	// Conditions is an array of current cluster conditions.
 	// +listType=atomic
 	Conditions []Condition `json:"conditions"`

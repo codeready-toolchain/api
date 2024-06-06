@@ -4394,7 +4394,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 				Properties: map[string]spec.Schema{
 					"apiEndpoint": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.",
+							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.\n\nDeprecated: This is deprecated by the Status.APIEndpoint",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -4402,14 +4402,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 					},
 					"caBundle": {
 						SchemaProps: spec.SchemaProps{
-							Description: "CABundle contains the certificate authority information.",
+							Description: "CABundle contains the certificate authority information.\n\nDeprecated: Don't use this. This is replaced by field in the connection secret",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"secretRef": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.",
+							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.\n\nDeprecated: This is replaced by the owner reference",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference"),
 						},
@@ -4421,7 +4421,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "DisabledTLSValidations defines a list of checks to ignore when validating the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod. If * is specified, it is expected to be the only option in list.",
+							Description: "DisabledTLSValidations defines a list of checks to ignore when validating the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod. If * is specified, it is expected to be the only option in list.\n\nDeprecated: This is replaced by the contents of the kubeconfig in the connection secret",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -4450,6 +4450,20 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 				Description: "ToolchainClusterStatus contains information about the current status of a cluster updated periodically by cluster controller.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"apiEndpoint": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIEndpoint is the API endpoint of the remote cluster. This can be a hostname, hostname:port, IP or IP:port.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"operatorNamespace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "OperatorNamespace is the namespace in which the operator runs in the remote cluster",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
