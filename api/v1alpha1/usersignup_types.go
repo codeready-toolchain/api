@@ -38,6 +38,8 @@ const (
 	UserSignupActivationCounterAnnotationKey = LabelKeyPrefix + "activation-counter"
 	// UserSignupCaptchaScoreAnnotationKey is set if captcha verification was used, and contains the last captcha assessment score for the user
 	UserSignupCaptchaScoreAnnotationKey = LabelKeyPrefix + "captcha-score"
+	// UserSignupCaptchaAssessmentIDAnnotationKey is set if captcha verification was used, and contains the last captcha assessment ID for the user
+	UserSignupCaptchaAssessmentIDAnnotationKey = LabelKeyPrefix + "captcha-assessment-id"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
