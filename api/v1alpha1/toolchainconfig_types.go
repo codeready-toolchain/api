@@ -459,6 +459,14 @@ type TiersConfig struct {
 	// +optional
 	DefaultSpaceTier *string `json:"defaultSpaceTier,omitempty"`
 
+	// FeatureToggles specifies the list of feature toggles/flags
+	// +optional
+	// +patchMergeKey=name
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=name
+	FeatureToggles []FeatureToggle `json:"featureToggles,omitempty" patchStrategy:"merge" patchMergeKey:"name"`
+
 	// DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted
 	// +optional
 	DurationBeforeChangeTierRequestDeletion *string `json:"durationBeforeChangeTierRequestDeletion,omitempty"`
@@ -467,6 +475,36 @@ type TiersConfig struct {
 	// when updating MasterUserRecords
 	// +optional
 	TemplateUpdateRequestMaxPoolSize *int `json:"templateUpdateRequestMaxPoolSize,omitempty"`
+}
+
+// FeatureToggle defines a feature toggle/flag. Each feature is supposed to have a unique name.
+// Features are represented by kube object manifests in space and user templates.
+// Such manifests must have an annotation which refers to the corresponding feature name.
+// For example a manifest for a RoleBinding object in a space tier template with the following annotation:
+// "toolchain.dev.openshift.com/feature: os-lightspeed" would refer to a feature with "os-lightspeed" name.
+// When that template is applied for a new space then that RoleBinding object would be applied conditionally,
+// according to its weight.
+// +k8s:openapi-gen=true
+type FeatureToggle struct {
+	// A unique name of the feature
+	Name string `json:"name"`
+	// Rollout weight of the feature. An integer between 0-100.
+	// Any number lower than 0 will be treated as 0. Any number higher than 100 will be treated as 100.
+	// If not set then 100 is used by default.
+	// 0 means the corresponding feature should not be enabled at all, which means
+	// that corresponding template objects should not be applied at all.
+	// 100 means the feature should be always enabled (the template is always applied).
+	// The features are weighted independently of each other.
+	// For example if there are two features:
+	// - feature1, weight=5
+	// - feature2, weight=90
+	// And tiers (one or many) contain the following object manifests:
+	// - RoleBinding with "toolchain.dev.openshift.com/feature: feature1" annotation
+	// - ConfigMap with "toolchain.dev.openshift.com/feature: feature2" annotation
+	// Then the RoleBinding will be created for the corresponding tiers with probability of 0.05 (around 5 out of every 100 spaces would have it)
+	// And the ConfigMap will be created with probability of 0.9 (around 90 out of every 100 spaces would have it)
+	// +optional
+	Weight *int `json:"weight,omitempty"`
 }
 
 // UsersConfig contains all configuration parameters related to users
