@@ -40,6 +40,8 @@ const (
 	UserSignupCaptchaScoreAnnotationKey = LabelKeyPrefix + "captcha-score"
 	// UserSignupCaptchaAssessmentIDAnnotationKey is set if captcha verification was used, and contains the last captcha assessment ID for the user
 	UserSignupCaptchaAssessmentIDAnnotationKey = LabelKeyPrefix + "captcha-assessment-id"
+	// UserSignupCaptchaAnnotatedAssessmentAnnotationKey is set if the last captcha assessment for the user was annotated as fraudulent or legitimate
+	UserSignupCaptchaAnnotatedAssessmentAnnotationKey = LabelKeyPrefix + "captcha-annotated-assessment"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
