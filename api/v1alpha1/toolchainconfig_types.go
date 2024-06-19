@@ -489,7 +489,6 @@ type FeatureToggle struct {
 	// A unique name of the feature
 	Name string `json:"name"`
 	// Rollout weight of the feature. An integer between 0-100.
-	// Any number lower than 0 will be treated as 0. Any number higher than 100 will be treated as 100.
 	// If not set then 100 is used by default.
 	// 0 means the corresponding feature should not be enabled at all, which means
 	// that corresponding template objects should not be applied at all.
@@ -506,7 +505,7 @@ type FeatureToggle struct {
 	// +optional
 	// +kubebuilder:validation:Minimum=0
 	// +kubebuilder:validation:Maximum=100
-	WeightPercentage *uint `json:"weightPercentage,omitempty"`
+	Weight *uint `json:"weight,omitempty"`
 }
 
 // UsersConfig contains all configuration parameters related to users

@@ -451,7 +451,7 @@ func (in *FeatureToggle) DeepCopyInto(out *FeatureToggle) {
 	*out = *in
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(int)
+		*out = new(uint)
 		**out = **in
 	}
 }
