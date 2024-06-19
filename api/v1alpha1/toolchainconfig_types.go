@@ -9,6 +9,9 @@ const (
 	ToolchainConfigSyncComplete     ConditionType = "SyncComplete"
 	ToolchainConfigRegServiceDeploy ConditionType = "RegServiceDeploy"
 
+	// FeatureToggleNameAnnotationKey is used for referring tier template objects to feature toggles defined in configuration
+	FeatureToggleNameAnnotationKey = LabelKeyPrefix + "feature"
+
 	// Status condition reasons
 	// ToolchainConfigSyncedReason when the MemberOperatorConfigs were successfully synced to the member clusters
 	ToolchainConfigSyncedReason = "Synced"
