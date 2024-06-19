@@ -504,7 +504,9 @@ type FeatureToggle struct {
 	// Then the RoleBinding will be created for the corresponding tiers with probability of 0.05 (around 5 out of every 100 spaces would have it)
 	// And the ConfigMap will be created with probability of 0.9 (around 90 out of every 100 spaces would have it)
 	// +optional
-	Weight *int `json:"weight,omitempty"`
+	// +kubebuilder:validation:Minimum=0
+	// +kubebuilder:validation:Maximum=100
+	WeightPercentage *uint `json:"weightPercentage,omitempty"`
 }
 
 // UsersConfig contains all configuration parameters related to users
