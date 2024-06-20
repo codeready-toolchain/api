@@ -508,6 +508,7 @@ type FeatureToggle struct {
 	// +optional
 	// +kubebuilder:validation:Minimum=0
 	// +kubebuilder:validation:Maximum=100
+	// +kubebuilder:default=100
 	Weight *uint `json:"weight,omitempty"`
 }
 
