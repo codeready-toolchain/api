@@ -35,13 +35,13 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.BannedUserSpec":                        schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Binding":                               schema_codeready_toolchain_api_api_v1alpha1_Binding(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BindingRequest":                        schema_codeready_toolchain_api_api_v1alpha1_BindingRequest(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds":                    schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig":                         schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                             schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                             schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle":                         schema_codeready_toolchain_api_api_v1alpha1_FeatureToggle(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret":                          schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                            schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
@@ -90,7 +90,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus":    schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceResourcesStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationSecret(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold":             schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage":                         schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck":                         schema_codeready_toolchain_api_api_v1alpha1_RevisionCheck(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Routes":                                schema_codeready_toolchain_api_api_v1alpha1_Routes(ref),
@@ -120,7 +119,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                      schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                      schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition":             schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec":                  schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref),
@@ -179,6 +177,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutomaticApprovalConfig(ref com
 						SchemaProps: spec.SchemaProps{
 							Description: "Defines if the automatic approval is enabled or not",
 							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"domains": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Comma-separated email domains to consider for auto-approval. For example: \"domain.com,anotherdomain.org\" If domains is not set and enabled is true, it will default to auto approving all authenticated emails. If domains is set and enabled is true, it will allow auto approving only for authenticated emails under the domains entered. If enabled is false domains will be ignored.",
+							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
@@ -367,49 +372,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_BindingRequest(ref common.Refer
 				Required: []string{"name", "namespace"},
 			},
 		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_CapacityThresholds(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "CapacityThresholds allows to configure the capacity limits in the clusters",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"resourceCapacityThreshold": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains capacity threshold configuration",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"),
-						},
-					},
-					"maxNumberOfSpacesPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains a map of maximal number of spaces that can be provisioned per member cluster mapped by the cluster name",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: 0,
-										Type:    []string{"integer"},
-										Format:  "int32",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.ResourceCapacityThreshold"},
 	}
 }
 
@@ -666,6 +628,35 @@ func schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref common.R
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_FeatureToggle(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "FeatureToggle defines a feature toggle/flag. Each feature is supposed to have a unique name. Features are represented by kube object manifests in space and user templates. Such manifests must have an annotation which refers to the corresponding feature name. For example a manifest for a RoleBinding object in a space tier template with the following annotation: \"toolchain.dev.openshift.com/feature: os-lightspeed\" would refer to a feature with \"os-lightspeed\" name. When that template is applied for a new space then that RoleBinding object would be applied conditionally, according to its weight.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Description: "A unique name of the feature",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"weight": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Rollout weight of the feature. An integer between 0-100. If not set then 100 is used by default. 0 means the corresponding feature should not be enabled at all, which means that corresponding template objects should not be applied at all. 100 means the feature should be always enabled (the template is always applied). The features are weighted independently of each other. For example if there are two features: - feature1, weight=5 - feature2, weight=90 And tiers (one or many) contain the following object manifests: - RoleBinding with \"toolchain.dev.openshift.com/feature: feature1\" annotation - ConfigMap with \"toolchain.dev.openshift.com/feature: feature2\" annotation Then the RoleBinding will be created for the corresponding tiers with probability of 0.05 (around 5 out of every 100 spaces would have it) And the ConfigMap will be created with probability of 0.9 (around 90 out of every 100 spaces would have it)",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+				Required: []string{"name"},
+			},
+		},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -763,13 +754,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"),
 						},
 					},
-					"capacityThresholds": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters necessary for configuring capacity limits",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds"),
-						},
-					},
 					"spaceConfig": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters necessary for configuring Space provisioning functionality",
@@ -781,7 +765,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CapacityThresholds", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
 	}
 }
 
@@ -3061,47 +3045,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_ResourceCapacityThreshold(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Contains default capacity threshold as well as specific ones for particular member clusters",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"defaultThreshold": {
-						SchemaProps: spec.SchemaProps{
-							Description: "It is the default capacity threshold (in percentage of usage) to be used for all member clusters if no special threshold is defined",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
-					"specificPerMemberCluster": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type": "atomic",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains a map of specific capacity thresholds (in percentage of usage) for particular member clusters mapped by their names",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: 0,
-										Type:    []string{"integer"},
-										Format:  "int32",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
 func schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -4321,6 +4264,30 @@ func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.Referenc
 							Format:      "",
 						},
 					},
+					"featureToggles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"name",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "name",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "FeatureToggles specifies the list of feature toggles/flags",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle"),
+									},
+								},
+							},
+						},
+					},
 					"durationBeforeChangeTierRequestDeletion": {
 						SchemaProps: spec.SchemaProps{
 							Description: "DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted",
@@ -4338,6 +4305,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.Referenc
 				},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle"},
 	}
 }
 
@@ -4386,65 +4355,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "ToolchainClusterCondition describes current state of a cluster.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"type": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Type of cluster condition, Ready or Offline.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Status of the condition, one of True, False, Unknown.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"lastProbeTime": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Last time the condition was checked.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
-						},
-					},
-					"lastTransitionTime": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Last time the condition transit from one status to another.",
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
-						},
-					},
-					"reason": {
-						SchemaProps: spec.SchemaProps{
-							Description: "(brief) reason for the condition's last transition.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"message": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Human readable message indicating details about last transition.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"type", "status", "lastProbeTime"},
-			},
-		},
-		Dependencies: []string{
-			"k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
 	}
 }
 
@@ -4553,7 +4463,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"),
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -4564,7 +4474,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
@@ -5178,7 +5088,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_UserSignupStatus(ref common.Ref
 					"scheduledDeactivationTimestamp": {
 						SchemaProps: spec.SchemaProps{
 							Description: "ScheduledDeactivationTimestamp is the calculated timestamp after which the user's account will be deactivated, typically after the expiry of their trial and based on the term specific by their UserTier.  This property may be used as a convenience to determine the amount of time an account has left before deactivation, without requiring a separate lookup for the UserTier and subsequent calculation.  It is managed by the Deactivation controller in the host operator.",
-							Default:     map[string]interface{}{},
 							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
 						},
 					},
@@ -5294,7 +5203,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_WebhookConfig(ref common.Refere
 				Properties: map[string]spec.Schema{
 					"deploy": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Defines the flag that determines whether to deploy the Webhook",
+							Description: "Defines the flag that determines whether to deploy the Webhook. If the deploy flag is set to False and the Webhook was deployed previously it will be deleted by the memberoperatorconfig controller.",
 							Type:        []string{"boolean"},
 							Format:      "",
 						},

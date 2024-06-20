@@ -18,3 +18,6 @@ make generate
 ```
 
 NOTE: the `make generate` will generate the CRD files in the local `config/crd/bases` directory and then dispatch the `.yaml` files in the `host-operator` and `member-operator` repositories, assuming they have been checked out and that *they are in a clean state*, meaning that they have no pending changes, besides previous versions of the CRD files.
+
+NOTE: Then you are supposed to create PRs also in the repos where the change was propagated ( host | member-operator ). Please do not mix other changes to the code with those CRD changes. While it would work technically , it’s always preferred to promote the CRD changes separately for easier PR review.
+

@@ -155,7 +155,8 @@ type ToolchainClusterConfig struct {
 // Defines all parameters concerned with the Webhook
 // +k8s:openapi-gen=true
 type WebhookConfig struct {
-	// Defines the flag that determines whether to deploy the Webhook
+	// Defines the flag that determines whether to deploy the Webhook.
+	// If the deploy flag is set to False and the Webhook was deployed previously it will be deleted by the memberoperatorconfig controller.
 	// +optional
 	Deploy *bool `json:"deploy,omitempty"`
 
