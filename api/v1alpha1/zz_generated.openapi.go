@@ -41,6 +41,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle":                         schema_codeready_toolchain_api_api_v1alpha1_FeatureToggle(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret":                          schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                            schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
@@ -118,7 +119,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                      schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                      schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition":             schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec":                  schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus":                schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref),
@@ -623,6 +623,35 @@ func schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref common.R
 						},
 					},
 				},
+			},
+		},
+	}
+}
+
+func schema_codeready_toolchain_api_api_v1alpha1_FeatureToggle(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "FeatureToggle defines a feature toggle/flag. Each feature is supposed to have a unique name. Features are represented by kube object manifests in space and user templates. Such manifests must have an annotation which refers to the corresponding feature name. For example a manifest for a RoleBinding object in a space tier template with the following annotation: \"toolchain.dev.openshift.com/feature: os-lightspeed\" would refer to a feature with \"os-lightspeed\" name. When that template is applied for a new space then that RoleBinding object would be applied conditionally, according to its weight.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Description: "A unique name of the feature",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"weight": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Rollout weight of the feature. An integer between 0-100. If not set then 100 is used by default. 0 means the corresponding feature should not be enabled at all, which means that corresponding template objects should not be applied at all. 100 means the feature should be always enabled (the template is always applied). The features are weighted independently of each other. For example if there are two features: - feature1, weight=5 - feature2, weight=90 And tiers (one or many) contain the following object manifests: - RoleBinding with \"toolchain.dev.openshift.com/feature: feature1\" annotation - ConfigMap with \"toolchain.dev.openshift.com/feature: feature2\" annotation Then the RoleBinding will be created for the corresponding tiers with probability of 0.05 (around 5 out of every 100 spaces would have it) And the ConfigMap will be created with probability of 0.9 (around 90 out of every 100 spaces would have it)",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+				Required: []string{"name"},
 			},
 		},
 	}
@@ -4235,6 +4264,30 @@ func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.Referenc
 							Format:      "",
 						},
 					},
+					"featureToggles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"name",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "name",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "FeatureToggles specifies the list of feature toggles/flags",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle"),
+									},
+								},
+							},
+						},
+					},
 					"durationBeforeChangeTierRequestDeletion": {
 						SchemaProps: spec.SchemaProps{
 							Description: "DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted",
@@ -4252,6 +4305,8 @@ func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.Referenc
 				},
 			},
 		},
+		Dependencies: []string{
+			"github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle"},
 	}
 }
 
@@ -4300,71 +4355,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref common.Ref
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterSpec", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "ToolchainClusterCondition describes current state of a cluster.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"type": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Type of cluster condition, Ready or Offline.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Status of the condition, one of True, False, Unknown.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"lastProbeTime": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Last time the condition was checked.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
-						},
-					},
-					"lastUpdatedTime": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Last time the condition was updated",
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
-						},
-					},
-					"lastTransitionTime": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Last time the condition transit from one status to another.",
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
-						},
-					},
-					"reason": {
-						SchemaProps: spec.SchemaProps{
-							Description: "(brief) reason for the condition's last transition.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"message": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Human readable message indicating details about last transition.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"type", "status"},
-			},
-		},
-		Dependencies: []string{
-			"k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
 	}
 }
 
@@ -4473,7 +4463,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"),
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
 									},
 								},
 							},
@@ -4484,7 +4474,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterCondition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
