@@ -34,7 +34,7 @@ generate-deepcopy-and-crds: remove-config controller-gen
 	object paths="./..." output:crd:artifacts:config=$(PATH_TO_CRD_BASES)
 	
 .PHONY: generate-openapi
-generate-openapi: openapi-gen
+generate-openapi: openapi-gen crd-ref-docs
 	@echo "re-generating the openapi go file..."
 	@## First, let's clean up anything that might have been left around...
 	@rm -Rf $(FAKE_GOPATH)
@@ -51,11 +51,13 @@ generate-openapi: openapi-gen
 	&& $(OPENAPI_GEN) --input-dirs ./api/$(API_VERSION)/ \
 	--output-package github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file-base zz_generated.openapi \
-	--go-header-file=make/go-header.txt
+	--go-header-file=make/go-header.txt \
+	&& $(CRD_REF_DOCS) --source-path ./api/$(API_VERSION) --config ./crdrefdocs.config.yaml --output-path ./api/$(API_VERSION)/docs/apiref.adoc
 	@## clean up the mess
 	rm -Rf $(FAKE_GOPATH)
 
-# make sure that that the `host-operator` and `member-operator` repositories exist locally 
+
+# make sure that that the `host-operator` and `member-operator` repositories exist locally
 # and that they don't have any pending changes (except for the CRD files). 
 # The reasonning here is that when a change is made in the `api` repository, the resulting changes 
 # in the `host-operator` and `member-operator` repositories can be pushed at the same time on GitHub, 
@@ -124,3 +126,7 @@ controller-gen: ## Download controller-gen locally if necessary.
 OPENAPI_GEN = $(PROJECT_DIR)/bin/openapi-gen
 openapi-gen: ## Download openapi-gen locally if necessary.
 	GOBIN=$(PROJECT_DIR)/bin $(GO) install k8s.io/kube-openapi/cmd/openapi-gen
+
+CRD_REF_DOCS = $(PROJECT_DIR)/bin/crd-ref-docs
+crd-ref-docs: ## Download crd-ref-docs locally if necessary.
+	GOBIN=$(PROJECT_DIR)/bin $(GO) install github.com/elastic/crd-ref-docs@latest
