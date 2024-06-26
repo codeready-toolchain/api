@@ -3,7 +3,7 @@
 image:https://goreportcard.com/badge/github.com/codeready-toolchain/api[Go Report Card, link="https://goreportcard.com/report/github.com/codeready-toolchain/api"]
 image:https://codecov.io/gh/codeready-toolchain/api/branch/master/graph/badge.svg[Codecov.io,link="https://codecov.io/gh/codeready-toolchain/api"]
 
-API Reference doc: link:api/v1alpha1/docs/apiref.adoc
+For the API reference docs go xref:api/v1alpha1/docs/apiref.adoc[here]
 
 == Building
 Requires:

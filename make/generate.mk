@@ -32,7 +32,12 @@ generate-deepcopy-and-crds: remove-config controller-gen
 	@echo "Re-generating the deepcopy go file & the Toolchain CRD files... "
 	$(Q)$(CONTROLLER_GEN) crd \
 	object paths="./..." output:crd:artifacts:config=$(PATH_TO_CRD_BASES)
-	
+
+.PHONY: gen-crd-ref-docs
+gen-crd-ref-docs:
+	@echo "Re-generating the api doc ref: ./api/$(API_VERSION)/docs/apiref.adoc "
+	$(CRD_REF_DOCS) --source-path ./api/$(API_VERSION) --config ./crdrefdocs.config.yaml --output-path ./api/$(API_VERSION)/docs/apiref.adoc
+
 .PHONY: generate-openapi
 generate-openapi: openapi-gen crd-ref-docs
 	@echo "re-generating the openapi go file..."
@@ -52,7 +57,7 @@ generate-openapi: openapi-gen crd-ref-docs
 	--output-package github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file-base zz_generated.openapi \
 	--go-header-file=make/go-header.txt \
-	&& $(CRD_REF_DOCS) --source-path ./api/$(API_VERSION) --config ./crdrefdocs.config.yaml --output-path ./api/$(API_VERSION)/docs/apiref.adoc
+	&& make gen-crd-ref-docs
 	@## clean up the mess
 	rm -Rf $(FAKE_GOPATH)
 
