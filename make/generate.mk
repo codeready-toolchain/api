@@ -25,7 +25,7 @@ LOCAL_GOPATH=`$(GO) env GOPATH`
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
-generate: generate-deepcopy-and-crds generate-openapi dispatch-crds copy-reg-service-template
+generate: generate-deepcopy-and-crds generate-openapi gen-crd-ref-docs dispatch-crds copy-reg-service-template
 	
 .PHONY: generate-deepcopy-and-crds
 generate-deepcopy-and-crds: remove-config controller-gen
@@ -56,8 +56,7 @@ generate-openapi: openapi-gen crd-ref-docs
 	&& $(OPENAPI_GEN) --input-dirs ./api/$(API_VERSION)/ \
 	--output-package github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file-base zz_generated.openapi \
-	--go-header-file=make/go-header.txt \
-	&& make gen-crd-ref-docs
+	--go-header-file=make/go-header.txt
 	@## clean up the mess
 	rm -Rf $(FAKE_GOPATH)
 
