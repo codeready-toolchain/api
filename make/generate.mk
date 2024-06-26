@@ -34,7 +34,7 @@ generate-deepcopy-and-crds: remove-config controller-gen
 	object paths="./..." output:crd:artifacts:config=$(PATH_TO_CRD_BASES)
 
 .PHONY: gen-crd-ref-docs
-gen-crd-ref-docs:
+gen-crd-ref-docs: crd-ref-docs
 	@echo "Re-generating the api doc ref: ./api/$(API_VERSION)/docs/apiref.adoc "
 	$(CRD_REF_DOCS) --source-path ./api/$(API_VERSION) --config ./crdrefdocs.config.yaml --output-path ./api/$(API_VERSION)/docs/apiref.adoc
 
