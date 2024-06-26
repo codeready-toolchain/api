@@ -39,7 +39,7 @@ gen-crd-ref-docs:
 	$(CRD_REF_DOCS) --source-path ./api/$(API_VERSION) --config ./crdrefdocs.config.yaml --output-path ./api/$(API_VERSION)/docs/apiref.adoc
 
 .PHONY: generate-openapi
-generate-openapi: openapi-gen crd-ref-docs
+generate-openapi: openapi-gen
 	@echo "re-generating the openapi go file..."
 	@## First, let's clean up anything that might have been left around...
 	@rm -Rf $(FAKE_GOPATH)
