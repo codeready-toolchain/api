@@ -4,13 +4,13 @@ go 1.20
 
 require (
 	github.com/go-bindata/go-bindata v3.1.2+incompatible
-	// using latest commit from 'github.com/openshift/api branch release-4.15'
-	github.com/openshift/api v0.0.0-20240610140310-62c02ae51e47
-	k8s.io/api v0.28.2
-	k8s.io/apimachinery v0.28.2
+	// using latest commit from 'github.com/openshift/api branch release-4.14'
+	github.com/openshift/api v0.0.0-20240304080513-3e8192a10b13
+	k8s.io/api v0.27.2
+	k8s.io/apimachinery v0.27.2
 	k8s.io/code-generator v0.27.2
 	k8s.io/gengo v0.0.0-20220902162205-c0856e24416d
-	k8s.io/kube-openapi v0.0.0-20230717233707-2695361300d9
+	k8s.io/kube-openapi v0.0.0-20230501164219-8b0f38b5fd1f
 	sigs.k8s.io/controller-runtime v0.15.0
 	sigs.k8s.io/controller-tools v0.12.0
 )
@@ -25,7 +25,7 @@ require (
 	github.com/gobuffalo/flect v1.0.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/google/gnostic-models v0.6.8 // indirect
+	github.com/google/gnostic v0.5.7-v3refs // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
