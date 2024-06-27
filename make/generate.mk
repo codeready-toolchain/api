@@ -25,14 +25,19 @@ LOCAL_GOPATH=`$(GO) env GOPATH`
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
-generate: generate-deepcopy-and-crds generate-openapi dispatch-crds copy-reg-service-template
+generate: generate-deepcopy-and-crds generate-openapi gen-crd-ref-docs dispatch-crds copy-reg-service-template
 	
 .PHONY: generate-deepcopy-and-crds
 generate-deepcopy-and-crds: remove-config controller-gen
 	@echo "Re-generating the deepcopy go file & the Toolchain CRD files... "
 	$(Q)$(CONTROLLER_GEN) crd \
 	object paths="./..." output:crd:artifacts:config=$(PATH_TO_CRD_BASES)
-	
+
+.PHONY: gen-crd-ref-docs
+gen-crd-ref-docs: crd-ref-docs
+	@echo "Re-generating the api doc ref: ./api/$(API_VERSION)/docs/apiref.adoc "
+	$(CRD_REF_DOCS) --source-path ./api/$(API_VERSION) --config ./crdrefdocs.config.yaml --output-path ./api/$(API_VERSION)/docs/apiref.adoc
+
 .PHONY: generate-openapi
 generate-openapi: openapi-gen
 	@echo "re-generating the openapi go file..."
@@ -55,7 +60,8 @@ generate-openapi: openapi-gen
 	@## clean up the mess
 	rm -Rf $(FAKE_GOPATH)
 
-# make sure that that the `host-operator` and `member-operator` repositories exist locally 
+
+# make sure that that the `host-operator` and `member-operator` repositories exist locally
 # and that they don't have any pending changes (except for the CRD files). 
 # The reasonning here is that when a change is made in the `api` repository, the resulting changes 
 # in the `host-operator` and `member-operator` repositories can be pushed at the same time on GitHub, 
@@ -124,3 +130,7 @@ controller-gen: ## Download controller-gen locally if necessary.
 OPENAPI_GEN = $(PROJECT_DIR)/bin/openapi-gen
 openapi-gen: ## Download openapi-gen locally if necessary.
 	GOBIN=$(PROJECT_DIR)/bin $(GO) install k8s.io/kube-openapi/cmd/openapi-gen
+
+CRD_REF_DOCS = $(PROJECT_DIR)/bin/crd-ref-docs
+crd-ref-docs: ## Download crd-ref-docs locally if necessary.
+	GOBIN=$(PROJECT_DIR)/bin $(GO) install github.com/elastic/crd-ref-docs@latest
