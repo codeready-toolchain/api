@@ -762,11 +762,17 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig"),
 						},
 					},
+					"publicViewerConfig": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Contains the PublicViewer configuration. IMPORTANT: To provide a consistent User-Experience, each user the space has been directly shared with should have at least the same permissions the kubesaw-authenticated user has.",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
 	}
 }
 
@@ -4522,17 +4528,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainConfigSpec(ref common.
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Members"),
 						},
 					},
-					"publicViewerConfig": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Contains the PublicViewer configuration. IMPORTANT: To provide a consistent User-Experience, each user the space has been directly shared with should have at least the same permissions the kubesaw-authenticated user has.",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration"),
-						},
-					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig", "github.com/codeready-toolchain/api/api/v1alpha1.Members", "github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig", "github.com/codeready-toolchain/api/api/v1alpha1.Members"},
 	}
 }
 

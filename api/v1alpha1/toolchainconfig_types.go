@@ -35,13 +35,6 @@ type ToolchainConfigSpec struct {
 	// Contains all member operator configurations for all member clusters
 	// +optional
 	Members Members `json:"members,omitempty"`
-
-	// Contains the PublicViewer configuration.
-	// IMPORTANT: To provide a consistent User-Experience, each user
-	// the space has been directly shared with should have at least
-	// the same permissions the kubesaw-authenticated user has.
-	//+optional
-	PublicViewerConfig *PublicViewerConfiguration `json:"publicViewerConfig,omitempty"`
 }
 
 // Configuration to enable the PublicViewer support
@@ -95,6 +88,13 @@ type HostConfig struct {
 	// Keeps parameters necessary for configuring Space provisioning functionality
 	// +optional
 	SpaceConfig SpaceConfig `json:"spaceConfig,omitempty"`
+
+	// Contains the PublicViewer configuration.
+	// IMPORTANT: To provide a consistent User-Experience, each user
+	// the space has been directly shared with should have at least
+	// the same permissions the kubesaw-authenticated user has.
+	//+optional
+	PublicViewerConfig *PublicViewerConfiguration `json:"publicViewerConfig,omitempty"`
 }
 
 // Members contains all configuration for member operators
