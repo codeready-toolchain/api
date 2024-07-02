@@ -4394,7 +4394,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 				Properties: map[string]spec.Schema{
 					"apiEndpoint": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.\n\nDeprecated: This is deprecated by the Status.APIEndpoint",
+							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.\n\nBe aware that this field is going to be replaced with the Status.APIEndpoint in the future.",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -4402,14 +4402,14 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 					},
 					"caBundle": {
 						SchemaProps: spec.SchemaProps{
-							Description: "CABundle contains the certificate authority information.\n\nDeprecated: Don't use this. This is replaced by field in the connection secret",
+							Description: "CABundle contains the certificate authority information.\n\nNote that this is going to be deprecated and removed. It will be replaced by a field in the kubecondig of the connection secret",
 							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
 					"secretRef": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.\n\nDeprecated: This is replaced by the owner reference",
+							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.\n\nIn the near future, the secret will contain the whole kubeconfig required to connect to the cluster.",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference"),
 						},
@@ -4421,7 +4421,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "DisabledTLSValidations defines a list of checks to ignore when validating the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod. If * is specified, it is expected to be the only option in list.\n\nDeprecated: This is replaced by the contents of the kubeconfig in the connection secret",
+							Description: "DisabledTLSValidations defines a list of checks to ignore when validating the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod. If * is specified, it is expected to be the only option in list.\n\nNote that this is going to be deprecated and removed. It will be replaced by the kubeconfig stored in the connection secret.",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
