@@ -612,6 +612,10 @@ HostConfig contains all configuration parameters of the host operator
 | *`toolchainStatus`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatusconfig[$$ToolchainStatusConfig$$]__ | Keeps parameters concerned with the toolchainstatus + |  | 
 | *`users`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersconfig[$$UsersConfig$$]__ | Keeps parameters concerned with user management + |  | 
 | *`spaceConfig`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceconfig[$$SpaceConfig$$]__ | Keeps parameters necessary for configuring Space provisioning functionality + |  | 
+| *`publicViewerConfig`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-publicviewerconfiguration[$$PublicViewerConfiguration$$]__ | Contains the PublicViewer configuration. +
+IMPORTANT: To provide a consistent User-Experience, each user +
+the space has been directly shared with should have at least +
+the same permissions the kubesaw-authenticated user has. + |  | 
 |===
 
 
@@ -1983,6 +1987,27 @@ ProxyPluginStatus defines the observed state of ProxyPlugin
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Proxy Plugin conditions +
 Supported condition types: ConditionReady + |  | 
+|===
+
+
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-publicviewerconfiguration"]
+==== PublicViewerConfiguration
+
+
+
+Configuration to enable the PublicViewer support
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostconfig[$$HostConfig$$]
+****
+
+[cols="20a,50a,15a,15a", options="header"]
+|===
+| Field | Description | Default | Validation
+| *`enabled`* __boolean__ | Defines whether the PublicViewer support should be enabled or not + | false | 
 |===
 
 
