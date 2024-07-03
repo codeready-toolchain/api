@@ -79,6 +79,13 @@ type HostConfig struct {
 	// Keeps parameters necessary for configuring Space provisioning functionality
 	// +optional
 	SpaceConfig SpaceConfig `json:"spaceConfig,omitempty"`
+
+	// Contains the PublicViewer configuration.
+	// IMPORTANT: To provide a consistent User-Experience, each user
+	// the space has been directly shared with should have at least
+	// the same permissions the kubesaw-authenticated user has.
+	//+optional
+	PublicViewerConfig *PublicViewerConfiguration `json:"publicViewerConfig,omitempty"`
 }
 
 // Members contains all configuration for member operators
@@ -561,6 +568,15 @@ type SpaceConfig struct {
 	// This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...).
 	// +optional
 	SpaceBindingRequestEnabled *bool `json:"spaceBindingRequestEnabled,omitempty"`
+}
+
+// Configuration to enable the PublicViewer support
+// +k8s:openapi-gen=true
+type PublicViewerConfiguration struct {
+	// Defines whether the PublicViewer support should be enabled or not
+	//+required
+	//+kubebuilder:default:=false
+	Enabled bool `json:"enabled"`
 }
 
 //+kubebuilder:object:root=true
