@@ -81,10 +81,10 @@ type LocalSecretReference struct {
 type ToolchainClusterStatus struct {
 	// APIEndpoint is the API endpoint of the remote cluster. This can be a hostname,
 	// hostname:port, IP or IP:port.
-	APIEndpoint string `json:"apiEndpoint,omitempty"`
+	APIEndpoint string `json:"apiEndpoint"`
 
 	// OperatorNamespace is the namespace in which the operator runs in the remote cluster
-	OperatorNamespace string `json:"operatorNamespace,omitempty"`
+	OperatorNamespace string `json:"operatorNamespace"`
 
 	// Conditions is an array of current cluster conditions.
 	// +listType=atomic
