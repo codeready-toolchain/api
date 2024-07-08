@@ -4482,6 +4482,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 					"apiEndpoint": {
 						SchemaProps: spec.SchemaProps{
 							Description: "APIEndpoint is the API endpoint of the remote cluster. This can be a hostname, hostname:port, IP or IP:port.",
+							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -4489,6 +4490,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterStatus(ref comm
 					"operatorNamespace": {
 						SchemaProps: spec.SchemaProps{
 							Description: "OperatorNamespace is the namespace in which the operator runs in the remote cluster",
+							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
 						},
