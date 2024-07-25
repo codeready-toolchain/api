@@ -1069,7 +1069,6 @@ MemberOperatorConfigSpec contains all configuration parameters of the member ope
 | *`memberStatus`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusconfig[$$MemberStatusConfig$$]__ | Keeps parameters concerned with member status + |  | 
 | *`toolchainCluster`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterconfig[$$ToolchainClusterConfig$$]__ | Keeps parameters concerned with the toolchaincluster + |  | 
 | *`webhook`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-webhookconfig[$$WebhookConfig$$]__ | Keeps parameters concerned with the webhook + |  | 
-| *`webConsolePlugin`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-webconsoleplugin[$$WebConsolePlugin$$]__ | WebConsolePlugin is used to configure the Web Console Plugin parameters + |  | 
 |===
 
 
@@ -3900,29 +3899,6 @@ UsersConfig contains all configuration parameters related to users
 If a username has a forbidden prefix, then the username compliance prefix is added to the username + |  | 
 | *`forbiddenUsernameSuffixes`* __string__ | ForbiddenUsernameSuffixes is a comma-separated string that defines the suffixes that a username may not have when signing up.  If a +
 username has a forbidden suffix, then the username compliance suffix is added to the username + |  | 
-|===
-
-
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-webconsoleplugin"]
-==== WebConsolePlugin
-
-
-
-WebConsolePlugin defines the configuration parameters relating to the Web Console Plugin
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`deploy`* __boolean__ | Deploy determines whether the plugin will be deployed or not + |  | 
-| *`pendoKey`* __string__ | PendoKey is the key value used to interact with the Pendo API + |  | 
-| *`pendoHost`* __string__ | PendoHost allows a host URL to be configured instead of communicating directly with the Pendo domain + |  | 
 |===
 
 
