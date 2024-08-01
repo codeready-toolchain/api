@@ -67,6 +67,11 @@ func (in *AutoscalerConfig) DeepCopyInto(out *AutoscalerConfig) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.BufferCPU != nil {
+		in, out := &in.BufferCPU, &out.BufferCPU
+		*out = new(string)
+		**out = **in
+	}
 	if in.BufferReplicas != nil {
 		in, out := &in.BufferReplicas, &out.BufferReplicas
 		*out = new(int)
