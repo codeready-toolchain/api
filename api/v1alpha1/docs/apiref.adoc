@@ -129,6 +129,7 @@ Defines all parameters concerned with the autoscaler
 | Field | Description | Default | Validation
 | *`deploy`* __boolean__ | Defines the flag that determines whether to deploy the autoscaler buffer + |  | 
 | *`bufferMemory`* __string__ | Represents how much memory should be required by the autoscaler buffer + |  | 
+| *`bufferCPU`* __string__ | Represents how much CPU should be required by the autoscaler buffer + |  | 
 | *`bufferReplicas`* __integer__ | Represents the number of autoscaler buffer replicas to request + |  | 
 |===
 

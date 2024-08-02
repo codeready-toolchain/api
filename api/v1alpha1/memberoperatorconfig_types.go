@@ -63,6 +63,10 @@ type AutoscalerConfig struct {
 	// +optional
 	BufferMemory *string `json:"bufferMemory,omitempty"`
 
+	// Represents how much CPU should be required by the autoscaler buffer
+	// +optional
+	BufferCPU *string `json:"bufferCPU,omitempty"`
+
 	// Represents the number of autoscaler buffer replicas to request
 	// +optional
 	BufferReplicas *int `json:"bufferReplicas,omitempty"`

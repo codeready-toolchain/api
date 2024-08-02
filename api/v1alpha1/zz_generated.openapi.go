@@ -215,6 +215,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref common.Ref
 							Format:      "",
 						},
 					},
+					"bufferCPU": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Represents how much CPU should be required by the autoscaler buffer",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"bufferReplicas": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Represents the number of autoscaler buffer replicas to request",
