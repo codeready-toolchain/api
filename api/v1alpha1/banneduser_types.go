@@ -8,8 +8,11 @@ const (
 	// BannedUserEmailHashLabelKey is used for the banneduser email hash label key
 	BannedUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 
-	// BannedUserPhoneNumberHashLabelKey is used a label key for the hash of a phone of the banned user
+	// BannedUserPhoneNumberHashLabelKey is used for the banneduser phone number hash label key
 	BannedUserPhoneNumberHashLabelKey = LabelKeyPrefix + "phone-hash"
+
+	// BannedByLabelKey is used for the banned by label key (to point out who banned the user)
+	BannedByLabelKey = LabelKeyPrefix + "banned-by"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
