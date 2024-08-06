@@ -215,6 +215,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_AutoscalerConfig(ref common.Ref
 							Format:      "",
 						},
 					},
+					"bufferCPU": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Represents how much CPU should be required by the autoscaler buffer",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"bufferReplicas": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Represents the number of autoscaler buffer replicas to request",
@@ -1463,18 +1470,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"),
 						},
 					},
-					"webConsolePlugin": {
-						SchemaProps: spec.SchemaProps{
-							Description: "WebConsolePlugin is used to configure the Web Console Plugin parameters",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.WebConsolePlugin"),
-						},
-					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CheConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebConsolePlugin", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CheConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
 	}
 }
 
