@@ -3294,10 +3294,10 @@ func schema_codeready_toolchain_api_api_v1alpha1_SocialEventSpec(ref common.Refe
 							Format:      "",
 						},
 					},
-					"preferSameCluster": {
+					"targetCluster": {
 						SchemaProps: spec.SchemaProps{
-							Description: "If true, best effort is made to provision all attendees of the event on the same cluster",
-							Type:        []string{"boolean"},
+							Description: "The cluster in which the user/space should be provisioned in If not set then the target cluster will be picked automatically",
+							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
