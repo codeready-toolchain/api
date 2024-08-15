@@ -2382,7 +2382,8 @@ may register for the event by using the event's unique activation code
 This must be the valid name of an nstemplatetier resource. + |  | 
 | *`spaceTier`* __string__ | The tier to assign to spaces created for users who registered for the event. +
 This must be the valid name of an nstemplatetier resource. + |  | 
-| *`preferSameCluster`* __boolean__ | If true, best effort is made to provision all attendees of the event on the same cluster + |  | 
+| *`targetCluster`* __string__ | The cluster in which the user/space should be provisioned in +
+If not set then the target cluster will be picked automatically + |  | 
 | *`verificationRequired`* __boolean__ | If true, the user will also be required to complete standard phone verification + |  | 
 |===
 
