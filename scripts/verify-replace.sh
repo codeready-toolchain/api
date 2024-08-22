@@ -33,6 +33,7 @@ if [ ${#ERRORLIST[@]} -ne 0 ]; then
     do
         echo "${e}"
     done
+    exit 1
 else
     echo "No errors detected"
 fi
