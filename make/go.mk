@@ -13,3 +13,7 @@ GO_PACKAGE_PATH ?= github.com/${GO_PACKAGE_ORG_NAME}/${GO_PACKAGE_REPO_NAME}
 build:
 	$(Q)CGO_ENABLED=0 GOARCH=amd64 GOOS=linux \
 	    $(GO) build github.com/codeready-toolchain/api/api/v1alpha1/
+
+.PHONY: verify-replace-run
+verify-replace-run: 
+	./scripts/verify-replace.sh;

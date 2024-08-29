@@ -46,9 +46,10 @@ type SocialEventSpec struct {
 	// This must be the valid name of an nstemplatetier resource.
 	SpaceTier string `json:"spaceTier"`
 
-	// If true, best effort is made to provision all attendees of the event on the same cluster
+	// The cluster in which the user/space should be provisioned in
+	// If not set then the target cluster will be picked automatically
 	// +optional
-	PreferSameCluster bool `json:"preferSameCluster,omitempty"`
+	TargetCluster string `json:"targetCluster,omitempty"`
 
 	// If true, the user will also be required to complete standard phone verification
 	// +optional
