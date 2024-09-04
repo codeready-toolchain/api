@@ -201,6 +201,7 @@ BannedUserSpec defines the desired state of BannedUser
 |===
 | Field | Description | Default | Validation
 | *`email`* __string__ | The e-mail address of the account that has been banned + |  | 
+| *`description`* __string__ | Description about the ban reasons + |  | 
 |===
 
 
