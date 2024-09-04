@@ -25,6 +25,9 @@ type BannedUserSpec struct {
 
 	// The e-mail address of the account that has been banned
 	Email string `json:"email"`
+
+	// Description about the ban reasons
+	Description string `json:"description"`
 }
 
 //+kubebuilder:object:root=true
