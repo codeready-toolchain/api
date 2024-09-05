@@ -27,7 +27,8 @@ type BannedUserSpec struct {
 	Email string `json:"email"`
 
 	// Description about the ban reasons
-	Description string `json:"description"`
+	// +optional
+	Description string `json:"description,omitempty"`
 }
 
 //+kubebuilder:object:root=true
