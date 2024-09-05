@@ -291,9 +291,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_BannedUserSpec(ref common.Refer
 							Format:      "",
 						},
 					},
-					"description": {
+					"reason": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Description about the ban reasons",
+							Description: "Reason of the ban",
 							Type:        []string{"string"},
 							Format:      "",
 						},
