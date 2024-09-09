@@ -37,6 +37,8 @@ type ToolchainClusterSpec struct {
 	//
 	// Be aware that this field is going to be replaced with
 	// the Status.APIEndpoint in the future.
+	//
+	// Deprecated: This is not used for anything.
 	APIEndpoint string `json:"apiEndpoint"`
 
 	// CABundle contains the certificate authority information.
@@ -44,13 +46,11 @@ type ToolchainClusterSpec struct {
 	//
 	// Note that this is going to be deprecated and removed. It will be replaced by a field in
 	// the kubecondig of the connection secret
+	//
+	// Deprecated: This is not used for anything.
 	CABundle string `json:"caBundle,omitempty"`
 
-	// Name of the secret containing the token required to access the
-	// member cluster. The secret needs to exist in the same namespace
-	// as the control plane and should have a "token" key.
-	//
-	// In the near future, the secret will contain the whole kubeconfig required to connect
+	// Name of the secret containing the kubeconfig required to connect
 	// to the cluster.
 	SecretRef LocalSecretReference `json:"secretRef"`
 
@@ -63,6 +63,8 @@ type ToolchainClusterSpec struct {
 	//
 	// +optional
 	// +listType=set
+	//
+	// Deprecated: This is not used for anything.
 	DisabledTLSValidations []TLSValidation `json:"disabledTLSValidations,omitempty"`
 }
 
