@@ -42,7 +42,7 @@ type TierTemplateSpec struct {
 	// +optional
 	// +listType=set
 	// +kubebuilder:pruning:PreserveUnknownFields
-	TemplateObjects []runtime.RawExtension `json:"templateObjects" protobuf:"bytes,3,opt,name=templateObjects"`
+	TemplateObjects []runtime.RawExtension `json:"templateObjects,omitempty" protobuf:"bytes,3,opt,name=templateObjects"`
 }
 
 //+kubebuilder:object:root=true
