@@ -4273,7 +4273,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 					"templateObjects": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "set",
+								"x-kubernetes-list-type": "atomic",
 							},
 						},
 						SchemaProps: spec.SchemaProps{

@@ -40,7 +40,7 @@ type TierTemplateSpec struct {
 	//
 	// The template parameters values will be defined in the NSTemplateTier CRD.
 	// +optional
-	// +listType=set
+	// +listType=atomic
 	// +kubebuilder:pruning:PreserveUnknownFields
 	TemplateObjects []runtime.RawExtension `json:"templateObjects,omitempty" protobuf:"bytes,3,opt,name=templateObjects"`
 }
