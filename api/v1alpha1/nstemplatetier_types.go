@@ -96,7 +96,8 @@ type NSTemplateTierStatus struct {
 	Updates []NSTemplateTierHistory `json:"updates,omitempty" patchStrategy:"merge" patchMergeKey:"startTime"`
 
 	// Revisions is an array containing the names of the last applied TierTemplateRevision CRs.
-	// Those parameters will be evaluated in the TierTemplates when the NSTemplateTier CR gets created in the cluster.
+	// Since the TierTemplate can be managed outside the host-operator,
+	// we need to store the TierTemplate revisions, so we can get to the original contents to be able to properly propagate the update from the previous version of the template to the new one.
 	// +optional
 	// +mapType=atomic
 	Revisions map[string]string `json:"revisions,omitempty"`

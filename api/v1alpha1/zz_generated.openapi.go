@@ -2175,7 +2175,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref common
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Revisions is an array containing the names of the last applied TierTemplateRevision CRs. Those parameters will be evaluated in the TierTemplates when the NSTemplateTier CR gets created in the cluster.",
+							Description: "Revisions is an array containing the names of the last applied TierTemplateRevision CRs. Since the TierTemplate can be managed outside the host-operator, we need to store the TierTemplate revisions, so we can get to the original contents to be able to properly propagate the update from the previous version of the template to the new one.",
 							Type:        []string{"object"},
 							AdditionalProperties: &spec.SchemaOrBool{
 								Allows: true,

@@ -1640,7 +1640,8 @@ NSTemplateTierStatus defines the observed state of NSTemplateTier
 Supported condition types: ConditionReady + |  | 
 | *`updates`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierhistory[$$NSTemplateTierHistory$$] array__ | Updates is an array of all NSTemplateTier updates + |  | 
 | *`revisions`* __object (keys:string, values:string)__ | Revisions is an array containing the names of the last applied TierTemplateRevision CRs. +
-Those parameters will be evaluated in the TierTemplates when the NSTemplateTier CR gets created in the cluster. + |  | 
+Since the TierTemplate can be managed outside the host-operator, +
+we need to store the TierTemplate revisions, so we can get to the original contents to be able to properly propagate the update from the previous version of the template to the new one. + |  | 
 |===
 
 
