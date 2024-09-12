@@ -25,7 +25,7 @@ LOCAL_GOPATH=`$(GO) env GOPATH`
 
 .PHONY: generate
 ## Generate deepcopy, openapi and CRD files after the API was modified
-generate: generate-deepcopy-and-crds generate-openapi gen-crd-ref-docs dispatch-crds copy-reg-service-template
+generate: generate-deepcopy-and-crds generate-openapi gen-crd-ref-docs dispatch-crds
 	
 .PHONY: generate-deepcopy-and-crds
 generate-deepcopy-and-crds: remove-config controller-gen
@@ -117,11 +117,6 @@ dispatch-crds: prepare-host-operator prepare-member-operator
 	    exit 1; \
 	fi
 	@echo "Dispatch successfuly finished \o/"
-
-.PHONY: copy-reg-service-template
-copy-reg-service-template:
-	cp ../registration-service/deploy/registration-service.yaml ../host-operator/deploy/registration-service/registration-service.yaml
-
 
 CONTROLLER_GEN = $(PROJECT_DIR)/bin/controller-gen
 controller-gen: ## Download controller-gen locally if necessary.
