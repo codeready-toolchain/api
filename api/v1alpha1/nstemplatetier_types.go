@@ -26,6 +26,24 @@ type NSTemplateTierSpec struct {
 	// SpaceRequestConfig stores all the configuration related to the Space Request feature
 	// +optional
 	SpaceRequestConfig *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
+
+	// Parameters is an optional array of Parameters used during the NSTemplateTier and TierTemplate creation.
+	// When creation the NsTemplateTier and referenced TierTemplates, the parameters will be read from the NSTemplateTier and evaluated in all the TierTemplates referenced in the spec.
+	// +optional
+	// +listType=atomic
+	Parameters []Parameter `json:"parameters,omitempty" protobuf:"bytes,4,opt,name=parameters"`
+}
+
+// Parameter defines a name/value variable that is to be processed during
+// TierTemplate creation.
+type Parameter struct {
+	// Name must be set and it can be referenced in the TierTemplate
+	// Items using {{.NAME}}. Required.
+	Name string `json:"name" protobuf:"bytes,1,opt,name=name"`
+
+	// Value holds the Parameter data.
+	// The value replaces all occurrences of the Parameter {{.NAME}}.
+	Value string `json:"value,omitempty" protobuf:"bytes,4,opt,name=value"`
 }
 
 // SpaceRequestConfig contains all the configuration related to the Space Request feature
@@ -76,6 +94,12 @@ type NSTemplateTierStatus struct {
 	// +listType=map
 	// +listMapKey=startTime
 	Updates []NSTemplateTierHistory `json:"updates,omitempty" patchStrategy:"merge" patchMergeKey:"startTime"`
+
+	// Revisions is an optional array of names of the last applied TierTemplateRevision CR
+	// NSTemplateTier creation. Those parameters will be evaluated in the TierTemplates when the NSTemplateTier CR gets created in the cluster.
+	// +optional
+	// +mapType=atomic
+	Revisions map[string]string `json:"revisions,omitempty"`
 }
 
 // NSTemplateTierHistory a track record of an update
