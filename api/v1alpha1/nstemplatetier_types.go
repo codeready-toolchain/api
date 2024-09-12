@@ -30,8 +30,11 @@ type NSTemplateTierSpec struct {
 	// Parameters is an optional array of Parameters used during the NSTemplateTier and TierTemplate creation.
 	// When creating the NsTemplateTier and referenced TierTemplates, the parameters will be read from the NSTemplateTier and evaluated in all the TierTemplates referenced in the spec.
 	// +optional
-	// +listType=atomic
-	Parameters []Parameter `json:"parameters,omitempty" protobuf:"bytes,4,opt,name=parameters"`
+	// +patchMergeKey=name
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=name
+	Parameters []Parameter `json:"parameters,omitempty" protobuf:"bytes,4,opt,name=parameters" patchStrategy:"merge" patchMergeKey:"name"`
 }
 
 // Parameter defines a name/value variable that is to be processed during
