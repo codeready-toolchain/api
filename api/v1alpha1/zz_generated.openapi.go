@@ -4265,9 +4265,28 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 					},
 					"template": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Template contains an OpenShift Template to be used to provision either a user's namespace or cluster-wide resources",
+							Description: "Template contains an OpenShift Template to be used to provision either a user's namespace or cluster-wide resources Note: this field will be removed in favor of the new TemplateObjects below.",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/openshift/api/template/v1.Template"),
+						},
+					},
+					"templateObjects": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning.\n\nNOTE: when specifying variables as part of the objects list , those concatenated as part of other strings do not need to be wrapped inside quotes, while those that are not part of other strings do need to be wrapped in single quotes. This is required otherwise the yaml parser will error while trying to parse those resources containing variables. eg: https://docs.google.com/document/d/1x5SoBT80df9fmVsaDgAE6DE7hE6lzmNIK087JUmgaJs/edit#heading=h.2iuytpfnmul5\n\nThe template parameters values will be defined in the NSTemplateTier CRD.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("k8s.io/apimachinery/pkg/runtime.RawExtension"),
+									},
+								},
+							},
 						},
 					},
 				},
@@ -4275,7 +4294,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 			},
 		},
 		Dependencies: []string{
-			"github.com/openshift/api/template/v1.Template"},
+			"github.com/openshift/api/template/v1.Template", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
 	}
 }
 
