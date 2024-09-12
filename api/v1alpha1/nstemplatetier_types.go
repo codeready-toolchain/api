@@ -28,7 +28,7 @@ type NSTemplateTierSpec struct {
 	SpaceRequestConfig *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
 
 	// Parameters is an optional array of Parameters used during the NSTemplateTier and TierTemplate creation.
-	// When creation the NsTemplateTier and referenced TierTemplates, the parameters will be read from the NSTemplateTier and evaluated in all the TierTemplates referenced in the spec.
+	// When creating the NsTemplateTier and referenced TierTemplates, the parameters will be read from the NSTemplateTier and evaluated in all the TierTemplates referenced in the spec.
 	// +optional
 	// +listType=atomic
 	Parameters []Parameter `json:"parameters,omitempty" protobuf:"bytes,4,opt,name=parameters"`
@@ -38,12 +38,12 @@ type NSTemplateTierSpec struct {
 // TierTemplate creation.
 type Parameter struct {
 	// Name must be set and it can be referenced in the TierTemplate
-	// Items using {{.NAME}}. Required.
+	// items using {{.NAME}}
 	Name string `json:"name" protobuf:"bytes,1,opt,name=name"`
 
 	// Value holds the Parameter data.
 	// The value replaces all occurrences of the Parameter {{.NAME}}.
-	Value string `json:"value,omitempty" protobuf:"bytes,4,opt,name=value"`
+	Value string `json:"value" protobuf:"bytes,4,opt,name=value"`
 }
 
 // SpaceRequestConfig contains all the configuration related to the Space Request feature
