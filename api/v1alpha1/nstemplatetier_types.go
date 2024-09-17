@@ -27,8 +27,7 @@ type NSTemplateTierSpec struct {
 	// +optional
 	SpaceRequestConfig *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
 
-	// Parameters is an optional array of Parameters used during the NSTemplateTier and TierTemplate creation.
-	// When creating the NsTemplateTier and referenced TierTemplates, the parameters will be read from the NSTemplateTier and evaluated in all the TierTemplates referenced in the spec.
+	// Parameters is an optional array of Parameters to be used to replace "global" variables defined in the TierTemplate CRs of the NSTemplateTier.
 	// +optional
 	// +patchMergeKey=name
 	// +patchStrategy=merge
