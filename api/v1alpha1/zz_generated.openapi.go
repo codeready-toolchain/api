@@ -4447,50 +4447,15 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 				Description: "ToolchainClusterSpec defines the desired state of ToolchainCluster",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"apiEndpoint": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.\n\nBe aware that this field is going to be replaced with the Status.APIEndpoint in the future.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"caBundle": {
-						SchemaProps: spec.SchemaProps{
-							Description: "CABundle contains the certificate authority information.\n\nNote that this is going to be deprecated and removed. It will be replaced by a field in the kubecondig of the connection secret",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"secretRef": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.\n\nIn the near future, the secret will contain the whole kubeconfig required to connect to the cluster.",
+							Description: "Name of the secret containing the kubeconfig required to connect to the cluster.",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference"),
 						},
 					},
-					"disabledTLSValidations": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "set",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "DisabledTLSValidations defines a list of checks to ignore when validating the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod. If * is specified, it is expected to be the only option in list.\n\nNote that this is going to be deprecated and removed. It will be replaced by the kubeconfig stored in the connection secret.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
 				},
-				Required: []string{"apiEndpoint", "secretRef"},
+				Required: []string{"secretRef"},
 			},
 		},
 		Dependencies: []string{

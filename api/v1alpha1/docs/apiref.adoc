@@ -3023,20 +3023,6 @@ Supported condition types: ConditionReady + |  |
 |===
 
 
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tlsvalidation"]
-==== TLSValidation
-
-_Underlying type:_ _string_
-
-
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterspec[$$ToolchainClusterSpec$$]
-****
-
 
 
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplate"]
@@ -3239,31 +3225,8 @@ ToolchainClusterSpec defines the desired state of ToolchainCluster
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`apiEndpoint`* __string__ | The API endpoint of the member cluster. This can be a hostname, +
-hostname:port, IP or IP:port. +
-
-
-Be aware that this field is going to be replaced with +
-the Status.APIEndpoint in the future. + |  | 
-| *`caBundle`* __string__ | CABundle contains the certificate authority information. +
-
-
-Note that this is going to be deprecated and removed. It will be replaced by a field in +
-the kubecondig of the connection secret + |  | 
-| *`secretRef`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-localsecretreference[$$LocalSecretReference$$]__ | Name of the secret containing the token required to access the +
-member cluster. The secret needs to exist in the same namespace +
-as the control plane and should have a "token" key. +
-
-
-In the near future, the secret will contain the whole kubeconfig required to connect +
+| *`secretRef`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-localsecretreference[$$LocalSecretReference$$]__ | Name of the secret containing the kubeconfig required to connect +
 to the cluster. + |  | 
-| *`disabledTLSValidations`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tlsvalidation[$$TLSValidation$$] array__ | DisabledTLSValidations defines a list of checks to ignore when validating +
-the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod. +
-If * is specified, it is expected to be the only option in list. +
-
-
-Note that this is going to be deprecated and removed. It will be replaced by +
-the kubeconfig stored in the connection secret. + |  | 
 |===
 
 

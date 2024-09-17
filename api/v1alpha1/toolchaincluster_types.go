@@ -32,40 +32,9 @@ const (
 // ToolchainClusterSpec defines the desired state of ToolchainCluster
 // +k8s:openapi-gen=true
 type ToolchainClusterSpec struct {
-	// The API endpoint of the member cluster. This can be a hostname,
-	// hostname:port, IP or IP:port.
-	//
-	// Be aware that this field is going to be replaced with
-	// the Status.APIEndpoint in the future.
-	//
-	// Deprecated: This is not used for anything.
-	APIEndpoint string `json:"apiEndpoint"`
-
-	// CABundle contains the certificate authority information.
-	// +optional
-	//
-	// Note that this is going to be deprecated and removed. It will be replaced by a field in
-	// the kubecondig of the connection secret
-	//
-	// Deprecated: This is not used for anything.
-	CABundle string `json:"caBundle,omitempty"`
-
 	// Name of the secret containing the kubeconfig required to connect
 	// to the cluster.
 	SecretRef LocalSecretReference `json:"secretRef"`
-
-	// DisabledTLSValidations defines a list of checks to ignore when validating
-	// the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod.
-	// If * is specified, it is expected to be the only option in list.
-	//
-	// Note that this is going to be deprecated and removed. It will be replaced by
-	// the kubeconfig stored in the connection secret.
-	//
-	// +optional
-	// +listType=set
-	//
-	// Deprecated: This is not used for anything.
-	DisabledTLSValidations []TLSValidation `json:"disabledTLSValidations,omitempty"`
 }
 
 // LocalSecretReference is a reference to a secret within the enclosing
