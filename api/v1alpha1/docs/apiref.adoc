@@ -1614,6 +1614,7 @@ NSTemplateTierSpec defines the desired state of NSTemplateTier
 | *`clusterResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierclusterresources[$$NSTemplateTierClusterResources$$]__ | the cluster resources template (for cluster-wide quotas, etc.) + |  | 
 | *`spaceRoles`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierspacerole[$$NSTemplateTierSpaceRole$$])__ | the templates to set the spaces roles, indexed by role + |  | 
 | *`spaceRequestConfig`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequestconfig[$$SpaceRequestConfig$$]__ | SpaceRequestConfig stores all the configuration related to the Space Request feature + |  | 
+| *`parameters`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-parameter[$$Parameter$$] array__ | Parameters is an optional array of Parameters to be used to replace "global" variables defined in the TierTemplate CRs of the NSTemplateTier. + |  | 
 |===
 
 
@@ -1637,6 +1638,11 @@ NSTemplateTierStatus defines the observed state of NSTemplateTier
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current NSTemplateTier conditions +
 Supported condition types: ConditionReady + |  | 
 | *`updates`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierhistory[$$NSTemplateTierHistory$$] array__ | Updates is an array of all NSTemplateTier updates + |  | 
+| *`revisions`* __object (keys:string, values:string)__ | Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values) +
+The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier. +
+Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the parameters. +
+If the content of the already referenced TierTemplateRevision CR doesn't match the expected outcome of the processed TierTemplate CR, +
+then a new TierTemplateRevision CR is created and the name here is updated. + |  | 
 |===
 
 
@@ -1839,6 +1845,31 @@ OpenShiftRouteTarget captures the look up information for retrieving an OpenShif
 | Field | Description | Default | Validation
 | *`namespace`* __string__ |  |  | 
 | *`name`* __string__ |  |  | 
+|===
+
+
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-parameter"]
+==== Parameter
+
+
+
+Parameter defines a name/value variable that is to be processed during
+TierTemplate creation.
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierspec[$$NSTemplateTierSpec$$]
+****
+
+[cols="20a,50a,15a,15a", options="header"]
+|===
+| Field | Description | Default | Validation
+| *`name`* __string__ | Name must be set and it can be referenced in the TierTemplate +
+content using {{.NAME}} + |  | 
+| *`value`* __string__ | Value holds the Parameter data. +
+The value replaces all occurrences of the Parameter {{.NAME}}. + |  | 
 |===
 
 

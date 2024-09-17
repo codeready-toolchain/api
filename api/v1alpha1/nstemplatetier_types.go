@@ -26,6 +26,26 @@ type NSTemplateTierSpec struct {
 	// SpaceRequestConfig stores all the configuration related to the Space Request feature
 	// +optional
 	SpaceRequestConfig *SpaceRequestConfig `json:"spaceRequestConfig,omitempty"`
+
+	// Parameters is an optional array of Parameters to be used to replace "global" variables defined in the TierTemplate CRs of the NSTemplateTier.
+	// +optional
+	// +patchMergeKey=name
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=name
+	Parameters []Parameter `json:"parameters,omitempty" protobuf:"bytes,4,opt,name=parameters" patchStrategy:"merge" patchMergeKey:"name"`
+}
+
+// Parameter defines a name/value variable that is to be processed during
+// TierTemplate creation.
+type Parameter struct {
+	// Name must be set and it can be referenced in the TierTemplate
+	// content using {{.NAME}}
+	Name string `json:"name" protobuf:"bytes,1,opt,name=name"`
+
+	// Value holds the Parameter data.
+	// The value replaces all occurrences of the Parameter {{.NAME}}.
+	Value string `json:"value" protobuf:"bytes,4,opt,name=value"`
 }
 
 // SpaceRequestConfig contains all the configuration related to the Space Request feature
@@ -76,6 +96,15 @@ type NSTemplateTierStatus struct {
 	// +listType=map
 	// +listMapKey=startTime
 	Updates []NSTemplateTierHistory `json:"updates,omitempty" patchStrategy:"merge" patchMergeKey:"startTime"`
+
+	// Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values)
+	// The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier.
+	// Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the parameters.
+	// If the content of the already referenced TierTemplateRevision CR doesn't match the expected outcome of the processed TierTemplate CR,
+	// then a new TierTemplateRevision CR is created and the name here is updated.
+	// +optional
+	// +mapType=atomic
+	Revisions map[string]string `json:"revisions,omitempty"`
 }
 
 // NSTemplateTierHistory a track record of an update

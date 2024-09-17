@@ -2085,12 +2085,36 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"),
 						},
 					},
+					"parameters": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"name",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "name",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Parameters is an optional array of Parameters to be used to replace \"global\" variables defined in the TierTemplate CRs of the NSTemplateTier.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Parameter"),
+									},
+								},
+							},
+						},
+					},
 				},
 				Required: []string{"namespaces"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRole", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierSpaceRole", "github.com/codeready-toolchain/api/api/v1alpha1.Parameter", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestConfig"},
 	}
 }
 
@@ -2144,6 +2168,27 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref common
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
 										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateTierHistory"),
+									},
+								},
+							},
+						},
+					},
+					"revisions": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-map-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values) The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier. Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the parameters. If the content of the already referenced TierTemplateRevision CR doesn't match the expected outcome of the processed TierTemplate CR, then a new TierTemplateRevision CR is created and the name here is updated.",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
 									},
 								},
 							},
