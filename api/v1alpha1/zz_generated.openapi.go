@@ -2097,7 +2097,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierSpec(ref common.R
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Parameters is an optional array of Parameters used during the NSTemplateTier and TierTemplate creation. When creating the NsTemplateTier and referenced TierTemplates, the parameters will be read from the NSTemplateTier and evaluated in all the TierTemplates referenced in the spec.",
+							Description: "Parameters is an optional array of Parameters to be used to replace \"global\" variables defined in the TierTemplate CRs of the NSTemplateTier.",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -2180,7 +2180,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref common
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Revisions is an array containing the names of the last applied TierTemplateRevision CRs. Since the TierTemplate can be managed outside the host-operator, we need to store the TierTemplate revisions, so we can get to the original contents to be able to properly propagate the update from the previous version of the template to the new one.",
+							Description: "Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values) The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier. Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the the parameters. If the content of the already referenced TierTemplateRevision CR doesn't match the expected outcome of the processed TierTemplate CR, then a new TierTemplateRevision CR is created and the name here is updated.",
 							Type:        []string{"object"},
 							AdditionalProperties: &spec.SchemaOrBool{
 								Allows: true,
