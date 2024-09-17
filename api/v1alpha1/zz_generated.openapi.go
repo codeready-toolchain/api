@@ -1929,6 +1929,74 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 				Description: "NSTemplateSetStatus defines the observed state of NSTemplateSet",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"namespaces": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "The namespace templates provisioned for the current NSTemplateSet CR",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace"),
+									},
+								},
+							},
+						},
+					},
+					"clusterResources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "the cluster resources template (for cluster-wide quotas, etc.) provisioned for the current NSTemplateSet CR",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources"),
+						},
+					},
+					"spaceRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "the role template and the users to whom the templates was applied for the current NSTemplateSet CR",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole"),
+									},
+								},
+							},
+						},
+					},
+					"featureToggles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"name",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "name",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "FeatureToggles holds the list of feature toggles/flags enabled for the current NSTemplateSet CR",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle"),
+									},
+								},
+							},
+						},
+					},
 					"provisionedNamespaces": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -1976,7 +2044,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
 	}
 }
 

@@ -538,6 +538,7 @@ according to its weight.
 
 .Appears In:
 ****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetstatus[$$NSTemplateSetStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiersconfig[$$TiersConfig$$]
 ****
 
@@ -1333,6 +1334,7 @@ NSTemplateSetClusterResources defines the cluster-scoped resources associated wi
 .Appears In:
 ****
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspec[$$NSTemplateSetSpec$$]
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetstatus[$$NSTemplateSetStatus$$]
 ****
 
 [cols="20a,50a,15a,15a", options="header"]
@@ -1377,6 +1379,7 @@ NSTemplateSetNamespace the namespace definition in an NSTemplateSet resource
 .Appears In:
 ****
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspec[$$NSTemplateSetSpec$$]
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetstatus[$$NSTemplateSetStatus$$]
 ****
 
 [cols="20a,50a,15a,15a", options="header"]
@@ -1398,6 +1401,7 @@ NSTemplateSetSpaceRole the role template and the users to whom the templates sho
 .Appears In:
 ****
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspec[$$NSTemplateSetSpec$$]
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetstatus[$$NSTemplateSetStatus$$]
 ****
 
 [cols="20a,50a,15a,15a", options="header"]
@@ -1449,6 +1453,10 @@ NSTemplateSetStatus defines the observed state of NSTemplateSet
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
+| *`namespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetnamespace[$$NSTemplateSetNamespace$$] array__ | The namespace templates provisioned for the current NSTemplateSet CR + |  | 
+| *`clusterResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetclusterresources[$$NSTemplateSetClusterResources$$]__ | the cluster resources template (for cluster-wide quotas, etc.) provisioned for the current NSTemplateSet CR + |  | 
+| *`spaceRoles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspacerole[$$NSTemplateSetSpaceRole$$] array__ | the role template and the users to whom the templates was applied for the current NSTemplateSet CR + |  | 
+| *`featureToggles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-featuretoggle[$$FeatureToggle$$] array__ | FeatureToggles holds the list of feature toggles/flags enabled for the current NSTemplateSet CR + |  | 
 | *`provisionedNamespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacenamespace[$$SpaceNamespace$$] array__ | ProvisionedNamespaces is a list of Namespaces that were provisioned by the NSTemplateSet. + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current NSTemplateSet conditions +
 Supported condition types: ConditionReady + |  | 

@@ -86,6 +86,28 @@ type NSTemplateSetSpaceRole struct {
 // NSTemplateSetStatus defines the observed state of NSTemplateSet
 // +k8s:openapi-gen=true
 type NSTemplateSetStatus struct {
+	// The namespace templates provisioned for the current NSTemplateSet CR
+	// +optional
+	// +listType=atomic
+	Namespaces []NSTemplateSetNamespace `json:"namespaces"`
+
+	// the cluster resources template (for cluster-wide quotas, etc.) provisioned for the current NSTemplateSet CR
+	// +optional
+	ClusterResources *NSTemplateSetClusterResources `json:"clusterResources,omitempty"`
+
+	// the role template and the users to whom the templates was applied for the current NSTemplateSet CR
+	// +optional
+	// +listType=atomic
+	SpaceRoles []NSTemplateSetSpaceRole `json:"spaceRoles,omitempty"`
+
+	// FeatureToggles holds the list of feature toggles/flags enabled for the current NSTemplateSet CR
+	// +optional
+	// +patchMergeKey=name
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=name
+	FeatureToggles []FeatureToggle `json:"featureToggles,omitempty" patchStrategy:"merge" patchMergeKey:"name"`
+
 	// ProvisionedNamespaces is a list of Namespaces that were provisioned by the NSTemplateSet.
 	// +optional
 	// +listType=atomic
