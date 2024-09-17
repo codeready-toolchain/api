@@ -41,7 +41,7 @@ type NSTemplateTierSpec struct {
 // TierTemplate creation.
 type Parameter struct {
 	// Name must be set and it can be referenced in the TierTemplate
-	// items using {{.NAME}}
+	// content using {{.NAME}}
 	Name string `json:"name" protobuf:"bytes,1,opt,name=name"`
 
 	// Value holds the Parameter data.
