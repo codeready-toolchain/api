@@ -2180,7 +2180,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateTierStatus(ref common
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values) The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier. Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the the parameters. If the content of the already referenced TierTemplateRevision CR doesn't match the expected outcome of the processed TierTemplate CR, then a new TierTemplateRevision CR is created and the name here is updated.",
+							Description: "Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values) The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier. Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the parameters. If the content of the already referenced TierTemplateRevision CR doesn't match the expected outcome of the processed TierTemplate CR, then a new TierTemplateRevision CR is created and the name here is updated.",
 							Type:        []string{"object"},
 							AdditionalProperties: &spec.SchemaOrBool{
 								Allows: true,
