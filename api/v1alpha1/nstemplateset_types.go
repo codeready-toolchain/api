@@ -91,7 +91,7 @@ type NSTemplateSetStatus struct {
 	// +listType=atomic
 	Namespaces []NSTemplateSetNamespace `json:"namespaces,omitempty"`
 
-	// the cluster resources template (for cluster-wide quotas, etc.) provisioned for the current NSTemplateSet CR
+	// The cluster resources template (for cluster-wide quotas, etc.) that was used last time to provision the NSTemplateSet CR
 	// +optional
 	ClusterResources *NSTemplateSetClusterResources `json:"clusterResources,omitempty"`
 
