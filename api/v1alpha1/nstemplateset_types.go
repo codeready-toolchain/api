@@ -89,7 +89,7 @@ type NSTemplateSetStatus struct {
 	// The namespace templates provisioned for the current NSTemplateSet CR
 	// +optional
 	// +listType=atomic
-	Namespaces []NSTemplateSetNamespace `json:"namespaces"`
+	Namespaces []NSTemplateSetNamespace `json:"namespaces,omitempty"`
 
 	// the cluster resources template (for cluster-wide quotas, etc.) provisioned for the current NSTemplateSet CR
 	// +optional
