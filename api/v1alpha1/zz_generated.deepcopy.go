@@ -1374,10 +1374,8 @@ func (in *NSTemplateSetStatus) DeepCopyInto(out *NSTemplateSetStatus) {
 	}
 	if in.FeatureToggles != nil {
 		in, out := &in.FeatureToggles, &out.FeatureToggles
-		*out = make([]FeatureToggle, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
-		}
+		*out = make([]string, len(*in))
+		copy(*out, *in)
 	}
 	if in.ProvisionedNamespaces != nil {
 		in, out := &in.ProvisionedNamespaces, &out.ProvisionedNamespaces

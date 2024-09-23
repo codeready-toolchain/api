@@ -1936,7 +1936,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "The namespace templates provisioned for the current NSTemplateSet CR",
+							Description: "The namespace templates that were used last time to provision NSTemplateSet CR",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -1961,7 +1961,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "the role template and the users to whom the templates was applied for the current NSTemplateSet CR",
+							Description: "The SpaceRole template and the users to whom the template was applied for when the NSTemplateSet CR was provisioned for the last time",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -1976,22 +1976,18 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 					"featureToggles": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"name",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "name",
-								"x-kubernetes-patch-strategy":  "merge",
+								"x-kubernetes-list-type": "atomic",
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "FeatureToggles holds the list of feature toggles/flags enabled for the current NSTemplateSet CR",
+							Description: "FeatureToggles holds the list of feature toggles/flags that were enabled when the NSTemplateSet CR was provisioned for the last time",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle"),
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
 									},
 								},
 							},
@@ -2044,7 +2040,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
 	}
 }
 
