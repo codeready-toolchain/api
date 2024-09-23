@@ -95,7 +95,7 @@ type NSTemplateSetStatus struct {
 	// +optional
 	ClusterResources *NSTemplateSetClusterResources `json:"clusterResources,omitempty"`
 
-	// the role template and the users to whom the templates was applied for the current NSTemplateSet CR
+	// The SpaceRole template and the users to whom the template was applied for when the NSTemplateSet CR was provisioned for the last time 
 	// +optional
 	// +listType=atomic
 	SpaceRoles []NSTemplateSetSpaceRole `json:"spaceRoles,omitempty"`
