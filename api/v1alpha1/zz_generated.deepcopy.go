@@ -3072,7 +3072,7 @@ func (in *TierTemplateRevisionList) DeepCopyInto(out *TierTemplateRevisionList) 
 	in.ListMeta.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
-		*out = make([]TierTemplate, len(*in))
+		*out = make([]TierTemplateRevision, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}

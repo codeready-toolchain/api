@@ -25,7 +25,7 @@ type TierTemplateRevision struct {
 type TierTemplateRevisionList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []TierTemplate `json:"items"`
+	Items           []TierTemplateRevision `json:"items"`
 }
 
 func init() {

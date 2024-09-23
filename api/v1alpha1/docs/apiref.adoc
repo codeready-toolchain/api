@@ -3085,7 +3085,6 @@ TierTemplate is the Schema for the tiertemplates API
 .Appears In:
 ****
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplatelist[$$TierTemplateList$$]
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionlist[$$TierTemplateRevisionList$$]
 ****
 
 [cols="20a,50a,15a,15a", options="header"]
@@ -3132,7 +3131,10 @@ TierTemplateRevision is the Schema for the tiertemplaterevisions API
 .Validation:
 - XPreserveUnknownFields: {}
 
-
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionlist[$$TierTemplateRevisionList$$]
+****
 
 [cols="20a,50a,15a,15a", options="header"]
 |===
@@ -3163,7 +3165,7 @@ TierTemplateRevisionList contains a list of TierTemplateRevisions
 | *`kind`* __string__ | `TierTemplateRevisionList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplate[$$TierTemplate$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$] array__ |  |  | XPreserveUnknownFields: {} +
 
 |===
 
