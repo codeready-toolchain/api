@@ -86,7 +86,7 @@ type NSTemplateSetSpaceRole struct {
 // NSTemplateSetStatus defines the observed state of NSTemplateSet
 // +k8s:openapi-gen=true
 type NSTemplateSetStatus struct {
-	// The namespace templates provisioned for the current NSTemplateSet CR
+	// The namespace templates that were used last time to provision NSTemplateSet CR
 	// +optional
 	// +listType=atomic
 	Namespaces []NSTemplateSetNamespace `json:"namespaces,omitempty"`
