@@ -100,7 +100,7 @@ type NSTemplateSetStatus struct {
 	// +listType=atomic
 	SpaceRoles []NSTemplateSetSpaceRole `json:"spaceRoles,omitempty"`
 
-	// FeatureToggles holds the list of feature toggles/flags enabled for the current NSTemplateSet CR
+	// FeatureToggles holds the list of feature toggles/flags that were enabled when the NSTemplateSet CR was provisioned for the last time
 	// +optional
 	// +patchMergeKey=name
 	// +patchStrategy=merge
