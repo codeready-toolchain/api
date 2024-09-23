@@ -1950,7 +1950,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 					},
 					"clusterResources": {
 						SchemaProps: spec.SchemaProps{
-							Description: "the cluster resources template (for cluster-wide quotas, etc.) provisioned for the current NSTemplateSet CR",
+							Description: "The cluster resources template (for cluster-wide quotas, etc.) that was used last time to provision the NSTemplateSet CR",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources"),
 						},
 					},
