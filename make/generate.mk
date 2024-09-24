@@ -4,7 +4,6 @@ API_FULL_GROUPNAME=toolchain.dev.openshift.com
 API_VERSION:=v1alpha1
 
 # how to dispatch the CRD files per repository (space-separated lists)
-# !!! IMPORTANT !!! - when there is a new CRD added or an existing one removed or renamed, don't forget to change it also here: https://github.com/codeready-toolchain/toolchain-cicd/blob/master/scripts/add-cluster.sh#L52-L73
 HOST_CLUSTER_CRDS:=masteruserrecords nstemplatetiers usersignups bannedusers notifications spaces spacebindings socialevents tiertemplates tiertemplaterevisions toolchainstatuses toolchainclusters toolchainconfigs usertiers proxyplugins spacerequests spacebindingrequests spaceprovisionerconfigs
 MEMBER_CLUSTER_CRDS:=useraccounts nstemplatesets memberstatuses idlers toolchainclusters memberoperatorconfigs spacerequests workspaces spacebindingrequests
 
