@@ -3143,7 +3143,7 @@ TierTemplateRevision is the Schema for the tiertemplaterevisions API
 | *`kind`* __string__ | `TierTemplateRevision` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplatespec[$$TierTemplateSpec$$]__ |  |  | 
+| *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionspec[$$TierTemplateRevisionSpec$$]__ |  |  | 
 |===
 
 
@@ -3170,6 +3170,28 @@ TierTemplateRevisionList contains a list of TierTemplateRevisions
 |===
 
 
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionspec"]
+==== TierTemplateRevisionSpec
+
+
+
+TierTemplateRevisionSpec defines the desired state of TierTemplateRevision
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$]
+****
+
+[cols="20a,50a,15a,15a", options="header"]
+|===
+| Field | Description | Default | Validation
+| *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
+The template parameters values will be defined in the NSTemplateTier CRD. + |  | 
+|===
+
+
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplatespec"]
 ==== TierTemplateSpec
 
@@ -3182,7 +3204,6 @@ TierTemplateSpec defines the desired state of TierTemplate
 .Appears In:
 ****
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplate[$$TierTemplate$$]
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$]
 ****
 
 [cols="20a,50a,15a,15a", options="header"]
