@@ -46,6 +46,8 @@ Package v1alpha1 contains API Schema definitions for the toolchain.dev.openshift
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequestlist[$$SpaceRequestList$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplate[$$TierTemplate$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplatelist[$$TierTemplateList$$]
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$]
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionlist[$$TierTemplateRevisionList$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchaincluster[$$ToolchainCluster$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterlist[$$ToolchainClusterList$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainconfig[$$ToolchainConfig$$]
@@ -3123,6 +3125,77 @@ TierTemplateList contains a list of TierTemplate
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplate[$$TierTemplate$$] array__ |  |  | XPreserveUnknownFields: {} +
 
+|===
+
+
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision"]
+==== TierTemplateRevision
+
+
+
+TierTemplateRevision is the Schema for the tiertemplaterevisions API
+
+.Validation:
+- XPreserveUnknownFields: {}
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionlist[$$TierTemplateRevisionList$$]
+****
+
+[cols="20a,50a,15a,15a", options="header"]
+|===
+| Field | Description | Default | Validation
+| *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
+| *`kind`* __string__ | `TierTemplateRevision` | |
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+ |  | 
+| *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionspec[$$TierTemplateRevisionSpec$$]__ |  |  | 
+|===
+
+
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionlist"]
+==== TierTemplateRevisionList
+
+
+
+TierTemplateRevisionList contains a list of TierTemplateRevisions
+
+
+
+
+
+[cols="20a,50a,15a,15a", options="header"]
+|===
+| Field | Description | Default | Validation
+| *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
+| *`kind`* __string__ | `TierTemplateRevisionList` | |
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+ |  | 
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$] array__ |  |  | XPreserveUnknownFields: {} +
+
+|===
+
+
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionspec"]
+==== TierTemplateRevisionSpec
+
+
+
+TierTemplateRevisionSpec defines the desired state of TierTemplateRevision
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$]
+****
+
+[cols="20a,50a,15a,15a", options="header"]
+|===
+| Field | Description | Default | Validation
+| *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
+The template parameters values will be defined in the NSTemplateTier CRD. + |  | 
 |===
 
 
