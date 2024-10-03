@@ -21,14 +21,6 @@ const (
 	ToolchainClusterLabel = LabelKeyPrefix + "toolchain-cluster"
 )
 
-type TLSValidation string
-
-const (
-	TLSAll            TLSValidation = "*"
-	TLSSubjectName    TLSValidation = "SubjectName"
-	TLSValidityPeriod TLSValidation = "ValidityPeriod"
-)
-
 // ToolchainClusterSpec defines the desired state of ToolchainCluster
 // +k8s:openapi-gen=true
 type ToolchainClusterSpec struct {
