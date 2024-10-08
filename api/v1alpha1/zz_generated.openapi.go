@@ -4591,6 +4591,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 				Description: "ToolchainClusterSpec defines the desired state of ToolchainCluster",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"apiEndpoint": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.\n\nBe aware that this is kept in the spec only for compatibility reasons and doesn't serve any purpose. Use the Status.APIEndpoint instead.\n\nDeprecated: This is not used for anything.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"secretRef": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Name of the secret containing the kubeconfig required to connect to the cluster.",

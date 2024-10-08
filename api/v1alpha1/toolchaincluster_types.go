@@ -24,6 +24,16 @@ const (
 // ToolchainClusterSpec defines the desired state of ToolchainCluster
 // +k8s:openapi-gen=true
 type ToolchainClusterSpec struct {
+	// The API endpoint of the member cluster. This can be a hostname,
+	// hostname:port, IP or IP:port.
+	//
+	// Be aware that this is kept in the spec only for compatibility reasons
+	// and doesn't serve any purpose. Use the Status.APIEndpoint instead.
+	//
+	// Deprecated: This is not used for anything.
+	// +optional
+	APIEndpoint string `json:"apiEndpoint,omitempty"`
+
 	// Name of the secret containing the kubeconfig required to connect
 	// to the cluster.
 	SecretRef LocalSecretReference `json:"secretRef"`
