@@ -117,6 +117,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceSpec":                             schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceStatus":                           schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateRevisionSpec":              schema_codeready_toolchain_api_api_v1alpha1_TierTemplateRevisionSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                      schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                      schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
@@ -4341,6 +4342,40 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateRevisionSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "TierTemplateRevisionSpec defines the desired state of TierTemplateRevision",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"templateObjects": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. The template parameters values will be defined in the NSTemplateTier CRD.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("k8s.io/apimachinery/pkg/runtime.RawExtension"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"k8s.io/apimachinery/pkg/runtime.RawExtension"},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -4556,50 +4591,15 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 				Description: "ToolchainClusterSpec defines the desired state of ToolchainCluster",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"apiEndpoint": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.\n\nBe aware that this field is going to be replaced with the Status.APIEndpoint in the future.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"caBundle": {
-						SchemaProps: spec.SchemaProps{
-							Description: "CABundle contains the certificate authority information.\n\nNote that this is going to be deprecated and removed. It will be replaced by a field in the kubecondig of the connection secret",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"secretRef": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.\n\nIn the near future, the secret will contain the whole kubeconfig required to connect to the cluster.",
+							Description: "Name of the secret containing the kubeconfig required to connect to the cluster.",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference"),
 						},
 					},
-					"disabledTLSValidations": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "set",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "DisabledTLSValidations defines a list of checks to ignore when validating the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod. If * is specified, it is expected to be the only option in list.\n\nNote that this is going to be deprecated and removed. It will be replaced by the kubeconfig stored in the connection secret.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
 				},
-				Required: []string{"apiEndpoint", "secretRef"},
+				Required: []string{"secretRef"},
 			},
 		},
 		Dependencies: []string{
