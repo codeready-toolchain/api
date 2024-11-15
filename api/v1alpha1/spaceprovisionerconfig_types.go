@@ -57,7 +57,8 @@ type SpaceProvisionerCapacityThresholds struct {
 // currently provisioned to it.
 type ConsumedCapacity struct {
 	// MemoryUsagePercentPerNodeRole is the percent of the memory used per node role (eg. worker, master)
-	MemoryUsagePercentPerNodeRole map[string]int `json:"memoryUsagePercentPerNode"`
+	// +maptype: atomic
+	MemoryUsagePercentPerNodeRole map[string]int `json:"memoryUsagePercentPerNodeRole"`
 
 	// SpaceCount is the number of spaces currently deployed to the cluster
 	SpaceCount int `json:"spaceCount"`

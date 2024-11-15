@@ -489,7 +489,7 @@ currently provisioned to it.
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`memoryUsagePercentPerNode`* __object (keys:string, values:integer)__ | MemoryUsagePercentPerNodeRole is the percent of the memory used per node role (eg. worker, master) + |  | 
+| *`memoryUsagePercentPerNodeRole`* __object (keys:string, values:integer)__ | MemoryUsagePercentPerNodeRole is the percent of the memory used per node role (eg. worker, master) + |  | 
 | *`spaceCount`* __integer__ | SpaceCount is the number of spaces currently deployed to the cluster + |  | 
 |===
 
