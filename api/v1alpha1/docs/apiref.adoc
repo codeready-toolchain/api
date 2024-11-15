@@ -156,7 +156,7 @@ BannedUser is used to maintain a list of banned e-mail addresses
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `BannedUser` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-banneduserspec[$$BannedUserSpec$$]__ |  |  | 
 |===
@@ -178,7 +178,7 @@ BannedUserList contains a list of BannedUser
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `BannedUserList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-banneduser[$$BannedUser$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -425,11 +425,11 @@ Supported condition types: ConditionReady + |  |
 |===
 | Field | Description | Default | Validation
 | *`type`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-conditiontype[$$ConditionType$$]__ | Type of condition + |  | 
-| *`status`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#conditionstatus-v1-core[$$ConditionStatus$$]__ | Status of the condition, one of True, False, Unknown. + |  | 
-| *`lastTransitionTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ | Last time the condition transit from one status to another. + |  | 
+| *`status`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#conditionstatus-v1-core[$$ConditionStatus$$]__ | Status of the condition, one of True, False, Unknown. + |  | 
+| *`lastTransitionTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | Last time the condition transit from one status to another. + |  | 
 | *`reason`* __string__ | (brief) reason for the condition's last transition. + |  | 
 | *`message`* __string__ | Human readable message indicating details about last transition. + |  | 
-| *`lastUpdatedTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ | Last time the condition was updated + |  | 
+| *`lastUpdatedTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | Last time the condition was updated + |  | 
 |===
 
 
@@ -794,7 +794,7 @@ For example an Idler with "foo" name will be managing pods in namespace "foo".
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `Idler` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-idlerspec[$$IdlerSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-idlerstatus[$$IdlerStatus$$]__ |  |  | 
@@ -817,7 +817,7 @@ IdlerList contains a list of Idlers
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `IdlerList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-idler[$$Idler$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -911,7 +911,7 @@ MasterUserRecord keeps all information about user, user accounts and namespaces 
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `MasterUserRecord` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-masteruserrecordspec[$$MasterUserRecordSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-masteruserrecordstatus[$$MasterUserRecordStatus$$]__ |  |  | 
@@ -934,7 +934,7 @@ MasterUserRecordList contains a list of MasterUserRecord
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `MasterUserRecordList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-masteruserrecord[$$MasterUserRecord$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -991,7 +991,7 @@ MasterUserRecordStatus defines the observed state of MasterUserRecord
 Supported condition types: +
 Provisioning, UserAccountNotReady and Ready + |  | 
 | *`userAccounts`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-useraccountstatusembedded[$$UserAccountStatusEmbedded$$] array__ | The status of user accounts in the member clusters which belong to this MasterUserRecord + |  | 
-| *`provisionedTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ | The timestamp when the user was provisioned + |  | 
+| *`provisionedTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | The timestamp when the user was provisioned + |  | 
 |===
 
 
@@ -1039,7 +1039,7 @@ MemberOperatorConfig keeps all configuration parameters needed in member operato
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `MemberOperatorConfig` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigstatus[$$MemberOperatorConfigStatus$$]__ |  |  | 
@@ -1062,7 +1062,7 @@ MemberOperatorConfigList contains a list of MemberOperatorConfig
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `MemberOperatorConfigList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfig[$$MemberOperatorConfig$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -1162,7 +1162,7 @@ MemberStatus is used to track toolchain member status
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `MemberStatus` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusspec[$$MemberStatusSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusstatus[$$MemberStatusStatus$$]__ |  |  | 
@@ -1207,7 +1207,7 @@ MemberStatusList contains a list of MemberStatus
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `MemberStatusList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatus[$$MemberStatus$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -1339,7 +1339,7 @@ NSTemplateSet defines user environment via templates that are used for namespace
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `NSTemplateSet` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspec[$$NSTemplateSetSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetstatus[$$NSTemplateSetStatus$$]__ |  |  | 
@@ -1384,7 +1384,7 @@ NSTemplateSetList contains a list of NSTemplateSet
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `NSTemplateSetList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplateset[$$NSTemplateSet$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -1507,7 +1507,7 @@ NSTemplateTier configures user environment via templates used for namespaces the
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `NSTemplateTier` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierspec[$$NSTemplateTierSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierstatus[$$NSTemplateTierStatus$$]__ |  |  | 
@@ -1552,9 +1552,9 @@ NSTemplateTierHistory a track record of an update
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ | StartTime is the time when the NSTemplateTier was updated + |  | 
+| *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | StartTime is the time when the NSTemplateTier was updated + |  | 
 | *`hash`* __string__ | Hash the hash matching on the templateRefs in the resource spec + |  | 
-| *`completionTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ | CompletionTime is the time when the last MasterUserRecord was updated + |  | 
+| *`completionTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | CompletionTime is the time when the last MasterUserRecord was updated + |  | 
 | *`failures`* __integer__ | Failures is the number of MasterUserRecords which failed to be updated + |  | 
 | *`failedAccounts`* __string array__ | FailedAccounts + |  | 
 |===
@@ -1576,7 +1576,7 @@ NSTemplateTierList contains a list of NSTemplateTier
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `NSTemplateTierList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetier[$$NSTemplateTier$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -1721,7 +1721,7 @@ Notification registers a notification in the CodeReady Toolchain
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `Notification` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationspec[$$NotificationSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationstatus[$$NotificationStatus$$]__ |  |  | 
@@ -1744,7 +1744,7 @@ NotificationList contains a list of Notification
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `NotificationList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notification[$$Notification$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -1923,7 +1923,7 @@ The value replaces all occurrences of the Parameter {{.NAME}}. + |  |
 |===
 | Field | Description | Default | Validation
 | *`name`* __string__ |  |  | 
-| *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ |  |  | 
+| *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ |  |  | 
 |===
 
 
@@ -1978,7 +1978,7 @@ https://<proxy-host>/plugins/<ProxyPlugin.ObjectMeta.Name>/workspaces/<workspace
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `ProxyPlugin` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-proxypluginspec[$$ProxyPluginSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-proxypluginstatus[$$ProxyPluginStatus$$]__ |  |  | 
@@ -2001,7 +2001,7 @@ ProxyPluginList contains a list of ProxyPlugin
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `ProxyPluginList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-proxyplugin[$$ProxyPlugin$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -2390,7 +2390,7 @@ SocialEvent registers a social event in Dev Sandbox
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SocialEvent` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-socialeventspec[$$SocialEventSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-socialeventstatus[$$SocialEventStatus$$]__ |  |  | 
@@ -2413,7 +2413,7 @@ SocialEventList contains a list of SocialEvent
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SocialEventList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-socialevent[$$SocialEvent$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -2438,8 +2438,8 @@ may register for the event by using the event's unique activation code
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ | The timestamp from which users may register via this event's activation code + |  | 
-| *`endTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ | The timestamp after which users may no longer register via this event's activation code + |  | 
+| *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | The timestamp from which users may register via this event's activation code + |  | 
+| *`endTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | The timestamp after which users may no longer register via this event's activation code + |  | 
 | *`description`* __string__ | An optional description that may be provided describing the purpose of the event + |  | 
 | *`maxAttendees`* __integer__ | The maximum number of attendees + |  | 
 | *`userTier`* __string__ | The tier to assign to users registering for the event. +
@@ -2496,7 +2496,7 @@ Space is the Schema for the spaces API
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `Space` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacespec[$$SpaceSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacestatus[$$SpaceStatus$$]__ |  |  | 
@@ -2523,7 +2523,7 @@ SpaceBinding is the Schema for the spacebindings API which defines relationship 
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SpaceBinding` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebindingspec[$$SpaceBindingSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebindingstatus[$$SpaceBindingStatus$$]__ |  |  | 
@@ -2546,7 +2546,7 @@ SpaceBindingList contains a list of SpaceBinding
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SpaceBindingList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebinding[$$SpaceBinding$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -2573,7 +2573,7 @@ SpaceBindingRequest is the Schema for the SpaceBindingRequest API
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SpaceBindingRequest` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebindingrequestspec[$$SpaceBindingRequestSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebindingrequeststatus[$$SpaceBindingRequestStatus$$]__ |  |  | 
@@ -2596,7 +2596,7 @@ SpaceBindingRequestList contains a list of SpaceBindingRequests
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SpaceBindingRequestList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebindingrequest[$$SpaceBindingRequest$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -2728,7 +2728,7 @@ SpaceList contains a list of Space
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SpaceList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-space[$$Space$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -2814,7 +2814,7 @@ SpaceProvisionerConfig is the configuration of space provisioning in the member 
 | *`kind`* __string__ | `SpaceProvisionerConfig` | |
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceprovisionerconfigspec[$$SpaceProvisionerConfigSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceprovisionerconfigstatus[$$SpaceProvisionerConfigStatus$$]__ |  |  | 
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 |===
 
@@ -2835,7 +2835,7 @@ SpaceProvisionerConfigList contains a list of SpaceProvisionerConfig
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SpaceProvisionerConfigList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceprovisionerconfig[$$SpaceProvisionerConfig$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -2913,7 +2913,7 @@ SpaceRequest is the Schema for the space request API
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SpaceRequest` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequestspec[$$SpaceRequestSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequeststatus[$$SpaceRequestStatus$$]__ |  |  | 
@@ -2957,7 +2957,7 @@ SpaceRequestList contains a list of SpaceRequests
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `SpaceRequestList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequest[$$SpaceRequest$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -3110,7 +3110,7 @@ TierTemplate is the Schema for the tiertemplates API
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `TierTemplate` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplatespec[$$TierTemplateSpec$$]__ |  |  | 
 |===
@@ -3132,7 +3132,7 @@ TierTemplateList contains a list of TierTemplate
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `TierTemplateList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplate[$$TierTemplate$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -3159,7 +3159,7 @@ TierTemplateRevision is the Schema for the tiertemplaterevisions API
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `TierTemplateRevision` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionspec[$$TierTemplateRevisionSpec$$]__ |  |  | 
 |===
@@ -3181,7 +3181,7 @@ TierTemplateRevisionList contains a list of TierTemplateRevisions
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `TierTemplateRevisionList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -3205,7 +3205,7 @@ TierTemplateRevisionSpec defines the desired state of TierTemplateRevision
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
+| *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
 The template parameters values will be defined in the NSTemplateTier CRD. + |  | 
 |===
 
@@ -3232,7 +3232,7 @@ TierTemplateSpec defines the desired state of TierTemplate
 | *`revision`* __string__ | The revision of the corresponding template + |  | 
 | *`template`* __xref:{anchor_prefix}-github-com-openshift-api-template-v1-template[$$Template$$]__ | Template contains an OpenShift Template to be used to provision either a user's namespace or cluster-wide resources +
 Note: this field will be removed in favor of the new TemplateObjects below. + |  | 
-| *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
+| *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
 
 
 NOTE: when specifying variables as part of the objects list , those concatenated as part of other strings do not need to be wrapped inside quotes, +
@@ -3292,7 +3292,7 @@ the cluster.
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `ToolchainCluster` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterspec[$$ToolchainClusterSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterstatus[$$ToolchainClusterStatus$$]__ |  |  | 
@@ -3337,7 +3337,7 @@ ToolchainClusterList contains a list of ToolchainCluster
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `ToolchainClusterList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchaincluster[$$ToolchainCluster$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -3412,7 +3412,7 @@ ToolchainConfig keeps all configuration parameters needed for host and member op
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `ToolchainConfig` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainconfigspec[$$ToolchainConfigSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainconfigstatus[$$ToolchainConfigStatus$$]__ |  |  | 
@@ -3435,7 +3435,7 @@ ToolchainConfigList contains a list of ToolchainConfig
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `ToolchainConfigList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainconfig[$$ToolchainConfig$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -3533,7 +3533,7 @@ ToolchainStatus is used to track overall toolchain status
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `ToolchainStatus` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatusspec[$$ToolchainStatusSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatusstatus[$$ToolchainStatusStatus$$]__ |  |  | 
@@ -3578,7 +3578,7 @@ ToolchainStatusList contains a list of ToolchainStatus
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `ToolchainStatusList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatus[$$ToolchainStatus$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -3677,7 +3677,7 @@ UserAccount keeps all information about user provisioned in the cluster
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `UserAccount` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-useraccountspec[$$UserAccountSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-useraccountstatus[$$UserAccountStatus$$]__ |  |  | 
@@ -3721,7 +3721,7 @@ UserAccountList contains a list of UserAccount
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `UserAccountList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-useraccount[$$UserAccount$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -3818,7 +3818,7 @@ UserSignup registers a user in the CodeReady Toolchain
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `UserSignup` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersignupspec[$$UserSignupSpec$$]__ |  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersignupstatus[$$UserSignupStatus$$]__ |  |  | 
@@ -3841,7 +3841,7 @@ UserSignupList contains a list of UserSignup
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `UserSignupList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersignup[$$UserSignup$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -3912,7 +3912,7 @@ PendingApproval, Provisioning, Complete + |  |
 | *`homeSpace`* __string__ | HomeSpace is the name of the Space that is created for the user +
 immediately after their account is approved. +
 This is used by the proxy when no workspace context is provided. + |  | 
-| *`scheduledDeactivationTimestamp`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#time-v1-meta[$$Time$$]__ | ScheduledDeactivationTimestamp is the calculated timestamp after which the user's account will be deactivated, typically +
+| *`scheduledDeactivationTimestamp`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | ScheduledDeactivationTimestamp is the calculated timestamp after which the user's account will be deactivated, typically +
 after the expiry of their trial and based on the term specific by their UserTier.  This property may be used as +
 a convenience to determine the amount of time an account has left before deactivation, without requiring a separate +
 lookup for the UserTier and subsequent calculation.  It is managed by the Deactivation controller in the host operator. + |  | 
@@ -3939,7 +3939,7 @@ UserTier contains user-specific configuration
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `UserTier` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usertierspec[$$UserTierSpec$$]__ |  |  | 
 |===
@@ -3961,7 +3961,7 @@ UserTierList contains a list of UserTier
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `UserTierList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usertier[$$UserTier$$] array__ |  |  | XPreserveUnknownFields: {} +
 
@@ -4081,7 +4081,7 @@ for API discovery purposes only. The schema will be used by the proxy's workspac
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `Workspace` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-workspacestatus[$$WorkspaceStatus$$]__ |  |  | 
 |===
@@ -4103,7 +4103,7 @@ WorkspaceList contains a list of Workspaces
 | Field | Description | Default | Validation
 | *`apiVersion`* __string__ | `toolchain.dev.openshift.com/v1alpha1` | |
 | *`kind`* __string__ | `WorkspaceList` | |
-| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.2/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-workspace[$$Workspace$$] array__ |  |  | XPreserveUnknownFields: {} +
 
