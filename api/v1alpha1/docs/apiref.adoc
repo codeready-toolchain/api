@@ -471,6 +471,29 @@ Defines all parameters concerned with the console
 |===
 
 
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-consumedcapacity"]
+==== ConsumedCapacity
+
+
+
+ConsumedCapacity describes the capacity of the cluster consumed by the spaces
+currently provisioned to it.
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceprovisionerconfigstatus[$$SpaceProvisionerConfigStatus$$]
+****
+
+[cols="20a,50a,15a,15a", options="header"]
+|===
+| Field | Description | Default | Validation
+| *`memoryUsagePercentPerNodeRole`* __object (keys:string, values:integer)__ | MemoryUsagePercentPerNodeRole is the percent of the memory used per node role (eg. worker, master) + |  | 
+| *`spaceCount`* __integer__ | SpaceCount is the number of spaces currently deployed to the cluster + |  | 
+|===
+
+
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-deactivationconfig"]
 ==== DeactivationConfig
 
@@ -2861,8 +2884,12 @@ the space scheduling decisions. + |  |
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
+| *`consumedCapacity`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-consumedcapacity[$$ConsumedCapacity$$]__ | ConsumedCapacity reflects the runtime state of the cluster and the capacity it currently consumes. +
+Nil if the consumed capacity is not known + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions describes the state of the configuration (its validity). +
-The only known condition type is "Ready". + |  | 
+The only known condition type is "Ready". The SpaceProvisionerConfig is ready when the following is true: +
+* the referenced ToolchainCluster object exists and is itself ready +
+* the consumed capacity doesn't breach the thresholds defined in the spec + |  | 
 |===
 
 

@@ -4003,6 +4003,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 			SchemaProps: spec.SchemaProps{
 				Type: []string{"object"},
 				Properties: map[string]spec.Schema{
+					"consumedCapacity": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ConsumedCapacity reflects the runtime state of the cluster and the capacity it currently consumes. Nil if the consumed capacity is not known",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ConsumedCapacity"),
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -4015,7 +4021,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions describes the state of the configuration (its validity). The only known condition type is \"Ready\".",
+							Description: "Conditions describes the state of the configuration (its validity). The only known condition type is \"Ready\". The SpaceProvisionerConfig is ready when the following is true:\n   * the referenced ToolchainCluster object exists and is itself ready\n   * the consumed capacity doesn't breach the thresholds defined in the spec",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -4031,7 +4037,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.ConsumedCapacity"},
 	}
 }
 
