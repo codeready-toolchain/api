@@ -117,6 +117,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceRequestStatus":                    schema_codeready_toolchain_api_api_v1alpha1_SpaceRequestStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceSpec":                             schema_codeready_toolchain_api_api_v1alpha1_SpaceSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SpaceStatus":                           schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref),
+		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateRevisionSpec":              schema_codeready_toolchain_api_api_v1alpha1_TierTemplateRevisionSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TierTemplateSpec":                      schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig":                           schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ToolchainCluster":                      schema_codeready_toolchain_api_api_v1alpha1_ToolchainCluster(ref),
@@ -1929,6 +1930,70 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 				Description: "NSTemplateSetStatus defines the observed state of NSTemplateSet",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"namespaces": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "The namespace templates that were used last time to provision NSTemplateSet CR",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace"),
+									},
+								},
+							},
+						},
+					},
+					"clusterResources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The cluster resources template (for cluster-wide quotas, etc.) that was used last time to provision the NSTemplateSet CR",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources"),
+						},
+					},
+					"spaceRoles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "The SpaceRole template and the users to whom the template was applied for when the NSTemplateSet CR was provisioned for the last time",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole"),
+									},
+								},
+							},
+						},
+					},
+					"featureToggles": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "FeatureToggles holds the list of feature toggles/flags that were enabled when the NSTemplateSet CR was provisioned for the last time",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
 					"provisionedNamespaces": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -1976,7 +2041,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetStatus(ref common.
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace", "github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetSpaceRole", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceNamespace"},
 	}
 }
 
@@ -3938,6 +4003,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 			SchemaProps: spec.SchemaProps{
 				Type: []string{"object"},
 				Properties: map[string]spec.Schema{
+					"consumedCapacity": {
+						SchemaProps: spec.SchemaProps{
+							Description: "ConsumedCapacity reflects the runtime state of the cluster and the capacity it currently consumes. Nil if the consumed capacity is not known",
+							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.ConsumedCapacity"),
+						},
+					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -3950,7 +4021,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "Conditions describes the state of the configuration (its validity). The only known condition type is \"Ready\".",
+							Description: "Conditions describes the state of the configuration (its validity). The only known condition type is \"Ready\". The SpaceProvisionerConfig is ready when the following is true:\n   * the referenced ToolchainCluster object exists and is itself ready\n   * the consumed capacity doesn't breach the thresholds defined in the spec",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -3966,7 +4037,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceProvisionerConfigStatus(re
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.ConsumedCapacity"},
 	}
 }
 
@@ -4277,6 +4348,40 @@ func schema_codeready_toolchain_api_api_v1alpha1_SpaceStatus(ref common.Referenc
 	}
 }
 
+func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateRevisionSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "TierTemplateRevisionSpec defines the desired state of TierTemplateRevision",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"templateObjects": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "atomic",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. The template parameters values will be defined in the NSTemplateTier CRD.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("k8s.io/apimachinery/pkg/runtime.RawExtension"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"k8s.io/apimachinery/pkg/runtime.RawExtension"},
+	}
+}
+
 func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -4492,50 +4597,15 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainClusterSpec(ref common
 				Description: "ToolchainClusterSpec defines the desired state of ToolchainCluster",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"apiEndpoint": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The API endpoint of the member cluster. This can be a hostname, hostname:port, IP or IP:port.\n\nBe aware that this field is going to be replaced with the Status.APIEndpoint in the future.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"caBundle": {
-						SchemaProps: spec.SchemaProps{
-							Description: "CABundle contains the certificate authority information.\n\nNote that this is going to be deprecated and removed. It will be replaced by a field in the kubecondig of the connection secret",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"secretRef": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Name of the secret containing the token required to access the member cluster. The secret needs to exist in the same namespace as the control plane and should have a \"token\" key.\n\nIn the near future, the secret will contain the whole kubeconfig required to connect to the cluster.",
+							Description: "Name of the secret containing the kubeconfig required to connect to the cluster.",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.LocalSecretReference"),
 						},
 					},
-					"disabledTLSValidations": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "set",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "DisabledTLSValidations defines a list of checks to ignore when validating the TLS connection to the member cluster.  This can be any of *, SubjectName, or ValidityPeriod. If * is specified, it is expected to be the only option in list.\n\nNote that this is going to be deprecated and removed. It will be replaced by the kubeconfig stored in the connection secret.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
 				},
-				Required: []string{"apiEndpoint", "secretRef"},
+				Required: []string{"secretRef"},
 			},
 		},
 		Dependencies: []string{

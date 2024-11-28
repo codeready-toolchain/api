@@ -3,9 +3,12 @@ package v1alpha1
 import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
 const (
-	SpaceProvisionerConfigToolchainClusterNotFoundReason = "ToolchainClusterNotFound"
-	SpaceProvisionerConfigToolchainClusterNotReadyReason = "ToolchainClusterNotReady"
-	SpaceProvisionerConfigValidReason                    = "AllChecksPassed"
+	SpaceProvisionerConfigToolchainClusterNotFoundReason  = "ToolchainClusterNotFound"
+	SpaceProvisionerConfigToolchainClusterNotReadyReason  = "ToolchainClusterNotReady"
+	SpaceProvisionerConfigInsufficientCapacityReason      = "InsufficientCapacity"
+	SpaceProvisionerConfigFailedToDetermineCapacityReason = "FailedToDetermineCapacity"
+	SpaceProvisionerConfigValidReason                     = "AllChecksPassed"
+	SpaceProvisionerConfigDisabledReason                  = "Disabled"
 )
 
 // +k8s:openapi-gen=true
@@ -50,10 +53,29 @@ type SpaceProvisionerCapacityThresholds struct {
 	MaxMemoryUtilizationPercent uint `json:"maxMemoryUtilizationPercent,omitempty"`
 }
 
+// ConsumedCapacity describes the capacity of the cluster consumed by the spaces
+// currently provisioned to it.
+type ConsumedCapacity struct {
+	// MemoryUsagePercentPerNodeRole is the percent of the memory used per node role (eg. worker, master)
+	// +maptype: atomic
+	MemoryUsagePercentPerNodeRole map[string]int `json:"memoryUsagePercentPerNodeRole"`
+
+	// SpaceCount is the number of spaces currently deployed to the cluster
+	SpaceCount int `json:"spaceCount"`
+}
+
 // +k8s:openapi-gen=true
 type SpaceProvisionerConfigStatus struct {
+	// ConsumedCapacity reflects the runtime state of the cluster and the capacity it currently consumes.
+	// Nil if the consumed capacity is not known
+	// +optional
+	ConsumedCapacity *ConsumedCapacity `json:"consumedCapacity,omitempty"`
+
 	// Conditions describes the state of the configuration (its validity).
-	// The only known condition type is "Ready".
+	// The only known condition type is "Ready". The SpaceProvisionerConfig is ready when the following is true:
+	//    * the referenced ToolchainCluster object exists and is itself ready
+	//    * the consumed capacity doesn't breach the thresholds defined in the spec
+	//
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
