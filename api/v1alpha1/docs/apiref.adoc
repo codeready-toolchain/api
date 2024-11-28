@@ -1893,6 +1893,7 @@ TierTemplate creation.
 .Appears In:
 ****
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierspec[$$NSTemplateTierSpec$$]
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevisionspec[$$TierTemplateRevisionSpec$$]
 ****
 
 [cols="20a,50a,15a,15a", options="header"]
@@ -3207,6 +3208,7 @@ TierTemplateRevisionSpec defines the desired state of TierTemplateRevision
 | Field | Description | Default | Validation
 | *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
 The template parameters values will be defined in the NSTemplateTier CRD. + |  | 
+| *`parameters`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-parameter[$$Parameter$$] array__ | Parameters is an optional array of Parameters which will be used to replace the variables present in the TemplateObjects list when provisioning a Space. + |  | 
 |===
 
 
