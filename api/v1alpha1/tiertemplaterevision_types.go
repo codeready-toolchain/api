@@ -29,6 +29,14 @@ type TierTemplateRevisionSpec struct {
 	// +listType=atomic
 	// +kubebuilder:pruning:PreserveUnknownFields
 	TemplateObjects []runtime.RawExtension `json:"templateObjects,omitempty" protobuf:"bytes,3,opt,name=templateObjects"`
+
+	// Parameters is an optional array of Parameters which will be used to replace the variables present in the TemplateObjects list when provisioning a Space.
+	// +optional
+	// +patchMergeKey=name
+	// +patchStrategy=merge
+	// +listType=map
+	// +listMapKey=name
+	Parameters []Parameter `json:"parameters,omitempty" protobuf:"bytes,4,opt,name=parameters" patchStrategy:"merge" patchMergeKey:"name"`
 }
 
 //+kubebuilder:object:root=true

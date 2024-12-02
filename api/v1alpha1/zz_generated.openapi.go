@@ -4374,11 +4374,35 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateRevisionSpec(ref co
 							},
 						},
 					},
+					"parameters": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"name",
+								},
+								"x-kubernetes-list-type":       "map",
+								"x-kubernetes-patch-merge-key": "name",
+								"x-kubernetes-patch-strategy":  "merge",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "Parameters is an optional array of Parameters which will be used to replace the variables present in the TemplateObjects list when provisioning a Space.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Parameter"),
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"k8s.io/apimachinery/pkg/runtime.RawExtension"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Parameter", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
 	}
 }
 
