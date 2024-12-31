@@ -20,6 +20,10 @@ do
     git clone --depth=1 ${repo} ${repo_path}
     echo "Repo cloned successfully"
     cd ${repo_path}
+    if ! make pre-verify; then
+        ERRORLIST+="($(basename ${repo}))"
+        continue
+    fi
     echo "Initiating 'go mod replace' of current api version in dependent repos"
     go mod edit -replace github.com/codeready-toolchain/api=${C_PATH}
     make verify-dependencies || ERRORLIST+="($(basename ${repo}))"
