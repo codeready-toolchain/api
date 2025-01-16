@@ -1535,31 +1535,6 @@ NSTemplateTierClusterResources defines the cluster-scoped resources associated w
 |===
 
 
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierhistory"]
-==== NSTemplateTierHistory
-
-
-
-NSTemplateTierHistory a track record of an update
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierstatus[$$NSTemplateTierStatus$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | StartTime is the time when the NSTemplateTier was updated + |  | 
-| *`hash`* __string__ | Hash the hash matching on the templateRefs in the resource spec + |  | 
-| *`completionTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | CompletionTime is the time when the last MasterUserRecord was updated + |  | 
-| *`failures`* __integer__ | Failures is the number of MasterUserRecords which failed to be updated + |  | 
-| *`failedAccounts`* __string array__ | FailedAccounts + |  | 
-|===
-
-
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierlist"]
 ==== NSTemplateTierList
 
@@ -1669,7 +1644,6 @@ NSTemplateTierStatus defines the observed state of NSTemplateTier
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current NSTemplateTier conditions +
 Supported condition types: ConditionReady + |  | 
-| *`updates`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierhistory[$$NSTemplateTierHistory$$] array__ | Updates is an array of all NSTemplateTier updates + |  | 
 | *`revisions`* __object (keys:string, values:string)__ | Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values) +
 The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier. +
 Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the parameters. +
