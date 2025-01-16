@@ -3345,14 +3345,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_SocialEventSpec(ref common.Refe
 					"startTime": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The timestamp from which users may register via this event's activation code",
-							Default:     map[string]interface{}{},
 							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
 						},
 					},
 					"endTime": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The timestamp after which users may no longer register via this event's activation code",
-							Default:     map[string]interface{}{},
 							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
 						},
 					},
@@ -4343,8 +4341,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateRevisionSpec(ref co
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("k8s.io/apimachinery/pkg/runtime.RawExtension"),
+										Ref: ref("k8s.io/apimachinery/pkg/runtime.RawExtension"),
 									},
 								},
 							},
@@ -4432,8 +4429,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_TierTemplateSpec(ref common.Ref
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("k8s.io/apimachinery/pkg/runtime.RawExtension"),
+										Ref: ref("k8s.io/apimachinery/pkg/runtime.RawExtension"),
 									},
 								},
 							},
