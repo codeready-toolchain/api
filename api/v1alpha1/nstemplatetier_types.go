@@ -89,14 +89,6 @@ type NSTemplateTierStatus struct {
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 
-	// Updates is an array of all NSTemplateTier updates
-	// +optional
-	// +patchMergeKey=startTime
-	// +patchStrategy=merge
-	// +listType=map
-	// +listMapKey=startTime
-	Updates []NSTemplateTierHistory `json:"updates,omitempty" patchStrategy:"merge" patchMergeKey:"startTime"`
-
 	// Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values)
 	// The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier.
 	// Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the parameters.
@@ -105,22 +97,6 @@ type NSTemplateTierStatus struct {
 	// +optional
 	// +mapType=atomic
 	Revisions map[string]string `json:"revisions,omitempty"`
-}
-
-// NSTemplateTierHistory a track record of an update
-type NSTemplateTierHistory struct {
-	// StartTime is the time when the NSTemplateTier was updated
-	StartTime metav1.Time `json:"startTime"`
-	// Hash the hash matching on the templateRefs in the resource spec
-	Hash string `json:"hash"`
-	// CompletionTime is the time when the last MasterUserRecord was updated
-	// +optional
-	CompletionTime *metav1.Time `json:"completionTime,omitempty"`
-	// Failures is the number of MasterUserRecords which failed to be updated
-	Failures int `json:"failures"`
-	// FailedAccounts
-	// +optional
-	FailedAccounts []string `json:"failedAccounts,omitempty"`
 }
 
 //+kubebuilder:object:root=true
