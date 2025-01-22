@@ -7,7 +7,7 @@ declare -a REPOS=("${GH_BASE_URL_KS}ksctl" "${GH_BASE_URL_CRT}host-operator" "${
 C_PATH=${PWD}
 ERRORREPOLIST=()
 ERRORFILELIST=()
-GOLINTREGEX="[\s\w.\/]*:[0-9]*:[0-9]*:[\s\w]*[:]*[\s\w\">.-]*[\w\s)(*.]*"
+GOLINTREGEX="[\s\w.\/]*:[0-9]*:[0-9]*:[\w\s)(*.\`]*"
 ERRORREGEX="Error[:]*"
 
 echo Initiating verify-replace on dependent repos
@@ -19,13 +19,13 @@ do
     echo                                                                     
     echo =========================================================================================
     repo_path=${BASE_REPO_PATH}/$(basename ${repo})
-    ERRFILE=$(mktemp ${TMP_DIR}$(basename ${repo}).XXX)
+    ERRFILE=$(mktemp ${TMP_DIR}$(basename ${repo})-error.XXX)
     echo "Cloning repo in /tmp"
     git clone --depth=1 ${repo} ${repo_path}
     echo "Repo cloned successfully"
     cd ${repo_path}
     if ! make pre-verify; then
-        ERRORREPOLIST+="($(basename ${repo}))"
+        ERRORREPOLIST+="$(basename ${repo}) "
         continue
     fi
     echo "Initiating 'go mod replace' of current api version in dependent repos"
@@ -33,14 +33,14 @@ do
     make verify-dependencies &> ${ERRFILE} 
     rc=$?
     if [ ${rc} -ne 0 ]; then
-    ERRORREPOLIST+="($(basename ${repo}))" 
+    ERRORREPOLIST+="$(basename ${repo}) " 
     ERRORFILELIST+="${ERRFILE}  "
     fi
     echo                                                          
     echo =========================================================================================
     echo 
 done
-echo "Summary"
+echo                "Summary"
 if [ ${#ERRORREPOLIST[@]} -ne 0 ]; then
     echo "Below are the repos with error: "
     for e in ${ERRORREPOLIST[*]}
@@ -52,7 +52,7 @@ if [ ${#ERRORREPOLIST[@]} -ne 0 ]; then
         echo                                                          
         echo =========================================================================================
         echo 
-        echo "${c} has the following errors "
+        echo                       "${c} has the following errors "
         echo                                                          
         echo =========================================================================================
         echo
