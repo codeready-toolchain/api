@@ -7,8 +7,9 @@ declare -a REPOS=("${GH_BASE_URL_KS}ksctl" "${GH_BASE_URL_CRT}host-operator" "${
 C_PATH=${PWD}
 ERRORREPOLIST=()
 ERRORFILELIST=()
+STDOUTFILELIST=()
 GOLINTREGEX="[\s\w.\/]*:[0-9]*:[0-9]*:[\w\s)(*.\`]*"
-ERRORREGEX="Error[:]*"
+LINTERERRORFILE=$(mktemp ${TMP_DIR}LinterError.XXX)
 
 echo Initiating verify-replace on dependent repos
 for repo in "${REPOS[@]}"
@@ -17,9 +18,10 @@ do
     echo  
     echo                        "$(basename ${repo})"
     echo                                                                     
-    echo =========================================================================================
+    echo =========================================================================================                                            
     repo_path=${BASE_REPO_PATH}/$(basename ${repo})
     ERRFILE=$(mktemp ${TMP_DIR}$(basename ${repo})-error.XXX)
+    STDOUTFILE=$(mktemp ${TMP_DIR}$(basename ${repo})-output.XXX)
     echo "Cloning repo in /tmp"
     git clone --depth=1 ${repo} ${repo_path}
     echo "Repo cloned successfully"
@@ -30,33 +32,45 @@ do
     fi
     echo "Initiating 'go mod replace' of current api version in dependent repos"
     go mod edit -replace github.com/codeready-toolchain/api=${C_PATH}
-    make verify-dependencies &> ${ERRFILE} 
+    make verify-dependencies 2> ${ERRFILE} 1> ${STDOUTFILE}
     rc=$?
     if [ ${rc} -ne 0 ]; then
     ERRORREPOLIST+="$(basename ${repo}) " 
     ERRORFILELIST+="${ERRFILE}  "
+    STDOUTFILELIST="${STDOUTFILE} "
     fi
     echo                                                          
     echo =========================================================================================
-    echo 
+    echo                                   
 done
 echo                "Summary"
 if [ ${#ERRORREPOLIST[@]} -ne 0 ]; then
     echo "Below are the repos with error: "
     for e in ${ERRORREPOLIST[*]}
     do
-        echo "${e}"
-    done
-    for c in ${ERRORFILELIST[*]}
-    do  
-        echo                                                          
-        echo =========================================================================================
-        echo 
-        echo                       "${c} has the following errors "
-        echo                                                          
-        echo =========================================================================================
-        echo
-        cat "${c}" | grep "${GOLINTREGEX}\|${ERRORREGEX}"
+        for c in ${ERRORFILELIST[*]}
+        do
+            if [[ ${c} =~ ${e} ]]; then 
+                echo                                                          
+                echo =========================================================================================
+                echo 
+                echo                       "${e} has the following errors "
+                echo                                                          
+                echo =========================================================================================
+                echo 
+                cat "${c}"
+            else
+                for s in ${STDOUTFILELIST[*]}
+                do
+                    if [[ ${s} =~ ${e} ]]; then 
+                        cat "${s}" | grep -E ${GOLINTREGEX} > lintererror
+                        if ! [ -s "lintererror" ]; then
+                            cat  lintererror   
+                        fi
+                    fi
+                done                                            
+            fi
+        done
     done
     exit 1
 else
