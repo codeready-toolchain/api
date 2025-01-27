@@ -63,9 +63,9 @@ if [ ${#ERRORREPOLIST[@]} -ne 0 ]; then
                 for s in ${STDOUTFILELIST[*]}
                 do
                     if [[ ${s} =~ ${e} ]]; then 
-                        cat "${s}" | grep -E ${GOLINTREGEX} > lintererror
-                        if ! [ -s "lintererror" ]; then
-                            cat  lintererror   
+                        cat "${s}" | grep -E ${GOLINTREGEX} > LINTERERRORFILE
+                        if ! [ -s "LINTERERRORFILE" ]; then
+                            cat  LINTERERRORFILE   
                         fi
                     fi
                 done                                            
