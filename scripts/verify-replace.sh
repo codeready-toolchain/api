@@ -5,10 +5,12 @@ GH_BASE_URL_KS=https://github.com/kubesaw/
 GH_BASE_URL_CRT=https://github.com/codeready-toolchain/
 declare -a REPOS=("${GH_BASE_URL_KS}ksctl" "${GH_BASE_URL_CRT}host-operator" "${GH_BASE_URL_CRT}member-operator" "${GH_BASE_URL_CRT}registration-service" "${GH_BASE_URL_CRT}toolchain-e2e" "${GH_BASE_URL_CRT}toolchain-common")
 C_PATH=${PWD}
-ERRORREPOLIST=()
-ERRORFILELIST=()
-STDOUTFILELIST=()
-GOLINTREGEX="[\s\w.\/]*:[0-9]*:[0-9]*:[\w\s)(*.\`]*"
+ERROR_REPO_LIST=()
+ERROR_FILE_LIST=()
+STD_OUT_FILE_LIST=()
+GO_LINT_REGEX="[\s\w.\/]*:[0-9]*:[0-9]*:[\w\s)(*.\`]*"
+ERROR_REGEX="Error[:]*" #unit test or any other failure we log goes into stdoutput, hence making that regex too to fetch the error
+FAIL_REGEX="FAIL[:]*" #unit test or any other failure we log goes into stdoutput, hence making that regex too to fetch the error
 
 echo Initiating verify-replace on dependent repos
 for repo in "${REPOS[@]}"
@@ -21,59 +23,56 @@ do
     repo_path=${BASE_REPO_PATH}/$(basename ${repo})
     err_file=$(mktemp ${BASE_REPO_PATH}/$(basename ${repo})-error.XXX)
     echo "error output file : ${err_file}"
-    stdout_file=$(mktemp ${BASE_REPO_PATH}/$(basename ${repo})-output.XXX)
-    echo "std output file : ${stdout_file}"
+    std_out_file=$(mktemp ${BASE_REPO_PATH}/$(basename ${repo})-output.XXX)
+    echo "std output file : ${std_out_file}"
     echo "Cloning repo in /tmp"
     git clone --depth=1 ${repo} ${repo_path}
     echo "Repo cloned successfully"
     cd ${repo_path}
-    if ! make pre-verify; then
-        ERRORREPOLIST+="$(basename ${repo}) "
+    make pre-verify 2> >(tee ${err_file})
+    rc=$?
+    if [ ${rc} -ne 0 ]; then
+        ERROR_REPO_LIST+="$(basename ${repo}) "
+        ERROR_FILE_LIST+="${err_file}  "
         continue
     fi
     echo "Initiating 'go mod replace' of current api version in dependent repos"
     go mod edit -replace github.com/codeready-toolchain/api=${C_PATH}
-    make verify-dependencies 2> >(tee ${err_file}) 1> >(tee ${stdout_file})
+        make verify-dependencies 2> >(tee ${err_file}) 1> >(tee ${std_out_file})
     rc=$?
     if [ ${rc} -ne 0 ]; then
-    ERRORREPOLIST+="$(basename ${repo}) " 
-    ERRORFILELIST+="${err_file}  "
-    STDOUTFILELIST+="${stdout_file} "
+    ERROR_REPO_LIST+="$(basename ${repo}) " 
+    ERROR_FILE_LIST+="${err_file}  "
+    STD_OUT_FILE_LIST+="${std_out_file} "
     fi
     echo                                                          
     echo =========================================================================================
     echo                                                           
 done
 echo                "Summary"
-if [ ${#ERRORREPOLIST[@]} -ne 0 ]; then
+if [ ${#ERROR_REPO_LIST[@]} -ne 0 ]; then
     echo "Below are the repos with error: "
-    for errorreponame in ${ERRORREPOLIST[*]}
+    for error_repo_name in ${ERROR_REPO_LIST[*]}
     do
-        for errorfilename in ${ERRORFILELIST[*]}
+        for error_file_name in ${ERROR_FILE_LIST[*]}
         do
-            if [[ ${errorfilename} =~ ${errorreponame} ]]; then 
+            if [[ ${error_file_name} =~ ${error_repo_name} ]]; then 
                 echo                                                          
                 echo =========================================================================================
                 echo 
-                echo                       "${errorreponame} has the following errors "
+                echo                       "${error_repo_name} has the following errors "
                 echo                                                          
                 echo =========================================================================================
                 echo 
-                cat "${errorfilename}"
-            else
-            # Since golint check is the only check for which we parse the error from the standard-ouput
-            # and is checked at last after all the other checks are done. But if there is any error in the previous checks,
-            # the script won't go ahead to check golint, and hence this check is seperated and put into else
-            # Meaning if the other checks have passed then only it wil proceed to check golint and we would parse 
-            # golint errors from std files if any.
-                for stdoutfilename in ${STDOUTFILELIST[*]}
-                do
-                    if [[ ${stdoutfilename} =~ ${errorreponame} ]]; then 
-                        cat "${stdoutfilename}" | grep -E ${GOLINTREGEX}
-                    fi
-                done                                            
+                cat "${error_file_name}"
             fi
         done
+        for std_out_file_name in ${STD_OUT_FILE_LIST[*]}
+            do
+                if [[ ${std_out_file_name} =~ ${error_repo_name} ]]; then 
+                    cat "${std_out_file_name}" | grep -E ${GO_LINT_REGEX}|${ERROR_REGEX}|${FAIL_REGEX}
+                fi
+        done                                             
     done
     exit 1
 else
