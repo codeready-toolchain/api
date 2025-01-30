@@ -9,7 +9,6 @@ ERRORREPOLIST=()
 ERRORFILELIST=()
 STDOUTFILELIST=()
 GOLINTREGEX="[\s\w.\/]*:[0-9]*:[0-9]*:[\w\s)(*.\`]*"
-LINTERERRORFILE=$(mktemp ${TMP_DIR}LinterError.XXX)
 
 echo Initiating verify-replace on dependent repos
 for repo in "${REPOS[@]}"
@@ -20,8 +19,10 @@ do
     echo                                                                     
     echo =========================================================================================                                            
     repo_path=${BASE_REPO_PATH}/$(basename ${repo})
-    ERRFILE=$(mktemp ${TMP_DIR}$(basename ${repo})-error.XXX)
-    STDOUTFILE=$(mktemp ${TMP_DIR}$(basename ${repo})-output.XXX)
+    err_file=$(mktemp ${BASE_REPO_PATH}/$(basename ${repo})-error.XXX)
+    echo "error output file : ${err_file}"
+    stdout_file=$(mktemp ${BASE_REPO_PATH}/$(basename ${repo})-output.XXX)
+    echo "std output file : ${stdout_file}"
     echo "Cloning repo in /tmp"
     git clone --depth=1 ${repo} ${repo_path}
     echo "Repo cloned successfully"
@@ -32,41 +33,43 @@ do
     fi
     echo "Initiating 'go mod replace' of current api version in dependent repos"
     go mod edit -replace github.com/codeready-toolchain/api=${C_PATH}
-    make verify-dependencies 2> ${ERRFILE} 1> ${STDOUTFILE}
+    make verify-dependencies 2> >(tee ${err_file}) 1> >(tee ${stdout_file})
     rc=$?
     if [ ${rc} -ne 0 ]; then
     ERRORREPOLIST+="$(basename ${repo}) " 
-    ERRORFILELIST+="${ERRFILE}  "
-    STDOUTFILELIST="${STDOUTFILE} "
+    ERRORFILELIST+="${err_file}  "
+    STDOUTFILELIST+="${stdout_file} "
     fi
     echo                                                          
     echo =========================================================================================
-    echo                                   
+    echo                                                           
 done
 echo                "Summary"
 if [ ${#ERRORREPOLIST[@]} -ne 0 ]; then
     echo "Below are the repos with error: "
-    for e in ${ERRORREPOLIST[*]}
+    for errorreponame in ${ERRORREPOLIST[*]}
     do
-        for c in ${ERRORFILELIST[*]}
+        for errorfilename in ${ERRORFILELIST[*]}
         do
-            if [[ ${c} =~ ${e} ]]; then 
+            if [[ ${errorfilename} =~ ${errorreponame} ]]; then 
                 echo                                                          
                 echo =========================================================================================
                 echo 
-                echo                       "${e} has the following errors "
+                echo                       "${errorreponame} has the following errors "
                 echo                                                          
                 echo =========================================================================================
                 echo 
-                cat "${c}"
+                cat "${errorfilename}"
             else
-                for s in ${STDOUTFILELIST[*]}
+            # Since golint check is the only check for which we parse the error from the standard-ouput
+            # and is checked at last after all the other checks are done. But if there is any error in the previous checks,
+            # the script won't go ahead to check golint, and hence this check is seperated and put into else
+            # Meaning if the other checks have passed then only it wil proceed to check golint and we would parse 
+            # golint errors from std files if any.
+                for stdoutfilename in ${STDOUTFILELIST[*]}
                 do
-                    if [[ ${s} =~ ${e} ]]; then 
-                        cat "${s}" | grep -E ${GOLINTREGEX} > ${LINTERERRORFILE}
-                        if ! [ -s "${LINTERERRORFILE}" ]; then
-                            cat  "${LINTERERRORFILE}"  
-                        fi
+                    if [[ ${stdoutfilename} =~ ${errorreponame} ]]; then 
+                        cat "${stdoutfilename}" | grep -E ${GOLINTREGEX}
                     fi
                 done                                            
             fi
