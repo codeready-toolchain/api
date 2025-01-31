@@ -9,7 +9,9 @@ ERROR_REPO_LIST=()
 ERROR_FILE_LIST=()
 STD_OUT_FILE_LIST=()
 GO_LINT_REGEX="[\s\w.\/]*:[0-9]*:[0-9]*:[\w\s)(*.\`]*"
-ERROR_REGEX="Error[:]*/|FAIL[:]*" #unit test or any other failure we log from our controllers other places goes into stdoutput, hence making that regex too, to fetch the error more precisely
+ERROR_REGEX="[E\|e][R\|r][R\|r][O\|o][R\|r][:]*\|[F\|f][A\|a][I\|i][l\|L][:]*\|expected[:]*\|actual[:]*" #unit test or any other failure we log from our controllers or other places goes into stdoutput 
+                                                            #(since we log it and its not a failure in running the command or dependency check), 
+                                                            #hence making that regex too, to fetch the error more precisely
 
 echo Initiating verify-replace on dependent repos
 for repo in "${REPOS[@]}"
