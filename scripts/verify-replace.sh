@@ -55,23 +55,23 @@ if [ ${#ERROR_REPO_LIST[@]} -ne 0 ]; then
     echo "Below are the repos with error: "
     for error_repo_name in ${ERROR_REPO_LIST[*]}
     do
+        echo                                                          
+        echo =========================================================================================
+        echo 
+        echo                       "${error_repo_name} has the following errors "
+        echo                                                          
+        echo =========================================================================================
+        echo
         for error_file_name in ${ERROR_FILE_LIST[*]}
         do
             if [[ ${error_file_name} =~ ${error_repo_name} ]]; then 
-                echo                                                          
-                echo =========================================================================================
-                echo 
-                echo                       "${error_repo_name} has the following errors "
-                echo                                                          
-                echo =========================================================================================
-                echo 
                 cat "${error_file_name}"
             fi
         done
         for std_out_file_name in ${STD_OUT_FILE_LIST[*]}
             do
                 if [[ ${std_out_file_name} =~ ${error_repo_name} ]]; then 
-                    cat "${std_out_file_name}" | grep "${GO_LINT_REGEX}\|${ERROR_REGEX}"
+                    cat "${std_out_file_name}" | grep -C 5 "${GO_LINT_REGEX}\|${ERROR_REGEX}"
                 fi
         done                                             
     done
