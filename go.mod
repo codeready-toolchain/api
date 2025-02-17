@@ -1,6 +1,6 @@
 module github.com/codeready-toolchain/api
 
-go 1.22.12
+go 1.22.11
 
 require (
 	github.com/go-bindata/go-bindata v3.1.2+incompatible
