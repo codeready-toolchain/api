@@ -57,6 +57,8 @@ generate-openapi: openapi-gen
 	--go-header-file=make/go-header.txt \
 	--output-dir ./api/$(API_VERSION) \
 	./api/$(API_VERSION)
+	@## clean up the mess
+	rm -Rf $(FAKE_GOPATH)
 
 
 # make sure that that the `host-operator` and `member-operator` repositories exist locally
