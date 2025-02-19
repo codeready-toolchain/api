@@ -2,6 +2,8 @@ module github.com/codeready-toolchain/api
 
 go 1.22.0
 
+toolchain go1.22.12
+
 require (
 	github.com/go-bindata/go-bindata v3.1.2+incompatible
 	// using latest commit from 'github.com/openshift/api branch release-4.17'
