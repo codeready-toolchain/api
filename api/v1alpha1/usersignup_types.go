@@ -43,6 +43,9 @@ const (
 	// UserSignupCaptchaAnnotatedAssessmentAnnotationKey is set if the last captcha assessment for the user was annotated as fraudulent or legitimate
 	UserSignupCaptchaAnnotatedAssessmentAnnotationKey = LabelKeyPrefix + "captcha-annotated-assessment"
 
+	// UserSignupRequestReceivedTimeAnnotationKey is used for the timestamp when the request to create/reactivate UserSignup was received (stored in time.RFC3339 format)
+	UserSignupRequestReceivedTimeAnnotationKey = LabelKeyPrefix + "request-received-time"
+
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
