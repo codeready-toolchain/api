@@ -4,6 +4,14 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+const (
+	// NSTemplateTierProvisionedReason represents the reason for a successfully provisioned NSTemplateTier.
+	NSTemplateTierProvisionedReason = provisionedReason
+
+	// NSTemplateTierUnableToEnsureRevisionsReason represents the reason for a successfully provisioned NSTemplateTier.
+	NSTemplateTierUnableToEnsureRevisionsReason = "UnableToEnsureRevisions"
+)
+
 // NSTemplateTierSpec defines the desired state of NSTemplateTier
 // +k8s:openapi-gen=true
 type NSTemplateTierSpec struct {
