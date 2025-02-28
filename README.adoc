@@ -8,8 +8,8 @@ For the API reference docs go xref:api/v1alpha1/docs/apiref.adoc[here]
 == Building
 Requires:
 
-* Go version 1.21.x (1.21.13 or higher) - download for your development environment https://golang.org/dl/[here].
-* Operator SDK v1.36.0 - download for your development environment https://v1-36-x.sdk.operatorframework.io/docs/installation/#install-from-github-release[here]
+* Go version 1.22.x (1.22.12 or higher) - download for your development environment https://golang.org/dl/[here].
+* Operator SDK v1.38.0 - download for your development environment https://v1-36-x.sdk.operatorframework.io/docs/installation/#install-from-github-release[here]
 
 CodeReady ToolChain API is built using https://github.com/golang/go/wiki/Modules[Go modules].
 
