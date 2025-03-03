@@ -8,7 +8,8 @@ const (
 	// NSTemplateTierProvisionedReason represents the reason for a successfully provisioned NSTemplateTier.
 	NSTemplateTierProvisionedReason = provisionedReason
 
-	// NSTemplateTierUnableToEnsureRevisionsReason represents the reason for a successfully provisioned NSTemplateTier.
+	// NSTemplateTierUnableToEnsureRevisionsReason represents the reason for an issue with provisioning of the NSTemplateTier.
+	// Specifically, when the revisions field was not updated correctly.
 	NSTemplateTierUnableToEnsureRevisionsReason = "UnableToEnsureRevisions"
 )
 
