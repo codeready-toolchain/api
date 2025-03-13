@@ -52,10 +52,11 @@ generate-openapi: openapi-gen
 	@## and function names would be different)
 	GOPATH=$(FAKE_GOPATH) \
 	&& cd $(CRT_IN_GOPATH)/api \
-	&& $(OPENAPI_GEN) --input-dirs ./api/$(API_VERSION)/ \
-	--output-package github.com/codeready-toolchain/api/api/$(API_VERSION) \
-	--output-file-base zz_generated.openapi \
-	--go-header-file=make/go-header.txt
+	&& $(OPENAPI_GEN) --output-pkg github.com/codeready-toolchain/api/api/$(API_VERSION) \
+	--output-file zz_generated.openapi.go \
+	--go-header-file=make/go-header.txt \
+	--output-dir ./api/$(API_VERSION) \
+	./api/$(API_VERSION)
 	@## clean up the mess
 	rm -Rf $(FAKE_GOPATH)
 
@@ -115,7 +116,7 @@ dispatch-crds: prepare-host-operator prepare-member-operator
 	    echo "Please update this Makefile accordingly."; \
 	    exit 1; \
 	fi
-	@echo "Dispatch successfuly finished \o/"
+	@echo "Dispatch successfully finished \o/"
 
 CONTROLLER_GEN = $(PROJECT_DIR)/bin/controller-gen
 controller-gen: ## Download controller-gen locally if necessary.
