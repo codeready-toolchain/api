@@ -23,3 +23,4 @@ jobs:
       with:
         go-version-input: ${{ steps.install-go.outputs.go-version }}
         go-package: ./...
+        repo-checkout: false
