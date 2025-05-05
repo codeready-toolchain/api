@@ -2063,7 +2063,7 @@ func (in *RegistrationServiceConfig) DeepCopyInto(out *RegistrationServiceConfig
 	in.Verification.DeepCopyInto(&out.Verification)
 	if in.UICanaryDeploymentWeight != nil {
 		in, out := &in.UICanaryDeploymentWeight, &out.UICanaryDeploymentWeight
-		*out = new(int32)
+		*out = new(int)
 		**out = **in
 	}
 }

@@ -255,7 +255,7 @@ type RegistrationServiceConfig struct {
 	// - if the user has a number above the weight they keep using the current UI
 	//
 	// +optional
-	UICanaryDeploymentWeight *int32 `json:"uiCanaryDeploymentWeight,omitempty"`
+	UICanaryDeploymentWeight *int `json:"uiCanaryDeploymentWeight,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
