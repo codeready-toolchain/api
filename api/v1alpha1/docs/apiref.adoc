@@ -2124,6 +2124,14 @@ Consumed by host operator and set as env var on registration-service deployment 
 | *`registrationServiceURL`* __string__ | RegistrationServiceURL is the URL used to a ccess the registration service + |  | 
 | *`replicas`* __integer__ | Replicas specifies the number of replicas to use for the registration service deployment + |  | 
 | *`verification`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationconfig[$$RegistrationServiceVerificationConfig$$]__ | Keeps parameters necessary for the registration service verification config + |  | 
+| *`uiCanaryDeploymentWeight`* __integer__ | UICanaryDeploymentWeight specifies the threshold of users that will be using the new UI. +
+This configuration option is just a temporary solution for rolling out our new RHDH based UI using canary deployment strategy. +
+Once we switch all our users to the new UI this will be removed. +
+How this works: +
+- backend returns a weight +
+- old UI assigns a sticky random number for each user +
+- if the user has a number within the weight returned from the backend than user get's redirect to to new UI +
+- if the user has a number above the weight they keep using the current UI + |  | 
 |===
 
 
