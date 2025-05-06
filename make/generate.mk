@@ -40,25 +40,11 @@ gen-crd-ref-docs: crd-ref-docs
 .PHONY: generate-openapi
 generate-openapi: openapi-gen
 	@echo "re-generating the openapi go file..."
-	@## First, let's clean up anything that might have been left around...
-	@rm -Rf $(FAKE_GOPATH)
-	mkdir -p $(FAKE_GOPATH)
-	@mkdir -p $(CRT_IN_GOPATH)
-	@## link the packages from the local GOPATH to not have to download them again
-	@if [ -d $(LOCAL_GOPATH)/pkg ]; then cd $(FAKE_GOPATH) && ln -s $(LOCAL_GOPATH)/pkg; fi
-	@## link our codebase to the appropriate place in the fake GOPATH
-	@cd $(CRT_IN_GOPATH) && ln -s ../../../.. api
-	@## run openapi-gen from within the fake GOPATH (otherwise the package paths would be relative
-	@## and function names would be different)
-	GOPATH=$(FAKE_GOPATH) \
-	&& cd $(CRT_IN_GOPATH)/api \
-	&& $(OPENAPI_GEN) --output-pkg github.com/codeready-toolchain/api/api/$(API_VERSION) \
+    $(OPENAPI_GEN) ./api/$(API_VERSION)/ \
+	--output-pkg github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file zz_generated.openapi.go \
-	--go-header-file=make/go-header.txt \
 	--output-dir ./api/$(API_VERSION) \
-	./api/$(API_VERSION)
-	@## clean up the mess
-	rm -Rf $(FAKE_GOPATH)
+	--go-header-file=make/go-header.txt
 
 
 # make sure that that the `host-operator` and `member-operator` repositories exist locally
