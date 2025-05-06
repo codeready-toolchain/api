@@ -251,7 +251,7 @@ type RegistrationServiceConfig struct {
 	// How this works:
 	// - backend returns a weight
 	// - old UI assigns a sticky random number for each user
-	// - if the user has a number within the weight returned from the backend than user get's redirect to to new UI
+	// - if the user has a number within the weight returned from the backend than user get's redirect to new UI
 	// - if the user has a number above the weight they keep using the current UI
 	//
 	// +optional
