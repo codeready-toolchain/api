@@ -255,6 +255,8 @@ type RegistrationServiceConfig struct {
 	// - if the user has a number above the weight they keep using the current UI
 	//
 	// +optional
+	// +kubebuilder:validation:Minimum=0
+	// +kubebuilder:validation:Maximum=100
 	UICanaryDeploymentWeight *int `json:"uiCanaryDeploymentWeight,omitempty"`
 }
 

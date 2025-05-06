@@ -2817,7 +2817,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 					},
 					"uiCanaryDeploymentWeight": {
 						SchemaProps: spec.SchemaProps{
-							Description: "UICanaryDeploymentWeight specifies the threshold of users that will be using the new UI. This configuration option is just a temporary solution for rolling out our new RHDH based UI using canary deployment strategy. Once we switch all our users to the new UI this will be removed. How this works: - backend returns a weight - old UI assigns a sticky random number for each user - if the user has a number within the weight returned from the backend than user get's redirect to to new UI - if the user has a number above the weight they keep using the current UI",
+							Description: "UICanaryDeploymentWeight specifies the threshold of users that will be using the new UI. This configuration option is just a temporary solution for rolling out our new RHDH based UI using canary deployment strategy. Once we switch all our users to the new UI this will be removed. How this works: - backend returns a weight - old UI assigns a sticky random number for each user - if the user has a number within the weight returned from the backend than user get's redirect to new UI - if the user has a number above the weight they keep using the current UI",
 							Type:        []string{"integer"},
 							Format:      "int32",
 						},
