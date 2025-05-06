@@ -29,7 +29,7 @@ gen-crd-ref-docs: crd-ref-docs
 .PHONY: generate-openapi
 generate-openapi: openapi-gen
 	@echo "re-generating the openapi go file..."
-    $(OPENAPI_GEN) ./api/$(API_VERSION)/ \
+	$(OPENAPI_GEN) ./api/$(API_VERSION)/ \
 	--output-pkg github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file zz_generated.openapi.go \
 	--output-dir ./api/$(API_VERSION) \
