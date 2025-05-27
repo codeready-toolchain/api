@@ -862,7 +862,6 @@ IdlerStatus defines the observed state of Idler
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`pods`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-pod[$$Pod$$] array__ | Pods is an array of tracked pods + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Idler conditions +
 Supported condition types: ConditionReady + |  | 
 |===
@@ -1880,26 +1879,6 @@ The value replaces all occurrences of the Parameter {{.NAME}}. + |  |
 |===
 
 
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-pod"]
-==== Pod
-
-
-
-
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-idlerstatus[$$IdlerStatus$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`name`* __string__ |  |  | 
-| *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ |  |  | 
-|===
 
 
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-propagatedclaims"]
