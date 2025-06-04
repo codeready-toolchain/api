@@ -11,4 +11,8 @@ const (
 
 	// StateLabelValuePending is used for identifying that the object is in a pending state.
 	StateLabelValuePending = "pending"
+
+	// BundledAnnotationKey is used to label objects as being bundled with the operator. Such objects are managed fully by the operator and can be created or deleted
+	// at its discretion (usually during the startup of the operator).
+	BundledAnnotationKey = LabelKeyPrefix + "bundled-with"
 )
