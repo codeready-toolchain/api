@@ -86,6 +86,7 @@ const (
 	UserSignupUnableToCreateSpaceReason            = "UnableToCreateSpace"
 	UserSignupUnableToCreateSpaceBindingReason     = UnableToCreateSpaceBinding
 	UserSignupProvisioningSpaceReason              = "ProvisioningSpace"
+	UserSignupNoDefaultNamespaceReason             = "DefaultNamespaceUnavailable"
 
 	// The UserSignupUserDeactivatingReason constant will be replaced with UserSignupDeactivationInProgressReason
 	// in order to reduce ambiguity.  The "Deactivating" state should only refer to the period of time before the
