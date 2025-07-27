@@ -1114,30 +1114,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref common.Referenc
 				Description: "IdlerStatus defines the observed state of Idler",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"pods": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"name",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "name",
-								"x-kubernetes-patch-strategy":  "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Pods is an array of tracked pods",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Pod"),
-									},
-								},
-							},
-						},
-					},
 					"conditions": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
@@ -1166,7 +1142,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdlerStatus(ref common.Referenc
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.Pod"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
@@ -2813,6 +2789,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							Description: "Keeps parameters necessary for the registration service verification config",
 							Default:     map[string]interface{}{},
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig"),
+						},
+					},
+					"uiCanaryDeploymentWeight": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UICanaryDeploymentWeight specifies the threshold of users that will be using the new UI. This configuration option is just a temporary solution for rolling out our new RHDH based UI using canary deployment strategy. Once we switch all our users to the new UI this will be removed. How this works: - backend returns a weight - old UI assigns a sticky random number for each user - if the user has a number within the weight returned from the backend than user get's redirect to new UI - if the user has a number above the weight they keep using the current UI",
+							Type:        []string{"integer"},
+							Format:      "int32",
 						},
 					},
 				},
