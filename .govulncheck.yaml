@@ -1,0 +1,7 @@
+ignored-vulnerabilities:
+  # Inconsistent handling of O_CREATE|O_EXCL on Unix and Windows in os in syscall
+  # Found in: os@go1.22.12
+  # Fixed in: os@go1.23.10
+  - id: GO-2025-3750
+    silence-until: 2025-10-02
+    info: https://pkg.go.dev/vuln/GO-2025-3750
