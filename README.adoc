@@ -8,7 +8,7 @@ For the API reference docs go xref:api/v1alpha1/docs/apiref.adoc[here]
 == Building
 Requires:
 
-* Go version 1.22.x (1.22.12 or higher) - download for your development environment https://golang.org/dl/[here].
+* Go version 1.23.x (1.23.12 or higher) - download for your development environment https://golang.org/dl/[here].
 
 CodeReady ToolChain API is built using https://github.com/golang/go/wiki/Modules[Go modules].
 
