@@ -1031,6 +1031,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 							Format:      "",
 						},
 					},
+					"accountNumber": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AccountNumber contains the value of the 'account_number' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"sub", "email", "preferredUsername"},
 			},

@@ -206,6 +206,10 @@ type IdentityClaimsEmbedded struct {
 	// Company contains the value of the 'company' claim
 	// +optional
 	Company string `json:"company,omitempty"`
+
+	// AccountNumber contains the value of the 'account_number' claim
+	// +optional
+	AccountNumber string `json:"accountNumber,omitempty"`
 }
 
 // +k8s:openapi-gen=true
