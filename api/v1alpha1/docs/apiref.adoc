@@ -769,6 +769,7 @@ a new IdP provider client, and contains the user's "original-sub" claim + |  |
 | *`givenName`* __string__ | GivenName contains the value of the 'given_name' claim + |  | 
 | *`familyName`* __string__ | FamilyName contains the value of the 'family_name' claim + |  | 
 | *`company`* __string__ | Company contains the value of the 'company' claim + |  | 
+| *`accountNumber`* __string__ | AccountNumber contains the value of the 'account_number' claim + |  | 
 |===
 
 
