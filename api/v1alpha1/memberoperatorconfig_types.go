@@ -15,10 +15,6 @@ type MemberOperatorConfigSpec struct {
 	// +optional
 	Autoscaler AutoscalerConfig `json:"autoscaler,omitempty"`
 
-	// Keeps parameters concerned with Che/CRW
-	// +optional
-	Che CheConfig `json:"che,omitempty"`
-
 	// Keeps parameters concerned with the console
 	// +optional
 	Console ConsoleConfig `json:"console,omitempty"`
@@ -70,50 +66,6 @@ type AutoscalerConfig struct {
 	// Represents the number of autoscaler buffer replicas to request
 	// +optional
 	BufferReplicas *int `json:"bufferReplicas,omitempty"`
-}
-
-// Defines all parameters concerned with Che
-// +k8s:openapi-gen=true
-type CheConfig struct {
-	// Defines the Che/CRW Keycloak route name
-	// +optional
-	KeycloakRouteName *string `json:"keycloakRouteName,omitempty"`
-
-	// Defines the Che/CRW route name
-	// +optional
-	RouteName *string `json:"routeName,omitempty"`
-
-	// Defines the Che/CRW operator namespace
-	// +optional
-	Namespace *string `json:"namespace,omitempty"`
-
-	// Defines a flag that indicates whether the Che/CRW operator is required to be installed on the cluster. May be used in monitoring.
-	// +optional
-	Required *bool `json:"required,omitempty"`
-
-	// Defines a flag to turn the Che user deletion logic on/off
-	// +optional
-	UserDeletionEnabled *bool `json:"userDeletionEnabled,omitempty"`
-
-	// Defines all secrets related to Che configuration
-	// +optional
-	Secret CheSecret `json:"secret,omitempty"`
-}
-
-// Defines all secrets related to Che configuration
-// +k8s:openapi-gen=true
-type CheSecret struct {
-	// The reference to the secret that is expected to contain the keys below
-	// +optional
-	ToolchainSecret `json:",inline"`
-
-	// The key for the Che admin username in the secret values map
-	// +optional
-	CheAdminUsernameKey *string `json:"cheAdminUsernameKey,omitempty"`
-
-	// The key for the Che admin password in the secret values map
-	// +optional
-	CheAdminPasswordKey *string `json:"cheAdminPasswordKey,omitempty"`
 }
 
 // Defines all parameters concerned with the console

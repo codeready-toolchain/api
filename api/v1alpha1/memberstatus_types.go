@@ -75,10 +75,6 @@ type Routes struct {
 	// +optional
 	ConsoleURL string `json:"consoleURL,omitempty"`
 
-	// CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed
-	// +optional
-	CheDashboardURL string `json:"cheDashboardURL,omitempty"`
-
 	// Conditions is an array of current member operator status conditions
 	// Supported condition types: ConditionReady
 	// +optional
