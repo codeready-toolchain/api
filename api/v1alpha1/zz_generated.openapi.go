@@ -34,7 +34,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.Binding":                               schema_codeready_toolchain_api_api_v1alpha1_Binding(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BindingRequest":                        schema_codeready_toolchain_api_api_v1alpha1_BindingRequest(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig":                         schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle":                         schema_codeready_toolchain_api_api_v1alpha1_FeatureToggle(ref),
@@ -439,45 +438,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.Refere
 				},
 			},
 		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "CheStatus contains information about the status of Che/CRW, such as installed and whether the member configuration is correct",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"conditions": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"type",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "type",
-								"x-kubernetes-patch-strategy":  "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current Che status conditions Supported condition types: ConditionReady",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
@@ -1472,12 +1432,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 				Description: "MemberStatusStatus defines the observed state of the toolchain member status",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"che": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Che is the status of Che/CRW, such as installed and whether the member configuration is correct",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CheStatus"),
-						},
-					},
 					"memberOperator": {
 						SchemaProps: spec.SchemaProps{
 							Description: "MemberOperator is the status of a toolchain member operator",
@@ -1537,7 +1491,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus", "github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/api/v1alpha1.Routes", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/api/v1alpha1.Routes", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"},
 	}
 }
 

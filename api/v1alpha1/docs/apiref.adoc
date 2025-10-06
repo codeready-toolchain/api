@@ -288,28 +288,6 @@ Users with captcha score lower than the required one can still be approved manua
 |===
 
 
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus"]
-==== CheStatus
-
-
-
-CheStatus contains information about the status of Che/CRW, such as installed and whether the member configuration is correct
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusstatus[$$MemberStatusStatus$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Che status conditions +
-Supported condition types: ConditionReady + |  | 
-|===
-
-
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-cluster"]
 ==== Cluster
 
@@ -342,7 +320,6 @@ Supported condition types: ConditionReady + |  |
 
 .Appears In:
 ****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus[$$CheStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostoperatorstatus[$$HostOperatorStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostroutes[$$HostRoutes$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hoststatus[$$HostStatus$$]
@@ -1198,7 +1175,6 @@ MemberStatusStatus defines the observed state of the toolchain member status
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`che`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus[$$CheStatus$$]__ | Che is the status of Che/CRW, such as installed and whether the member configuration is correct + |  | 
 | *`memberOperator`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorstatus[$$MemberOperatorStatus$$]__ | MemberOperator is the status of a toolchain member operator + |  | 
 | *`hostConnection`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterstatus[$$ToolchainClusterStatus$$]__ | HostConnection is the status of the connection with the host cluster + |  | 
 | *`host`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hoststatus[$$HostStatus$$]__ | Host is the status of the connection with the host cluster + |  | 

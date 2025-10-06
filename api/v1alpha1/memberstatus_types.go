@@ -21,10 +21,6 @@ type MemberStatusStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	// Che is the status of Che/CRW, such as installed and whether the member configuration is correct
-	// +optional
-	Che *CheStatus `json:"che,omitempty"`
-
 	// MemberOperator is the status of a toolchain member operator
 	// +optional
 	MemberOperator *MemberOperatorStatus `json:"memberOperator,omitempty"`
@@ -53,19 +49,6 @@ type MemberStatusStatus struct {
 	// Routes/URLs of the cluster, such as Console and Che Dashboard URLs
 	// +optional
 	Routes *Routes `json:"routes,omitempty"`
-}
-
-// CheStatus contains information about the status of Che/CRW, such as installed and whether the member configuration is correct
-// +k8s:openapi-gen=true
-type CheStatus struct {
-	// Conditions is an array of current Che status conditions
-	// Supported condition types: ConditionReady
-	// +optional
-	// +patchMergeKey=type
-	// +patchStrategy=merge
-	// +listType=map
-	// +listMapKey=type
-	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
 // Routes contains information about the public routes available to the user in the cluster
