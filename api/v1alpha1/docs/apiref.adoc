@@ -1181,7 +1181,7 @@ MemberStatusStatus defines the observed state of the toolchain member status
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current toolchain status conditions +
 Supported condition types: ConditionReady + |  | 
 | *`resourceUsage`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-resourceusage[$$ResourceUsage$$]__ | Resource usage of the cluster + |  | 
-| *`routes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]__ | Routes/URLs of the cluster, such as Console and Che Dashboard URLs + |  | 
+| *`routes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]__ | Routes/URLs of the cluster, such as Console + |  | 
 |===
 
 

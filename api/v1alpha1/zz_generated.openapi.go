@@ -1483,7 +1483,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 					},
 					"routes": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Routes/URLs of the cluster, such as Console and Che Dashboard URLs",
+							Description: "Routes/URLs of the cluster, such as Console",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Routes"),
 						},
 					},

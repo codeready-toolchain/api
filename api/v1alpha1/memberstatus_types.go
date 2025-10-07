@@ -46,7 +46,7 @@ type MemberStatusStatus struct {
 	// +optional
 	ResourceUsage ResourceUsage `json:"resourceUsage,omitempty"`
 
-	// Routes/URLs of the cluster, such as Console and Che Dashboard URLs
+	// Routes/URLs of the cluster, such as Console
 	// +optional
 	Routes *Routes `json:"routes,omitempty"`
 }
