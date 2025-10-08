@@ -288,77 +288,6 @@ Users with captcha score lower than the required one can still be approved manua
 |===
 
 
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-checonfig"]
-==== CheConfig
-
-
-
-Defines all parameters concerned with Che
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`keycloakRouteName`* __string__ | Defines the Che/CRW Keycloak route name + |  | 
-| *`routeName`* __string__ | Defines the Che/CRW route name + |  | 
-| *`namespace`* __string__ | Defines the Che/CRW operator namespace + |  | 
-| *`required`* __boolean__ | Defines a flag that indicates whether the Che/CRW operator is required to be installed on the cluster. May be used in monitoring. + |  | 
-| *`userDeletionEnabled`* __boolean__ | Defines a flag to turn the Che user deletion logic on/off + |  | 
-| *`secret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chesecret[$$CheSecret$$]__ | Defines all secrets related to Che configuration + |  | 
-|===
-
-
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chesecret"]
-==== CheSecret
-
-
-
-Defines all secrets related to Che configuration
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-checonfig[$$CheConfig$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | 
-| *`cheAdminUsernameKey`* __string__ | The key for the Che admin username in the secret values map + |  | 
-| *`cheAdminPasswordKey`* __string__ | The key for the Che admin password in the secret values map + |  | 
-|===
-
-
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus"]
-==== CheStatus
-
-
-
-CheStatus contains information about the status of Che/CRW, such as installed and whether the member configuration is correct
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusstatus[$$MemberStatusStatus$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Che status conditions +
-Supported condition types: ConditionReady + |  | 
-|===
-
-
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-cluster"]
 ==== Cluster
 
@@ -391,7 +320,6 @@ Supported condition types: ConditionReady + |  |
 
 .Appears In:
 ****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus[$$CheStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostoperatorstatus[$$HostOperatorStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostroutes[$$HostRoutes$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hoststatus[$$HostStatus$$]
@@ -1089,7 +1017,6 @@ MemberOperatorConfigSpec contains all configuration parameters of the member ope
 | Field | Description | Default | Validation
 | *`auth`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-authconfig[$$AuthConfig$$]__ | Keeps parameters concerned with authentication + |  | 
 | *`autoscaler`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-autoscalerconfig[$$AutoscalerConfig$$]__ | Keeps parameters concerned with the autoscaler + |  | 
-| *`che`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-checonfig[$$CheConfig$$]__ | Keeps parameters concerned with Che/CRW + |  | 
 | *`console`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-consoleconfig[$$ConsoleConfig$$]__ | Keeps parameters concerned with the console + |  | 
 | *`environment`* __string__ | Environment specifies the member-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc + |  | 
 | *`skipUserCreation`* __boolean__ | Defines the flag that determines whether User and Identity resources should be created for a UserAccount + |  | 
@@ -1248,14 +1175,13 @@ MemberStatusStatus defines the observed state of the toolchain member status
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`che`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus[$$CheStatus$$]__ | Che is the status of Che/CRW, such as installed and whether the member configuration is correct + |  | 
 | *`memberOperator`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorstatus[$$MemberOperatorStatus$$]__ | MemberOperator is the status of a toolchain member operator + |  | 
 | *`hostConnection`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterstatus[$$ToolchainClusterStatus$$]__ | HostConnection is the status of the connection with the host cluster + |  | 
 | *`host`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hoststatus[$$HostStatus$$]__ | Host is the status of the connection with the host cluster + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current toolchain status conditions +
 Supported condition types: ConditionReady + |  | 
 | *`resourceUsage`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-resourceusage[$$ResourceUsage$$]__ | Resource usage of the cluster + |  | 
-| *`routes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]__ | Routes/URLs of the cluster, such as Console and Che Dashboard URLs + |  | 
+| *`routes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]__ | Routes/URLs of the cluster, such as Console + |  | 
 |===
 
 
@@ -2329,7 +2255,6 @@ Routes contains information about the public routes available to the user in the
 |===
 | Field | Description | Default | Validation
 | *`consoleURL`* __string__ | ConsoleURL is the web console URL of the cluster + |  | 
-| *`cheDashboardURL`* __string__ | CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current member operator status conditions +
 Supported condition types: ConditionReady + |  | 
 |===
@@ -3458,7 +3383,6 @@ ToolchainSecret defines a reference to a secret, this type should be included in
 
 .Appears In:
 ****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chesecret[$$CheSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationsecret[$$NotificationSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationsecret[$$RegistrationServiceVerificationSecret$$]
