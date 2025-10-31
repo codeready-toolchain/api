@@ -5,13 +5,14 @@ import (
 )
 
 const (
-	OwnerLabelKey       = LabelKeyPrefix + "owner"
-	SpaceLabelKey       = LabelKeyPrefix + "space"
-	TypeLabelKey        = LabelKeyPrefix + "type"
-	TemplateRefLabelKey = LabelKeyPrefix + "templateref"
-	TierLabelKey        = LabelKeyPrefix + "tier"
-	ProviderLabelKey    = LabelKeyPrefix + "provider"
-	ProviderLabelValue  = "codeready-toolchain"
+	OwnerLabelKey        = LabelKeyPrefix + "owner"
+	SpaceLabelKey        = LabelKeyPrefix + "space"
+	TypeLabelKey         = LabelKeyPrefix + "type"
+	TemplateRefLabelKey  = LabelKeyPrefix + "templateref"
+	TierLabelKey         = LabelKeyPrefix + "tier"
+	ProviderLabelKey     = LabelKeyPrefix + "provider"
+	ProviderLabelValue   = "codeready-toolchain"
+	ClusterOwnerLabelKey = LabelKeyPrefix + "cluster-owner"
 
 	LastAppliedSpaceRolesAnnotationKey = LabelKeyPrefix + "last-applied-space-roles"
 )
