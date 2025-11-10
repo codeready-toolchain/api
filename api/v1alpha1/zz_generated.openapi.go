@@ -34,9 +34,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.Binding":                               schema_codeready_toolchain_api_api_v1alpha1_Binding(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.BindingRequest":                        schema_codeready_toolchain_api_api_v1alpha1_BindingRequest(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.CaptchaConfig":                         schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CheConfig":                             schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret":                             schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus":                             schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle":                         schema_codeready_toolchain_api_api_v1alpha1_FeatureToggle(ref),
@@ -441,136 +438,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_CaptchaConfig(ref common.Refere
 				},
 			},
 		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_CheConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Defines all parameters concerned with Che",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"keycloakRouteName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines the Che/CRW Keycloak route name",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"routeName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines the Che/CRW route name",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"namespace": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines the Che/CRW operator namespace",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"required": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines a flag that indicates whether the Che/CRW operator is required to be installed on the cluster. May be used in monitoring.",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-					"userDeletionEnabled": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines a flag to turn the Che user deletion logic on/off",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-					"secret": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines all secrets related to Che configuration",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CheSecret"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.CheSecret"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_CheSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Defines all secrets related to Che configuration",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"ref": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Reference is the name of the secret resource to look up",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"cheAdminUsernameKey": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The key for the Che admin username in the secret values map",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"cheAdminPasswordKey": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The key for the Che admin password in the secret values map",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_CheStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "CheStatus contains information about the status of Che/CRW, such as installed and whether the member configuration is correct",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"conditions": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"type",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "type",
-								"x-kubernetes-patch-strategy":  "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of current Che status conditions Supported condition types: ConditionReady",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
@@ -1031,6 +898,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_IdentityClaimsEmbedded(ref comm
 							Format:      "",
 						},
 					},
+					"accountNumber": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AccountNumber contains the value of the 'account_number' claim",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"sub", "email", "preferredUsername"},
 			},
@@ -1403,13 +1277,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig"),
 						},
 					},
-					"che": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters concerned with Che/CRW",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CheConfig"),
-						},
-					},
 					"console": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with the console",
@@ -1456,7 +1323,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberOperatorConfigSpec(ref co
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.CheConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AuthConfig", "github.com/codeready-toolchain/api/api/v1alpha1.AutoscalerConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterConfig", "github.com/codeready-toolchain/api/api/v1alpha1.WebhookConfig"},
 	}
 }
 
@@ -1565,12 +1432,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 				Description: "MemberStatusStatus defines the observed state of the toolchain member status",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"che": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Che is the status of Che/CRW, such as installed and whether the member configuration is correct",
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.CheStatus"),
-						},
-					},
 					"memberOperator": {
 						SchemaProps: spec.SchemaProps{
 							Description: "MemberOperator is the status of a toolchain member operator",
@@ -1622,7 +1483,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 					},
 					"routes": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Routes/URLs of the cluster, such as Console and Che Dashboard URLs",
+							Description: "Routes/URLs of the cluster, such as Console",
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.Routes"),
 						},
 					},
@@ -1630,7 +1491,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref common.R
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.CheStatus", "github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/api/v1alpha1.Routes", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.HostStatus", "github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorStatus", "github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage", "github.com/codeready-toolchain/api/api/v1alpha1.Routes", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainClusterStatus"},
 	}
 }
 
@@ -3226,13 +3087,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_Routes(ref common.ReferenceCall
 					"consoleURL": {
 						SchemaProps: spec.SchemaProps{
 							Description: "ConsoleURL is the web console URL of the cluster",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"cheDashboardURL": {
-						SchemaProps: spec.SchemaProps{
-							Description: "CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed",
 							Type:        []string{"string"},
 							Format:      "",
 						},

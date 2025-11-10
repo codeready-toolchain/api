@@ -48,16 +48,10 @@ const (
 	ToolchainStatusHostRoutesAvailableReason   = "HostRoutesAvailable"
 
 	// member status reasons
-	ToolchainStatusMemberStatusNotFoundReason                  = "MemberStatusNotFound"
-	ToolchainStatusMemberToolchainClusterMissingReason         = "MemberToolchainClusterMissing"
-	ToolchainStatusMemberStatusConsoleRouteUnavailableReason   = "ConsoleRouteUnavailable"
-	ToolchainStatusMemberStatusRoutesAvailableReason           = "RoutesAvailable"
-	ToolchainStatusMemberStatusCheRouteUnavailableReason       = "CheRouteUnavailable"
-	ToolchainStatusMemberStatusCheUserAPICheckFailedReason     = "CheUserAPICheckFailed"
-	ToolchainStatusMemberStatusCheNotRequiredReason            = "CheNotRequired"
-	ToolchainStatusMemberStatusCheAdminUserNotConfiguredReason = "CheAdminUserNotConfigured"
-	ToolchainStatusMemberStatusCheUserDeletionNotEnabledReason = "CheUserDeletionNotEnabled"
-	ToolchainStatusMemberStatusCheReadyReason                  = "CheReady"
+	ToolchainStatusMemberStatusNotFoundReason                = "MemberStatusNotFound"
+	ToolchainStatusMemberToolchainClusterMissingReason       = "MemberToolchainClusterMissing"
+	ToolchainStatusMemberStatusConsoleRouteUnavailableReason = "ConsoleRouteUnavailable"
+	ToolchainStatusMemberStatusRoutesAvailableReason         = "RoutesAvailable"
 
 	// Metric Keys
 	// MasterUserRecordsPerDomainMetricKey the key to store the metric for the number of MasterUserRecords per email address domain

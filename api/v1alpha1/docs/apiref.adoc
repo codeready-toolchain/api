@@ -180,7 +180,7 @@ BannedUserList contains a list of BannedUser
 | *`kind`* __string__ | `BannedUserList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-banneduser[$$BannedUser$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-banneduser[$$BannedUser$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -288,77 +288,6 @@ Users with captcha score lower than the required one can still be approved manua
 |===
 
 
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-checonfig"]
-==== CheConfig
-
-
-
-Defines all parameters concerned with Che
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`keycloakRouteName`* __string__ | Defines the Che/CRW Keycloak route name + |  | 
-| *`routeName`* __string__ | Defines the Che/CRW route name + |  | 
-| *`namespace`* __string__ | Defines the Che/CRW operator namespace + |  | 
-| *`required`* __boolean__ | Defines a flag that indicates whether the Che/CRW operator is required to be installed on the cluster. May be used in monitoring. + |  | 
-| *`userDeletionEnabled`* __boolean__ | Defines a flag to turn the Che user deletion logic on/off + |  | 
-| *`secret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chesecret[$$CheSecret$$]__ | Defines all secrets related to Che configuration + |  | 
-|===
-
-
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chesecret"]
-==== CheSecret
-
-
-
-Defines all secrets related to Che configuration
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-checonfig[$$CheConfig$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | 
-| *`cheAdminUsernameKey`* __string__ | The key for the Che admin username in the secret values map + |  | 
-| *`cheAdminPasswordKey`* __string__ | The key for the Che admin password in the secret values map + |  | 
-|===
-
-
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus"]
-==== CheStatus
-
-
-
-CheStatus contains information about the status of Che/CRW, such as installed and whether the member configuration is correct
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusstatus[$$MemberStatusStatus$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Che status conditions +
-Supported condition types: ConditionReady + |  | 
-|===
-
-
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-cluster"]
 ==== Cluster
 
@@ -391,7 +320,6 @@ Supported condition types: ConditionReady + |  |
 
 .Appears In:
 ****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus[$$CheStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostoperatorstatus[$$HostOperatorStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostroutes[$$HostRoutes$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hoststatus[$$HostStatus$$]
@@ -769,6 +697,7 @@ a new IdP provider client, and contains the user's "original-sub" claim + |  |
 | *`givenName`* __string__ | GivenName contains the value of the 'given_name' claim + |  | 
 | *`familyName`* __string__ | FamilyName contains the value of the 'family_name' claim + |  | 
 | *`company`* __string__ | Company contains the value of the 'company' claim + |  | 
+| *`accountNumber`* __string__ | AccountNumber contains the value of the 'account_number' claim + |  | 
 |===
 
 
@@ -819,7 +748,7 @@ IdlerList contains a list of Idlers
 | *`kind`* __string__ | `IdlerList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-idler[$$Idler$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-idler[$$Idler$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -935,7 +864,7 @@ MasterUserRecordList contains a list of MasterUserRecord
 | *`kind`* __string__ | `MasterUserRecordList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-masteruserrecord[$$MasterUserRecord$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-masteruserrecord[$$MasterUserRecord$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -1063,7 +992,7 @@ MemberOperatorConfigList contains a list of MemberOperatorConfig
 | *`kind`* __string__ | `MemberOperatorConfigList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfig[$$MemberOperatorConfig$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfig[$$MemberOperatorConfig$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -1088,7 +1017,6 @@ MemberOperatorConfigSpec contains all configuration parameters of the member ope
 | Field | Description | Default | Validation
 | *`auth`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-authconfig[$$AuthConfig$$]__ | Keeps parameters concerned with authentication + |  | 
 | *`autoscaler`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-autoscalerconfig[$$AutoscalerConfig$$]__ | Keeps parameters concerned with the autoscaler + |  | 
-| *`che`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-checonfig[$$CheConfig$$]__ | Keeps parameters concerned with Che/CRW + |  | 
 | *`console`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-consoleconfig[$$ConsoleConfig$$]__ | Keeps parameters concerned with the console + |  | 
 | *`environment`* __string__ | Environment specifies the member-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc + |  | 
 | *`skipUserCreation`* __boolean__ | Defines the flag that determines whether User and Identity resources should be created for a UserAccount + |  | 
@@ -1208,7 +1136,7 @@ MemberStatusList contains a list of MemberStatus
 | *`kind`* __string__ | `MemberStatusList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatus[$$MemberStatus$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatus[$$MemberStatus$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -1247,14 +1175,13 @@ MemberStatusStatus defines the observed state of the toolchain member status
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`che`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chestatus[$$CheStatus$$]__ | Che is the status of Che/CRW, such as installed and whether the member configuration is correct + |  | 
 | *`memberOperator`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorstatus[$$MemberOperatorStatus$$]__ | MemberOperator is the status of a toolchain member operator + |  | 
 | *`hostConnection`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterstatus[$$ToolchainClusterStatus$$]__ | HostConnection is the status of the connection with the host cluster + |  | 
 | *`host`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hoststatus[$$HostStatus$$]__ | Host is the status of the connection with the host cluster + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current toolchain status conditions +
 Supported condition types: ConditionReady + |  | 
 | *`resourceUsage`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-resourceusage[$$ResourceUsage$$]__ | Resource usage of the cluster + |  | 
-| *`routes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]__ | Routes/URLs of the cluster, such as Console and Che Dashboard URLs + |  | 
+| *`routes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]__ | Routes/URLs of the cluster, such as Console + |  | 
 |===
 
 
@@ -1385,7 +1312,7 @@ NSTemplateSetList contains a list of NSTemplateSet
 | *`kind`* __string__ | `NSTemplateSetList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplateset[$$NSTemplateSet$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplateset[$$NSTemplateSet$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -1552,7 +1479,7 @@ NSTemplateTierList contains a list of NSTemplateTier
 | *`kind`* __string__ | `NSTemplateTierList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetier[$$NSTemplateTier$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetier[$$NSTemplateTier$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -1719,7 +1646,7 @@ NotificationList contains a list of Notification
 | *`kind`* __string__ | `NotificationList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notification[$$Notification$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notification[$$Notification$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -1957,7 +1884,7 @@ ProxyPluginList contains a list of ProxyPlugin
 | *`kind`* __string__ | `ProxyPluginList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-proxyplugin[$$ProxyPlugin$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-proxyplugin[$$ProxyPlugin$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -2328,7 +2255,6 @@ Routes contains information about the public routes available to the user in the
 |===
 | Field | Description | Default | Validation
 | *`consoleURL`* __string__ | ConsoleURL is the web console URL of the cluster + |  | 
-| *`cheDashboardURL`* __string__ | CheDashboardURL is the Che Dashboard URL of the cluster if Che is installed + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current member operator status conditions +
 Supported condition types: ConditionReady + |  | 
 |===
@@ -2379,7 +2305,7 @@ SocialEventList contains a list of SocialEvent
 | *`kind`* __string__ | `SocialEventList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-socialevent[$$SocialEvent$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-socialevent[$$SocialEvent$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -2512,7 +2438,7 @@ SpaceBindingList contains a list of SpaceBinding
 | *`kind`* __string__ | `SpaceBindingList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebinding[$$SpaceBinding$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebinding[$$SpaceBinding$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -2562,7 +2488,7 @@ SpaceBindingRequestList contains a list of SpaceBindingRequests
 | *`kind`* __string__ | `SpaceBindingRequestList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebindingrequest[$$SpaceBindingRequest$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebindingrequest[$$SpaceBindingRequest$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -2694,7 +2620,7 @@ SpaceList contains a list of Space
 | *`kind`* __string__ | `SpaceList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-space[$$Space$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-space[$$Space$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -2743,12 +2669,10 @@ SpaceProvisionerCapacityThresholds defines the capacity thresholds of the space 
 | Field | Description | Default | Validation
 | *`maxNumberOfSpaces`* __integer__ | MaxNumberOfSpaces is the maximum number of spaces that can be provisioned to the referenced cluster. +
 
-
 0 or undefined value means no limit. + |  | Minimum: 0 +
 
 | *`maxMemoryUtilizationPercent`* __integer__ | MaxMemoryUtilizationPercent is the maximum memory utilization of the cluster to permit provisioning +
 new spaces to it. +
-
 
 0 or undefined value means no limit. + |  | Maximum: 100 +
 Minimum: 0 +
@@ -2801,7 +2725,7 @@ SpaceProvisionerConfigList contains a list of SpaceProvisionerConfig
 | *`kind`* __string__ | `SpaceProvisionerConfigList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceprovisionerconfig[$$SpaceProvisionerConfig$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceprovisionerconfig[$$SpaceProvisionerConfig$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -2923,7 +2847,7 @@ SpaceRequestList contains a list of SpaceRequests
 | *`kind`* __string__ | `SpaceRequestList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequest[$$SpaceRequest$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequest[$$SpaceRequest$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -2952,7 +2876,6 @@ where the Space can be provisioned. +
 The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there. + |  | 
 | *`disableInheritance`* __boolean__ | DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are +
 automatically inherited to all sub-spaces in the tree. +
-
 
 Set to True to disable SpaceBinding inheritance from the parent-spaces. +
 Default is False. + |  | 
@@ -3015,13 +2938,11 @@ If not set then the tier name will be set automatically + |  |
 | *`parentSpace`* __string__ | ParentSpace holds the name of the context (Space) from which this space was created (requested), +
 enabling hierarchy relationships between different Spaces. +
 
-
 Keeping this association brings two main benefits: +
 1. SpaceBindings are inherited from the parent Space +
 2. Ability to easily monitor quota for the requested sub-spaces + |  | 
 | *`disableInheritance`* __boolean__ | DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are +
 automatically inherited to all sub-spaces in the tree. +
-
 
 Set to True to disable SpaceBinding inheritance from the parent-spaces. +
 Default is False. + |  | 
@@ -3098,7 +3019,7 @@ TierTemplateList contains a list of TierTemplate
 | *`kind`* __string__ | `TierTemplateList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplate[$$TierTemplate$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplate[$$TierTemplate$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -3147,7 +3068,7 @@ TierTemplateRevisionList contains a list of TierTemplateRevisions
 | *`kind`* __string__ | `TierTemplateRevisionList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiertemplaterevision[$$TierTemplateRevision$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -3199,11 +3120,9 @@ TierTemplateSpec defines the desired state of TierTemplate
 Note: this field will be removed in favor of the new TemplateObjects below. + |  | 
 | *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
 
-
 NOTE: when specifying variables as part of the objects list , those concatenated as part of other strings do not need to be wrapped inside quotes, +
 while those that are not part of other strings do need to be wrapped in single quotes. This is required otherwise the yaml parser will error while trying to parse those resources containing variables. +
 eg: https://docs.google.com/document/d/1x5SoBT80df9fmVsaDgAE6DE7hE6lzmNIK087JUmgaJs/edit#heading=h.2iuytpfnmul5 +
-
 
 The template parameters values will be defined in the NSTemplateTier CRD. + |  | 
 |===
@@ -3304,7 +3223,7 @@ ToolchainClusterList contains a list of ToolchainCluster
 | *`kind`* __string__ | `ToolchainClusterList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchaincluster[$$ToolchainCluster$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchaincluster[$$ToolchainCluster$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -3402,7 +3321,7 @@ ToolchainConfigList contains a list of ToolchainConfig
 | *`kind`* __string__ | `ToolchainConfigList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainconfig[$$ToolchainConfig$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainconfig[$$ToolchainConfig$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -3464,7 +3383,6 @@ ToolchainSecret defines a reference to a secret, this type should be included in
 
 .Appears In:
 ****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-chesecret[$$CheSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationsecret[$$NotificationSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationsecret[$$RegistrationServiceVerificationSecret$$]
@@ -3545,7 +3463,7 @@ ToolchainStatusList contains a list of ToolchainStatus
 | *`kind`* __string__ | `ToolchainStatusList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatus[$$ToolchainStatus$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatus[$$ToolchainStatus$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -3602,7 +3520,6 @@ TwilioSenderConfig is used to associate a particular sender ID (a sender ID is a
 a phone number when receiving an SMS message), for example "RED HAT", with an array of country
 code values for which the Sender ID value will be set via the Twilio API when sending a verification code to a user in
 any of the country codes specified.
-
 
 Since some countries are starting to block long form phone numbers (i.e. SMS messages from international phone numbers)
 the Sender ID may be an acceptable alternative to requiring the verification message to be sent from a local phone number.
@@ -3688,7 +3605,7 @@ UserAccountList contains a list of UserAccount
 | *`kind`* __string__ | `UserAccountList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-useraccount[$$UserAccount$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-useraccount[$$UserAccount$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -3808,7 +3725,7 @@ UserSignupList contains a list of UserSignup
 | *`kind`* __string__ | `UserSignupList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersignup[$$UserSignup$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersignup[$$UserSignup$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -3928,7 +3845,7 @@ UserTierList contains a list of UserTier
 | *`kind`* __string__ | `UserTierList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usertier[$$UserTier$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usertier[$$UserTier$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
@@ -4070,7 +3987,7 @@ WorkspaceList contains a list of Workspaces
 | *`kind`* __string__ | `WorkspaceList` | |
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
-| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-workspace[$$Workspace$$] array__ |  |  | XPreserveUnknownFields: {} +
+| *`items`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-workspace[$$Workspace$$] array__ |  |  | XPreserveUnknownFields: \{} +
 
 |===
 
