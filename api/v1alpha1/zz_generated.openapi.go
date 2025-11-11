@@ -2659,6 +2659,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							Format:      "int32",
 						},
 					},
+					"workatoWebHookURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "WorkatoWebHookURL is used by the UI to push events to Marketo for analytics purposes. The webhook URL is unique per environment.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},

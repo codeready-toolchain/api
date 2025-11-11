@@ -258,6 +258,11 @@ type RegistrationServiceConfig struct {
 	// +kubebuilder:validation:Minimum=0
 	// +kubebuilder:validation:Maximum=100
 	UICanaryDeploymentWeight *int `json:"uiCanaryDeploymentWeight,omitempty"`
+
+	// WorkatoWebHookURL is used by the UI to push events to Marketo for analytics purposes.
+	// The webhook URL is unique per environment.
+	// +optional
+	WorkatoWebHookURL *string `json:"workatoWebHookURL,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
