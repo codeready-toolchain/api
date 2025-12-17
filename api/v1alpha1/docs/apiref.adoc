@@ -2040,6 +2040,8 @@ How this works: +
 - if the user has a number above the weight they keep using the current UI + |  | Maximum: 100 +
 Minimum: 0 +
 
+| *`workatoWebHookURL`* __string__ | WorkatoWebHookURL is used by the UI to push events to Marketo for analytics purposes. +
+The webhook URL is unique per environment. + |  | 
 |===
 
 
