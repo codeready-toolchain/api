@@ -4331,13 +4331,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_TiersConfig(ref common.Referenc
 							},
 						},
 					},
-					"durationBeforeChangeTierRequestDeletion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
 					"templateUpdateRequestMaxPoolSize": {
 						SchemaProps: spec.SchemaProps{
 							Description: "TemplateUpdateRequestMaxPoolSize specifies the maximum number of concurrent TemplateUpdateRequests when updating MasterUserRecords",

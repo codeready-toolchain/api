@@ -82,7 +82,8 @@ Defines all parameters concerned with the autoscaler
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`idp`* __string__ | Represents the configured identity provider + |  | 
+| *`idp`* __string__ | Represents the configured identity provider + |  | Optional: \{} +
+
 |===
 
 
@@ -103,12 +104,14 @@ Defines all parameters necessary for automatic approval
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`enabled`* __boolean__ | Defines if the automatic approval is enabled or not + |  | 
+| *`enabled`* __boolean__ | Defines if the automatic approval is enabled or not + |  | Optional: \{} +
+
 | *`domains`* __string__ | Comma-separated email domains to consider for auto-approval. +
 For example: "domain.com,anotherdomain.org" +
 If domains is not set and enabled is true, it will default to auto approving all authenticated emails. +
 If domains is set and enabled is true, it will allow auto approving only for authenticated emails under +
-the domains entered. If enabled is false domains will be ignored. + |  | 
+the domains entered. If enabled is false domains will be ignored. + |  | Optional: \{} +
+
 |===
 
 
@@ -129,10 +132,14 @@ Defines all parameters concerned with the autoscaler
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`deploy`* __boolean__ | Defines the flag that determines whether to deploy the autoscaler buffer + |  | 
-| *`bufferMemory`* __string__ | Represents how much memory should be required by the autoscaler buffer + |  | 
-| *`bufferCPU`* __string__ | Represents how much CPU should be required by the autoscaler buffer + |  | 
-| *`bufferReplicas`* __integer__ | Represents the number of autoscaler buffer replicas to request + |  | 
+| *`deploy`* __boolean__ | Defines the flag that determines whether to deploy the autoscaler buffer + |  | Optional: \{} +
+
+| *`bufferMemory`* __string__ | Represents how much memory should be required by the autoscaler buffer + |  | Optional: \{} +
+
+| *`bufferCPU`* __string__ | Represents how much CPU should be required by the autoscaler buffer + |  | Optional: \{} +
+
+| *`bufferReplicas`* __integer__ | Represents the number of autoscaler buffer replicas to request + |  | Optional: \{} +
+
 |===
 
 
@@ -203,7 +210,8 @@ BannedUserSpec defines the desired state of BannedUser
 |===
 | Field | Description | Default | Validation
 | *`email`* __string__ | The e-mail address of the account that has been banned + |  | 
-| *`reason`* __string__ | Reason of the ban + |  | 
+| *`reason`* __string__ | Reason of the ban + |  | Optional: \{} +
+
 |===
 
 
@@ -232,9 +240,11 @@ This field is immutable via a validating webhook. + |  |
 Available values: +
 - "update" when the role in the current binding can be changed +
 - "delete" when the current binding can be deleted +
-- "override" when the current binding is inherited from a parent workspace, it cannot be updated, but it can be overridden by creating a new binding containing the same MasterUserRecord but different role in the subworkspace. + |  | 
+- "override" when the current binding is inherited from a parent workspace, it cannot be updated, but it can be overridden by creating a new binding containing the same MasterUserRecord but different role in the subworkspace. + |  | Optional: \{} +
+
 | *`bindingRequest`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-bindingrequest[$$BindingRequest$$]__ | BindingRequest provides the name and namespace of the SpaceBindingRequest that generated the SpaceBinding resource. +
-It's available only if the binding was generated using the SpaceBindingRequest mechanism. + |  | 
+It's available only if the binding was generated using the SpaceBindingRequest mechanism. + |  | Optional: \{} +
+
 |===
 
 
@@ -277,14 +287,20 @@ CaptchaConfig defines any configuration related to captcha verification
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`enabled`* __boolean__ | Enabled specifies whether the captcha verification feature is enabled or not + |  | 
+| *`enabled`* __boolean__ | Enabled specifies whether the captcha verification feature is enabled or not + |  | Optional: \{} +
+
 | *`scoreThreshold`* __string__ | ScoreThreshold defines the captcha assessment score threshold. A score equal to or above the threshold means the user is most likely human and +
-can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required. + |  | 
+can proceed signing up but a score below the threshold means the score is suspicious and further verification may be required. + |  | Optional: \{} +
+
 | *`requiredScore`* __string__ | RequiredScore defines the lowest captcha score, below this score the user cannot proceed with the signup process at all. +
-Users with captcha score lower than the required one can still be approved manually. + |  | 
-| *`allowLowScoreReactivation`* __boolean__ | AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below the RequiredScore) is enabled without the need for manual approval. + |  | 
-| *`siteKey`* __string__ | SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod + |  | 
-| *`projectID`* __string__ | ProjectID defines the GCP project ID that has the recaptcha service enabled. + |  | 
+Users with captcha score lower than the required one can still be approved manually. + |  | Optional: \{} +
+
+| *`allowLowScoreReactivation`* __boolean__ | AllowLowScoreReactivation specifies whether the reactivation for users with low captcha score (below the RequiredScore) is enabled without the need for manual approval. + |  | Optional: \{} +
+
+| *`siteKey`* __string__ | SiteKey defines the recaptcha site key to use when making recaptcha requests. There can be different ones for different environments. eg. dev, stage, prod + |  | Optional: \{} +
+
+| *`projectID`* __string__ | ProjectID defines the GCP project ID that has the recaptcha service enabled. + |  | Optional: \{} +
+
 |===
 
 
@@ -354,10 +370,14 @@ Users with captcha score lower than the required one can still be approved manua
 | Field | Description | Default | Validation
 | *`type`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-conditiontype[$$ConditionType$$]__ | Type of condition + |  | 
 | *`status`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#conditionstatus-v1-core[$$ConditionStatus$$]__ | Status of the condition, one of True, False, Unknown. + |  | 
-| *`lastTransitionTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | Last time the condition transit from one status to another. + |  | 
-| *`reason`* __string__ | (brief) reason for the condition's last transition. + |  | 
-| *`message`* __string__ | Human readable message indicating details about last transition. + |  | 
-| *`lastUpdatedTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | Last time the condition was updated + |  | 
+| *`lastTransitionTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | Last time the condition transit from one status to another. + |  | Optional: \{} +
+
+| *`reason`* __string__ | (brief) reason for the condition's last transition. + |  | Optional: \{} +
+
+| *`message`* __string__ | Human readable message indicating details about last transition. + |  | Optional: \{} +
+
+| *`lastUpdatedTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | Last time the condition was updated + |  | Optional: \{} +
+
 |===
 
 
@@ -394,8 +414,10 @@ Defines all parameters concerned with the console
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`namespace`* __string__ | Defines the console route namespace + |  | 
-| *`routeName`* __string__ | Defines the console route name + |  | 
+| *`namespace`* __string__ | Defines the console route namespace + |  | Optional: \{} +
+
+| *`routeName`* __string__ | Defines the console route name + |  | Optional: \{} +
+
 |===
 
 
@@ -440,16 +462,20 @@ DeactivationConfig contains all configuration parameters related to deactivation
 |===
 | Field | Description | Default | Validation
 | *`deactivatingNotificationDays`* __integer__ | DeactivatingNotificationDays is the number of days after a pre-deactivating notification is sent that actual +
-deactivation occurs.  If this parameter is set to zero, then there will be no delay + |  | 
+deactivation occurs.  If this parameter is set to zero, then there will be no delay + |  | Optional: \{} +
+
 | *`deactivationDomainsExcluded`* __string__ | DeactivationDomainsExcluded is a string of comma-separated domains that should be excluded from automatic user deactivation +
-For example: "@redhat.com,@ibm.com" + |  | 
+For example: "@redhat.com,@ibm.com" + |  | Optional: \{} +
+
 | *`userSignupDeactivatedRetentionDays`* __integer__ | UserSignupDeactivatedRetentionDays is used to configure how many days we should keep deactivated UserSignup +
 resources before deleting them.  This parameter value should reflect an extended period of time sufficient for +
-gathering user metrics before removing the resources from the cluster. + |  | 
+gathering user metrics before removing the resources from the cluster. + |  | Optional: \{} +
+
 | *`userSignupUnverifiedRetentionDays`* __integer__ | UserSignupUnverifiedRetentionDays is used to configure how many days we should keep unverified (i.e. the user +
 hasn't completed the user verification process via the registration service) UserSignup resources before deleting +
 them.  It is intended for this parameter to define an aggressive cleanup schedule for unverified user signups, +
-and the default configuration value for this parameter reflects this. + |  | 
+and the default configuration value for this parameter reflects this. + |  | Optional: \{} +
+
 |===
 
 
@@ -470,7 +496,8 @@ and the default configuration value for this parameter reflects this. + |  |
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`segmentWriteKey`* __string__ | SegmentWriteKey specifies the segment write key + |  | 
+| *`segmentWriteKey`* __string__ | SegmentWriteKey specifies the segment write key + |  | Optional: \{} +
+
 |===
 
 
@@ -513,6 +540,7 @@ And tiers (one or many) contain the following object manifests: +
 Then the RoleBinding will be created for the corresponding tiers with probability of 0.05 (around 5 out of every 100 spaces would have it) +
 And the ConfigMap will be created with probability of 0.9 (around 90 out of every 100 spaces would have it) + | 100 | Maximum: 100 +
 Minimum: 0 +
+Optional: \{} +
 
 |===
 
@@ -535,8 +563,10 @@ GitHubSecret defines all secrets related to GitHub authentication/integration
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | 
-| *`accessTokenKey`* __string__ | The key for the GitHub Access token in the secret values map + |  | 
+| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | Optional: \{} +
+
+| *`accessTokenKey`* __string__ | The key for the GitHub Access token in the secret values map + |  | Optional: \{} +
+
 |===
 
 
@@ -557,20 +587,31 @@ HostConfig contains all configuration parameters of the host operator
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`environment`* __string__ | Environment specifies the host-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc + |  | 
-| *`automaticApproval`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-automaticapprovalconfig[$$AutomaticApprovalConfig$$]__ | Keeps parameters necessary for automatic approval + |  | 
-| *`deactivation`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-deactivationconfig[$$DeactivationConfig$$]__ | Keeps parameters concerned with user deactivation + |  | 
-| *`metrics`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-metricsconfig[$$MetricsConfig$$]__ | Keeps parameters concerned with metrics + |  | 
-| *`notifications`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationsconfig[$$NotificationsConfig$$]__ | Keeps parameters concerned with notifications + |  | 
-| *`registrationService`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceconfig[$$RegistrationServiceConfig$$]__ | Keeps parameters necessary for the registration service + |  | 
-| *`tiers`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiersconfig[$$TiersConfig$$]__ | Keeps parameters concerned with tiers + |  | 
-| *`toolchainStatus`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatusconfig[$$ToolchainStatusConfig$$]__ | Keeps parameters concerned with the toolchainstatus + |  | 
-| *`users`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersconfig[$$UsersConfig$$]__ | Keeps parameters concerned with user management + |  | 
-| *`spaceConfig`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceconfig[$$SpaceConfig$$]__ | Keeps parameters necessary for configuring Space provisioning functionality + |  | 
+| *`environment`* __string__ | Environment specifies the host-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc + |  | Optional: \{} +
+
+| *`automaticApproval`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-automaticapprovalconfig[$$AutomaticApprovalConfig$$]__ | Keeps parameters necessary for automatic approval + |  | Optional: \{} +
+
+| *`deactivation`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-deactivationconfig[$$DeactivationConfig$$]__ | Keeps parameters concerned with user deactivation + |  | Optional: \{} +
+
+| *`metrics`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-metricsconfig[$$MetricsConfig$$]__ | Keeps parameters concerned with metrics + |  | Optional: \{} +
+
+| *`notifications`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationsconfig[$$NotificationsConfig$$]__ | Keeps parameters concerned with notifications + |  | Optional: \{} +
+
+| *`registrationService`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceconfig[$$RegistrationServiceConfig$$]__ | Keeps parameters necessary for the registration service + |  | Optional: \{} +
+
+| *`tiers`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-tiersconfig[$$TiersConfig$$]__ | Keeps parameters concerned with tiers + |  | Optional: \{} +
+
+| *`toolchainStatus`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatusconfig[$$ToolchainStatusConfig$$]__ | Keeps parameters concerned with the toolchainstatus + |  | Optional: \{} +
+
+| *`users`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersconfig[$$UsersConfig$$]__ | Keeps parameters concerned with user management + |  | Optional: \{} +
+
+| *`spaceConfig`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceconfig[$$SpaceConfig$$]__ | Keeps parameters necessary for configuring Space provisioning functionality + |  | Optional: \{} +
+
 | *`publicViewerConfig`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-publicviewerconfiguration[$$PublicViewerConfiguration$$]__ | Contains the PublicViewer configuration. +
 IMPORTANT: To provide a consistent User-Experience, each user +
 the space has been directly shared with should have at least +
-the same permissions the kubesaw-authenticated user has. + |  | 
+the same permissions the kubesaw-authenticated user has. + |  | Optional: \{} +
+
 |===
 
 
@@ -596,8 +637,10 @@ HostOperatorStatus defines the observed state of a toolchain's host operator
 | *`buildTimestamp`* __string__ | The timestamp of the host operator build + |  | 
 | *`deploymentName`* __string__ | The status of the host operator's deployment + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current host operator status conditions +
-Supported condition types: ConditionReady + |  | 
-| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for host operator's deployment + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
+| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for host operator's deployment + |  | Optional: \{} +
+
 |===
 
 
@@ -621,7 +664,8 @@ HostRegistrationServiceStatus defines the observed state of a toolchain's regist
 | *`deployment`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationservicedeploymentstatus[$$RegistrationServiceDeploymentStatus$$]__ | Deployment is the status of the registration service's deployment + |  | 
 | *`registrationServiceResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceresourcesstatus[$$RegistrationServiceResourcesStatus$$]__ | RegistrationServiceResources is the status for resources created for the registration service + |  | 
 | *`health`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationservicehealth[$$RegistrationServiceHealth$$]__ | Health provides health status of the registration service + |  | 
-| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for registration service + |  | 
+| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for registration service + |  | Optional: \{} +
+
 |===
 
 
@@ -642,9 +686,11 @@ HostRoutes contains information about the public routes available to the user in
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`proxyURL`* __string__ | ProxyURL is the Proxy URL of the cluster + |  | 
+| *`proxyURL`* __string__ | ProxyURL is the Proxy URL of the cluster + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current member operator status conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -666,7 +712,8 @@ HostStatus defines the status of the connection with the host cluster
 |===
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current member operator status conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -688,16 +735,23 @@ IdentityClaimsEmbedded is used to define a set of SSO claim values that we are i
 |===
 | Field | Description | Default | Validation
 | *`sub`* __string__ | Sub contains the value of the 'sub' claim + |  | 
-| *`userID`* __string__ | UserID contains the value of the 'user_id' claim + |  | 
-| *`accountID`* __string__ | AccountID contains the value of the 'account_id' claim + |  | 
+| *`userID`* __string__ | UserID contains the value of the 'user_id' claim + |  | Optional: \{} +
+
+| *`accountID`* __string__ | AccountID contains the value of the 'account_id' claim + |  | Optional: \{} +
+
 | *`originalSub`* __string__ | OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to +
-a new IdP provider client, and contains the user's "original-sub" claim + |  | 
+a new IdP provider client, and contains the user's "original-sub" claim + |  | Optional: \{} +
+
 | *`email`* __string__ | Email contains the user's email address + |  | 
 | *`preferredUsername`* __string__ | PreferredUsername contains the user's username + |  | 
-| *`givenName`* __string__ | GivenName contains the value of the 'given_name' claim + |  | 
-| *`familyName`* __string__ | FamilyName contains the value of the 'family_name' claim + |  | 
-| *`company`* __string__ | Company contains the value of the 'company' claim + |  | 
-| *`accountNumber`* __string__ | AccountNumber contains the value of the 'account_number' claim + |  | 
+| *`givenName`* __string__ | GivenName contains the value of the 'given_name' claim + |  | Optional: \{} +
+
+| *`familyName`* __string__ | FamilyName contains the value of the 'family_name' claim + |  | Optional: \{} +
+
+| *`company`* __string__ | Company contains the value of the 'company' claim + |  | Optional: \{} +
+
+| *`accountNumber`* __string__ | AccountNumber contains the value of the 'account_number' claim + |  | Optional: \{} +
+
 |===
 
 
@@ -792,7 +846,8 @@ IdlerStatus defines the observed state of Idler
 |===
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Idler conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -887,14 +942,17 @@ MasterUserRecordSpec defines the desired state of MasterUserRecord
 |===
 | Field | Description | Default | Validation
 | *`disabled`* __boolean__ | If set to true then the corresponding user should not be able to login (but the underlying UserAccounts still exists) +
-"false" is assumed by default + |  | 
+"false" is assumed by default + |  | Optional: \{} +
+
 | *`userAccounts`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-useraccountembedded[$$UserAccountEmbedded$$] array__ | The list of user accounts in the member clusters which belong to this MasterUserRecord + |  | 
 | *`tierName`* __string__ | TierName is an optional property introduced to retain the name of the tier +
 for which the Dev Sandbox user is provisioned, so we can still deal with deactivation +
 once the NSTemplateSet field has been removed from `[]spec.UserAccounts` +
-temporarily marked as optional until the migration took place (CRT-1321) + |  | 
+temporarily marked as optional until the migration took place (CRT-1321) + |  | Optional: \{} +
+
 | *`propagatedClaims`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-propagatedclaims[$$PropagatedClaims$$]__ | PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to +
-be "propagated" down the resource dependency chain + |  | 
+be "propagated" down the resource dependency chain + |  | Optional: \{} +
+
 |===
 
 
@@ -917,9 +975,11 @@ MasterUserRecordStatus defines the observed state of MasterUserRecord
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Master User Record conditions +
 Supported condition types: +
-Provisioning, UserAccountNotReady and Ready + |  | 
+Provisioning, UserAccountNotReady and Ready + |  | Optional: \{} +
+
 | *`userAccounts`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-useraccountstatusembedded[$$UserAccountStatusEmbedded$$] array__ | The status of user accounts in the member clusters which belong to this MasterUserRecord + |  | 
-| *`provisionedTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | The timestamp when the user was provisioned + |  | 
+| *`provisionedTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | The timestamp when the user was provisioned + |  | Optional: \{} +
+
 |===
 
 
@@ -940,9 +1000,11 @@ Member contains the status of a member cluster
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`apiEndpoint`* __string__ | APIEndpoint is the server API URL of the cluster + |  | 
+| *`apiEndpoint`* __string__ | APIEndpoint is the server API URL of the cluster + |  | Optional: \{} +
+
 | *`clusterName`* __string__ | The cluster identifier + |  | 
-| *`spaceCount`* __integer__ | Number of Spaces created within the member cluster + |  | 
+| *`spaceCount`* __integer__ | Number of Spaces created within the member cluster + |  | Optional: \{} +
+
 | *`memberStatus`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusstatus[$$MemberStatusStatus$$]__ | The array of member status objects + |  | 
 |===
 
@@ -1015,14 +1077,22 @@ MemberOperatorConfigSpec contains all configuration parameters of the member ope
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`auth`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-authconfig[$$AuthConfig$$]__ | Keeps parameters concerned with authentication + |  | 
-| *`autoscaler`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-autoscalerconfig[$$AutoscalerConfig$$]__ | Keeps parameters concerned with the autoscaler + |  | 
-| *`console`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-consoleconfig[$$ConsoleConfig$$]__ | Keeps parameters concerned with the console + |  | 
-| *`environment`* __string__ | Environment specifies the member-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc + |  | 
-| *`skipUserCreation`* __boolean__ | Defines the flag that determines whether User and Identity resources should be created for a UserAccount + |  | 
-| *`memberStatus`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusconfig[$$MemberStatusConfig$$]__ | Keeps parameters concerned with member status + |  | 
-| *`toolchainCluster`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterconfig[$$ToolchainClusterConfig$$]__ | Keeps parameters concerned with the toolchaincluster + |  | 
-| *`webhook`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-webhookconfig[$$WebhookConfig$$]__ | Keeps parameters concerned with the webhook + |  | 
+| *`auth`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-authconfig[$$AuthConfig$$]__ | Keeps parameters concerned with authentication + |  | Optional: \{} +
+
+| *`autoscaler`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-autoscalerconfig[$$AutoscalerConfig$$]__ | Keeps parameters concerned with the autoscaler + |  | Optional: \{} +
+
+| *`console`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-consoleconfig[$$ConsoleConfig$$]__ | Keeps parameters concerned with the console + |  | Optional: \{} +
+
+| *`environment`* __string__ | Environment specifies the member-operator environment such as prod, stage, unit-tests, e2e-tests, dev, etc + |  | Optional: \{} +
+
+| *`skipUserCreation`* __boolean__ | Defines the flag that determines whether User and Identity resources should be created for a UserAccount + |  | Optional: \{} +
+
+| *`memberStatus`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusconfig[$$MemberStatusConfig$$]__ | Keeps parameters concerned with member status + |  | Optional: \{} +
+
+| *`toolchainCluster`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterconfig[$$ToolchainClusterConfig$$]__ | Keeps parameters concerned with the toolchaincluster + |  | Optional: \{} +
+
+| *`webhook`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-webhookconfig[$$WebhookConfig$$]__ | Keeps parameters concerned with the webhook + |  | Optional: \{} +
+
 |===
 
 
@@ -1064,8 +1134,10 @@ MemberOperatorStatus defines the observed state of a toolchain's member operator
 | *`buildTimestamp`* __string__ | The timestamp of the member operator build + |  | 
 | *`deploymentName`* __string__ | The status of the member operator's deployment + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current member operator status conditions +
-Supported condition types: ConditionReady + |  | 
-| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for member operator's deployment + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
+| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for member operator's deployment + |  | Optional: \{} +
+
 |===
 
 
@@ -1113,8 +1185,10 @@ Defines all parameters concerned with member status
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`refreshPeriod`* __string__ | Defines the period between refreshes of the member status + |  | 
-| *`gitHubSecret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]__ | Defines all secrets related to GitHub authentication/integration + |  | 
+| *`refreshPeriod`* __string__ | Defines the period between refreshes of the member status + |  | Optional: \{} +
+
+| *`gitHubSecret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]__ | Defines all secrets related to GitHub authentication/integration + |  | Optional: \{} +
+
 |===
 
 
@@ -1175,13 +1249,19 @@ MemberStatusStatus defines the observed state of the toolchain member status
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`memberOperator`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorstatus[$$MemberOperatorStatus$$]__ | MemberOperator is the status of a toolchain member operator + |  | 
-| *`hostConnection`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterstatus[$$ToolchainClusterStatus$$]__ | HostConnection is the status of the connection with the host cluster + |  | 
-| *`host`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hoststatus[$$HostStatus$$]__ | Host is the status of the connection with the host cluster + |  | 
+| *`memberOperator`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorstatus[$$MemberOperatorStatus$$]__ | MemberOperator is the status of a toolchain member operator + |  | Optional: \{} +
+
+| *`hostConnection`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterstatus[$$ToolchainClusterStatus$$]__ | HostConnection is the status of the connection with the host cluster + |  | Optional: \{} +
+
+| *`host`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hoststatus[$$HostStatus$$]__ | Host is the status of the connection with the host cluster + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current toolchain status conditions +
-Supported condition types: ConditionReady + |  | 
-| *`resourceUsage`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-resourceusage[$$ResourceUsage$$]__ | Resource usage of the cluster + |  | 
-| *`routes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]__ | Routes/URLs of the cluster, such as Console + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
+| *`resourceUsage`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-resourceusage[$$ResourceUsage$$]__ | Resource usage of the cluster + |  | Optional: \{} +
+
+| *`routes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]__ | Routes/URLs of the cluster, such as Console + |  | Optional: \{} +
+
 |===
 
 
@@ -1202,8 +1282,10 @@ Members contains all configuration for member operators
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`default`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$]__ | Defines default configuration to be applied to all member clusters + |  | 
-| *`specificPerMemberCluster`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$])__ | A map of cluster-specific member operator configurations indexed by member toolchaincluster name + |  | 
+| *`default`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$]__ | Defines default configuration to be applied to all member clusters + |  | Optional: \{} +
+
+| *`specificPerMemberCluster`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$])__ | A map of cluster-specific member operator configurations indexed by member toolchaincluster name + |  | Optional: \{} +
+
 |===
 
 
@@ -1241,7 +1323,8 @@ MetricsConfig contains all configuration parameters related to metrics gathering
 |===
 | Field | Description | Default | Validation
 | *`forceSynchronization`* __boolean__ | ForceSynchronization is a flag used to trigger synchronization of the metrics +
-based on the resources rather than on the content of `ToolchainStatus.status.metrics` + |  | 
+based on the resources rather than on the content of `ToolchainStatus.status.metrics` + |  | Optional: \{} +
+
 |===
 
 
@@ -1381,8 +1464,10 @@ NSTemplateSetSpec defines the desired state of NSTemplateSet
 | Field | Description | Default | Validation
 | *`tierName`* __string__ | The name of the tier represented by this template set + |  | 
 | *`namespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetnamespace[$$NSTemplateSetNamespace$$] array__ | The namespace templates + |  | 
-| *`clusterResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetclusterresources[$$NSTemplateSetClusterResources$$]__ | the cluster resources template (for cluster-wide quotas, etc.) + |  | 
-| *`spaceRoles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspacerole[$$NSTemplateSetSpaceRole$$] array__ | the role template and the users to whom the templates should be applied to + |  | 
+| *`clusterResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetclusterresources[$$NSTemplateSetClusterResources$$]__ | the cluster resources template (for cluster-wide quotas, etc.) + |  | Optional: \{} +
+
+| *`spaceRoles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspacerole[$$NSTemplateSetSpaceRole$$] array__ | the role template and the users to whom the templates should be applied to + |  | Optional: \{} +
+
 |===
 
 
@@ -1403,13 +1488,19 @@ NSTemplateSetStatus defines the observed state of NSTemplateSet
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`namespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetnamespace[$$NSTemplateSetNamespace$$] array__ | The namespace templates that were used last time to provision NSTemplateSet CR + |  | 
-| *`clusterResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetclusterresources[$$NSTemplateSetClusterResources$$]__ | The cluster resources template (for cluster-wide quotas, etc.) that was used last time to provision the NSTemplateSet CR + |  | 
-| *`spaceRoles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspacerole[$$NSTemplateSetSpaceRole$$] array__ | The SpaceRole template and the users to whom the template was applied for when the NSTemplateSet CR was provisioned for the last time + |  | 
-| *`featureToggles`* __string array__ | FeatureToggles holds the list of feature toggles/flags that were enabled when the NSTemplateSet CR was provisioned for the last time + |  | 
-| *`provisionedNamespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacenamespace[$$SpaceNamespace$$] array__ | ProvisionedNamespaces is a list of Namespaces that were provisioned by the NSTemplateSet. + |  | 
+| *`namespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetnamespace[$$NSTemplateSetNamespace$$] array__ | The namespace templates that were used last time to provision NSTemplateSet CR + |  | Optional: \{} +
+
+| *`clusterResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetclusterresources[$$NSTemplateSetClusterResources$$]__ | The cluster resources template (for cluster-wide quotas, etc.) that was used last time to provision the NSTemplateSet CR + |  | Optional: \{} +
+
+| *`spaceRoles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatesetspacerole[$$NSTemplateSetSpaceRole$$] array__ | The SpaceRole template and the users to whom the template was applied for when the NSTemplateSet CR was provisioned for the last time + |  | Optional: \{} +
+
+| *`featureToggles`* __string array__ | FeatureToggles holds the list of feature toggles/flags that were enabled when the NSTemplateSet CR was provisioned for the last time + |  | Optional: \{} +
+
+| *`provisionedNamespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacenamespace[$$SpaceNamespace$$] array__ | ProvisionedNamespaces is a list of Namespaces that were provisioned by the NSTemplateSet. + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current NSTemplateSet conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -1544,10 +1635,14 @@ NSTemplateTierSpec defines the desired state of NSTemplateTier
 |===
 | Field | Description | Default | Validation
 | *`namespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetiernamespace[$$NSTemplateTierNamespace$$] array__ | The namespace templates + |  | 
-| *`clusterResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierclusterresources[$$NSTemplateTierClusterResources$$]__ | the cluster resources template (for cluster-wide quotas, etc.) + |  | 
-| *`spaceRoles`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierspacerole[$$NSTemplateTierSpaceRole$$])__ | the templates to set the spaces roles, indexed by role + |  | 
-| *`spaceRequestConfig`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequestconfig[$$SpaceRequestConfig$$]__ | SpaceRequestConfig stores all the configuration related to the Space Request feature + |  | 
-| *`parameters`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-parameter[$$Parameter$$] array__ | Parameters is an optional array of Parameters to be used to replace "global" variables defined in the TierTemplate CRs of the NSTemplateTier. + |  | 
+| *`clusterResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierclusterresources[$$NSTemplateTierClusterResources$$]__ | the cluster resources template (for cluster-wide quotas, etc.) + |  | Optional: \{} +
+
+| *`spaceRoles`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-nstemplatetierspacerole[$$NSTemplateTierSpaceRole$$])__ | the templates to set the spaces roles, indexed by role + |  | Optional: \{} +
+
+| *`spaceRequestConfig`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacerequestconfig[$$SpaceRequestConfig$$]__ | SpaceRequestConfig stores all the configuration related to the Space Request feature + |  | Optional: \{} +
+
+| *`parameters`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-parameter[$$Parameter$$] array__ | Parameters is an optional array of Parameters to be used to replace "global" variables defined in the TierTemplate CRs of the NSTemplateTier. + |  | Optional: \{} +
+
 |===
 
 
@@ -1569,12 +1664,14 @@ NSTemplateTierStatus defines the observed state of NSTemplateTier
 |===
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current NSTemplateTier conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 | *`revisions`* __object (keys:string, values:string)__ | Revisions is a map of TierTemplate CR names (as the keys) and TierTemplateRevision CR names (as the values) +
 The map represents the current content of the TierTemplate CRs combined with the parameters defined in the tier. +
 Each of the referenced TierTemplateRevision CRs represents the content of the associated TierTemplate CR processed with the parameters. +
 If the content of the already referenced TierTemplateRevision CR doesn't match the expected outcome of the processed TierTemplate CR, +
-then a new TierTemplateRevision CR is created and the name here is updated. + |  | 
+then a new TierTemplateRevision CR is created and the name here is updated. + |  | Optional: \{} +
+
 |===
 
 
@@ -1668,11 +1765,16 @@ Defines all secrets related to notification configuration
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | 
-| *`mailgunDomain`* __string__ | The key for the host operator mailgun domain used for creating an instance of mailgun + |  | 
-| *`mailgunAPIKey`* __string__ | The key for the host operator mailgun api key used for creating an instance of mailgun + |  | 
-| *`mailgunSenderEmail`* __string__ | The key for the host operator mailgun senders email + |  | 
-| *`mailgunReplyToEmail`* __string__ | The key for the reply-to email address that will be set in sent notifications + |  | 
+| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | Optional: \{} +
+
+| *`mailgunDomain`* __string__ | The key for the host operator mailgun domain used for creating an instance of mailgun + |  | Optional: \{} +
+
+| *`mailgunAPIKey`* __string__ | The key for the host operator mailgun api key used for creating an instance of mailgun + |  | Optional: \{} +
+
+| *`mailgunSenderEmail`* __string__ | The key for the host operator mailgun senders email + |  | Optional: \{} +
+
+| *`mailgunReplyToEmail`* __string__ | The key for the reply-to email address that will be set in sent notifications + |  | Optional: \{} +
+
 |===
 
 
@@ -1696,12 +1798,14 @@ NotificationSpec defines the desired state of Notification
 | *`userID`* __string__ | UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by +
 the notification service (i.e. the NotificationController) to lookup the UserSignup resource for the user, +
 and extract from it the values required to generate the notification content and to deliver the notification +
-Deprecated: replaced by Context + |  | 
+Deprecated: replaced by Context + |  | Optional: \{} +
+
 | *`recipient`* __string__ | Recipient is used to specify the email address where the notification will be delivered.  It must comply with +
 section 3.4.1 of RFC2822, and should be formatted to include the user's first and last names, +
 e.g. "John Smith <jsmith@example.com>" + |  | 
 | *`context`* __object (keys:string, values:string)__ | Context is used to set a number of arbitrary values to be passed to the notification content text formatter, +
-for inclusion in the body of the notification. + |  | 
+for inclusion in the body of the notification. + |  | Optional: \{} +
+
 | *`template`* __string__ | Template is the name of the NotificationTemplate resource that will be used to generate the notification + |  | 
 | *`subject`* __string__ | Subject is used when no template value is specified, in cases where the complete notification subject is +
 specified at notification creation time + |  | 
@@ -1729,7 +1833,8 @@ NotificationStatus defines the observed state of Notification
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Notification conditions +
 Supported condition types: +
-Sent + |  | 
+Sent + |  | Optional: \{} +
+
 |===
 
 
@@ -1750,11 +1855,16 @@ NotificationsConfig contains all configuration parameters related to notificatio
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`notificationDeliveryService`* __string__ | NotificationDeliveryService is notification delivery service to use for notifications + |  | 
-| *`durationBeforeNotificationDeletion`* __string__ | DurationBeforeNotificationDeletion is notification delivery service to use for notifications + |  | 
-| *`adminEmail`* __string__ | The administrator email address for system notifications + |  | 
-| *`templateSetName`* __string__ | TemplateSetName defines the set of notification templates. Different Sandbox instances can use different notification templates. For example Dev Sandbox and AppStudio instances use different templates. By default, the "sandbox" template set name is used. + |  | 
-| *`secret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationsecret[$$NotificationSecret$$]__ | Defines all secrets related to notification configuration + |  | 
+| *`notificationDeliveryService`* __string__ | NotificationDeliveryService is notification delivery service to use for notifications + |  | Optional: \{} +
+
+| *`durationBeforeNotificationDeletion`* __string__ | DurationBeforeNotificationDeletion is notification delivery service to use for notifications + |  | Optional: \{} +
+
+| *`adminEmail`* __string__ | The administrator email address for system notifications + |  | Optional: \{} +
+
+| *`templateSetName`* __string__ | TemplateSetName defines the set of notification templates. Different Sandbox instances can use different notification templates. For example Dev Sandbox and AppStudio instances use different templates. By default, the "sandbox" template set name is used. + |  | Optional: \{} +
+
+| *`secret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationsecret[$$NotificationSecret$$]__ | Defines all secrets related to notification configuration + |  | Optional: \{} +
+
 |===
 
 
@@ -1828,10 +1938,13 @@ The value replaces all occurrences of the Parameter {{.NAME}}. + |  |
 |===
 | Field | Description | Default | Validation
 | *`sub`* __string__ | Sub contains the value of the 'sub' claim + |  | 
-| *`userID`* __string__ | UserID contains the value of the 'user_id' claim + |  | 
-| *`accountID`* __string__ | AccountID contains the value of the 'account_id' claim + |  | 
+| *`userID`* __string__ | UserID contains the value of the 'user_id' claim + |  | Optional: \{} +
+
+| *`accountID`* __string__ | AccountID contains the value of the 'account_id' claim + |  | Optional: \{} +
+
 | *`originalSub`* __string__ | OriginalSub is an optional property temporarily introduced for the purpose of migrating the users to +
-a new IdP provider client, and contains the user's "original-sub" claim + |  | 
+a new IdP provider client, and contains the user's "original-sub" claim + |  | Optional: \{} +
+
 | *`email`* __string__ | Email contains the user's email address + |  | 
 |===
 
@@ -1909,7 +2022,8 @@ ProxyPluginSpec defines the desired state of ProxyPlugin
 | *`openShiftRouteTargetEndpoint`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-openshiftroutetarget[$$OpenShiftRouteTarget$$]__ | OpenShiftRouteTargetEndpoint is an optional field that represents the look up information for an OpenShift Route +
 as the endpoint for the registration service to proxy requests to that have the https://<proxy-host>/plugins/<ProxyPlugin.ObjectMeta.Name> +
 in its incoming URL.  As we add more types besides OpenShift Routes, we will add more optional fields to this spec +
-object + |  | 
+object + |  | Optional: \{} +
+
 |===
 
 
@@ -1931,7 +2045,8 @@ ProxyPluginStatus defines the observed state of ProxyPlugin
 |===
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Proxy Plugin conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -1952,7 +2067,8 @@ Configuration to enable the PublicViewer support
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`enabled`* __boolean__ | Defines whether the PublicViewer support should be enabled or not + | false | 
+| *`enabled`* __boolean__ | Defines whether the PublicViewer support should be enabled or not + | false | Required: \{} +
+
 |===
 
 
@@ -1973,8 +2089,10 @@ RegistrationServiceAnalyticsConfig contains the subset of registration service c
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`devSpaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-devspaces[$$DevSpaces$$]__ | DevSpaces contains the analytics configuration parameters for devspaces + |  | 
-| *`segmentWriteKey`* __string__ | SegmentWriteKey specifies the segment write key for sandbox + |  | 
+| *`devSpaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-devspaces[$$DevSpaces$$]__ | DevSpaces contains the analytics configuration parameters for devspaces + |  | Optional: \{} +
+
+| *`segmentWriteKey`* __string__ | SegmentWriteKey specifies the segment write key for sandbox + |  | Optional: \{} +
+
 |===
 
 
@@ -1995,12 +2113,18 @@ RegistrationServiceAuthConfig contains the subset of registration service config
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`authClientLibraryURL`* __string__ | AuthClientLibraryURL specifies the auth library location + |  | 
-| *`authClientConfigContentType`* __string__ | AuthClientConfigContentType specifies the auth config content type + |  | 
-| *`authClientConfigRaw`* __string__ | AuthClientConfigRaw specifies the URL used to access the registration service + |  | 
-| *`authClientPublicKeysURL`* __string__ | AuthClientPublicKeysURL specifies the public keys URL + |  | 
-| *`ssoBaseURL`* __string__ | SSOBaseURL specifies the SSO base URL such as https://sso.redhat.com + |  | 
-| *`ssoRealm`* __string__ | SSORealm specifies the SSO realm name + |  | 
+| *`authClientLibraryURL`* __string__ | AuthClientLibraryURL specifies the auth library location + |  | Optional: \{} +
+
+| *`authClientConfigContentType`* __string__ | AuthClientConfigContentType specifies the auth config content type + |  | Optional: \{} +
+
+| *`authClientConfigRaw`* __string__ | AuthClientConfigRaw specifies the URL used to access the registration service + |  | Optional: \{} +
+
+| *`authClientPublicKeysURL`* __string__ | AuthClientPublicKeysURL specifies the public keys URL + |  | Optional: \{} +
+
+| *`ssoBaseURL`* __string__ | SSOBaseURL specifies the SSO base URL such as https://sso.redhat.com + |  | Optional: \{} +
+
+| *`ssoRealm`* __string__ | SSORealm specifies the SSO realm name + |  | Optional: \{} +
+
 |===
 
 
@@ -2021,15 +2145,23 @@ RegistrationServiceConfig contains all configuration parameters related to the r
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`analytics`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceanalyticsconfig[$$RegistrationServiceAnalyticsConfig$$]__ | Keeps parameters necessary for the registration service analytics config + |  | 
-| *`auth`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceauthconfig[$$RegistrationServiceAuthConfig$$]__ | Keeps parameters necessary for the registration service authentication config + |  | 
-| *`environment`* __string__ | Environment specifies the environment such as prod, stage, unit-tests, e2e-tests, dev, etc + |  | 
-| *`logLevel`* __string__ | LogLevel specifies the logging level + |  | 
+| *`analytics`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceanalyticsconfig[$$RegistrationServiceAnalyticsConfig$$]__ | Keeps parameters necessary for the registration service analytics config + |  | Optional: \{} +
+
+| *`auth`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceauthconfig[$$RegistrationServiceAuthConfig$$]__ | Keeps parameters necessary for the registration service authentication config + |  | Optional: \{} +
+
+| *`environment`* __string__ | Environment specifies the environment such as prod, stage, unit-tests, e2e-tests, dev, etc + |  | Optional: \{} +
+
+| *`logLevel`* __string__ | LogLevel specifies the logging level + |  | Optional: \{} +
+
 | *`namespace`* __string__ | Namespace specifies the namespace in which the registration service and host operator is running +
-Consumed by host operator and set as env var on registration-service deployment + |  | 
-| *`registrationServiceURL`* __string__ | RegistrationServiceURL is the URL used to a ccess the registration service + |  | 
-| *`replicas`* __integer__ | Replicas specifies the number of replicas to use for the registration service deployment + |  | 
-| *`verification`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationconfig[$$RegistrationServiceVerificationConfig$$]__ | Keeps parameters necessary for the registration service verification config + |  | 
+Consumed by host operator and set as env var on registration-service deployment + |  | Optional: \{} +
+
+| *`registrationServiceURL`* __string__ | RegistrationServiceURL is the URL used to a ccess the registration service + |  | Optional: \{} +
+
+| *`replicas`* __integer__ | Replicas specifies the number of replicas to use for the registration service deployment + |  | Optional: \{} +
+
+| *`verification`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationconfig[$$RegistrationServiceVerificationConfig$$]__ | Keeps parameters necessary for the registration service verification config + |  | Optional: \{} +
+
 | *`uiCanaryDeploymentWeight`* __integer__ | UICanaryDeploymentWeight specifies the threshold of users that will be using the new UI. +
 This configuration option is just a temporary solution for rolling out our new RHDH based UI using canary deployment strategy. +
 Once we switch all our users to the new UI this will be removed. +
@@ -2039,9 +2171,11 @@ How this works: +
 - if the user has a number within the weight returned from the backend than user get's redirect to new UI +
 - if the user has a number above the weight they keep using the current UI + |  | Maximum: 100 +
 Minimum: 0 +
+Optional: \{} +
 
 | *`workatoWebHookURL`* __string__ | WorkatoWebHookURL is used by the UI to push events to Marketo for analytics purposes. +
-The webhook URL is unique per environment. + |  | 
+The webhook URL is unique per environment. + |  | Optional: \{} +
+
 |===
 
 
@@ -2064,7 +2198,8 @@ RegistrationServiceDeploymentStatus contains status of the registration service'
 | Field | Description | Default | Validation
 | *`name`* __string__ | The host operator deployment name + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current deployment status conditions for a host operator +
-Supported condition types: Available, Progressing + |  | 
+Supported condition types: Available, Progressing + |  | Optional: \{} +
+
 |===
 
 
@@ -2091,7 +2226,8 @@ RegistrationServiceHealth contains health status of the registration service
 | *`revision`* __string__ |  |  | 
 | *`startTime`* __string__ |  |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of status conditions for the health of the registration service +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -2113,7 +2249,8 @@ RegistrationServiceResourcesStatus contains conditions for creation/deployment o
 |===
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current registration service resource status conditions +
-Supported condition types: Deployed, Deploying, DeployingFailed + |  | 
+Supported condition types: Deployed, Deploying, DeployingFailed + |  | Optional: \{} +
+
 |===
 
 
@@ -2134,7 +2271,8 @@ RegistrationServiceVerificationConfig contains the subset of registration servic
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`secret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationsecret[$$RegistrationServiceVerificationSecret$$]__ | Defines all secrets related to the registration service verification configuration + |  | 
+| *`secret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationsecret[$$RegistrationServiceVerificationSecret$$]__ | Defines all secrets related to the registration service verification configuration + |  | Optional: \{} +
+
 | *`enabled`* __boolean__ | VerificationEnabled specifies whether verification is enabled or not +
 Verification enablement works in the following way: +
 1. verification.enabled == false +
@@ -2143,25 +2281,37 @@ No verification during the signup process at all. (no phone, no captcha) +
 Captcha is enabled and will bypass phone verification if the score is above the threshold but if the score is +
 below the threshold then phone verification kicks in. +
 3. verification.enabled == true && verification.captcha.enabled == false +
-Only phone verification is effect. + |  | 
-| *`captcha`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-captchaconfig[$$CaptchaConfig$$]__ | Captcha defines any configuration related to captcha verification + |  | 
+Only phone verification is effect. + |  | Optional: \{} +
+
+| *`captcha`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-captchaconfig[$$CaptchaConfig$$]__ | Captcha defines any configuration related to captcha verification + |  | Optional: \{} +
+
 | *`dailyLimit`* __integer__ | VerificationDailyLimit specifies the number of times a user may initiate a phone verification request within a +
-24 hour period + |  | 
+24 hour period + |  | Optional: \{} +
+
 | *`attemptsAllowed`* __integer__ | VerificationAttemptsAllowed specifies the number of times a user may attempt to correctly enter a verification code, +
-if they fail then they must request another code + |  | 
+if they fail then they must request another code + |  | Optional: \{} +
+
 | *`messageTemplate`* __string__ | VerificationMessageTemplate specifies the message template used to generate the content sent to users via SMS for +
-phone verification + |  | 
+phone verification + |  | Optional: \{} +
+
 | *`excludedEmailDomains`* __string__ | VerificationExcludedEmailDomains specifies the list of email address domains for which phone verification +
-is not required + |  | 
+is not required + |  | Optional: \{} +
+
 | *`codeExpiresInMin`* __integer__ | VerificationCodeExpiresInMin specifies an int representing the number of minutes before a verification code should +
-be expired + |  | 
+be expired + |  | Optional: \{} +
+
 | *`notificationSender`* __string__ | NotificationSender is used to specify which service should be used to send verification notifications. Allowed +
-values are "twilio", "aws".  If not specified, the Twilio sender will be used. + |  | 
-| *`awsRegion`* __string__ | AWSRegion to use when sending notification SMS + |  | 
-| *`awsSenderID`* __string__ | AWSSenderID the Alphanumeric Sender ID to use, e.g. "DevSandbox" + |  | 
+values are "twilio", "aws".  If not specified, the Twilio sender will be used. + |  | Optional: \{} +
+
+| *`awsRegion`* __string__ | AWSRegion to use when sending notification SMS + |  | Optional: \{} +
+
+| *`awsSenderID`* __string__ | AWSSenderID the Alphanumeric Sender ID to use, e.g. "DevSandbox" + |  | Optional: \{} +
+
 | *`awsSMSType`* __string__ | AWSSMSType is the type of SMS message to send, either `Promotional` or `Transactional` +
-See https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html for details + |  | 
-| *`twilioSenderConfigs`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-twiliosenderconfig[$$TwilioSenderConfig$$] array__ | TwilioSenderConfigs is an array of TwilioSenderConfig objects + |  | 
+See https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html for details + |  | Optional: \{} +
+
+| *`twilioSenderConfigs`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-twiliosenderconfig[$$TwilioSenderConfig$$] array__ | TwilioSenderConfigs is an array of TwilioSenderConfig objects + |  | Optional: \{} +
+
 |===
 
 
@@ -2182,14 +2332,21 @@ Defines all secrets related to registration service verification configuration
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | 
-| *`twilioAccountSID`* __string__ | TwilioAccountSID specifies the Twilio account identifier, used for sending phone verification messages + |  | 
-| *`twilioAuthToken`* __string__ | TwilioAuthToken specifies the Twilio authentication token, used for sending phone verification messages + |  | 
-| *`twilioFromNumber`* __string__ | TwilioFromNumber specifies the phone number or alphanumeric "Sender ID" for sending phone verification messages + |  | 
-| *`awsAccessKeyID`* __string__ | AWSAccessKeyId is the AWS Access Key used to authenticate in order to access AWS services + |  | 
-| *`awsSecretAccessKey`* __string__ | AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services + |  | 
+| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | Optional: \{} +
+
+| *`twilioAccountSID`* __string__ | TwilioAccountSID specifies the Twilio account identifier, used for sending phone verification messages + |  | Optional: \{} +
+
+| *`twilioAuthToken`* __string__ | TwilioAuthToken specifies the Twilio authentication token, used for sending phone verification messages + |  | Optional: \{} +
+
+| *`twilioFromNumber`* __string__ | TwilioFromNumber specifies the phone number or alphanumeric "Sender ID" for sending phone verification messages + |  | Optional: \{} +
+
+| *`awsAccessKeyID`* __string__ | AWSAccessKeyId is the AWS Access Key used to authenticate in order to access AWS services + |  | Optional: \{} +
+
+| *`awsSecretAccessKey`* __string__ | AWSSecretAccessKey is the AWS credential used to authenticate in order to access AWS services + |  | Optional: \{} +
+
 | *`recaptchaServiceAccountFile`* __string__ | RecaptchaServiceAccountFile is the GCP service account file contents encoded in base64, it is +
-to be used with the recaptcha client for authentication + |  | 
+to be used with the recaptcha client for authentication + |  | Optional: \{} +
+
 |===
 
 
@@ -2210,7 +2367,8 @@ Contains information about the resource usage of the cluster
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`memoryUsagePerNodeRole`* __object (keys:string, values:integer)__ | How many percent of the available memory is used per node role (eg. worker, master) + |  | 
+| *`memoryUsagePerNodeRole`* __object (keys:string, values:integer)__ | How many percent of the available memory is used per node role (eg. worker, master) + |  | Optional: \{} +
+
 |===
 
 
@@ -2235,7 +2393,8 @@ it highlights if the component is up-to-date and the deployed version matches th
 |===
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of status conditions for the health of the registration service +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -2256,9 +2415,11 @@ Routes contains information about the public routes available to the user in the
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`consoleURL`* __string__ | ConsoleURL is the web console URL of the cluster + |  | 
+| *`consoleURL`* __string__ | ConsoleURL is the web console URL of the cluster + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current member operator status conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -2332,15 +2493,18 @@ may register for the event by using the event's unique activation code
 | Field | Description | Default | Validation
 | *`startTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | The timestamp from which users may register via this event's activation code + |  | 
 | *`endTime`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | The timestamp after which users may no longer register via this event's activation code + |  | 
-| *`description`* __string__ | An optional description that may be provided describing the purpose of the event + |  | 
+| *`description`* __string__ | An optional description that may be provided describing the purpose of the event + |  | Optional: \{} +
+
 | *`maxAttendees`* __integer__ | The maximum number of attendees + |  | 
 | *`userTier`* __string__ | The tier to assign to users registering for the event. +
 This must be the valid name of an nstemplatetier resource. + |  | 
 | *`spaceTier`* __string__ | The tier to assign to spaces created for users who registered for the event. +
 This must be the valid name of an nstemplatetier resource. + |  | 
 | *`targetCluster`* __string__ | The cluster in which the user/space should be provisioned in +
-If not set then the target cluster will be picked automatically + |  | 
-| *`verificationRequired`* __boolean__ | If true, the user will also be required to complete standard phone verification + |  | 
+If not set then the target cluster will be picked automatically + |  | Optional: \{} +
+
+| *`verificationRequired`* __boolean__ | If true, the user will also be required to complete standard phone verification + |  | Optional: \{} +
+
 |===
 
 
@@ -2363,7 +2527,8 @@ SocialEventStatus defines the observed state of SocialEvent
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current SocialEventStatus conditions +
 Supported condition types: +
-Ready + |  | 
+Ready + |  | Optional: \{} +
+
 | *`activationCount`* __integer__ |  |  | 
 |===
 
@@ -2537,7 +2702,8 @@ SpaceBindingRequestStatus defines the observed state of SpaceBinding
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of SpaceBindingRequest conditions +
 Supported condition types: +
-Provisioning, SpaceBindingNotReady and Ready + |  | 
+Provisioning, SpaceBindingNotReady and Ready + |  | Optional: \{} +
+
 |===
 
 
@@ -2598,9 +2764,11 @@ SpaceConfig allows to configure Space provisioning related functionality.
 |===
 | Field | Description | Default | Validation
 | *`spaceRequestEnabled`* __boolean__ | SpaceRequestEnabled specifies whether the SpaceRequest controller should start or not. +
-This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...). + |  | 
+This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...). + |  | Optional: \{} +
+
 | *`spaceBindingRequestEnabled`* __boolean__ | SpaceBindingRequestEnabled specifies whether the SpaceBindingRequest controller should start or not. +
-This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...). + |  | 
+This is specifically useful in order to enable/disable this functionality from configuration (e.g. disabled by default in Sandbox and enabled only for AppStudio stage/prod ...). + |  | Optional: \{} +
+
 |===
 
 
@@ -2647,8 +2815,10 @@ Used in NSTemplateSet, Space and Workspace status
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`name`* __string__ | Name the name of the namespace. + |  | 
-| *`type`* __string__ | Type the type of the namespace. eg. default + |  | 
+| *`name`* __string__ | Name the name of the namespace. + |  | Optional: \{} +
+
+| *`type`* __string__ | Type the type of the namespace. eg. default + |  | Optional: \{} +
+
 |===
 
 
@@ -2672,12 +2842,14 @@ SpaceProvisionerCapacityThresholds defines the capacity thresholds of the space 
 | *`maxNumberOfSpaces`* __integer__ | MaxNumberOfSpaces is the maximum number of spaces that can be provisioned to the referenced cluster. +
 
 0 or undefined value means no limit. + |  | Minimum: 0 +
+Optional: \{} +
 
 | *`maxMemoryUtilizationPercent`* __integer__ | MaxMemoryUtilizationPercent is the maximum memory utilization of the cluster to permit provisioning +
 new spaces to it. +
 
 0 or undefined value means no limit. + |  | Maximum: 100 +
 Minimum: 0 +
+Optional: \{} +
 
 |===
 
@@ -2750,10 +2922,13 @@ SpaceProvisionerConfigList contains a list of SpaceProvisionerConfig
 |===
 | Field | Description | Default | Validation
 | *`placementRoles`* __string array__ | PlacementRoles is the list of roles, or flavors, that the provisioner possesses that influence +
-the space scheduling decisions. + |  | 
+the space scheduling decisions. + |  | Optional: \{} +
+
 | *`toolchainCluster`* __string__ | ToolchainCluster is the name of the ToolchainCluster CR of the member cluster that this config is for. + |  | 
-| *`enabled`* __boolean__ | Enabled specifies whether the member cluster is enabled (and therefore can hold spaces) or not. + | false | 
-| *`capacityThresholds`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceprovisionercapacitythresholds[$$SpaceProvisionerCapacityThresholds$$]__ | CapacityThresholds specifies the max capacities allowed in this provisioner + |  | 
+| *`enabled`* __boolean__ | Enabled specifies whether the member cluster is enabled (and therefore can hold spaces) or not. + | false | Optional: \{} +
+
+| *`capacityThresholds`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spaceprovisionercapacitythresholds[$$SpaceProvisionerCapacityThresholds$$]__ | CapacityThresholds specifies the max capacities allowed in this provisioner + |  | Optional: \{} +
+
 |===
 
 
@@ -2775,11 +2950,13 @@ the space scheduling decisions. + |  |
 |===
 | Field | Description | Default | Validation
 | *`consumedCapacity`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-consumedcapacity[$$ConsumedCapacity$$]__ | ConsumedCapacity reflects the runtime state of the cluster and the capacity it currently consumes. +
-Nil if the consumed capacity is not known + |  | 
+Nil if the consumed capacity is not known + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions describes the state of the configuration (its validity). +
 The only known condition type is "Ready". The SpaceProvisionerConfig is ready when the following is true: +
 * the referenced ToolchainCluster object exists and is itself ready +
-* the consumed capacity doesn't breach the thresholds defined in the spec + |  | 
+* the consumed capacity doesn't breach the thresholds defined in the spec + |  | Optional: \{} +
+
 |===
 
 
@@ -2827,7 +3004,8 @@ SpaceRequestConfig contains all the configuration related to the Space Request f
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`serviceAccountName`* __string__ | Provides the name of the Service Account whose token is to be copied + |  | 
+| *`serviceAccountName`* __string__ | Provides the name of the Service Account whose token is to be copied + |  | Optional: \{} +
+
 |===
 
 
@@ -2875,12 +3053,14 @@ SpaceRequestSpec defines the desired state of Space
 for which this Space is provisioned. + |  | 
 | *`targetClusterRoles`* __string array__ | TargetClusterRoles one or more label keys that define a set of clusters +
 where the Space can be provisioned. +
-The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there. + |  | 
+The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there. + |  | Optional: \{} +
+
 | *`disableInheritance`* __boolean__ | DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are +
 automatically inherited to all sub-spaces in the tree. +
 
 Set to True to disable SpaceBinding inheritance from the parent-spaces. +
-Default is False. + |  | 
+Default is False. + |  | Optional: \{} +
+
 |===
 
 
@@ -2903,11 +3083,14 @@ SpaceRequestStatus defines the observed state of Space
 | Field | Description | Default | Validation
 | *`targetClusterURL`* __string__ | TargetClusterURL The API URL of the cluster where Space is currently provisioned +
 Can be empty if provisioning did not start or failed +
-The URL is just for informative purposes for developers and controllers that are placed in member clusters. + |  | 
-| *`namespaceAccess`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-namespaceaccess[$$NamespaceAccess$$] array__ | NamespaceAccess is the list with the provisioned namespace and secret to access it + |  | 
+The URL is just for informative purposes for developers and controllers that are placed in member clusters. + |  | Optional: \{} +
+
+| *`namespaceAccess`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-namespaceaccess[$$NamespaceAccess$$] array__ | NamespaceAccess is the list with the provisioned namespace and secret to access it + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of SpaceRequest conditions +
 Supported condition types: +
-Provisioning, SpaceNotReady and Ready + |  | 
+Provisioning, SpaceNotReady and Ready + |  | Optional: \{} +
+
 |===
 
 
@@ -2929,25 +3112,30 @@ SpaceSpec defines the desired state of Space
 |===
 | Field | Description | Default | Validation
 | *`targetCluster`* __string__ | TargetCluster The cluster in which this Space is going to be provisioned +
-If not set then the target cluster will be picked automatically + |  | 
+If not set then the target cluster will be picked automatically + |  | Optional: \{} +
+
 | *`targetClusterRoles`* __string array__ | TargetClusterRoles one or more label keys that define a set of clusters +
 where the Space can be provisioned. +
 The target cluster has to match ALL the roles defined in this field in order for the space to be provisioned there. +
-It can be used as an alternative to targetCluster field, which has precedence in case both roles and name are provided. + |  | 
+It can be used as an alternative to targetCluster field, which has precedence in case both roles and name are provided. + |  | Optional: \{} +
+
 | *`tierName`* __string__ | TierName is introduced to retain the name of the tier +
 for which this Space is provisioned +
-If not set then the tier name will be set automatically + |  | 
+If not set then the tier name will be set automatically + |  | Optional: \{} +
+
 | *`parentSpace`* __string__ | ParentSpace holds the name of the context (Space) from which this space was created (requested), +
 enabling hierarchy relationships between different Spaces. +
 
 Keeping this association brings two main benefits: +
 1. SpaceBindings are inherited from the parent Space +
-2. Ability to easily monitor quota for the requested sub-spaces + |  | 
+2. Ability to easily monitor quota for the requested sub-spaces + |  | Optional: \{} +
+
 | *`disableInheritance`* __boolean__ | DisableInheritance indicates whether or not SpaceBindings from the parent-spaces are +
 automatically inherited to all sub-spaces in the tree. +
 
 Set to True to disable SpaceBinding inheritance from the parent-spaces. +
-Default is False. + |  | 
+Default is False. + |  | Optional: \{} +
+
 |===
 
 
@@ -2970,10 +3158,13 @@ SpaceStatus defines the observed state of Space
 | Field | Description | Default | Validation
 | *`targetCluster`* __string__ | TargetCluster The cluster in which this Space is currently provisioned +
 Can be empty if provisioning did not start or failed +
-To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed + |  | 
-| *`provisionedNamespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacenamespace[$$SpaceNamespace$$] array__ | ProvisionedNamespaces is a list of Namespaces that were provisioned for the Space. + |  | 
+To be used to de-provision the NSTemplateSet if the Spec.TargetCluster is either changed or removed + |  | Optional: \{} +
+
+| *`provisionedNamespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacenamespace[$$SpaceNamespace$$] array__ | ProvisionedNamespaces is a list of Namespaces that were provisioned for the Space. + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current Space conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -3093,8 +3284,10 @@ TierTemplateRevisionSpec defines the desired state of TierTemplateRevision
 |===
 | Field | Description | Default | Validation
 | *`templateObjects`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#rawextension-runtime-pkg[$$RawExtension$$] array__ | TemplateObjects contains list of Unstructured Objects that can be parsed at runtime and will be applied as part of the tier provisioning. +
-The template parameters values will be defined in the NSTemplateTier CRD. + |  | 
-| *`parameters`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-parameter[$$Parameter$$] array__ | Parameters is an optional array of Parameters which will be used to replace the variables present in the TemplateObjects list when provisioning a Space. + |  | 
+The template parameters values will be defined in the NSTemplateTier CRD. + |  | Optional: \{} +
+
+| *`parameters`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-parameter[$$Parameter$$] array__ | Parameters is an optional array of Parameters which will be used to replace the variables present in the TemplateObjects list when provisioning a Space. + |  | Optional: \{} +
+
 |===
 
 
@@ -3126,7 +3319,8 @@ NOTE: when specifying variables as part of the objects list , those concatenated
 while those that are not part of other strings do need to be wrapped in single quotes. This is required otherwise the yaml parser will error while trying to parse those resources containing variables. +
 eg: https://docs.google.com/document/d/1x5SoBT80df9fmVsaDgAE6DE7hE6lzmNIK087JUmgaJs/edit#heading=h.2iuytpfnmul5 +
 
-The template parameters values will be defined in the NSTemplateTier CRD. + |  | 
+The template parameters values will be defined in the NSTemplateTier CRD. + |  | Optional: \{} +
+
 |===
 
 
@@ -3147,12 +3341,15 @@ TiersConfig contains all configuration parameters related to tiers
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`defaultUserTier`* __string__ | DefaultUserTier specifies the default tier to assign for new users + |  | 
-| *`defaultSpaceTier`* __string__ | DefaultSpaceTier specifies the default tier to assign for new spaces + |  | 
-| *`featureToggles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-featuretoggle[$$FeatureToggle$$] array__ | FeatureToggles specifies the list of feature toggles/flags + |  | 
-| *`durationBeforeChangeTierRequestDeletion`* __string__ | DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted + |  | 
+| *`defaultUserTier`* __string__ | DefaultUserTier specifies the default tier to assign for new users + |  | Optional: \{} +
+
+| *`defaultSpaceTier`* __string__ | DefaultSpaceTier specifies the default tier to assign for new spaces + |  | Optional: \{} +
+
+| *`featureToggles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-featuretoggle[$$FeatureToggle$$] array__ | FeatureToggles specifies the list of feature toggles/flags + |  | Optional: \{} +
+
 | *`templateUpdateRequestMaxPoolSize`* __integer__ | TemplateUpdateRequestMaxPoolSize specifies the maximum number of concurrent TemplateUpdateRequests +
-when updating MasterUserRecords + |  | 
+when updating MasterUserRecords + |  | Optional: \{} +
+
 |===
 
 
@@ -3181,7 +3378,8 @@ the cluster.
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
  |  | 
 | *`spec`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterspec[$$ToolchainClusterSpec$$]__ |  |  | 
-| *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterstatus[$$ToolchainClusterStatus$$]__ |  |  | 
+| *`status`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainclusterstatus[$$ToolchainClusterStatus$$]__ |  |  | Optional: \{} +
+
 |===
 
 
@@ -3202,8 +3400,10 @@ Defines all parameters concerned with the toolchaincluster resource
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`healthCheckPeriod`* __string__ | Defines the period in between health checks + |  | 
-| *`healthCheckTimeout`* __string__ | Defines the timeout for each health check + |  | 
+| *`healthCheckPeriod`* __string__ | Defines the period in between health checks + |  | Optional: \{} +
+
+| *`healthCheckTimeout`* __string__ | Defines the timeout for each health check + |  | Optional: \{} +
+
 |===
 
 
@@ -3272,8 +3472,10 @@ cluster updated periodically by cluster controller.
 |===
 | Field | Description | Default | Validation
 | *`apiEndpoint`* __string__ | APIEndpoint is the API endpoint of the remote cluster. This can be a hostname, +
-hostname:port, IP or IP:port. + |  | 
-| *`operatorNamespace`* __string__ | OperatorNamespace is the namespace in which the operator runs in the remote cluster + |  | 
+hostname:port, IP or IP:port. + |  | Optional: \{} +
+
+| *`operatorNamespace`* __string__ | OperatorNamespace is the namespace in which the operator runs in the remote cluster + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current cluster conditions. + |  | 
 |===
 
@@ -3345,8 +3547,10 @@ ToolchainConfigSpec contains all configuration for host and member operators
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`host`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostconfig[$$HostConfig$$]__ | Contains all host operator configuration + |  | 
-| *`members`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-members[$$Members$$]__ | Contains all member operator configurations for all member clusters + |  | 
+| *`host`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostconfig[$$HostConfig$$]__ | Contains all host operator configuration + |  | Optional: \{} +
+
+| *`members`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-members[$$Members$$]__ | Contains all member operator configurations for all member clusters + |  | Optional: \{} +
+
 |===
 
 
@@ -3368,9 +3572,11 @@ ToolchainConfigStatus defines the observed state of ToolchainConfig
 |===
 | Field | Description | Default | Validation
 | *`syncErrors`* __object (keys:string, values:string)__ | SyncErrors is a map of sync errors indexed by toolchaincluster name that indicates whether +
-an attempt to sync configuration to a member cluster failed + |  | 
+an attempt to sync configuration to a member cluster failed + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of the current ToolchainConfig conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -3394,7 +3600,8 @@ ToolchainSecret defines a reference to a secret, this type should be included in
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | 
+| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | Optional: \{} +
+
 |===
 
 
@@ -3442,8 +3649,10 @@ ToolchainStatusConfig contains all configuration parameters related to the toolc
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`toolchainStatusRefreshTime`* __string__ | ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status + |  | 
-| *`gitHubSecret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]__ | Defines all secrets related to GitHub authentication/integration + |  | 
+| *`toolchainStatusRefreshTime`* __string__ | ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status + |  | Optional: \{} +
+
+| *`gitHubSecret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]__ | Defines all secrets related to GitHub authentication/integration + |  | Optional: \{} +
+
 |===
 
 
@@ -3503,13 +3712,19 @@ ToolchainStatusStatus defines the observed state of the toolchain, including hos
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`hostOperator`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostoperatorstatus[$$HostOperatorStatus$$]__ | HostOperator is the status of a toolchain host operator + |  | 
-| *`registrationService`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostregistrationservicestatus[$$HostRegistrationServiceStatus$$]__ | RegistrationService is the status of the registration service + |  | 
-| *`members`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-member[$$Member$$] array__ | Members is an array of member status objects + |  | 
-| *`metrics`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-metric[$$Metric$$])__ | Metrics is a map that stores metrics to be exposed on Prometheus. + |  | 
-| *`hostRoutes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostroutes[$$HostRoutes$$]__ | HostRoutes/URLs of the host cluster, such as Proxy URL + |  | 
+| *`hostOperator`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostoperatorstatus[$$HostOperatorStatus$$]__ | HostOperator is the status of a toolchain host operator + |  | Optional: \{} +
+
+| *`registrationService`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostregistrationservicestatus[$$HostRegistrationServiceStatus$$]__ | RegistrationService is the status of the registration service + |  | Optional: \{} +
+
+| *`members`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-member[$$Member$$] array__ | Members is an array of member status objects + |  | Optional: \{} +
+
+| *`metrics`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-metric[$$Metric$$])__ | Metrics is a map that stores metrics to be exposed on Prometheus. + |  | Optional: \{} +
+
+| *`hostRoutes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostroutes[$$HostRoutes$$]__ | HostRoutes/URLs of the host cluster, such as Proxy URL + |  | Optional: \{} +
+
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of the current overall toolchain status conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -3537,7 +3752,8 @@ the Sender ID may be an acceptable alternative to requiring the verification mes
 |===
 | Field | Description | Default | Validation
 | *`senderID`* __string__ | SenderID + |  | 
-| *`countryCodes`* __string array__ | CountryCodes + |  | 
+| *`countryCodes`* __string array__ | CountryCodes + |  | Optional: \{} +
+
 |===
 
 
@@ -3630,9 +3846,11 @@ UserAccountSpec defines the desired state of UserAccount
 |===
 | Field | Description | Default | Validation
 | *`disabled`* __boolean__ | If set to true then the corresponding user should not be able to login +
-"false" is assumed by default + |  | 
+"false" is assumed by default + |  | Optional: \{} +
+
 | *`propagatedClaims`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-propagatedclaims[$$PropagatedClaims$$]__ | PropagatedClaims contains a selection of claim values from the SSO Identity Provider which are intended to +
-be "propagated" down the resource dependency chain + |  | 
+be "propagated" down the resource dependency chain + |  | Optional: \{} +
+
 |===
 
 
@@ -3655,7 +3873,8 @@ UserAccountStatus defines the observed state of UserAccount
 |===
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current User Account conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -3678,7 +3897,8 @@ Supported condition types: ConditionReady + |  |
 | Field | Description | Default | Validation
 | *`cluster`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-cluster[$$Cluster$$]__ | Cluster is the cluster in which the user exists + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current User Account conditions +
-Supported condition types: ConditionReady + |  | 
+Supported condition types: ConditionReady + |  | Optional: \{} +
+
 |===
 
 
@@ -3750,8 +3970,10 @@ UserSignupSpec defines the desired state of UserSignup
 |===
 | Field | Description | Default | Validation
 | *`targetCluster`* __string__ | The cluster in which the user is provisioned in +
-If not set then the target cluster will be picked automatically + |  | 
-| *`states`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersignupstate[$$UserSignupState$$] array__ | States contains a number of values that reflect the desired state of the UserSignup. + |  | 
+If not set then the target cluster will be picked automatically + |  | Optional: \{} +
+
+| *`states`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-usersignupstate[$$UserSignupState$$] array__ | States contains a number of values that reflect the desired state of the UserSignup. + |  | Optional: \{} +
+
 | *`identityClaims`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-identityclaimsembedded[$$IdentityClaimsEmbedded$$]__ | IdentityClaims contains as-is claim values extracted from the user's access token + |  | 
 |===
 
@@ -3791,15 +4013,19 @@ UserSignupStatus defines the observed state of UserSignup
 | Field | Description | Default | Validation
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current UserSignup conditions +
 Supported condition types: +
-PendingApproval, Provisioning, Complete + |  | 
-| *`compliantUsername`* __string__ | CompliantUsername is used to store the transformed, DNS-1123 compliant username + |  | 
+PendingApproval, Provisioning, Complete + |  | Optional: \{} +
+
+| *`compliantUsername`* __string__ | CompliantUsername is used to store the transformed, DNS-1123 compliant username + |  | Optional: \{} +
+
 | *`homeSpace`* __string__ | HomeSpace is the name of the Space that is created for the user +
 immediately after their account is approved. +
-This is used by the proxy when no workspace context is provided. + |  | 
+This is used by the proxy when no workspace context is provided. + |  | Optional: \{} +
+
 | *`scheduledDeactivationTimestamp`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta[$$Time$$]__ | ScheduledDeactivationTimestamp is the calculated timestamp after which the user's account will be deactivated, typically +
 after the expiry of their trial and based on the term specific by their UserTier.  This property may be used as +
 a convenience to determine the amount of time an account has left before deactivation, without requiring a separate +
-lookup for the UserTier and subsequent calculation.  It is managed by the Deactivation controller in the host operator. + |  | 
+lookup for the UserTier and subsequent calculation.  It is managed by the Deactivation controller in the host operator. + |  | Optional: \{} +
+
 |===
 
 
@@ -3869,7 +4095,8 @@ UserTierSpec defines the desired state of UserTier
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`deactivationTimeoutDays`* __integer__ | the period (in days) after which users within the tier will be deactivated + |  | 
+| *`deactivationTimeoutDays`* __integer__ | the period (in days) after which users within the tier will be deactivated + |  | Optional: \{} +
+
 |===
 
 
@@ -3890,11 +4117,14 @@ UsersConfig contains all configuration parameters related to users
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`masterUserRecordUpdateFailureThreshold`* __integer__ | MasterUserRecordUpdateFailureThreshold specifies the number of allowed failures before stopping attempts to update a MasterUserRecord + |  | 
+| *`masterUserRecordUpdateFailureThreshold`* __integer__ | MasterUserRecordUpdateFailureThreshold specifies the number of allowed failures before stopping attempts to update a MasterUserRecord + |  | Optional: \{} +
+
 | *`forbiddenUsernamePrefixes`* __string__ | ForbiddenUsernamePrefixes is a comma-separated string that defines the prefixes that a username may not have when signing up. +
-If a username has a forbidden prefix, then the username compliance prefix is added to the username + |  | 
+If a username has a forbidden prefix, then the username compliance prefix is added to the username + |  | Optional: \{} +
+
 | *`forbiddenUsernameSuffixes`* __string__ | ForbiddenUsernameSuffixes is a comma-separated string that defines the suffixes that a username may not have when signing up.  If a +
-username has a forbidden suffix, then the username compliance suffix is added to the username + |  | 
+username has a forbidden suffix, then the username compliance suffix is added to the username + |  | Optional: \{} +
+
 |===
 
 
@@ -3916,8 +4146,10 @@ Defines all parameters concerned with the Webhook
 |===
 | Field | Description | Default | Validation
 | *`deploy`* __boolean__ | Defines the flag that determines whether to deploy the Webhook. +
-If the deploy flag is set to False and the Webhook was deployed previously it will be deleted by the memberoperatorconfig controller. + |  | 
-| *`secret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-webhooksecret[$$WebhookSecret$$]__ | Defines all secrets related to webhook configuration + |  | 
+If the deploy flag is set to False and the Webhook was deployed previously it will be deleted by the memberoperatorconfig controller. + |  | Optional: \{} +
+
+| *`secret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-webhooksecret[$$WebhookSecret$$]__ | Defines all secrets related to webhook configuration + |  | Optional: \{} +
+
 |===
 
 
@@ -3938,8 +4170,10 @@ WebhookSecret defines all secrets related to webhook configuration
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | 
-| *`virtualMachineAccessKey`* __string__ | The key in the secret values map that contains a comma-separated list of SSH keys + |  | 
+| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | Optional: \{} +
+
+| *`virtualMachineAccessKey`* __string__ | The key in the secret values map that contains a comma-separated list of SSH keys + |  | Optional: \{} +
+
 |===
 
 
@@ -4011,16 +4245,22 @@ WorkspaceStatus defines the observed state of a Workspace
 [cols="20a,50a,15a,15a", options="header"]
 |===
 | Field | Description | Default | Validation
-| *`namespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacenamespace[$$SpaceNamespace$$] array__ | The list of namespaces belonging to the Workspace. + |  | 
+| *`namespaces`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacenamespace[$$SpaceNamespace$$] array__ | The list of namespaces belonging to the Workspace. + |  | Optional: \{} +
+
 | *`owner`* __string__ | Owner the name of the UserSignup that owns the workspace. It’s the user who is being charged +
 for the usage and whose quota is used for the workspace. There is only one user for this kind +
 of relationship and it can be transferred to someone else during the lifetime of the workspace. +
-By default, it’s the creator who becomes the owner as well. + |  | 
-| *`role`* __string__ | Role defines what kind of permissions the user has in the given workspace. + |  | 
+By default, it’s the creator who becomes the owner as well. + |  | Optional: \{} +
+
+| *`role`* __string__ | Role defines what kind of permissions the user has in the given workspace. + |  | Optional: \{} +
+
 | *`type`* __string__ | Type defines the type of workspace. For example, "home" for a user's given workspace upon first +
-signing up. It is currently valid for this value to be empty. + |  | 
-| *`availableRoles`* __string array__ | AvailableRoles contains the roles for this tier. For example, "admin\|contributor\|maintainer". + |  | 
-| *`bindings`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-binding[$$Binding$$] array__ | Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that can be applied to those permissions. + |  | 
+signing up. It is currently valid for this value to be empty. + |  | Optional: \{} +
+
+| *`availableRoles`* __string array__ | AvailableRoles contains the roles for this tier. For example, "admin\|contributor\|maintainer". + |  | Optional: \{} +
+
+| *`bindings`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-binding[$$Binding$$] array__ | Bindings enumerates the permissions that have been granted to users within the current workspace, and actions that can be applied to those permissions. + |  | Optional: \{} +
+
 |===
 
 
