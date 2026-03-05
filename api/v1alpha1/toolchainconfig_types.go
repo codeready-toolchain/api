@@ -483,10 +483,6 @@ type TiersConfig struct {
 	// +listMapKey=name
 	FeatureToggles []FeatureToggle `json:"featureToggles,omitempty" patchStrategy:"merge" patchMergeKey:"name"`
 
-	// DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted
-	// +optional
-	DurationBeforeChangeTierRequestDeletion *string `json:"durationBeforeChangeTierRequestDeletion,omitempty"`
-
 	// TemplateUpdateRequestMaxPoolSize specifies the maximum number of concurrent TemplateUpdateRequests
 	// when updating MasterUserRecords
 	// +optional

@@ -3304,8 +3304,6 @@ TiersConfig contains all configuration parameters related to tiers
 
 | *`featureToggles`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-featuretoggle[$$FeatureToggle$$] array__ | FeatureToggles specifies the list of feature toggles/flags + |  | Optional: \{} +
 
-| *`durationBeforeChangeTierRequestDeletion`* __string__ | DurationBeforeChangeTierRequestDeletion specifies the duration before a ChangeTierRequest resource is deleted + |  | Optional: \{} +
-
 | *`templateUpdateRequestMaxPoolSize`* __integer__ | TemplateUpdateRequestMaxPoolSize specifies the maximum number of concurrent TemplateUpdateRequests +
 when updating MasterUserRecords + |  | Optional: \{} +
 

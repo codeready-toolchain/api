@@ -3049,11 +3049,6 @@ func (in *TiersConfig) DeepCopyInto(out *TiersConfig) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.DurationBeforeChangeTierRequestDeletion != nil {
-		in, out := &in.DurationBeforeChangeTierRequestDeletion, &out.DurationBeforeChangeTierRequestDeletion
-		*out = new(string)
-		**out = **in
-	}
 	if in.TemplateUpdateRequestMaxPoolSize != nil {
 		in, out := &in.TemplateUpdateRequestMaxPoolSize, &out.TemplateUpdateRequestMaxPoolSize
 		*out = new(int)
