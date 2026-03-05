@@ -593,8 +593,6 @@ HostConfig contains all configuration parameters of the host operator
 
 | *`deactivation`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-deactivationconfig[$$DeactivationConfig$$]__ | Keeps parameters concerned with user deactivation + |  | Optional: \{} +
 
-| *`metrics`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-metricsconfig[$$MetricsConfig$$]__ | Keeps parameters concerned with metrics + |  | Optional: \{} +
-
 | *`notifications`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationsconfig[$$NotificationsConfig$$]__ | Keeps parameters concerned with notifications + |  | Optional: \{} +
 
 | *`registrationService`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceconfig[$$RegistrationServiceConfig$$]__ | Keeps parameters necessary for the registration service + |  | Optional: \{} +
@@ -1003,8 +1001,6 @@ Member contains the status of a member cluster
 | *`apiEndpoint`* __string__ | APIEndpoint is the server API URL of the cluster + |  | Optional: \{} +
 
 | *`clusterName`* __string__ | The cluster identifier + |  | 
-| *`spaceCount`* __integer__ | Number of Spaces created within the member cluster + |  | Optional: \{} +
-
 | *`memberStatus`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusstatus[$$MemberStatusStatus$$]__ | The array of member status objects + |  | 
 |===
 
@@ -1285,45 +1281,6 @@ Members contains all configuration for member operators
 | *`default`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$]__ | Defines default configuration to be applied to all member clusters + |  | Optional: \{} +
 
 | *`specificPerMemberCluster`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorconfigspec[$$MemberOperatorConfigSpec$$])__ | A map of cluster-specific member operator configurations indexed by member toolchaincluster name + |  | Optional: \{} +
-
-|===
-
-
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-metric"]
-==== Metric
-
-_Underlying type:_ _object_
-
-
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatusstatus[$$ToolchainStatusStatus$$]
-****
-
-
-
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-metricsconfig"]
-==== MetricsConfig
-
-
-
-MetricsConfig contains all configuration parameters related to metrics gathering
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostconfig[$$HostConfig$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`forceSynchronization`* __boolean__ | ForceSynchronization is a flag used to trigger synchronization of the metrics +
-based on the resources rather than on the content of `ToolchainStatus.status.metrics` + |  | Optional: \{} +
 
 |===
 
@@ -3717,8 +3674,6 @@ ToolchainStatusStatus defines the observed state of the toolchain, including hos
 | *`registrationService`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostregistrationservicestatus[$$HostRegistrationServiceStatus$$]__ | RegistrationService is the status of the registration service + |  | Optional: \{} +
 
 | *`members`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-member[$$Member$$] array__ | Members is an array of member status objects + |  | Optional: \{} +
-
-| *`metrics`* __object (keys:string, values:xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-metric[$$Metric$$])__ | Metrics is a map that stores metrics to be exposed on Prometheus. + |  | Optional: \{} +
 
 | *`hostRoutes`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostroutes[$$HostRoutes$$]__ | HostRoutes/URLs of the host cluster, such as Proxy URL + |  | Optional: \{} +
 

@@ -52,10 +52,6 @@ type HostConfig struct {
 	// +optional
 	Deactivation DeactivationConfig `json:"deactivation,omitempty"`
 
-	// Keeps parameters concerned with metrics
-	// +optional
-	Metrics MetricsConfig `json:"metrics,omitempty"`
-
 	// Keeps parameters concerned with notifications
 	// +optional
 	Notifications NotificationsConfig `json:"notifications,omitempty"`
@@ -150,15 +146,6 @@ type ToolchainSecret struct {
 	// Reference is the name of the secret resource to look up
 	// +optional
 	Ref *string `json:"ref,omitempty"`
-}
-
-// MetricsConfig contains all configuration parameters related to metrics gathering
-// +k8s:openapi-gen=true
-type MetricsConfig struct {
-	// ForceSynchronization is a flag used to trigger synchronization of the metrics
-	// based on the resources rather than on the content of `ToolchainStatus.status.metrics`
-	// +optional
-	ForceSynchronization *bool `json:"forceSynchronization,omitempty"`
 }
 
 // NotificationsConfig contains all configuration parameters related to notifications

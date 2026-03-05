@@ -58,7 +58,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusSpec":                      schema_codeready_toolchain_api_api_v1alpha1_MemberStatusSpec(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.MemberStatusStatus":                    schema_codeready_toolchain_api_api_v1alpha1_MemberStatusStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Members":                               schema_codeready_toolchain_api_api_v1alpha1_Members(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig":                         schema_codeready_toolchain_api_api_v1alpha1_MetricsConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSet":                         schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSet(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetClusterResources":         schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetClusterResources(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.NSTemplateSetNamespace":                schema_codeready_toolchain_api_api_v1alpha1_NSTemplateSetNamespace(ref),
@@ -593,13 +592,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig"),
 						},
 					},
-					"metrics": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Keeps parameters concerned with metrics",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig"),
-						},
-					},
 					"notifications": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Keeps parameters concerned with notifications",
@@ -652,7 +644,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.Reference
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.MetricsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.AutomaticApprovalConfig", "github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig", "github.com/codeready-toolchain/api/api/v1alpha1.NotificationsConfig", "github.com/codeready-toolchain/api/api/v1alpha1.PublicViewerConfiguration", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.SpaceConfig", "github.com/codeready-toolchain/api/api/v1alpha1.TiersConfig", "github.com/codeready-toolchain/api/api/v1alpha1.ToolchainStatusConfig", "github.com/codeready-toolchain/api/api/v1alpha1.UsersConfig"},
 	}
 }
 
@@ -1233,13 +1225,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_Member(ref common.ReferenceCall
 							Format:      "",
 						},
 					},
-					"spaceCount": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Number of Spaces created within the member cluster",
-							Type:        []string{"integer"},
-							Format:      "int32",
-						},
-					},
 					"memberStatus": {
 						SchemaProps: spec.SchemaProps{
 							Description: "The array of member status objects",
@@ -1534,26 +1519,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_Members(ref common.ReferenceCal
 		},
 		Dependencies: []string{
 			"github.com/codeready-toolchain/api/api/v1alpha1.MemberOperatorConfigSpec"},
-	}
-}
-
-func schema_codeready_toolchain_api_api_v1alpha1_MetricsConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "MetricsConfig contains all configuration parameters related to metrics gathering",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"forceSynchronization": {
-						SchemaProps: spec.SchemaProps{
-							Description: "ForceSynchronization is a flag used to trigger synchronization of the metrics based on the resources rather than on the content of `ToolchainStatus.status.metrics`",
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-				},
-			},
-		},
 	}
 }
 
@@ -4729,36 +4694,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusStatus(ref commo
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
 										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Member"),
-									},
-								},
-							},
-						},
-					},
-					"metrics": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-map-type":       "atomic",
-								"x-kubernetes-patch-strategy": "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Metrics is a map that stores metrics to be exposed on Prometheus.",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Type: []string{"object"},
-										AdditionalProperties: &spec.SchemaOrBool{
-											Allows: true,
-											Schema: &spec.Schema{
-												SchemaProps: spec.SchemaProps{
-													Default: 0,
-													Type:    []string{"integer"},
-													Format:  "int32",
-												},
-											},
-										},
 									},
 								},
 							},

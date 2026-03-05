@@ -52,12 +52,6 @@ const (
 	ToolchainStatusMemberToolchainClusterMissingReason       = "MemberToolchainClusterMissing"
 	ToolchainStatusMemberStatusConsoleRouteUnavailableReason = "ConsoleRouteUnavailable"
 	ToolchainStatusMemberStatusRoutesAvailableReason         = "RoutesAvailable"
-
-	// Metric Keys
-	// MasterUserRecordsPerDomainMetricKey the key to store the metric for the number of MasterUserRecords per email address domain
-	MasterUserRecordsPerDomainMetricKey = "masterUserRecordsPerDomain"
-	// UserSignupsPerActivationAndDomainMetricKey the key to store the metric for the number of UserSignups per activations and per email address domain
-	UserSignupsPerActivationAndDomainMetricKey = "userSignupsPerActivationAndDomain"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -93,12 +87,6 @@ type ToolchainStatusStatus struct {
 	// +listMapKey=clusterName
 	Members []Member `json:"members,omitempty" patchStrategy:"merge" patchMergeKey:"clusterName"`
 
-	// Metrics is a map that stores metrics to be exposed on Prometheus.
-	// +optional
-	// +mapType=atomic
-	// +patchStrategy=merge
-	Metrics map[string]Metric `json:"metrics,omitempty" patchStrategy:"merge"`
-
 	// HostRoutes/URLs of the host cluster, such as Proxy URL
 	// +optional
 	HostRoutes HostRoutes `json:"hostRoutes,omitempty"`
@@ -129,8 +117,6 @@ type HostRoutes struct {
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
-
-type Metric map[string]int
 
 // HostOperatorStatus defines the observed state of a toolchain's host operator
 // +k8s:openapi-gen=true
@@ -229,10 +215,6 @@ type Member struct {
 	// The cluster identifier
 	ClusterName string `json:"clusterName"`
 
-	// Number of Spaces created within the member cluster
-	// +optional
-	SpaceCount int `json:"spaceCount,omitempty"`
-
 	// The array of member status objects
 	MemberStatus MemberStatusStatus `json:"memberStatus"`
 }
@@ -271,7 +253,6 @@ type RevisionCheck struct {
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced
-// +kubebuilder:printcolumn:name="MURs",type="integer",JSONPath=`.status.hostOperator.masterUserRecordCount`
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].status`
 // +kubebuilder:printcolumn:name="Last Updated",type="string",JSONPath=`.status.conditions[?(@.type=="Ready")].lastUpdatedTime`
 // +kubebuilder:validation:XPreserveUnknownFields
