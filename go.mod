@@ -10,7 +10,7 @@ require (
 	github.com/openshift/api v0.0.0-20260304172252-b0658d22beea
 	k8s.io/api v0.34.1
 	k8s.io/apimachinery v0.34.1
-	k8s.io/code-generator v0.33.4
+	k8s.io/code-generator v0.34.1
 	k8s.io/gengo v0.0.0-20230829151522-9cce18d56c01
 	k8s.io/kube-openapi v0.0.0-20250710124328-f3f2b991d03b
 	sigs.k8s.io/controller-runtime v0.21.0
@@ -18,7 +18,7 @@ require (
 )
 
 require (
-	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
+	github.com/emicklei/go-restful/v3 v3.12.2 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.9.0 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
