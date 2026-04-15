@@ -250,6 +250,13 @@ type RegistrationServiceConfig struct {
 	// The webhook URL is unique per environment.
 	// +optional
 	WorkatoWebHookURL *string `json:"workatoWebHookURL,omitempty"`
+
+	// DisabledIntegrations specifies the list of integrations that should be
+	// hidden/disabled in the UI. When nil or empty, all integrations are
+	// considered enabled. Only listed integrations are hidden.
+	// +optional
+	// +listType=set
+	DisabledIntegrations []string `json:"disabledIntegrations,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
