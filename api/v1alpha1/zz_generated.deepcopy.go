@@ -1929,7 +1929,7 @@ func (in *RegistrationServiceConfig) DeepCopyInto(out *RegistrationServiceConfig
 	}
 	if in.DisabledIntegrations != nil {
 		in, out := &in.DisabledIntegrations, &out.DisabledIntegrations
-		*out = make([]string, len(*in))
+		*out = make([]IntegrationName, len(*in))
 		copy(*out, *in)
 	}
 }

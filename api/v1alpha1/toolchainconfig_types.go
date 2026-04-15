@@ -4,6 +4,19 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// IntegrationName identifies a downstream service integration that can be
+// disabled via the ToolchainConfig CR.
+// +kubebuilder:validation:Enum=openshift;openshift-ai;devspaces;ansible-automation-platform;openshift-virtualization
+type IntegrationName string
+
+const (
+	IntegrationOpenShift                 IntegrationName = "openshift"
+	IntegrationOpenShiftAI               IntegrationName = "openshift-ai"
+	IntegrationDevSpaces                 IntegrationName = "devspaces"
+	IntegrationAnsibleAutomationPlatform IntegrationName = "ansible-automation-platform"
+	IntegrationOpenShiftVirtualization   IntegrationName = "openshift-virtualization"
+)
+
 // These are valid conditions of a ToolchainConfig
 const (
 	ToolchainConfigSyncComplete     ConditionType = "SyncComplete"
@@ -256,7 +269,7 @@ type RegistrationServiceConfig struct {
 	// considered enabled. Only listed integrations are hidden.
 	// +optional
 	// +listType=set
-	DisabledIntegrations []string `json:"disabledIntegrations,omitempty"`
+	DisabledIntegrations []IntegrationName `json:"disabledIntegrations,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
