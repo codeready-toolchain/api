@@ -2651,6 +2651,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							},
 						},
 					},
+					"accountVerifierURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AccountVerifierURL is the URL used to call the account verifier service",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},

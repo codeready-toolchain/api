@@ -2137,6 +2137,8 @@ The webhook URL is unique per environment. + |  | Optional: \{} +
 hidden/disabled in the UI. When nil or empty, all integrations are +
 considered enabled. Only listed integrations are hidden. + |  | Optional: \{} +
 
+| *`accountVerifierURL`* __string__ | AccountVerifierURL is the URL used to call the account verifier service + |  | Optional: \{} +
+
 |===
 
 

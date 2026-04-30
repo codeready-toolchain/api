@@ -257,6 +257,10 @@ type RegistrationServiceConfig struct {
 	// +optional
 	// +listType=set
 	DisabledIntegrations []string `json:"disabledIntegrations,omitempty"`
+
+	// AccountVerifierURL is the URL used to call the account verifier service
+	// +optional
+	AccountVerifierURL *string `json:"accountVerifierURL,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
