@@ -1937,8 +1937,8 @@ func (in *RegistrationServiceConfig) DeepCopyInto(out *RegistrationServiceConfig
 		*out = new(string)
 		**out = **in
 	}
-	if in.EnableAccountVerifier != nil {
-		in, out := &in.EnableAccountVerifier, &out.EnableAccountVerifier
+	if in.AccountVerifierEnabled != nil {
+		in, out := &in.AccountVerifierEnabled, &out.AccountVerifierEnabled
 		*out = new(bool)
 		**out = **in
 	}

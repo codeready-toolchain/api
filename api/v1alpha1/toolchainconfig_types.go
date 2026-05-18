@@ -266,7 +266,7 @@ type RegistrationServiceConfig struct {
 	// which verifies disposable email domains. When set to true, the registration service will enforce the account-verifier's
 	// response. When set to false or not set, the account-verifier is still called but the response is only logged.
 	// +optional
-	EnableAccountVerifier *bool `json:"enableAccountVerifier,omitempty"`
+	AccountVerifierEnabled *bool `json:"accountVerifierEnabled,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
