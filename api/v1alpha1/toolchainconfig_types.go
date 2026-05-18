@@ -262,9 +262,7 @@ type RegistrationServiceConfig struct {
 	// +optional
 	AccountVerifierURL *string `json:"accountVerifierURL,omitempty"`
 
-	// EnableAccountVerifier controls whether the registration service acts on responses from the account-verifier service,
-	// which verifies disposable email domains. When set to true, the registration service will enforce the account-verifier's
-	// response. When set to false or not set, the account-verifier is still called but the response is only logged.
+	// AccountVerifierEnabled controls whether the registration service acts on responses from the account-verifier service.
 	// +optional
 	AccountVerifierEnabled *bool `json:"accountVerifierEnabled,omitempty"`
 }
