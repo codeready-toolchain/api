@@ -261,6 +261,10 @@ type RegistrationServiceConfig struct {
 	// AccountVerifierURL is the URL used to call the account verifier service
 	// +optional
 	AccountVerifierURL *string `json:"accountVerifierURL,omitempty"`
+
+	// AccountVerifierEnabled controls whether the registration service acts on responses from the account-verifier service.
+	// +optional
+	AccountVerifierEnabled *bool `json:"accountVerifierEnabled,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics

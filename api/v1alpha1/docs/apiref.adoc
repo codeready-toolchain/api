@@ -2139,6 +2139,8 @@ considered enabled. Only listed integrations are hidden. + |  | Optional: \{} +
 
 | *`accountVerifierURL`* __string__ | AccountVerifierURL is the URL used to call the account verifier service + |  | Optional: \{} +
 
+| *`accountVerifierEnabled`* __boolean__ | AccountVerifierEnabled controls whether the registration service acts on responses from the account-verifier service. + |  | Optional: \{} +
+
 |===
 
 

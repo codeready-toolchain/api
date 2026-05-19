@@ -2658,6 +2658,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							Format:      "",
 						},
 					},
+					"accountVerifierEnabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "AccountVerifierEnabled controls whether the registration service acts on responses from the account-verifier service.",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},
