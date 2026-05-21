@@ -43,6 +43,11 @@ const (
 	// UserSignupCaptchaAnnotatedAssessmentAnnotationKey is set if the last captcha assessment for the user was annotated as fraudulent or legitimate
 	UserSignupCaptchaAnnotatedAssessmentAnnotationKey = LabelKeyPrefix + "captcha-annotated-assessment"
 
+	// UserSignupAccountVerifierResultAnnotationKey stores the result from the account verifier service
+	UserSignupAccountVerifierResultAnnotationKey = LabelKeyPrefix + "account-verifier-result"
+	// UserSignupAccountVerifierReasonsAnnotationKey stores the reasons from the account verifier service as JSON
+	UserSignupAccountVerifierReasonsAnnotationKey = LabelKeyPrefix + "account-verifier-reasons"
+
 	// UserSignupRequestReceivedTimeAnnotationKey is used for the timestamp when the request to create/reactivate UserSignup was received
 	// The time is stored in time.RFC3339 format, the reason is that the main purpose of the metric is to track the UX of the users, and milliseconds don't really matter in that case
 	UserSignupRequestReceivedTimeAnnotationKey = LabelKeyPrefix + "request-received-time"
