@@ -2139,7 +2139,10 @@ considered enabled. Only listed integrations are hidden. + |  | Optional: \{} +
 
 | *`accountVerifierURL`* __string__ | AccountVerifierURL is the URL used to call the account verifier service + |  | Optional: \{} +
 
-| *`accountVerifierEnabled`* __boolean__ | AccountVerifierEnabled controls whether the registration service acts on responses from the account-verifier service. + |  | Optional: \{} +
+| *`accountVerifierMode`* __string__ | AccountVerifierMode controls how the registration service handles responses from the account-verifier service. +
+Valid values are "disabled" (do not call the verifier), "log" (call but only log the response), +
+and "enabled" (call and enforce the response). Defaults to "log". + |  | Enum: [disabled log enabled] +
+Optional: \{} +
 
 |===
 
