@@ -262,9 +262,12 @@ type RegistrationServiceConfig struct {
 	// +optional
 	AccountVerifierURL *string `json:"accountVerifierURL,omitempty"`
 
-	// AccountVerifierEnabled controls whether the registration service acts on responses from the account-verifier service.
+	// AccountVerifierMode controls how the registration service handles responses from the account-verifier service.
+	// Valid values are "disabled" (do not call the verifier), "log" (call but only log the response),
+	// and "enabled" (call and enforce the response). Defaults to "log".
 	// +optional
-	AccountVerifierEnabled *bool `json:"accountVerifierEnabled,omitempty"`
+	// +kubebuilder:validation:Enum=disabled;log;enabled
+	AccountVerifierMode *string `json:"accountVerifierMode,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics

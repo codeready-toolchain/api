@@ -2658,10 +2658,10 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							Format:      "",
 						},
 					},
-					"accountVerifierEnabled": {
+					"accountVerifierMode": {
 						SchemaProps: spec.SchemaProps{
-							Description: "AccountVerifierEnabled controls whether the registration service acts on responses from the account-verifier service.",
-							Type:        []string{"boolean"},
+							Description: "AccountVerifierMode controls how the registration service handles responses from the account-verifier service. Valid values are \"disabled\" (do not call the verifier), \"log\" (call but only log the response), and \"enabled\" (call and enforce the response). Defaults to \"log\".",
+							Type:        []string{"string"},
 							Format:      "",
 						},
 					},
