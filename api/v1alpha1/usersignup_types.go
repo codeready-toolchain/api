@@ -168,7 +168,7 @@ const (
 	// UserSignupStateBanned - If this state is set by an admin then the user's account will be banned.
 	UserSignupStateBanned = UserSignupState("banned")
 
-	// UserSignupStateRejected - If this state is set, the user was rejected by the account verifier
+	// UserSignupStateRejected - If this state is set, the user was rejected
 	// and their account will not be provisioned.
 	UserSignupStateRejected = UserSignupState("rejected")
 )
