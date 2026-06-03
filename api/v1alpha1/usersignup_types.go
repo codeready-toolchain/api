@@ -77,6 +77,8 @@ const (
 	UserSignupStateLabelValueDeactivated = "deactivated"
 	// UserSignupStateLabelValueBanned is used for identifying that the UserSignup is banned
 	UserSignupStateLabelValueBanned = "banned"
+	// UserSignupStateLabelValueRejected is used for identifying that the UserSignup was rejected
+	UserSignupStateLabelValueRejected = "rejected"
 
 	// Status condition reasons
 	UnableToCreateSpaceBinding                     = "UnableToCreateSpaceBinding"
@@ -105,6 +107,7 @@ const (
 	UserSignupPendingApprovalReason            = "PendingApproval"
 	UserSignupUserBanningReason                = "Banning"
 	UserSignupUserBannedReason                 = "Banned"
+	UserSignupUserRejectedReason               = "Rejected"
 	UserSignupFailedToReadBannedUsersReason    = "FailedToReadBannedUsers"
 	UserSignupMissingUserEmailReason           = "MissingUserEmail"
 	UserSignupMissingUserEmailAnnotationReason = "MissingUserEmailAnnotation"
@@ -164,6 +167,10 @@ const (
 
 	// UserSignupStateBanned - If this state is set by an admin then the user's account will be banned.
 	UserSignupStateBanned = UserSignupState("banned")
+
+	// UserSignupStateRejected - If this state is set, the user was rejected
+	// and their account will not be provisioned.
+	UserSignupStateRejected = UserSignupState("rejected")
 )
 
 type UserSignupState string
