@@ -2280,6 +2280,11 @@ See https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html for deta
 
 | *`twilioSenderConfigs`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-twiliosenderconfig[$$TwilioSenderConfig$$] array__ | TwilioSenderConfigs is an array of TwilioSenderConfig objects + |  | Optional: \{} +
 
+| *`phoneLookupMode`* __string__ | PhoneLookupMode controls how the registration service handles Twilio Lookup v2 phone risk checks. +
+Valid values are "disabled" (skip Lookup entirely), "log" (call Lookup and store results but don't block), +
+and "enabled" (call Lookup and enforce blocking). Defaults to "log". + |  | Enum: [disabled log enabled] +
+Optional: \{} +
+
 |===
 
 

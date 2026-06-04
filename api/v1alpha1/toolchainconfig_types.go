@@ -386,6 +386,13 @@ type RegistrationServiceVerificationConfig struct {
 	// +optional
 	// +listType=atomic
 	TwilioSenderConfigs []TwilioSenderConfig `json:"twilioSenderConfigs,omitempty"`
+
+	// PhoneLookupMode controls how the registration service handles Twilio Lookup v2 phone risk checks.
+	// Valid values are "disabled" (skip Lookup entirely), "log" (call Lookup and store results but don't block),
+	// and "enabled" (call Lookup and enforce blocking). Defaults to "log".
+	// +optional
+	// +kubebuilder:validation:Enum=disabled;log;enabled
+	PhoneLookupMode *string `json:"phoneLookupMode,omitempty"`
 }
 
 // TwilioSenderConfig is used to associate a particular sender ID (a sender ID is a text value that appears instead of
