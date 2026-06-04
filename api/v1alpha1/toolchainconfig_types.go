@@ -316,6 +316,16 @@ type RegistrationServiceAuthConfig struct {
 	SSORealm *string `json:"ssoRealm,omitempty"`
 }
 
+// PhoneLookupMode defines the mode for Twilio Lookup v2 phone risk checks
+// +kubebuilder:validation:Enum=disabled;log;enabled
+type PhoneLookupMode string
+
+const (
+	PhoneLookupModeDisabled PhoneLookupMode = "disabled"
+	PhoneLookupModeLog      PhoneLookupMode = "log"
+	PhoneLookupModeEnabled  PhoneLookupMode = "enabled"
+)
+
 // RegistrationServiceVerificationConfig contains the subset of registration service configuration parameters related to verification
 // +k8s:openapi-gen=true
 type RegistrationServiceVerificationConfig struct {
@@ -392,8 +402,7 @@ type RegistrationServiceVerificationConfig struct {
 	// and "enabled" (call Lookup and enforce blocking). Defaults to "log".
 	// +optional
 	// +kubebuilder:default="log"
-	// +kubebuilder:validation:Enum=disabled;log;enabled
-	PhoneLookupMode *string `json:"phoneLookupMode,omitempty"`
+	PhoneLookupMode *PhoneLookupMode `json:"phoneLookupMode,omitempty"`
 }
 
 // TwilioSenderConfig is used to associate a particular sender ID (a sender ID is a text value that appears instead of

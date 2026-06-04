@@ -2084,7 +2084,7 @@ func (in *RegistrationServiceVerificationConfig) DeepCopyInto(out *RegistrationS
 	}
 	if in.PhoneLookupMode != nil {
 		in, out := &in.PhoneLookupMode, &out.PhoneLookupMode
-		*out = new(string)
+		*out = new(PhoneLookupMode)
 		**out = **in
 	}
 }
