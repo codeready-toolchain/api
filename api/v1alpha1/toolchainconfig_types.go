@@ -391,6 +391,7 @@ type RegistrationServiceVerificationConfig struct {
 	// Valid values are "disabled" (skip Lookup entirely), "log" (call Lookup and store results but don't block),
 	// and "enabled" (call Lookup and enforce blocking). Defaults to "log".
 	// +optional
+	// +kubebuilder:default="log"
 	// +kubebuilder:validation:Enum=disabled;log;enabled
 	PhoneLookupMode *string `json:"phoneLookupMode,omitempty"`
 }
