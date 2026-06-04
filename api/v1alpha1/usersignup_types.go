@@ -64,6 +64,8 @@ const (
 	UserSignupPhoneLookupCarrierNameAnnotationKey = LabelKeyPrefix + "phone-lookup-carrier-name"
 	// UserSignupPhoneLookupLineTypeAnnotationKey stores the line type (mobile, landline, voip, etc.)
 	UserSignupPhoneLookupLineTypeAnnotationKey = LabelKeyPrefix + "phone-lookup-line-type"
+	// UserSignupPhoneLookupPhoneHashAnnotationKey stores the MD5 hash of the phone number that was last looked up (for retry optimization)
+	UserSignupPhoneLookupPhoneHashAnnotationKey = LabelKeyPrefix + "phone-lookup-phone-hash"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
