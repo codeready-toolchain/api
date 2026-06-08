@@ -403,6 +403,13 @@ type RegistrationServiceVerificationConfig struct {
 	// +optional
 	// +kubebuilder:default="log"
 	PhoneLookupMode *PhoneLookupMode `json:"phoneLookupMode,omitempty"`
+
+	// PhoneLookupExcludedCountries is a list of ISO 3166-1 alpha-2 country codes (e.g. ["CA", "US"])
+	// for which Twilio Lookup should be skipped. Twilio Lookup data quality is insufficient
+	// for these regions. Canada also has CLNPC regulatory restrictions.
+	// +optional
+	// +listType=atomic
+	PhoneLookupExcludedCountries []string `json:"phoneLookupExcludedCountries,omitempty"`
 }
 
 // TwilioSenderConfig is used to associate a particular sender ID (a sender ID is a text value that appears instead of

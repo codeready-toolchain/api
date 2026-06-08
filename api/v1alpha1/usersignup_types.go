@@ -52,20 +52,13 @@ const (
 	// The time is stored in time.RFC3339 format, the reason is that the main purpose of the metric is to track the UX of the users, and milliseconds don't really matter in that case
 	UserSignupRequestReceivedTimeAnnotationKey = LabelKeyPrefix + "request-received-time"
 
-	// UserSignupPhoneLookupResultAnnotationKey stores the phone lookup decision ("allowed" or "rejected")
-	UserSignupPhoneLookupResultAnnotationKey = LabelKeyPrefix + "phone-lookup-result"
-	// UserSignupPhoneLookupCarrierRiskAnnotationKey stores the carrier_risk_category from Twilio Lookup
+	// UserSignupPhoneLookupCarrierRiskAnnotationKey stores the carrier_risk_category from Twilio Lookup (e.g. "low", "moderate", "high")
 	UserSignupPhoneLookupCarrierRiskAnnotationKey = LabelKeyPrefix + "phone-lookup-carrier-risk"
 	// UserSignupPhoneLookupNumberBlockedAnnotationKey stores whether the number is blocked ("true"/"false")
 	UserSignupPhoneLookupNumberBlockedAnnotationKey = LabelKeyPrefix + "phone-lookup-number-blocked"
-	// UserSignupPhoneLookupRiskScoreAnnotationKey stores the sms_pumping_risk_score
-	UserSignupPhoneLookupRiskScoreAnnotationKey = LabelKeyPrefix + "phone-lookup-risk-score"
-	// UserSignupPhoneLookupCarrierNameAnnotationKey stores the carrier name from line_type_intelligence
-	UserSignupPhoneLookupCarrierNameAnnotationKey = LabelKeyPrefix + "phone-lookup-carrier-name"
-	// UserSignupPhoneLookupLineTypeAnnotationKey stores the line type (mobile, landline, voip, etc.)
-	UserSignupPhoneLookupLineTypeAnnotationKey = LabelKeyPrefix + "phone-lookup-line-type"
-	// UserSignupPhoneLookupPhoneHashAnnotationKey stores the MD5 hash of the phone number that was last looked up (for retry optimization)
-	UserSignupPhoneLookupPhoneHashAnnotationKey = LabelKeyPrefix + "phone-lookup-phone-hash"
+	// UserSignupPhoneLookupDetailsAnnotationKey stores a single-line JSON value with supplementary lookup data
+	// (result, risk_score, carrier_name, line_type, phone_hash)
+	UserSignupPhoneLookupDetailsAnnotationKey = LabelKeyPrefix + "phone-lookup-details"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
