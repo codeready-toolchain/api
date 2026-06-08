@@ -2955,11 +2955,11 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 					"phoneLookupExcludedCountries": {
 						VendorExtensible: spec.VendorExtensible{
 							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "atomic",
+								"x-kubernetes-list-type": "set",
 							},
 						},
 						SchemaProps: spec.SchemaProps{
-							Description: "PhoneLookupExcludedCountries is a list of ISO 3166-1 alpha-2 country codes (e.g. [\"CA\", \"US\"]) for which Twilio Lookup should be skipped. Twilio Lookup data quality is insufficient for these regions. Canada also has CLNPC regulatory restrictions.",
+							Description: "PhoneLookupExcludedCountries is a list of ISO 3166-1 alpha-2 country codes (e.g. [\"CA\", \"US\"]) for which Twilio Lookup should be skipped.",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{

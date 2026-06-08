@@ -57,7 +57,6 @@ const (
 	// UserSignupPhoneLookupNumberBlockedAnnotationKey stores whether the number is blocked ("true"/"false")
 	UserSignupPhoneLookupNumberBlockedAnnotationKey = LabelKeyPrefix + "phone-lookup-number-blocked"
 	// UserSignupPhoneLookupDetailsAnnotationKey stores a single-line JSON value with supplementary lookup data
-	// (result, risk_score, carrier_name, line_type, phone_hash)
 	UserSignupPhoneLookupDetailsAnnotationKey = LabelKeyPrefix + "phone-lookup-details"
 
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key

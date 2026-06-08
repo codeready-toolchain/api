@@ -2303,8 +2303,7 @@ and "enabled" (call Lookup and enforce blocking). Defaults to "log". + | log | E
 Optional: \{} +
 
 | *`phoneLookupExcludedCountries`* __string array__ | PhoneLookupExcludedCountries is a list of ISO 3166-1 alpha-2 country codes (e.g. ["CA", "US"]) +
-for which Twilio Lookup should be skipped. Twilio Lookup data quality is insufficient +
-for these regions. Canada also has CLNPC regulatory restrictions. + |  | Optional: \{} +
+for which Twilio Lookup should be skipped. + |  | Optional: \{} +
 
 |===
 
