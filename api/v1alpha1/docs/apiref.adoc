@@ -1873,6 +1873,23 @@ The value replaces all occurrences of the Parameter {{.NAME}}. + |  |
 |===
 
 
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-phonelookupmode"]
+==== PhoneLookupMode
+
+_Underlying type:_ _string_
+
+PhoneLookupMode defines the mode for Twilio Lookup v2 phone risk checks
+
+.Validation:
+- Enum: [disabled log enabled]
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationconfig[$$RegistrationServiceVerificationConfig$$]
+****
+
+
+
 
 
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-propagatedclaims"]
@@ -2279,6 +2296,14 @@ values are "twilio", "aws".  If not specified, the Twilio sender will be used. +
 See https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html for details + |  | Optional: \{} +
 
 | *`twilioSenderConfigs`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-twiliosenderconfig[$$TwilioSenderConfig$$] array__ | TwilioSenderConfigs is an array of TwilioSenderConfig objects + |  | Optional: \{} +
+
+| *`phoneLookupMode`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-phonelookupmode[$$PhoneLookupMode$$]__ | PhoneLookupMode controls how the registration service handles Twilio Lookup v2 phone risk checks. +
+Valid values are "disabled" (skip Lookup entirely), "log" (call Lookup and store results but don't block), +
+and "enabled" (call Lookup and enforce blocking). Defaults to "log". + | log | Enum: [disabled log enabled] +
+Optional: \{} +
+
+| *`phoneLookupExcludedCountries`* __string array__ | PhoneLookupExcludedCountries is a list of ISO 3166-1 alpha-2 country codes (e.g. ["CA", "US"]) +
+for which Twilio Lookup should be skipped. + |  | Optional: \{} +
 
 |===
 

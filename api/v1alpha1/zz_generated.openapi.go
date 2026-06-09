@@ -2945,6 +2945,33 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 							},
 						},
 					},
+					"phoneLookupMode": {
+						SchemaProps: spec.SchemaProps{
+							Description: "PhoneLookupMode controls how the registration service handles Twilio Lookup v2 phone risk checks. Valid values are \"disabled\" (skip Lookup entirely), \"log\" (call Lookup and store results but don't block), and \"enabled\" (call Lookup and enforce blocking). Defaults to \"log\".",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"phoneLookupExcludedCountries": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "set",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "PhoneLookupExcludedCountries is a list of ISO 3166-1 alpha-2 country codes (e.g. [\"CA\", \"US\"]) for which Twilio Lookup should be skipped.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},

@@ -52,6 +52,13 @@ const (
 	// The time is stored in time.RFC3339 format, the reason is that the main purpose of the metric is to track the UX of the users, and milliseconds don't really matter in that case
 	UserSignupRequestReceivedTimeAnnotationKey = LabelKeyPrefix + "request-received-time"
 
+	// UserSignupPhoneLookupCarrierRiskAnnotationKey stores the carrier_risk_category from Twilio Lookup (e.g. "low", "moderate", "high")
+	UserSignupPhoneLookupCarrierRiskAnnotationKey = LabelKeyPrefix + "phone-lookup-carrier-risk"
+	// UserSignupPhoneLookupNumberBlockedAnnotationKey stores whether the number is blocked ("true"/"false")
+	UserSignupPhoneLookupNumberBlockedAnnotationKey = LabelKeyPrefix + "phone-lookup-number-blocked"
+	// UserSignupPhoneLookupDetailsAnnotationKey stores a single-line JSON value with supplementary lookup data
+	UserSignupPhoneLookupDetailsAnnotationKey = LabelKeyPrefix + "phone-lookup-details"
+
 	// UserSignupUserEmailHashLabelKey is used for the usersignup email hash label key
 	UserSignupUserEmailHashLabelKey = LabelKeyPrefix + "email-hash"
 	// UserSignupUserPhoneHashLabelKey is used for the usersignup phone hash label key
