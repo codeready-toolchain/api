@@ -178,8 +178,33 @@ const (
 	// UserSignupStateRejected - If this state is set, the user was rejected
 	// and their account will not be provisioned.
 	UserSignupStateRejected = UserSignupState("rejected")
+
+	// ###############################################################################
+	//    Account Verifier accepted verdict values
+	// ###############################################################################
+
+	// AccountVerifierResultRejected instructs that the UserSignup should be put into rejected state
+	AccountVerifierResultRejected AccountVerifierResult = "rejected"
+
+	// AccountVerifierResultPhoneVerification instructs that the UserSignup should be put into verification-required state
+	AccountVerifierResultPhoneVerification AccountVerifierResult = "phone_verification"
+
+	// AccountVerifierResultApproved instructs that the UserSignup can be approved
+	AccountVerifierResultApproved AccountVerifierResult = "approved"
 )
 
+type AccountVerifierResult string
+
+type AccountVerifierResponse struct {
+	Result  AccountVerifierResult   `json:"result"`
+	Reasons []AccountVerifierReason `json:"reasons"`
+	Error   string                  `json:"error"`
+}
+
+type AccountVerifierReason struct {
+	Check  string `json:"check"`
+	Detail string `json:"detail"`
+}
 type UserSignupState string
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
