@@ -399,9 +399,9 @@ type RegistrationServiceVerificationConfig struct {
 
 	// PhoneLookupMode controls how the registration service handles Twilio Lookup v2 phone risk checks.
 	// Valid values are "disabled" (skip Lookup entirely), "log" (call Lookup and store results but don't block),
-	// and "enabled" (call Lookup and enforce blocking). Defaults to "log".
+	// and "enabled" (call Lookup and enforce blocking). Defaults to "disabled".
 	// +optional
-	// +kubebuilder:default="log"
+	// +kubebuilder:default="disabled"
 	PhoneLookupMode *PhoneLookupMode `json:"phoneLookupMode,omitempty"`
 
 	// PhoneLookupExcludedCountries is a list of ISO 3166-1 alpha-2 country codes (e.g. ["CA", "US"])
