@@ -2947,7 +2947,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerification
 					},
 					"phoneLookupMode": {
 						SchemaProps: spec.SchemaProps{
-							Description: "PhoneLookupMode controls how the registration service handles Twilio Lookup v2 phone risk checks. Valid values are \"disabled\" (skip Lookup entirely), \"log\" (call Lookup and store results but don't block), and \"enabled\" (call Lookup and enforce blocking). Defaults to \"log\".",
+							Description: "PhoneLookupMode controls how the registration service handles Twilio Lookup v2 phone risk checks. Valid values are \"disabled\" (skip Lookup entirely), \"log\" (call Lookup and store results but don't block), and \"enabled\" (call Lookup and enforce blocking). Defaults to \"disabled\".",
 							Type:        []string{"string"},
 							Format:      "",
 						},
