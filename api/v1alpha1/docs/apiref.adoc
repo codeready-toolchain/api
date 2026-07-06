@@ -65,6 +65,46 @@ Package v1alpha1 contains API Schema definitions for the toolchain.dev.openshift
 
 
 
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-accountverifierreason"]
+==== AccountVerifierReason
+
+
+
+
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-accountverifierresponse[$$AccountVerifierResponse$$]
+****
+
+[cols="20a,50a,15a,15a", options="header"]
+|===
+| Field | Description | Default | Validation
+| *`check`* __string__ |  |  | 
+| *`detail`* __string__ |  |  | 
+|===
+
+
+
+
+[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-accountverifierresult"]
+==== AccountVerifierResult
+
+_Underlying type:_ _string_
+
+
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-accountverifierresponse[$$AccountVerifierResponse$$]
+****
+
+
+
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-authconfig"]
 ==== AuthConfig
 
