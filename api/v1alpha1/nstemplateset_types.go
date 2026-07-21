@@ -35,7 +35,7 @@ const (
 // NSTemplateSetSpec defines the desired state of NSTemplateSet
 // +k8s:openapi-gen=true
 type NSTemplateSetSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The name of the tier represented by this template set

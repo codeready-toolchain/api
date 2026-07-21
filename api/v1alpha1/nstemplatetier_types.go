@@ -16,7 +16,7 @@ const (
 // NSTemplateTierSpec defines the desired state of NSTemplateTier
 // +k8s:openapi-gen=true
 type NSTemplateTierSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The namespace templates
@@ -86,7 +86,7 @@ type NSTemplateTierSpaceRole struct {
 // NSTemplateTierStatus defines the observed state of NSTemplateTier
 // +k8s:openapi-gen=true
 type NSTemplateTierStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current NSTemplateTier conditions
