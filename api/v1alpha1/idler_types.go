@@ -23,7 +23,7 @@ const (
 // IdlerSpec defines the desired state of Idler
 // +k8s:openapi-gen=true
 type IdlerSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// TimeoutSeconds is the number of seconds before the running pods will be deleted
@@ -33,7 +33,7 @@ type IdlerSpec struct {
 // IdlerStatus defines the observed state of Idler
 // +k8s:openapi-gen=true
 type IdlerStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current Idler conditions
