@@ -390,7 +390,6 @@ Users with captcha score lower than the required one can still be approved manua
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationservicedeploymentstatus[$$RegistrationServiceDeploymentStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationservicehealth[$$RegistrationServiceHealth$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceresourcesstatus[$$RegistrationServiceResourcesStatus$$]
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-routes[$$Routes$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-socialeventstatus[$$SocialEventStatus$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-spacebindingrequeststatus[$$SpaceBindingRequestStatus$$]
@@ -585,31 +584,6 @@ Optional: \{} +
 |===
 
 
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret"]
-==== GitHubSecret
-
-
-
-GitHubSecret defines all secrets related to GitHub authentication/integration
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberstatusconfig[$$MemberStatusConfig$$]
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-toolchainstatusconfig[$$ToolchainStatusConfig$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`ref`* __string__ | Reference is the name of the secret resource to look up + |  | Optional: \{} +
-
-| *`accessTokenKey`* __string__ | The key for the GitHub Access token in the secret values map + |  | Optional: \{} +
-
-|===
-
-
 [id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostconfig"]
 ==== HostConfig
 
@@ -659,6 +633,7 @@ the same permissions the kubesaw-authenticated user has. + |  | Optional: \{} +
 
 
 HostOperatorStatus defines the observed state of a toolchain's host operator
+DEPRECATED: using metrics instead of this status
 
 
 
@@ -676,8 +651,6 @@ HostOperatorStatus defines the observed state of a toolchain's host operator
 | *`deploymentName`* __string__ | The status of the host operator's deployment + |  | 
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current host operator status conditions +
 Supported condition types: ConditionReady + |  | Optional: \{} +
-
-| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for host operator's deployment + |  | Optional: \{} +
 
 |===
 
@@ -702,8 +675,6 @@ HostRegistrationServiceStatus defines the observed state of a toolchain's regist
 | *`deployment`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationservicedeploymentstatus[$$RegistrationServiceDeploymentStatus$$]__ | Deployment is the status of the registration service's deployment + |  | 
 | *`registrationServiceResources`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceresourcesstatus[$$RegistrationServiceResourcesStatus$$]__ | RegistrationServiceResources is the status for resources created for the registration service + |  | 
 | *`health`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationservicehealth[$$RegistrationServiceHealth$$]__ | Health provides health status of the registration service + |  | 
-| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for registration service + |  | Optional: \{} +
-
 |===
 
 
@@ -1172,8 +1143,6 @@ MemberOperatorStatus defines the observed state of a toolchain's member operator
 | *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of current member operator status conditions +
 Supported condition types: ConditionReady + |  | Optional: \{} +
 
-| *`revisionCheck`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck[$$RevisionCheck$$]__ | The status of the revision check for member operator's deployment + |  | Optional: \{} +
-
 |===
 
 
@@ -1222,8 +1191,6 @@ Defines all parameters concerned with member status
 |===
 | Field | Description | Default | Validation
 | *`refreshPeriod`* __string__ | Defines the period between refreshes of the member status + |  | Optional: \{} +
-
-| *`gitHubSecret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]__ | Defines all secrets related to GitHub authentication/integration + |  | Optional: \{} +
 
 |===
 
@@ -2401,32 +2368,6 @@ Contains information about the resource usage of the cluster
 |===
 | Field | Description | Default | Validation
 | *`memoryUsagePerNodeRole`* __object (keys:string, values:integer)__ | How many percent of the available memory is used per node role (eg. worker, master) + |  | Optional: \{} +
-
-|===
-
-
-[id="{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-revisioncheck"]
-==== RevisionCheck
-
-
-
-RevisionCheck contains status of revision check for the component,
-it highlights if the component is up-to-date and the deployed version matches the latest one in the GitHub repository.
-
-
-
-.Appears In:
-****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostoperatorstatus[$$HostOperatorStatus$$]
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-hostregistrationservicestatus[$$HostRegistrationServiceStatus$$]
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-memberoperatorstatus[$$MemberOperatorStatus$$]
-****
-
-[cols="20a,50a,15a,15a", options="header"]
-|===
-| Field | Description | Default | Validation
-| *`conditions`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-condition[$$Condition$$] array__ | Conditions is an array of status conditions for the health of the registration service +
-Supported condition types: ConditionReady + |  | Optional: \{} +
 
 |===
 
@@ -3624,7 +3565,6 @@ ToolchainSecret defines a reference to a secret, this type should be included in
 
 .Appears In:
 ****
-- xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-notificationsecret[$$NotificationSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-registrationserviceverificationsecret[$$RegistrationServiceVerificationSecret$$]
 - xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-webhooksecret[$$WebhookSecret$$]
@@ -3683,8 +3623,6 @@ ToolchainStatusConfig contains all configuration parameters related to the toolc
 |===
 | Field | Description | Default | Validation
 | *`toolchainStatusRefreshTime`* __string__ | ToolchainStatusRefreshTime specifies how often the ToolchainStatus should load and refresh the current hosted-toolchain status + |  | Optional: \{} +
-
-| *`gitHubSecret`* __xref:{anchor_prefix}-github-com-codeready-toolchain-api-api-v1alpha1-githubsecret[$$GitHubSecret$$]__ | Defines all secrets related to GitHub authentication/integration + |  | Optional: \{} +
 
 |===
 
