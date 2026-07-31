@@ -37,7 +37,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.ConsoleConfig":                         schema_codeready_toolchain_api_api_v1alpha1_ConsoleConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.DeactivationConfig":                    schema_codeready_toolchain_api_api_v1alpha1_DeactivationConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.FeatureToggle":                         schema_codeready_toolchain_api_api_v1alpha1_FeatureToggle(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret":                          schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostConfig":                            schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostOperatorStatus":                    schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.HostRegistrationServiceStatus":         schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(ref),
@@ -86,7 +85,6 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationConfig": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationConfig(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceVerificationSecret": schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceVerificationSecret(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.ResourceUsage":                         schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref),
-		"github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck":                         schema_codeready_toolchain_api_api_v1alpha1_RevisionCheck(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.Routes":                                schema_codeready_toolchain_api_api_v1alpha1_Routes(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SocialEvent":                           schema_codeready_toolchain_api_api_v1alpha1_SocialEvent(ref),
 		"github.com/codeready-toolchain/api/api/v1alpha1.SocialEventSpec":                       schema_codeready_toolchain_api_api_v1alpha1_SocialEventSpec(ref),
@@ -537,33 +535,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_FeatureToggle(ref common.Refere
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_GitHubSecret(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "GitHubSecret defines all secrets related to GitHub authentication/integration",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"ref": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Reference is the name of the secret resource to look up",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"accessTokenKey": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The key for the GitHub Access token in the secret values map",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
 func schema_codeready_toolchain_api_api_v1alpha1_HostConfig(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -652,7 +623,7 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "HostOperatorStatus defines the observed state of a toolchain's host operator",
+				Description: "HostOperatorStatus defines the observed state of a toolchain's host operator DEPRECATED: using metrics instead of this status",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"version": {
@@ -711,19 +682,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostOperatorStatus(ref common.R
 							},
 						},
 					},
-					"revisionCheck": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The status of the revision check for host operator's deployment",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck"),
-						},
-					},
 				},
 				Required: []string{"version", "revision", "buildTimestamp", "deploymentName"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition", "github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
 	}
 }
 
@@ -755,19 +719,12 @@ func schema_codeready_toolchain_api_api_v1alpha1_HostRegistrationServiceStatus(r
 							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth"),
 						},
 					},
-					"revisionCheck": {
-						SchemaProps: spec.SchemaProps{
-							Description: "The status of the revision check for registration service",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck"),
-						},
-					},
 				},
 				Required: []string{"deployment", "registrationServiceResources", "health"},
 			},
 		},
 		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus", "github.com/codeready-toolchain/api/api/v1alpha1.RevisionCheck"},
+			"github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceDeploymentStatus", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceHealth", "github.com/codeready-toolchain/api/api/v1alpha1.RegistrationServiceResourcesStatus"},
 	}
 }
 
@@ -1384,18 +1341,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_MemberStatusConfig(ref common.R
 							Format:      "",
 						},
 					},
-					"gitHubSecret": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines all secrets related to GitHub authentication/integration",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"),
-						},
-					},
 				},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"},
 	}
 }
 
@@ -3071,45 +3019,6 @@ func schema_codeready_toolchain_api_api_v1alpha1_ResourceUsage(ref common.Refere
 	}
 }
 
-func schema_codeready_toolchain_api_api_v1alpha1_RevisionCheck(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "RevisionCheck contains status of revision check for the component, it highlights if the component is up-to-date and the deployed version matches the latest one in the GitHub repository.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"conditions": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"type",
-								},
-								"x-kubernetes-list-type":       "map",
-								"x-kubernetes-patch-merge-key": "type",
-								"x-kubernetes-patch-strategy":  "merge",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "Conditions is an array of status conditions for the health of the registration service Supported condition types: ConditionReady",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/codeready-toolchain/api/api/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.Condition"},
-	}
-}
-
 func schema_codeready_toolchain_api_api_v1alpha1_Routes(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -4691,18 +4600,9 @@ func schema_codeready_toolchain_api_api_v1alpha1_ToolchainStatusConfig(ref commo
 							Format:      "",
 						},
 					},
-					"gitHubSecret": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Defines all secrets related to GitHub authentication/integration",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"),
-						},
-					},
 				},
 			},
 		},
-		Dependencies: []string{
-			"github.com/codeready-toolchain/api/api/v1alpha1.GitHubSecret"},
 	}
 }
 

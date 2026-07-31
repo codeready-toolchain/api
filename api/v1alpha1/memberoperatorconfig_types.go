@@ -80,18 +80,6 @@ type ConsoleConfig struct {
 	RouteName *string `json:"routeName,omitempty"`
 }
 
-// GitHubSecret defines all secrets related to GitHub authentication/integration
-// +k8s:openapi-gen=true
-type GitHubSecret struct {
-	// The reference to the secret that is expected to contain the keys below
-	// +optional
-	ToolchainSecret `json:",inline"`
-
-	// The key for the GitHub Access token in the secret values map
-	// +optional
-	AccessTokenKey *string `json:"accessTokenKey,omitempty"`
-}
-
 // Defines all parameters concerned with the toolchaincluster resource
 // +k8s:openapi-gen=true
 type ToolchainClusterConfig struct {
@@ -135,10 +123,6 @@ type MemberStatusConfig struct {
 	// Defines the period between refreshes of the member status
 	// +optional
 	RefreshPeriod *string `json:"refreshPeriod,omitempty"`
-
-	// Defines all secrets related to GitHub authentication/integration
-	// +optional
-	GitHubSecret GitHubSecret `json:"gitHubSecret,omitempty"`
 }
 
 // MemberOperatorConfigStatus defines the observed state of MemberOperatorConfig

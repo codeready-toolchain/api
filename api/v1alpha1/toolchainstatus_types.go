@@ -24,14 +24,11 @@ const (
 	ToolchainStatusComponentsNotReadyReason = "ComponentsNotReady"
 
 	// deployment reasons
-	ToolchainStatusDeploymentReadyReason                      = "DeploymentReady"
-	ToolchainStatusDeploymentNotReadyReason                   = "DeploymentNotReady"
-	ToolchainStatusDeploymentNotFoundReason                   = "DeploymentNotFound"
-	ToolchainStatusDeploymentNotUpToDateReason                = "DeploymentNotUpToDate"
-	ToolchainStatusDeploymentUpToDateReason                   = "DeploymentIsUpToDate"
-	ToolchainStatusDeploymentRevisionCheckDisabledReason      = "DeploymentRevisionCheckDisabled"
-	ToolchainStatusDeploymentRevisionCheckGitHubErrorReason   = "DeploymentRevisionCheckGitHubError"
-	ToolchainStatusDeploymentRevisionCheckOperatorErrorReason = "DeploymentRevisionCheckOperatorError"
+	ToolchainStatusDeploymentReadyReason       = "DeploymentReady"
+	ToolchainStatusDeploymentNotReadyReason    = "DeploymentNotReady"
+	ToolchainStatusDeploymentNotFoundReason    = "DeploymentNotFound"
+	ToolchainStatusDeploymentNotUpToDateReason = "DeploymentNotUpToDate"
+	ToolchainStatusDeploymentUpToDateReason    = "DeploymentIsUpToDate"
 
 	// host connection reasons
 	ToolchainStatusClusterConnectionReadyReason                 = "HostConnectionReady"
@@ -120,6 +117,7 @@ type HostRoutes struct {
 
 // HostOperatorStatus defines the observed state of a toolchain's host operator
 // +k8s:openapi-gen=true
+// DEPRECATED: using metrics instead of this status
 type HostOperatorStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
@@ -144,10 +142,6 @@ type HostOperatorStatus struct {
 	// +listType=map
 	// +listMapKey=type
 	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
-
-	// The status of the revision check for host operator's deployment
-	// +optional
-	RevisionCheck RevisionCheck `json:"revisionCheck"`
 }
 
 // HostRegistrationServiceStatus defines the observed state of a toolchain's registration service
@@ -164,10 +158,6 @@ type HostRegistrationServiceStatus struct {
 
 	// Health provides health status of the registration service
 	Health RegistrationServiceHealth `json:"health"`
-
-	// The status of the revision check for registration service
-	// +optional
-	RevisionCheck RevisionCheck `json:"revisionCheck"`
 }
 
 // RegistrationServiceDeploymentStatus contains status of the registration service's deployment
@@ -224,20 +214,6 @@ type Member struct {
 type RegistrationServiceResourcesStatus struct {
 	// Conditions is an array of current registration service resource status conditions
 	// Supported condition types: Deployed, Deploying, DeployingFailed
-	// +optional
-	// +patchMergeKey=type
-	// +patchStrategy=merge
-	// +listType=map
-	// +listMapKey=type
-	Conditions []Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
-}
-
-// RevisionCheck contains status of revision check for the component,
-// it highlights if the component is up-to-date and the deployed version matches the latest one in the GitHub repository.
-// +k8s:openapi-gen=true
-type RevisionCheck struct {
-	// Conditions is an array of status conditions for the health of the registration service
-	// Supported condition types: ConditionReady
 	// +optional
 	// +patchMergeKey=type
 	// +patchStrategy=merge
