@@ -26,8 +26,15 @@ manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and Cust
 	$(CONTROLLER_GEN) rbac:roleName=manager-role crd webhook paths="./api/..." output:crd:artifacts:config=config/crd/bases
 
 .PHONY: generate
-generate: controller-gen ## Generate code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.
+generate: generate-object generate-crd gen-crd-ref-docs generate-openapi dispatch-crds ## Generate code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.
+
+.PHONY: generate-object
+generate-object: $(CONTROLLER_GEN) ## Generate code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.
 	$(CONTROLLER_GEN) object paths="./api/..."
+
+.PHONY: generate-crd
+generate-crd: $(CONTROLLER_GEN) ## Generate CRD manifests.
+	$(CONTROLLER_GEN) crd paths="./api/..." output:crd:artifacts:config=config/crd/bases
 
 CRD_REF_DOCS = $(PROJECT_DIR)/bin/crd-ref-docs
 crd-ref-docs: ## Download crd-ref-docs locally if necessary.
