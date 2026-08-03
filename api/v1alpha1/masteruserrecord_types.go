@@ -48,7 +48,7 @@ const (
 // MasterUserRecordSpec defines the desired state of MasterUserRecord
 // +k8s:openapi-gen=true
 type MasterUserRecordSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// If set to true then the corresponding user should not be able to login (but the underlying UserAccounts still exists)
@@ -83,7 +83,7 @@ type UserAccountEmbedded struct {
 // MasterUserRecordStatus defines the observed state of MasterUserRecord
 // +k8s:openapi-gen=true
 type MasterUserRecordStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current Master User Record conditions

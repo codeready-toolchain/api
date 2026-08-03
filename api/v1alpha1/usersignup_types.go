@@ -212,7 +212,7 @@ type UserSignupState string
 // UserSignupSpec defines the desired state of UserSignup
 // +k8s:openapi-gen=true
 type UserSignupSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The cluster in which the user is provisioned in
@@ -281,7 +281,7 @@ type PropagatedClaims struct {
 // UserSignupStatus defines the observed state of UserSignup
 // +k8s:openapi-gen=true
 type UserSignupStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current UserSignup conditions

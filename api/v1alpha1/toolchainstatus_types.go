@@ -56,7 +56,7 @@ const (
 // ToolchainStatusSpec defines the desired state of ToolchainStatus
 // +k8s:openapi-gen=true
 type ToolchainStatusSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// spec is intentionally empty since only the status fields will be used for reporting status of the toolchain
@@ -65,7 +65,7 @@ type ToolchainStatusSpec struct {
 // ToolchainStatusStatus defines the observed state of the toolchain, including host cluster and member cluster components
 // +k8s:openapi-gen=true
 type ToolchainStatusStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// HostOperator is the status of a toolchain host operator
@@ -119,7 +119,7 @@ type HostRoutes struct {
 // +k8s:openapi-gen=true
 // DEPRECATED: using metrics instead of this status
 type HostOperatorStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The version of the operator
@@ -147,7 +147,7 @@ type HostOperatorStatus struct {
 // HostRegistrationServiceStatus defines the observed state of a toolchain's registration service
 // +k8s:openapi-gen=true
 type HostRegistrationServiceStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Deployment is the status of the registration service's deployment
