@@ -33,7 +33,7 @@ generate-object: $(CONTROLLER_GEN) ## Generate code containing DeepCopy, DeepCop
 	$(CONTROLLER_GEN) object paths="./api/..."
 
 .PHONY: generate-crd
-generate-crd: $(CONTROLLER_GEN) ## Generate CRD manifests.
+generate-crd: $(CONTROLLER_GEN) remove-config ## Generate CRD manifests.
 	$(CONTROLLER_GEN) crd paths="./api/..." output:crd:artifacts:config=config/crd/bases
 
 CRD_REF_DOCS = $(PROJECT_DIR)/bin/crd-ref-docs
