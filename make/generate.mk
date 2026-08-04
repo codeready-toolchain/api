@@ -13,16 +13,21 @@ $(LOCALBIN):
 
 ## Tool Binaries
 CONTROLLER_GEN ?= $(LOCALBIN)/controller-gen
+OPENAPI_GEN ?= $(LOCALBIN)/openapi-gen
 PATH_TO_CRD_BASES=config/crd/bases
 CONTROLLER_TOOLS_VERSION ?= v0.18.0
 
-.PHONY: controller-gen
-controller-gen: $(CONTROLLER_GEN) ## Download controller-gen locally if necessary.
-$(CONTROLLER_GEN): $(LOCALBIN)
-	$(call go-install-tool,$(CONTROLLER_GEN),sigs.k8s.io/controller-tools/cmd/controller-gen,$(CONTROLLER_TOOLS_VERSION))
+$(CONTROLLER_GEN): ## install controller-gen locally if necessary.
+	GOBIN=$(LOCALBIN) $(GO) install sigs.k8s.io/controller-tools/cmd/controller-gen
+
+$(OPENAPI_GEN): ## install openapi-gen locally if necessary.
+	GOBIN=$(LOCALBIN) $(GO) install k8s.io/kube-openapi/cmd/openapi-gen
+
+$(CRD_REF_DOCS): ## install crd-ref-docs locally if necessary.
+	GOBIN=$(LOCALBIN) $(GO) install github.com/elastic/crd-ref-docs@latest
 
 .PHONY: manifests
-manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
+manifests: $(CONTROLLER_GEN) ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
 	$(CONTROLLER_GEN) rbac:roleName=manager-role crd webhook paths="./api/..." output:crd:artifacts:config=config/crd/bases
 
 .PHONY: generate
@@ -36,48 +41,19 @@ generate-object: $(CONTROLLER_GEN) ## Generate code containing DeepCopy, DeepCop
 generate-crd: $(CONTROLLER_GEN) remove-config ## Generate CRD manifests.
 	$(CONTROLLER_GEN) crd paths="./api/..." output:crd:artifacts:config=config/crd/bases
 
-CRD_REF_DOCS = $(PROJECT_DIR)/bin/crd-ref-docs
-crd-ref-docs: ## Download crd-ref-docs locally if necessary.
-	GOBIN=$(PROJECT_DIR)/bin $(GO) install github.com/elastic/crd-ref-docs@latest
-
 .PHONY: gen-crd-ref-docs
-gen-crd-ref-docs: crd-ref-docs
+gen-crd-ref-docs: $(CRD_REF_DOCS)
 	@echo "Re-generating the api doc ref: ./api/$(API_VERSION)/docs/apiref.adoc "
 	$(CRD_REF_DOCS) --source-path ./api/$(API_VERSION) --config ./crdrefdocs.config.yaml --output-path ./api/$(API_VERSION)/docs/apiref.adoc
 
-OPENAPI_GEN = $(PROJECT_DIR)/bin/openapi-gen
-OPENAPI_GEN_VERSION ?= master
-
-openapi-gen: ## Download openapi-gen locally if necessary.
-	$(call go-install-tool,$(OPENAPI_GEN),k8s.io/kube-openapi/cmd/openapi-gen,$(OPENAPI_GEN_VERSION))
-
 .PHONY: generate-openapi
-generate-openapi: openapi-gen
+generate-openapi: $(OPENAPI_GEN)
 	@echo "re-generating the openapi go file..."
 	$(OPENAPI_GEN) ./api/$(API_VERSION)/ \
 	--output-pkg github.com/codeready-toolchain/api/api/$(API_VERSION) \
 	--output-file zz_generated.openapi.go \
 	--output-dir ./api/$(API_VERSION) \
 	--go-header-file=make/go-header.txt
-
-
-
-# go-install-tool will 'go install' any package with custom target and name of binary, if it doesn't exist
-# $1 - target path with name of binary
-# $2 - package url which can be installed
-# $3 - specific version of package
-define go-install-tool
-@[ -f "$(1)-$(3)" ] || { \
-set -e; \
-package=$(2)@$(3) ;\
-echo "Downloading $${package}" ;\
-rm -f $(1) || true ;\
-GOBIN=$(LOCALBIN) go install $${package} ;\
-mv $(1) $(1)-$(3) ;\
-} ;\
-ln -sf $(1)-$(3) $(1)
-endef
-
 
 # make sure that that the `host-operator` and `member-operator` repositories exist locally
 # and that they don't have any pending changes (except for the CRD files). 
