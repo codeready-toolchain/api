@@ -8,6 +8,13 @@ GO_PACKAGE_ORG_NAME ?= $(shell basename $$(dirname $$PWD))
 GO_PACKAGE_REPO_NAME ?= $(shell basename $$PWD)
 GO_PACKAGE_PATH ?= github.com/${GO_PACKAGE_ORG_NAME}/${GO_PACKAGE_REPO_NAME}
 
+GOFORMAT_FILES := $(shell find  . -name '*.go' | grep -vEf ./make/gofmt_exclude)
+
+.PHONY: format-go-code
+## Formats any go file that does not match formatting defined by gofmt
+format-go-code:
+	$(Q)gofmt -s -l -w ${GOFORMAT_FILES}
+
 .PHONY: build
 ## Build
 build:
@@ -17,3 +24,4 @@ build:
 .PHONY: verify-replace-run
 verify-replace-run: 
 	./scripts/verify-replace.sh;
+
