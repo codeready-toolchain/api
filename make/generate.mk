@@ -14,6 +14,7 @@ $(LOCALBIN):
 ## Tool Binaries
 CONTROLLER_GEN ?= $(LOCALBIN)/controller-gen
 OPENAPI_GEN ?= $(LOCALBIN)/openapi-gen
+CRD_REF_DOCS ?= $(LOCALBIN)/crd-ref-docs
 PATH_TO_CRD_BASES=config/crd/bases
 
 $(CONTROLLER_GEN): go.mod | $(LOCALBIN) ## install controller-gen locally if necessary. Version is pinned in go.mod.
