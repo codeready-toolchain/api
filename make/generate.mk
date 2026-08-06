@@ -3,8 +3,6 @@ API_GROUPNAME=toolchain
 API_FULL_GROUPNAME=toolchain.dev.openshift.com
 API_VERSION:=v1alpha1
 
-PROJECT_DIR := $(shell pwd)
-
 ## Location to install dependencies to
 LOCALBIN ?= $(shell pwd)/bin
 $(LOCALBIN):
