@@ -5,7 +5,7 @@ clean: remove-bin remove-config
 
 .PHONY: remove-bin
 remove-bin:
-	$(Q)rm -rf ./bin
+	$(Q)rm -rf $(LOCALBIN)
 
 .PHONY: remove-config
 remove-config:

@@ -37,7 +37,7 @@ const (
 // NotificationSpec defines the desired state of Notification
 // +k8s:openapi-gen=true
 type NotificationSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// UserID is the user ID from RHD Identity Provider token (“sub” claim).  The UserID is used by
@@ -72,7 +72,7 @@ type NotificationSpec struct {
 // NotificationStatus defines the observed state of Notification
 // +k8s:openapi-gen=true
 type NotificationStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current Notification conditions

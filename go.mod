@@ -5,13 +5,11 @@ go 1.24.4
 toolchain go1.24.13
 
 require (
-	github.com/go-bindata/go-bindata v3.1.2+incompatible
 	// using latest commit from 'github.com/openshift/api branch release-4.20'
 	github.com/openshift/api v0.0.0-20251202204302-1cb53e34ca33
 	k8s.io/api v0.33.4
 	k8s.io/apimachinery v0.33.4
-	k8s.io/code-generator v0.33.4
-	k8s.io/gengo v0.0.0-20230829151522-9cce18d56c01
+	k8s.io/code-generator v0.33.4 // indirect
 	k8s.io/kube-openapi v0.0.0-20250318190949-c8a335a9a2ff
 	sigs.k8s.io/controller-runtime v0.21.0
 	sigs.k8s.io/controller-tools v0.18.0
