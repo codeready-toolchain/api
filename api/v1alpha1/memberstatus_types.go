@@ -9,7 +9,7 @@ import (
 // MemberStatusSpec defines the desired state of MemberStatus
 // +k8s:openapi-gen=true
 type MemberStatusSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// spec is intentionally empty since only the status fields will be used for reporting status of the toolchain
@@ -18,7 +18,7 @@ type MemberStatusSpec struct {
 // MemberStatusStatus defines the observed state of the toolchain member status
 // +k8s:openapi-gen=true
 type MemberStatusStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// MemberOperator is the status of a toolchain member operator
@@ -78,7 +78,7 @@ type ResourceUsage struct {
 
 // HostStatus defines the status of the connection with the host cluster
 type HostStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current member operator status conditions
@@ -93,7 +93,7 @@ type HostStatus struct {
 
 // MemberOperatorStatus defines the observed state of a toolchain's member operator
 type MemberOperatorStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The version of the operator

@@ -11,7 +11,7 @@ type OpenShiftRouteTarget struct {
 // ProxyPluginSpec defines the desired state of ProxyPlugin
 // +k8s:openapi-gen=true
 type ProxyPluginSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// OpenShiftRouteTargetEndpoint is an optional field that represents the look up information for an OpenShift Route
@@ -25,7 +25,7 @@ type ProxyPluginSpec struct {
 // ProxyPluginStatus defines the observed state of ProxyPlugin
 // +k8s:openapi-gen=true
 type ProxyPluginStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current Proxy Plugin conditions

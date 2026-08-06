@@ -20,7 +20,7 @@ const (
 // BannedUserSpec defines the desired state of BannedUser
 // +k8s:openapi-gen=true
 type BannedUserSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The e-mail address of the account that has been banned

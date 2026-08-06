@@ -21,7 +21,7 @@ type UserTier struct {
 // UserTierSpec defines the desired state of UserTier
 // +k8s:openapi-gen=true
 type UserTierSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// the period (in days) after which users within the tier will be deactivated

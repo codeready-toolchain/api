@@ -22,7 +22,7 @@ const (
 //
 // +k8s:openapi-gen=true
 type SocialEventSpec struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// The timestamp from which users may register via this event's activation code
@@ -59,7 +59,7 @@ type SocialEventSpec struct {
 // SocialEventStatus defines the observed state of SocialEvent
 // +k8s:openapi-gen=true
 type SocialEventStatus struct {
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// Important: Run "make generate" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
 
 	// Conditions is an array of current SocialEventStatus conditions
