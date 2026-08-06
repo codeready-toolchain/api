@@ -13,6 +13,7 @@ $(LOCALBIN):
 CONTROLLER_GEN ?= $(LOCALBIN)/controller-gen
 OPENAPI_GEN ?= $(LOCALBIN)/openapi-gen
 CRD_REF_DOCS ?= $(LOCALBIN)/crd-ref-docs
+CRD_REF_DOCS_VERSION ?= v0.3.0
 PATH_TO_CRD_BASES=config/crd/bases
 
 $(CONTROLLER_GEN): go.mod | $(LOCALBIN) ## install controller-gen locally if necessary. Version is pinned in go.mod.
@@ -22,7 +23,7 @@ $(OPENAPI_GEN): go.mod | $(LOCALBIN) ## install openapi-gen locally if necessary
 	GOBIN=$(LOCALBIN) $(GO) install k8s.io/kube-openapi/cmd/openapi-gen
 
 $(CRD_REF_DOCS): go.mod | $(LOCALBIN) ## install crd-ref-docs locally if necessary. Version is pinned in go.mod.
-	GOBIN=$(LOCALBIN) $(GO) install github.com/elastic/crd-ref-docs
+	GOBIN=$(LOCALBIN) $(GO) install github.com/elastic/crd-ref-docs@$(CRD_REF_DOCS_VERSION)
 
 .PHONY: manifests
 manifests: $(CONTROLLER_GEN) ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
