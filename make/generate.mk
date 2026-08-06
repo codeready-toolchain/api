@@ -3,12 +3,6 @@ API_GROUPNAME=toolchain
 API_FULL_GROUPNAME=toolchain.dev.openshift.com
 API_VERSION:=v1alpha1
 
-## Location to install dependencies to
-LOCALBIN ?= $(shell pwd)/bin
-$(LOCALBIN):
-	mkdir -p $(LOCALBIN)
-
-
 ## Tool Binaries
 CONTROLLER_GEN ?= $(LOCALBIN)/controller-gen
 OPENAPI_GEN ?= $(LOCALBIN)/openapi-gen
@@ -49,10 +43,6 @@ $(OPENAPI_GEN): ## install openapi-gen locally if necessary.
 
 $(CRD_REF_DOCS): ## install crd-ref-docs locally if necessary.
 	GOBIN=$(LOCALBIN) $(GO) install github.com/elastic/crd-ref-docs@latest
-
-.PHONY: manifests
-manifests: $(CONTROLLER_GEN) ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
-	$(CONTROLLER_GEN) rbac:roleName=manager-role crd webhook paths="./api/..." output:crd:artifacts:config=config/crd/bases
 
 .PHONY: generate
 generate: generate-object generate-crd gen-crd-ref-docs generate-openapi dispatch-crds ## Generate code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.
