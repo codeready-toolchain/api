@@ -2,7 +2,7 @@ module github.com/codeready-toolchain/api
 
 go 1.26.0
 
-toolchain go1.26.5
+toolchain go1.26.8
 
 require (
 	// using latest commit from 'github.com/openshift/api branch release-4.20'

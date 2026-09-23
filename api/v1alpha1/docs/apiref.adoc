@@ -2168,6 +2168,9 @@ Valid values are "disabled" (do not call the verifier), "log" (call but only log
 and "enabled" (call and enforce the response). Defaults to "log". + |  | Enum: [disabled log enabled] +
 Optional: \{} +
 
+| *`verifiedTimestampExpiryDays`* __integer__ | VerifiedTimestampExpiryDays controls for how many days the verified timestamp at UserSignup stays valid + |  | Minimum: 0 +
+Optional: \{} +
+
 |===
 
 
