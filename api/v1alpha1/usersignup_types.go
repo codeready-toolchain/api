@@ -35,6 +35,8 @@ const (
 	SkipAutoCreateSpaceAnnotationKey = LabelKeyPrefix + "skip-auto-create-space"
 	// UserSignupVerifiedTimestampAnnotationKey defines when the UserSignup was successfully verified last time
 	UserSignupVerifiedTimestampAnnotationKey = LabelKeyPrefix + "verified-at"
+	// UserSignupGatingRequestedKey when set, then the UserSignup was requested for gating only verification
+	UserSignupGatingRequestedKey = LabelKeyPrefix + "gating-requested"
 	// UserSignupActivationCounterAnnotationKey is used for the usersignup activation counter annotation key
 	// Activations are counted after phone verification succeeded
 	UserSignupActivationCounterAnnotationKey = LabelKeyPrefix + "activation-counter"
