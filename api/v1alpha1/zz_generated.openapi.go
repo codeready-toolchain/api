@@ -2613,6 +2613,13 @@ func schema_codeready_toolchain_api_api_v1alpha1_RegistrationServiceConfig(ref c
 							Format:      "",
 						},
 					},
+					"verifiedTimestampExpiryDays": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VerifiedTimestampExpiryDays controls for how many days the verified timestamp at UserSignup stays valid",
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
 				},
 			},
 		},

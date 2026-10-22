@@ -268,6 +268,11 @@ type RegistrationServiceConfig struct {
 	// +optional
 	// +kubebuilder:validation:Enum=disabled;log;enabled
 	AccountVerifierMode *string `json:"accountVerifierMode,omitempty"`
+
+	// VerifiedTimestampExpiryDays controls for how many days the verified timestamp at UserSignup stays valid
+	// +optional
+	// +kubebuilder:validation:Minimum=0
+	VerifiedTimestampExpiryDays *uint `json:"verifiedTimestampExpiryDays,omitempty"`
 }
 
 // RegistrationServiceAnalyticsConfig contains the subset of registration service configuration parameters related to analytics
